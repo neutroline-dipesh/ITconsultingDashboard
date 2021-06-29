@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+.dataTables_wrapper {
+  position: relative;
+  clear: both;
+  width: 96% !important;
+  /* height: 50vh !important; */
+  padding-left: 2rem !important;
+  padding-top: 2rem !important;
+
+  zoom: 1;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}

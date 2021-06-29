@@ -10,9 +10,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
@@ -28,6 +25,7 @@ const useStyle = makeStyles((theme) => ({
     height: "100vh",
     background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
     textAlign: "center",
+    // position: "fixed",
     //position: "absolute",
     // top: 0,
     // left: 0,
@@ -37,65 +35,13 @@ const useStyle = makeStyles((theme) => ({
     // justifyContent: "center",
     paddingTop: "0.4rem",
   },
-  sidenav: {
-    // left: 0,
-  },
+  sidenav: {},
   companyName: {
     color: "#FFFFFF",
-    // backgroundColor: "red",
     fontSize: "30px",
     width: "100%",
-
-    // textAlign: "center",
-    // marginTop: "8rem",
   },
-  // sidebarMenuUl: {
-  //   marginTop: "-17rem",
-  //   paddingInlineStart: "0 !important",
-  //   // marginLeft: "1rem",
-  // },
-  // sidebarListAll: {
-  //   width: "100%",
-  //   listStyleType: "none",
-  //   marginLeft: "10px",
-  //   paddingLeft: "10px",
-  //   color: "white",
-  //   display: "block",
-  //   height: "5vh",
-  //   fontSize: "20px",
-  //   marginBottom: "0.8rem",
 
-  //   "&:hover": {
-  //     cursor: "pointer",
-  //     backgroundColor: "#0F5373",
-  //     borderRadius: "5px",
-  //   },
-  // },
-  // SidebarIcon: {
-  //   // marginLeft: "-2rem",
-  //   // marginRight: "0.9rem",
-  //   paddingRight: "10px",
-  //   marginTop: "3px",
-  //   float: "left",
-  // },
-  // SidebarMenu: {
-  //   width: "100%",
-  //   // marginRight: "3rem",
-  //   // backgroundColor: "red",
-  // },
-  // downUpArrow: {
-  //   // marginLeft: "2rem",
-  //   float: "right",
-  // },
-  // submenuUl: {
-  //   width: "100%",
-  //   // backgroundColor: "red",
-  //   height: "10vh",
-  // },
-  // submenuItem: {
-  //   display: "block",
-  //   backgroundColor: "#0F5373",
-  // },
   NavbarMainDiv: {
     height: "8vh",
     width: "100%",
@@ -104,8 +50,6 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-
-    // backgroundColor: "green",
   },
   NavbarMianDivOnClick: {
     height: "8vh",
@@ -118,6 +62,7 @@ const useStyle = makeStyles((theme) => ({
   },
   hamburgurIcon: {
     marginLeft: "1rem",
+    fontSize: "30px",
   },
   adminimg: {
     width: "40px",
@@ -128,9 +73,7 @@ const useStyle = makeStyles((theme) => ({
     maxWidth: 360,
     color: "#fff",
     marginTop: "2rem",
-    // "&$selected:hover": {
-    //   backgroundColor: "purple",
-    // },
+    // position: "fixed",
   },
   sidebarList: {
     "&:hover": {
@@ -140,6 +83,10 @@ const useStyle = makeStyles((theme) => ({
   },
   nastedList: {
     backgroundColor: "#80b3ff",
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "#0F5373",
+    },
   },
   sidebarIcon: {
     color: "#fff",
@@ -179,7 +126,13 @@ const Sidebar = () => {
             aria-labelledby="nested-list-subheader"
             className={classes.sidebarMenuItem}
           >
-            <ListItem button className={classes.sidebarList}>
+            <ListItem
+              button
+              className={classes.sidebarList}
+              onClick={() => {
+                window.location.pathname = "/dashboard";
+              }}
+            >
               <ListItemIcon>
                 <HomeIcon className={classes.sidebarIcon} />
               </ListItemIcon>
@@ -202,6 +155,9 @@ const Sidebar = () => {
                   button
                   className={classes.sidebarList}
                   className={classes.nastedList}
+                  onClick={() => {
+                    window.location.pathname = "/alljobs";
+                  }}
                 >
                   <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
                   <ListItemText primary="All Jobs" />
@@ -210,6 +166,9 @@ const Sidebar = () => {
                   button
                   className={classes.sidebarList}
                   className={classes.nastedList}
+                  onClick={() => {
+                    window.location.pathname = "/addjobs";
+                  }}
                 >
                   <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
                   <ListItemText primary="Add Jobs" />
@@ -234,6 +193,9 @@ const Sidebar = () => {
                   className={classes.nested}
                   className={classes.sidebarList}
                   className={classes.nastedList}
+                  onClick={() => {
+                    window.location.pathname = "/contracting";
+                  }}
                 >
                   <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
                   <ListItemText primary="Contracting" />
@@ -242,13 +204,22 @@ const Sidebar = () => {
                   button
                   className={classes.sidebarList}
                   className={classes.nastedList}
+                  onClick={() => {
+                    window.location.pathname = "/internal";
+                  }}
                 >
                   <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
                   <ListItemText primary="Internal" />
                 </ListItem>
               </List>
             </Collapse>
-            <ListItem button className={classes.sidebarList}>
+            <ListItem
+              button
+              className={classes.sidebarList}
+              onClick={() => {
+                window.location.pathname = "/contact";
+              }}
+            >
               <ListItemIcon>
                 <ContactsIcon className={classes.sidebarIcon} />
               </ListItemIcon>
