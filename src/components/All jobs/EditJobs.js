@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { withStyles } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
@@ -141,65 +138,7 @@ const useStyle = makeStyles((theme) => ({
     fontFamily: "Verdana",
     color: "red",
   },
-  PublishDiv: {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "1rem",
-  },
 }));
-
-const IOSSwitch = withStyles((theme) => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(1),
-  },
-  switchBase: {
-    padding: 1,
-    "&$checked": {
-      transform: "translateX(16px)",
-      color: theme.palette.common.white,
-      "& + $track": {
-        backgroundColor: "#52d869",
-        opacity: 1,
-        border: "none",
-      },
-    },
-    "&$focusVisible $thumb": {
-      color: "#52d869",
-      border: "6px solid #fff",
-    },
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-  },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: theme.palette.grey[50],
-    opacity: 1,
-    transition: theme.transitions.create(["background-color", "border"]),
-  },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }) => {
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
 
 const Addjobs = () => {
   const classes = useStyle();
@@ -234,11 +173,11 @@ const Addjobs = () => {
   });
 
   //alert message
-  const saveFunction = () => {
+  const updateFunction = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
       },
       buttonsStyling: false,
     });
@@ -260,7 +199,7 @@ const Addjobs = () => {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes, Save it!",
+        confirmButtonText: "Yes, Update it!",
         cancelButtonText: "No, cancel!",
         reverseButtons: true,
       })
@@ -268,7 +207,7 @@ const Addjobs = () => {
         if (result.isConfirmed) {
           swalWithBootstrapButtons.fire(
             "Save!",
-            "Your file has been Save.",
+            "Your file has been Update.",
             "success"
           );
         } else if (
@@ -283,22 +222,14 @@ const Addjobs = () => {
         }
       });
   };
-  //for switch button (publish)
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true,
-  });
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+
   return (
     <>
       <Sidebar />
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Add Jobs</span>
+            <span className={classes.pageTabName}>All Jobs / Edit Jobs</span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
@@ -458,25 +389,13 @@ const Addjobs = () => {
                         }}
                       />
                     </div>
-                    <div className={classes.PublishDiv}>
-                      <span>Publish</span>
-                      <FormControlLabel
-                        control={
-                          <IOSSwitch
-                            checked={state.checkedB}
-                            onChange={handleChange}
-                            name="checkedB"
-                          />
-                        }
-                      />
-                    </div>
                     <div className={classes.saveButtonDiv}>
                       <button
                         type="submit"
                         className={"btn btn-primary" + " " + classes.save}
-                        onClick={() => saveFunction()}
+                        onClick={() => updateFunction()}
                       >
-                        Save
+                        Update
                       </button>
                     </div>
                   </div>

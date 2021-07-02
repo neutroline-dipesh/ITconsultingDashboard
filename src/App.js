@@ -7,9 +7,10 @@ import Contracting from "./components/Contracting Applicant/Contracting";
 import Internal from "./components/Internal Applicant/Internal";
 import AddJobs from "./components/Add jobs/AddJobs";
 import Contact from "./components/Contact/Contact";
-import Text from "./components/Add jobs/Text";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
+import pageNotFound from "./components/PageNotFound";
+import EditJobs from "./components/All jobs/EditJobs";
+import viewDetail from "./components/Contact/ViewDetail";
 function App() {
   return (
     <div>
@@ -19,12 +20,14 @@ function App() {
 
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/alljobs" component={Alljobs} />
+          <Route exact path="/alljobs/editJobs" component={EditJobs} />
           <Route exact path="/contracting" component={Contracting} />
           <Route exact path="/internal" component={Internal} />
           <Route exact path="/addjobs" component={AddJobs} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/view" component={viewDetail} />
 
-          <Route component={Error} />
+          <Route component={pageNotFound} />
         </Switch>
       </BrowserRouter>
     </div>

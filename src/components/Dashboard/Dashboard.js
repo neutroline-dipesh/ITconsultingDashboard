@@ -75,7 +75,7 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "2.4rem",
   },
   tableCalenderDivMain: {
-    height: "66vh",
+    height: "67vh",
     // border: "solid 1px",
     backgroundColor: "#C4C4C4",
   },
@@ -124,10 +124,11 @@ const useStyle = makeStyles((theme) => ({
   calenderDiv: {
     // width: "50%",
     float: "left",
-    height: "60vh",
+    // height: "60vh",
     width: "22%",
     // backgroundColor: "blue",
     marginLeft: "4rem",
+    marginTop: "-2rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
   viewDate: {

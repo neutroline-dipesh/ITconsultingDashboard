@@ -223,9 +223,15 @@ const Sidebar = () => {
               <ListItemIcon>
                 <ContactsIcon className={classes.sidebarIcon} />
               </ListItemIcon>
-              <ListItemText primary="Contact" />
+              <ListItemText primary="All Query" />
             </ListItem>
-            <ListItem button className={classes.sidebarList}>
+            <ListItem
+              button
+              className={classes.sidebarList}
+              onClick={() => {
+                window.location.pathname = "/";
+              }}
+            >
               <ListItemIcon>
                 <ExitToAppIcon className={classes.sidebarIcon} />
               </ListItemIcon>

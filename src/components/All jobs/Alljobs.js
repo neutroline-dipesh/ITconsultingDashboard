@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Swal from "sweetalert2";
+
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -58,6 +61,43 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#04A8F6 !important",
     color: "#fff",
     height: "3vh !important",
+    textAlign: "center",
+  },
+  buttomDiv: {
+    // backgroundColor: "red",
+    display: "flex",
+    justifyContent: "center",
+  },
+  editButton: {
+    fontSize: "0.7rem",
+    // borderRadius: "20px",
+    backgroundColor: "#04A8F6",
+    marginLeft: "0.5rem",
+    height: "3.9vh",
+    "&:hover": {
+      color: "#fff",
+    },
+  },
+  viewButton: {
+    fontSize: "0.7rem",
+    // borderRadius: "20px",
+    backgroundColor: "#00264d",
+
+    height: "3.9vh",
+    "&:hover": {
+      color: "#fff",
+    },
+  },
+  deleteButton: {
+    fontSize: "0.7rem",
+    // borderRadius: "20px",
+    marginLeft: "0.5rem",
+
+    backgroundColor: "#b30000",
+    height: "3.9vh",
+    "&:hover": {
+      color: "#fff",
+    },
   },
 }));
 
@@ -68,6 +108,49 @@ const Alljobs = () => {
       $("#example").DataTable();
     });
   });
+
+  //alert message
+
+  const deletFunction = () => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+        cancelButton: "btn btn-danger mx-2",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            "Deleted!",
+            "Your file has been deleted.",
+            "success"
+          );
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            "Cancelled",
+            "Your imaginary file is safe :)",
+            "error"
+          );
+        }
+      });
+  };
+  const str =
+    "We are looking for a Technical Project Manager to he our clients deliver results against some of their most complex business and technology initiatives. Be sur apply if you are interested.";
 
   return (
     <>
@@ -91,111 +174,59 @@ const Alljobs = () => {
                 >
                   <thead>
                     <tr>
-                      <th className={classes.tableHead}>Name</th>
-                      <th className={classes.tableHead}>Position</th>
-                      <th className={classes.tableHead}>Office</th>
-                      <th className={classes.tableHead}>Age</th>
-                      <th className={classes.tableHead}>Start date</th>
-                      <th className={classes.tableHead}>Salary</th>
+                      <th className={classes.tableHead}>Job Title</th>
+                      <th className={classes.tableHead}>Job SubTitle</th>
+                      <th className={classes.tableHead}>Department</th>
+                      <th className={classes.tableHead}>Job Type</th>
+
+                      <th className={classes.tableHead}>Country</th>
+                      <th className={classes.tableHead}>State</th>
+                      <th className={classes.tableHead}>City</th>
+                      <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr>
-                      <td>Ashton Cox</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>66</td>
-                      <td>2009/01/12</td>
-                      <td>$86,000</td>
-                    </tr>
+                      <td>Java Developer</td>
+                      <td>{str.substr(0, 30)}</td>
+                      <td>Technology</td>
 
-                    <tr>
-                      <td>Jennifer Acosta</td>
-                      <td>Junior Javascript Developer</td>
-                      <td>Edinburgh</td>
-                      <td>43</td>
-                      <td>2013/02/01</td>
-                      <td>$75,650</td>
-                    </tr>
-                    <tr>
-                      <td>Cara Stevens</td>
-                      <td>Sales Assistant</td>
-                      <td>New York</td>
-                      <td>46</td>
-                      <td>2011/12/06</td>
-                      <td>$145,600</td>
-                    </tr>
-                    <tr>
-                      <td>Hermione Butler</td>
-                      <td>Regional Director</td>
-                      <td>London</td>
-                      <td>47</td>
-                      <td>2011/03/21</td>
-                      <td>$356,250</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr>
-                      <td>Lael Greer</td>
-                      <td>Systems Administrator</td>
-                      <td>London</td>
-                      <td>21</td>
-                      <td>2009/02/27</td>
-                      <td>$103,500</td>
+                      <td>Full time</td>
+                      <td>Nepal</td>
+                      <td>Provience 1</td>
+                      <td>City</td>
+                      <td>
+                        <div className={classes.buttomDiv}>
+                          <Button
+                            className={classes.viewButton}
+                            variant="contained"
+                            color="primary"
+                            href="#contained-buttons"
+                          >
+                            View
+                          </Button>
+                          <Button
+                            className={classes.editButton}
+                            variant="contained"
+                            color="primary"
+                            href="#contained-buttons"
+                            onClick={() => {
+                              window.location.pathname = "/alljobs/editJobs";
+                            }}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            className={classes.deleteButton}
+                            variant="contained"
+                            color="primary"
+                            href="#contained-buttons"
+                            onClick={() => deletFunction()}
+                          >
+                            delete
+                          </Button>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
