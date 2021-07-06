@@ -58,7 +58,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#04A8F6 !important",
+    backgroundColor: "#4487A9 !important",
     color: "#fff",
     height: "3vh !important",
     textAlign: "center",
@@ -174,27 +174,28 @@ const Alljobs = () => {
                 >
                   <thead>
                     <tr>
+                      <th className={classes.tableHead}>SN</th>
+                      <th className={classes.tableHead}>Job ID</th>
                       <th className={classes.tableHead}>Job Title</th>
-                      <th className={classes.tableHead}>Job SubTitle</th>
                       <th className={classes.tableHead}>Department</th>
                       <th className={classes.tableHead}>Job Type</th>
-
                       <th className={classes.tableHead}>Country</th>
-                      <th className={classes.tableHead}>State</th>
-                      <th className={classes.tableHead}>City</th>
+                      <th className={classes.tableHead}>Location</th>
+                      <th className={classes.tableHead}>Published By</th>
                       <th className={classes.tableHead}>Action</th>
+                      <th className={classes.tableHead}>Visibility</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
+                      <td>1</td>
+                      <td>id</td>
                       <td>Java Developer</td>
-                      <td>{str.substr(0, 30)}</td>
                       <td>Technology</td>
-
-                      <td>Full time</td>
+                      <td>Full Time</td>
                       <td>Nepal</td>
-                      <td>Provience 1</td>
-                      <td>City</td>
+                      <td>Provience-1 , damak</td>
+                      <td>Dipesh Shrestha</td>
                       <td>
                         <div className={classes.buttomDiv}>
                           <Button
@@ -202,6 +203,10 @@ const Alljobs = () => {
                             variant="contained"
                             color="primary"
                             href="#contained-buttons"
+                            onClick={() => {
+                              // window.location.pathname = "/viewApplicatnDetail";
+                              window.open("/viewJobDetail", "_blank");
+                            }}
                           >
                             View
                           </Button>
@@ -227,6 +232,7 @@ const Alljobs = () => {
                           </Button>
                         </div>
                       </td>
+                      <td>Publised</td>
                     </tr>
                   </tbody>
                 </table>

@@ -209,6 +209,9 @@ const Dashboard = () => {
                   size="small"
                   color="primary"
                   className={classes.viewAllButton}
+                  onClick={() => {
+                    window.location.pathname = "/allApplicant";
+                  }}
                 >
                   View All
                 </Button>

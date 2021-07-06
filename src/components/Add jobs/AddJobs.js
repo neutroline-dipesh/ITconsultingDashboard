@@ -123,16 +123,15 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "1rem",
   },
   ckeditor: {},
-  saveButtonDiv: {},
   save: {
     backgroundColor: "#04A8F6",
     borderRadius: "20px",
     fontSize: "0.9rem",
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    width: "11%",
-    marginTop: "1rem",
-    float: "right",
-    marginBottom: "1rem",
+    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    width: "7rem",
+    marginTop: "2rem",
+    // float: "right",
+    // marginBottom: "1rem",
   },
   errorMessage: {
     // marginLeft: "5rem",
@@ -145,6 +144,11 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginTop: "1rem",
+  },
+  publishSaveDiv: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 }));
 
@@ -214,6 +218,7 @@ const Addjobs = () => {
       country: "",
       state: "",
       city: "",
+      publishBy: "",
     },
     validationSchema: Yup.object({
       jobTitle: Yup.string().required("Required!"),
@@ -223,6 +228,7 @@ const Addjobs = () => {
       country: Yup.string().required("Required!"),
       state: Yup.string().required("Required!"),
       city: Yup.string().required("Required!"),
+      publishBy: Yup.string().required("Required!"),
       // password: Yup.string()
       //   .min(4, "Minimum 4 character!")
       //   .required("Required!"),
@@ -308,6 +314,18 @@ const Addjobs = () => {
                     <input
                       type="text"
                       className="form-control"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter Publisher Name"
+                      name="publishBy"
+                      {...formik.getFieldProps("publishBy")}
+                      required
+                    />
+                    <div className={classes.errorMessage}>
+                      {formik.errors.publishBy}
+                    </div>
+                    <input
+                      type="text"
+                      className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
                       name="jobTitle"
@@ -458,26 +476,28 @@ const Addjobs = () => {
                         }}
                       />
                     </div>
-                    <div className={classes.PublishDiv}>
-                      <span>Publish</span>
-                      <FormControlLabel
-                        control={
-                          <IOSSwitch
-                            checked={state.checkedB}
-                            onChange={handleChange}
-                            name="checkedB"
-                          />
-                        }
-                      />
-                    </div>
-                    <div className={classes.saveButtonDiv}>
-                      <button
-                        type="submit"
-                        className={"btn btn-primary" + " " + classes.save}
-                        onClick={() => saveFunction()}
-                      >
-                        Save
-                      </button>
+                    <div className={classes.publishSaveDiv}>
+                      <div className={classes.PublishDiv}>
+                        <span>Publish</span>
+                        <FormControlLabel
+                          control={
+                            <IOSSwitch
+                              checked={state.checkedB}
+                              onChange={handleChange}
+                              name="checkedB"
+                            />
+                          }
+                        />
+                      </div>
+                      <div className={classes.saveButtonDiv}>
+                        <button
+                          type="submit"
+                          className={"btn btn-primary" + " " + classes.save}
+                          onClick={() => saveFunction()}
+                        >
+                          Save
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>

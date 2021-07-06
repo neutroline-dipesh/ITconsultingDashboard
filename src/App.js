@@ -11,6 +11,9 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import pageNotFound from "./components/PageNotFound";
 import EditJobs from "./components/All jobs/EditJobs";
 import viewDetail from "./components/Contact/ViewDetail";
+import allApplicant from "./components/allApplicant/allApplicant";
+import viewApplicantDetail from "./components/viewApplicantDetail/viewApplicantDetail";
+import viewJobDetail from "./components/All jobs/viewJobDetail";
 function App() {
   return (
     <div>
@@ -25,7 +28,15 @@ function App() {
           <Route exact path="/internal" component={Internal} />
           <Route exact path="/addjobs" component={AddJobs} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/view" component={viewDetail} />
+          <Route exact path="/viewContact" component={viewDetail} />
+          <Route exact path="/allApplicant" component={allApplicant} />
+          <Route exact path="/viewJobDetail" component={viewJobDetail} />
+
+          <Route
+            exact
+            path="/viewApplicatnDetail"
+            component={viewApplicantDetail}
+          />
 
           <Route component={pageNotFound} />
         </Switch>

@@ -59,7 +59,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#04A8F6 !important",
+    backgroundColor: "#4487A9 !important",
     color: "#fff",
     height: "3vh !important",
     textAlign: "center",
@@ -71,15 +71,6 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
   },
 
-  viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-    height: "3.9vh",
-    "&:hover": {
-      color: "#fff",
-    },
-  },
   deleteButton: {
     fontSize: "0.7rem",
     marginLeft: "0.5rem",
@@ -174,30 +165,28 @@ const Contact = () => {
                       <th className={classes.tableHead}>Last Name</th>
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone</th>
+                      <th className={classes.tableHead}>Address</th>
                       <th className={classes.tableHead}>Subject</th>
-                      <th className={classes.tableHead}>Message</th>
+                      <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
+                      <td>Dipesh </td>
+                      <td>Shrestha</td>
+                      <td>dipeshxtha129@gmail.com</td>
+                      <td>9816940668</td>
+                      <td>Damak-11, Jhapa</td>
+                      <td>Subject</td>
+                      <td>
+                        <select>
+                          <option value="notSeen">Not Seen</option>
+                          <option value="seen">Seen</option>
+                        </select>
+                      </td>
                       <td>
                         <div className={classes.buttomDiv}>
-                          <Button
-                            className={classes.viewButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={handleClickOpenViewTable}
-                          >
-                            View
-                          </Button>
                           <ViewDetail visible={openViewTable} />
 
                           <Button

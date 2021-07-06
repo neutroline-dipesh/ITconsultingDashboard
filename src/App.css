@@ -47,6 +47,7 @@
   zoom: 1;
 }
 ::-webkit-scrollbar {
+  display: none;
   width: 12px;
 }
 

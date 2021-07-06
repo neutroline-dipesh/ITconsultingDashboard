@@ -57,7 +57,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#04A8F6 !important",
+    backgroundColor: "#4487A9 !important",
     color: "#fff",
     height: "3vh !important",
     textAlign: "center",
@@ -162,23 +162,34 @@ const Internal = () => {
                 >
                   <thead>
                     <tr>
+                      <th className={classes.tableHead}>Job Title</th>
+
                       <th className={classes.tableHead}>Name</th>
-                      <th className={classes.tableHead}>Position</th>
-                      <th className={classes.tableHead}>Office</th>
-                      <th className={classes.tableHead}>Age</th>
-                      <th className={classes.tableHead}>Start date</th>
-                      <th className={classes.tableHead}>Salary</th>
+
+                      <th className={classes.tableHead}>Email</th>
+                      <th className={classes.tableHead}>Phone</th>
+                      <th className={classes.tableHead}>Applied Date</th>
+
+                      <th className={classes.tableHead}>Status</th>
+
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
+                      <td>Java Developer</td>
+                      <td>Dipesh Shrestha</td>
+
+                      <td>dipeshxtha129@gmail.com</td>
+
+                      <td>9816940668</td>
+                      <td>2/2/2021</td>
+                      <td>
+                        <select>
+                          <option value="notSeen">Not Seen</option>
+                          <option value="seen">Seen</option>
+                        </select>
+                      </td>
 
                       <td>
                         <div className={classes.buttomDiv}>
@@ -187,6 +198,10 @@ const Internal = () => {
                             variant="contained"
                             color="primary"
                             href="#contained-buttons"
+                            onClick={() => {
+                              // window.location.pathname = "/viewApplicatnDetail";
+                              window.open("/viewApplicatnDetail", "_blank");
+                            }}
                           >
                             View
                           </Button>
