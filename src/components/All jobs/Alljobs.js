@@ -174,13 +174,13 @@ const Alljobs = () => {
                 >
                   <thead>
                     <tr>
-                      <th className={classes.tableHead}>SN</th>
+                      {/* <th className={classes.tableHead}>SN</th> */}
                       <th className={classes.tableHead}>Job ID</th>
                       <th className={classes.tableHead}>Job Title</th>
                       <th className={classes.tableHead}>Department</th>
                       <th className={classes.tableHead}>Job Type</th>
                       <th className={classes.tableHead}>Country</th>
-                      <th className={classes.tableHead}>Location</th>
+                      <th className={classes.tableHead}>State/City</th>
                       <th className={classes.tableHead}>Published By</th>
                       <th className={classes.tableHead}>Action</th>
                       <th className={classes.tableHead}>Visibility</th>
@@ -188,7 +188,7 @@ const Alljobs = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
+                      {/* <td>1</td> */}
                       <td>id</td>
                       <td>Java Developer</td>
                       <td>Technology</td>

@@ -114,7 +114,7 @@ export default function AlertDialogSlide(props) {
             Disagree
           </Button> */}
           <Button onClick={handleClose} color="primary">
-            Cancle
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

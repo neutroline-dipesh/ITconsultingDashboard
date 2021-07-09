@@ -12,6 +12,8 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
+import { useState } from "react";
+import { contactData } from "./contactDate";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -81,6 +83,15 @@ const useStyle = makeStyles((theme) => ({
       color: "#fff",
     },
   },
+  seenColor: {
+    // backgroundColor: "#F5F7F7 ! important",
+    fontSize: "15px",
+  },
+  notColor: {
+    fontWeight: "bold",
+    // backgroundColor: "#fff ! important",
+    fontSize: "15px",
+  },
 }));
 
 const Contact = () => {
@@ -134,10 +145,10 @@ const Contact = () => {
   //for viewButton
   const [openViewTable, setOpenViewTable] = React.useState(false);
 
-  const handleClickOpenViewTable = () => {
-    setOpenViewTable(true);
-    console.log(openViewTable);
-  };
+  // const handleClickOpenViewTable = () => {
+  //   setOpenViewTable(true);
+  //   console.log(openViewTable);
+  // };
 
   return (
     <>
@@ -172,35 +183,109 @@ const Contact = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Dipesh </td>
-                      <td>Shrestha</td>
-                      <td>dipeshxtha129@gmail.com</td>
-                      <td>9816940668</td>
-                      <td>Damak-11, Jhapa</td>
-                      <td>Subject</td>
-                      <td>
-                        <select>
-                          <option value="notSeen">Not Seen</option>
-                          <option value="seen">Seen</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div className={classes.buttomDiv}>
-                          <ViewDetail visible={openViewTable} />
-
-                          <Button
-                            className={classes.deleteButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={deletFunction}
+                    {contactData.map((item, key) => {
+                      return (
+                        <tr>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
                           >
-                            delete
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
+                            {item.firstName}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            {item.lastName}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            {item.email}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            {item.phone}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            {item.address}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            {item.subject}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            <select id="select">
+                              <option
+                                value="notSeen"
+                                selected={item.status == "notSeen"}
+                              >
+                                Not Seen
+                              </option>
+                              <option
+                                value="seen"
+                                selected={item.status == "seen"}
+                              >
+                                Seen
+                              </option>
+                            </select>
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            <div className={classes.buttomDiv}>
+                              <ViewDetail visible={openViewTable} />
+
+                              <Button
+                                className={classes.deleteButton}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={deletFunction}
+                              >
+                                delete
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

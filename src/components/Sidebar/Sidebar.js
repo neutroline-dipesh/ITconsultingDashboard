@@ -194,11 +194,23 @@ const Sidebar = () => {
                   className={classes.sidebarList}
                   className={classes.nastedList}
                   onClick={() => {
+                    window.location.pathname = "/allApplicant";
+                  }}
+                >
+                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
+                  <ListItemText primary="All Applicant" />
+                </ListItem>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  className={classes.sidebarList}
+                  className={classes.nastedList}
+                  onClick={() => {
                     window.location.pathname = "/contracting";
                   }}
                 >
                   <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="Contracting" />
+                  <ListItemText primary="Contract" />
                 </ListItem>
                 <ListItem
                   button

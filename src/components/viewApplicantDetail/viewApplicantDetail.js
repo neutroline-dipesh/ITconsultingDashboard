@@ -251,7 +251,7 @@ const Contracting = () => {
                       value="blackList"
                       aria-label="right aligned"
                     >
-                      BlackList
+                      Hold
                     </ToggleButton>
                   </ToggleButtonGroup>
                 </div>

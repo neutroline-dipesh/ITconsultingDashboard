@@ -11,6 +11,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
+import { contractData } from "./contractData";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -94,6 +95,15 @@ const useStyle = makeStyles((theme) => ({
   },
   text: {
     backgroundColor: "yellow",
+  },
+  seenColor: {
+    // backgroundColor: "#F5F7F7 ! important",
+    fontSize: "15px",
+  },
+  noColor: {
+    fontWeight: "bold",
+    // backgroundColor: "#fff ! important",
+    fontSize: "15px",
   },
 }));
 
@@ -183,52 +193,134 @@ const Contracting = () => {
                       <th className={classes.tableHead}>Applied Date</th>
 
                       <th className={classes.tableHead}>Status</th>
+                      <th className={classes.tableHead}>Approvel Status</th>
 
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Java Developer</td>
-                      <td>Dipesh Shrestha</td>
+                    {contractData.map((item, key) => {
+                      return (
+                        <tr>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.jobTitle}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {" "}
+                            {item.firstName + " " + item.lastName}
+                          </td>
 
-                      <td>dipeshxtha129@gmail.com</td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.email}
+                          </td>
 
-                      <td>9816940668</td>
-                      <td>2/2/2021</td>
-                      <td>
-                        <select>
-                          <option value="notSeen">Not Seen</option>
-                          <option value="seen">Seen</option>
-                        </select>
-                      </td>
-
-                      <td>
-                        <div className={classes.buttomDiv}>
-                          <Button
-                            className={classes.viewButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={() => {
-                              window.open("/viewApplicatnDetail", "_blank");
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.phone}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.appliedDate}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            <select>
+                              <option
+                                value="notSeen"
+                                selected={item.status == "notSeen"}
+                              >
+                                Not Seen
+                              </option>
+                              <option
+                                value="seen"
+                                selected={item.status == "seen"}
+                              >
+                                Seen
+                              </option>
+                            </select>
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                            style={{
+                              color:
+                                item.approvelStatus === "accept"
+                                  ? "#24803c"
+                                  : item.approvelStatus === "reject"
+                                  ? "#cccc00"
+                                  : item.approvelStatus === "hold"
+                                  ? "#660000"
+                                  : "black",
+                              fontWeight: "bold",
                             }}
                           >
-                            View
-                          </Button>
+                            {item.approvelStatus}
+                          </td>
 
-                          <Button
-                            className={classes.deleteButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={() => deletFunction()}
-                          >
-                            delete
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
+                          <td>
+                            <div className={classes.buttomDiv}>
+                              <Button
+                                className={classes.viewButton}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={() => {
+                                  window.open("/viewApplicatnDetail", "_blank");
+                                }}
+                              >
+                                View
+                              </Button>
+
+                              <Button
+                                className={classes.deleteButton}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={() => deletFunction()}
+                              >
+                                delete
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

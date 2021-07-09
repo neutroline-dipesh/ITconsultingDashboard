@@ -14,6 +14,7 @@ import Paper from "@material-ui/core/Paper";
 import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
+import { allApplicantData } from "../allApplicant/allApplicantData";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -191,7 +192,7 @@ const Dashboard = () => {
               className={classes.totalJobs + " " + classes.totcalContractingJob}
             >
               <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Internal Job</span>
+              <span className={classes.totalText}>Total Internal Jobs</span>
               <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
@@ -221,32 +222,29 @@ const Dashboard = () => {
                   <TableHead>
                     <TableRow>
                       <TableCell className={classes.tableHead}>
-                        Dessert (100g serving)
+                        Job Title
                       </TableCell>
-                      <TableCell className={classes.tableHead} align="right">
-                        Calories
+                      <TableCell className={classes.tableHead} align="center">
+                        Name
                       </TableCell>
-                      <TableCell className={classes.tableHead} align="right">
-                        Fat&nbsp;(g)
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="right">
-                        Carbs&nbsp;(g)
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="right">
-                        Protein&nbsp;(g)
+                      <TableCell className={classes.tableHead} align="center">
+                        Applid Date
                       </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <TableRow key={row.name}>
+                    {allApplicantData.slice(0, 5).map((item) => (
+                      <TableRow>
                         <TableCell component="th" scope="row">
-                          {row.name}
+                          {item.jobTitle}
                         </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
+                        <TableCell align="center">
+                          {item.firstName + " " + item.lastName}
+                        </TableCell>
+                        <TableCell align="center">{item.appliedDate}</TableCell>
+                        {/* <TableCell align="right">{row.fat}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell>
+                        <TableCell align="right">{row.protein}</TableCell> */}
                       </TableRow>
                     ))}
                   </TableBody>
