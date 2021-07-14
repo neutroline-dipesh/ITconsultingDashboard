@@ -2,6 +2,7 @@ export const internalData = [
   {
     jobTitle: "Java Develpoer",
     firstName: "Dipesh",
+    middleName: "kumar",
     lastName: "Shrestha",
     email: "dipeshxtha129@gmail.com",
     gender: "male",
@@ -20,6 +21,7 @@ export const internalData = [
   {
     jobTitle: "Web Develpoer",
     firstName: "Ram",
+    middleName: "kumar",
     lastName: "Shrestha",
     email: "dipeshxtha129@gmail.com",
     gender: "male",

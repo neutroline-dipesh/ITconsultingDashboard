@@ -61,7 +61,7 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     marginTop: "1rem",
     marginBottom: "1rem",
-    boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
+    // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
   listMain: {
     marginTop: "1rem",
@@ -92,7 +92,7 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     marginTop: "1rem",
     marginBottom: "1rem",
-    boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
+    // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
   cv: {
     marginLeft: "1rem",
@@ -118,6 +118,10 @@ const JobsDetail = () => {
                 <div className={classes.leftDiv}>
                   <List className={classes.listMain}>
                     <ListItem>
+                      <span className={classes.listHead}>Job Id:</span>
+                      <span className={classes.listBody}>React Developer</span>
+                    </ListItem>
+                    <ListItem>
                       <span className={classes.listHead}>Job Title:</span>
                       <span className={classes.listBody}>React Developer</span>
                     </ListItem>
@@ -125,7 +129,7 @@ const JobsDetail = () => {
                       <span className={classes.listHead}>Job SubTitle:</span>
                       <span className={classes.listBody}>
                         Subtitle is here Subtitle is here Subtitle is here
-                        Subtitle is here Subtitle is here Subtitle is here
+                        Subtitle is here
                       </span>
                     </ListItem>
                     <ListItem>
@@ -137,16 +141,14 @@ const JobsDetail = () => {
                       <span className={classes.listBody}>Full Time</span>
                     </ListItem>
                     <ListItem>
-                      <span className={classes.listHead}>Coutry:</span>
-                      <span className={classes.listBody}>Nepal</span>
+                      <span className={classes.listHead}>Address:</span>
+                      <span className={classes.listBody}>
+                        Nepal ,Provience 1, Damak-6
+                      </span>
                     </ListItem>
                     <ListItem>
-                      <span className={classes.listHead}>State/Provience:</span>
-                      <span className={classes.listBody}>Provience 1</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>City:</span>
-                      <span className={classes.listBody}>Damak-6</span>
+                      <span className={classes.listHead}>Publish Date:</span>
+                      <span className={classes.listBody}>7/7/2021</span>
                     </ListItem>
                   </List>
                 </div>

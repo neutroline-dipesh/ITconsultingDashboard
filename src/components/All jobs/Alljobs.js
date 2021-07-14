@@ -11,7 +11,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-
+import { allJobsData } from "./alljobsData";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -98,6 +98,10 @@ const useStyle = makeStyles((theme) => ({
     "&:hover": {
       color: "#fff",
     },
+  },
+  seenColor: {
+    color: "#24803c",
+    fontWeight: "bold",
   },
 }));
 
@@ -187,53 +191,68 @@ const Alljobs = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      {/* <td>1</td> */}
-                      <td>id</td>
-                      <td>Java Developer</td>
-                      <td>Technology</td>
-                      <td>Full Time</td>
-                      <td>Nepal</td>
-                      <td>Provience-1 , damak</td>
-                      <td>Dipesh Shrestha</td>
-                      <td>
-                        <div className={classes.buttomDiv}>
-                          <Button
-                            className={classes.viewButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={() => {
-                              // window.location.pathname = "/viewApplicatnDetail";
-                              window.open("/viewJobDetail", "_blank");
-                            }}
+                    {allJobsData.map((item, key) => {
+                      return (
+                        <tr>
+                          {/* <td>1</td> */}
+                          <td>{item.jobId}</td>
+                          <td>{item.jobTitle}</td>
+                          <td>{item.department}</td>
+                          <td>{item.jobType}</td>
+                          <td>{item.country}</td>
+                          <td>
+                            {item.state} , {item.city}
+                          </td>
+                          <td>{item.publishBy}</td>
+                          <td>
+                            <div className={classes.buttomDiv}>
+                              <Button
+                                className={classes.viewButton}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={() => {
+                                  // window.location.pathname = "/viewApplicatnDetail";
+                                  window.open("/viewJobDetail", "_blank");
+                                }}
+                              >
+                                View
+                              </Button>
+                              <Button
+                                className={classes.editButton}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={() => {
+                                  window.location.pathname =
+                                    "/alljobs/editJobs";
+                                }}
+                              >
+                                Edit
+                              </Button>
+                              <Button
+                                className={classes.deleteButton}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={() => deletFunction()}
+                              >
+                                delete
+                              </Button>
+                            </div>
+                          </td>
+                          <td
+                            className={
+                              item.visibility == "Publish"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
                           >
-                            View
-                          </Button>
-                          <Button
-                            className={classes.editButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={() => {
-                              window.location.pathname = "/alljobs/editJobs";
-                            }}
-                          >
-                            Edit
-                          </Button>
-                          <Button
-                            className={classes.deleteButton}
-                            variant="contained"
-                            color="primary"
-                            href="#contained-buttons"
-                            onClick={() => deletFunction()}
-                          >
-                            delete
-                          </Button>
-                        </div>
-                      </td>
-                      <td>Publised</td>
-                    </tr>
+                            {item.visibility}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

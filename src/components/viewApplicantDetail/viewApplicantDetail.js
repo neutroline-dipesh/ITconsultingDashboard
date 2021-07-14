@@ -13,6 +13,9 @@ import ContactMailIcon from "@material-ui/icons/ContactMail";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import WcIcon from "@material-ui/icons/Wc";
+import ViewMessage from "./viewResume";
+import CoverLetter from "./viewCoverLetter";
 
 import file from "../../assets/files/cv.pdf";
 const useStyle = makeStyles((theme) => ({
@@ -52,8 +55,11 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "5px",
   },
   ContentDateDiv: {
-    // overflow: "scroll",
+    overflow: "scroll",
     maxHeight: "80vh",
+    // display: "flex",
+  },
+  leftRightDiv: {
     display: "flex",
   },
   leftDiv: {
@@ -61,13 +67,14 @@ const useStyle = makeStyles((theme) => ({
     // border: "solid 1px",
     borderRadius: "10px",
     width: "30%",
+
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     marginLeft: "1rem",
     marginTop: "1rem",
     marginBottom: "1rem",
-    boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
+    // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
   image: {
     marginTop: "1rem",
@@ -101,7 +108,7 @@ const useStyle = makeStyles((theme) => ({
   },
   listHead: {
     fontSize: "1rem",
-    width: "50%",
+    width: "20%",
     fontWeight: "bold",
   },
   listBody: {
@@ -116,7 +123,8 @@ const useStyle = makeStyles((theme) => ({
     height: "80vh",
   },
   toogleButton: {
-    marginTop: "1.5rem",
+    marginTop: "2rem",
+    marginLeft: "1rem",
     height: "5vh",
   },
   acceptToggleBtn: {
@@ -133,18 +141,18 @@ const useStyle = makeStyles((theme) => ({
   },
   rejectToggleBtn: {
     marginLeft: "15px",
-    backgroundColor: "#cccc00",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#ffff00",
-      color: "#fff",
-    },
-  },
-  blacklistToggleBtn: {
     backgroundColor: "#660000",
     color: "#fff",
     "&:hover": {
       backgroundColor: "#ff0000",
+      color: "#fff",
+    },
+  },
+  blacklistToggleBtn: {
+    backgroundColor: "#b38f00",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#ffcc00",
       color: "#fff",
     },
   },
@@ -168,96 +176,124 @@ const Contracting = () => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <div className={classes.leftDiv}>
-                  {/* <img className={classes.image} src={adimImage} /> */}
-                  <List className={classes.listMain}>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <ContactsIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="Dipesh Shrestha" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <ContactPhoneIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="9816940668" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <ContactMailIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="Kathmandu, Nepal" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <ContactMailIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="dipeshxtha129@gmail.com" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <CalendarTodayIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="4 july 2021" />
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Seniority Level:</span>
-                      <span className={classes.listBody}>Internship</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Expected Salary:</span>
-                      <span className={classes.listBody}>15000</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Applied Job:</span>
-                      <span className={classes.listBody}>Web development</span>
-                    </ListItem>
-                  </List>
+                <div className={classes.leftRightDiv}>
+                  <div className={classes.leftDiv}>
+                    {/* <img className={classes.image} src={adimImage} /> */}
+                    <List className={classes.listMain}>
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary="Dipesh kumar Shrestha" />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactPhoneIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary=" +977-9816940668" />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactMailIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary="Kathmandu, Nepal" />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactMailIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary="dipeshxtha129@gmail.com" />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <WcIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary="Male" />
+                      </ListItem>
 
-                  <ToggleButtonGroup
-                    className={classes.toogleButton}
-                    value={alignment}
-                    exclusive
-                    onChange={handleAlignment}
-                    aria-label="text alignment"
-                  >
-                    <ToggleButton
-                      className={classes.acceptToggleBtn}
-                      value="accept"
-                      aria-label="left aligned"
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <CalendarTodayIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary="4 july 2021" />
+                      </ListItem>
+                    </List>
+                  </div>
+                  <div className={classes.rightDiv}>
+                    <List>
+                      <ListItem>
+                        <span className={classes.listHead}>
+                          Seniority Level:
+                        </span>
+                        <span className={classes.listBody}>Internship</span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>
+                          Expected Salary:
+                        </span>
+                        <span className={classes.listBody}>15000</span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Applied Job:</span>
+                        <span className={classes.listBody}>
+                          Web development
+                        </span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Message:</span>
+                        <span className={classes.listBody}>
+                          Here is the Here is the message Here is the message
+                          Here is the message Here is the message Here is the
+                          message Here is the message
+                        </span>
+                      </ListItem>
+                    </List>
+                    <ViewMessage />
+                    <CoverLetter />
+                    <ToggleButtonGroup
+                      className={classes.toogleButton}
+                      value={alignment}
+                      exclusive
+                      onChange={handleAlignment}
+                      aria-label="text alignment"
                     >
-                      Accept
-                    </ToggleButton>
-                    <ToggleButton
-                      className={classes.rejectToggleBtn}
-                      value="reject"
-                      aria-label="centered"
-                    >
-                      Reject
-                    </ToggleButton>
-                    <ToggleButton
-                      className={classes.blacklistToggleBtn}
-                      value="blackList"
-                      aria-label="right aligned"
-                    >
-                      Hold
-                    </ToggleButton>
-                  </ToggleButtonGroup>
-                </div>
-                <div className={classes.rightDiv}>
-                  {/* <span className={classes.resumeTitle}>Resume:</span> */}
-                  <embed className={classes.cv} src={file}></embed>
+                      <ToggleButton
+                        className={classes.acceptToggleBtn}
+                        value="accept"
+                        aria-label="left aligned"
+                      >
+                        Accept
+                      </ToggleButton>
+                      <ToggleButton
+                        className={classes.rejectToggleBtn}
+                        value="reject"
+                        aria-label="centered"
+                      >
+                        Reject
+                      </ToggleButton>
+                      <ToggleButton
+                        className={classes.blacklistToggleBtn}
+                        value="blackList"
+                        aria-label="right aligned"
+                      >
+                        Hold
+                      </ToggleButton>
+                    </ToggleButtonGroup>
+                    {/* <span className={classes.resumeTitle}>Resume:</span> */}
+                    {/* <embed className={classes.cv} src={file}></embed> */}
+                  </div>
                 </div>
               </div>
             </div>

@@ -270,7 +270,7 @@ const Contact = () => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <ViewDetail visible={openViewTable} />
+                              <ViewDetail />
 
                               <Button
                                 className={classes.deleteButton}

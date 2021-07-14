@@ -2,6 +2,7 @@ export const contractData = [
   {
     jobTitle: "Java Develpoer",
     firstName: "Dipesh",
+    middleName: "kumar",
     lastName: "Shrestha",
     email: "dipeshxtha129@gmail.com",
     gender: "male",
@@ -20,6 +21,7 @@ export const contractData = [
   {
     jobTitle: "Web Develpoer",
     firstName: "Ram",
+    middleName: "kumar",
     lastName: "Shrestha",
     email: "dipeshxtha129@gmail.com",
     gender: "male",
@@ -38,6 +40,7 @@ export const contractData = [
   {
     jobTitle: "Web Develpoer",
     firstName: "Ram",
+    middleName: "kumar",
     lastName: "Shrestha",
     email: "dipeshxtha129@gmail.com",
     gender: "male",
@@ -56,6 +59,7 @@ export const contractData = [
   {
     jobTitle: "Web Develpoer",
     firstName: "Ram",
+    middleName: "kumar",
     lastName: "Shrestha",
     email: "dipeshxtha129@gmail.com",
     gender: "male",
