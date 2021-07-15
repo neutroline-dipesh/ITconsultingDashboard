@@ -16,7 +16,6 @@ import viewApplicantDetail from "./components/viewApplicantDetail/viewApplicantD
 import viewJobDetail from "./components/All jobs/viewJobDetail";
 function App() {
   return (
-    <div>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Login} />
@@ -41,7 +40,6 @@ function App() {
           <Route component={pageNotFound} />
         </Switch>
       </BrowserRouter>
-    </div>
     // <div>
     //   {/* <Login /> */}
     //   {/* <Sidebar /> */}

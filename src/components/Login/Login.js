@@ -5,6 +5,8 @@ import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -13,10 +15,9 @@ const useStyle = makeStyles((theme) => ({
     background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
     display: "flex",
     justifyContent: "center",
-
     position: "relative",
   },
-  centerGrid: {
+  centerGrid: { 
     backgroundColor: "white",
     position: "absolute",
     top: "15%",
@@ -121,9 +122,12 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 //Main funcation
-const Login = () => {
+const Login = (props) => {
   const classes = useStyle();
   //for validation
+  const handleOnSubmit = (values) =>{
+    props.onAuth(values.email, values.password);
+  }
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -138,7 +142,7 @@ const Login = () => {
     }),
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      handleOnSubmit(values);
     },
   });
   return (
@@ -147,7 +151,7 @@ const Login = () => {
         {/* hello world */}
         <Grid item className={classes.leftGrid}>
           <p className={classes.login}>Login</p>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <input
               className={classes.email}
               type="email"
@@ -206,5 +210,9 @@ const Login = () => {
     </Grid>
   );
 };
-
-export default Login;
+const mapDispatchToProps = dispatch =>{
+  return{
+    onAuth: (email, password) => dispatch(actions.auth(email, password))
+  };
+};
+export default connect(null, mapDispatchToProps)(Login);
