@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -174,7 +175,11 @@ const Login = (props) => {
             <div className={classes.errorMessage}>{formik.errors.password}</div>
 
             <p className={classes.forgetPassword}>Forget Your password?</p>
-
+          { (props.loading) ?
+          <div style={{textAlign:'center'}}>
+           <CircularProgress/>
+           </div>
+            :
             <Button
               type="submit"
               variant="contained"
@@ -184,6 +189,7 @@ const Login = (props) => {
             >
               LOG IN
             </Button>
+          }
           </form>
         </Grid>
         <Grid item className={classes.rightGrid}>
@@ -210,9 +216,16 @@ const Login = (props) => {
     </Grid>
   );
 };
+
+const mapStateToProps = state =>{
+  return{
+    loading:state.loading,
+    error:state.error
+  }
+}
 const mapDispatchToProps = dispatch =>{
   return{
     onAuth: (email, password) => dispatch(actions.auth(email, password))
   };
 };
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
