@@ -28,6 +28,7 @@ export const auth = (email, password) => {
       email: email,
       password: password,
     };
+
     axios
       .post("http://localhost:4000/user/login", authData)
       .then((response) => {
@@ -35,8 +36,8 @@ export const auth = (email, password) => {
         dispatch(authSuccess(response.data));
       })
       .catch((error) => {
-        console.log(error);
-        dispatch(authFail(error));
+        console.log(error.response.data.message);
+        dispatch(authFail(error.response.data.message));
       });
   };
 };

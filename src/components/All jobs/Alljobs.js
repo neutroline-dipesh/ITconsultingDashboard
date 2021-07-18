@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -11,6 +11,8 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
+import axios from "axios";
+
 import { allJobsData } from "./alljobsData";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -105,7 +107,46 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Alljobs = () => {
+const Alljobs = (props) => {
+  const [data, setData] = useState({
+    allJobsData: [
+      {
+        id: "1",
+        jobId: "1000ID",
+        jobTitle: "Java Developer",
+        jobSubtitle: "Web Development",
+        department: "Technology",
+        jobType: "Full Time",
+        country: "Nepal",
+        state: "Provience-1",
+        city: "damak-6",
+        description: "Requirement",
+        publishBy: "Dipesh shrestha",
+        visibility: "Publish",
+        postedDate: "1/2/2021",
+      },
+    ],
+  });
+
+  //getting data from database
+  const [data1, setData1] = useState([]);
+  // console.log(data1);
+  // var value = [];
+  const fetchData = async () => {
+    axios.get("http://localhost:4000/allJobs/").then((response) => {
+      if (response.data) {
+        // value = response.data.data;
+        setData1(response.data.data);
+      } else {
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+    console.log(data1);
+  }, []);
+
   const classes = useStyle();
   useEffect(() => {
     $(document).ready(function () {
@@ -153,8 +194,6 @@ const Alljobs = () => {
         }
       });
   };
-  const str =
-    "We are looking for a Technical Project Manager to he our clients deliver results against some of their most complex business and technology initiatives. Be sur apply if you are interested.";
 
   return (
     <>
@@ -191,9 +230,9 @@ const Alljobs = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allJobsData.map((item, key) => {
+                    {data.allJobsData.map((item, key) => {
                       return (
-                        <tr>
+                        <tr key={key}>
                           {/* <td>1</td> */}
                           <td>{item.jobId}</td>
                           <td>{item.jobTitle}</td>

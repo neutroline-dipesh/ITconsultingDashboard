@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -18,7 +18,7 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
     position: "relative",
   },
-  centerGrid: { 
+  centerGrid: {
     backgroundColor: "white",
     position: "absolute",
     top: "15%",
@@ -70,7 +70,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "15px",
   },
   forgetPassword: {
-    color: "#000000",
+    color: "red",
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: "12px",
@@ -126,9 +126,9 @@ const useStyle = makeStyles((theme) => ({
 const Login = (props) => {
   const classes = useStyle();
   //for validation
-  const handleOnSubmit = (values) =>{
+  const handleOnSubmit = (values) => {
     props.onAuth(values.email, values.password);
-  }
+  };
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -173,23 +173,27 @@ const Login = (props) => {
               required
             />
             <div className={classes.errorMessage}>{formik.errors.password}</div>
-
-            <p className={classes.forgetPassword}>Forget Your password?</p>
-          { (props.loading) ?
-          <div style={{textAlign:'center'}}>
-           <CircularProgress/>
-           </div>
-            :
-            <Button
-              type="submit"
-              variant="contained"
-              size="small"
-              color="primary"
-              className={classes.loiginButton}
-            >
-              LOG IN
-            </Button>
-          }
+            {props.error ? (
+              <p className={classes.forgetPassword}>Invalid Credentian !</p>
+            ) : (
+              <p> &nbsp;</p>
+            )}
+            {/* <p className={classes.forgetPassword}>{props.error}</p> */}
+            {props.loading ? (
+              <div style={{ textAlign: "center" }}>
+                <CircularProgress />
+              </div>
+            ) : (
+              <Button
+                type="submit"
+                variant="contained"
+                size="small"
+                color="primary"
+                className={classes.loiginButton}
+              >
+                LOG IN
+              </Button>
+            )}
           </form>
         </Grid>
         <Grid item className={classes.rightGrid}>
@@ -217,15 +221,15 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProps = state =>{
-  return{
-    loading:state.loading,
-    error:state.error
-  }
-}
-const mapDispatchToProps = dispatch =>{
-  return{
-    onAuth: (email, password) => dispatch(actions.auth(email, password))
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loading,
+    error: state.error,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuth: (email, password) => dispatch(actions.auth(email, password)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
