@@ -130,22 +130,22 @@ const Alljobs = (props) => {
 
   //getting data from database
   const [data1, setData1] = useState([]);
-  // console.log(data1);
-  // var value = [];
-  const fetchData = async () => {
-    axios.get("http://localhost:4000/allJobs/").then((response) => {
-      if (response.data) {
-        // value = response.data.data;
-        setData1(response.data.data);
-      } else {
-      }
-    });
-  };
 
   useEffect(() => {
-    fetchData();
-    console.log(data1);
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/allJobs/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
   }, []);
+
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
 
   const classes = useStyle();
   useEffect(() => {
@@ -222,15 +222,15 @@ const Alljobs = (props) => {
                       <th className={classes.tableHead}>Job Title</th>
                       <th className={classes.tableHead}>Department</th>
                       <th className={classes.tableHead}>Job Type</th>
-                      <th className={classes.tableHead}>Country</th>
-                      <th className={classes.tableHead}>State/City</th>
+                      {/* <th className={classes.tableHead}>Country</th> */}
+                      <th className={classes.tableHead}>Address</th>
                       <th className={classes.tableHead}>Published By</th>
                       <th className={classes.tableHead}>Action</th>
                       <th className={classes.tableHead}>Visibility</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data.allJobsData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
@@ -238,9 +238,9 @@ const Alljobs = (props) => {
                           <td>{item.jobTitle}</td>
                           <td>{item.department}</td>
                           <td>{item.jobType}</td>
-                          <td>{item.country}</td>
+                          {/* <td>{item.country}</td> */}
                           <td>
-                            {item.state} , {item.city}
+                            {item.country}, {item.state} , {item.city}
                           </td>
                           <td>{item.publishBy}</td>
                           <td>

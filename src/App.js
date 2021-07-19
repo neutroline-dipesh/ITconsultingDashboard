@@ -18,18 +18,19 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/login" component={Login} />
 
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/alljobs" component={Alljobs} />
-        <Route exact path="/alljobs/editJobs" component={EditJobs} />
-        <Route exact path="/contracting" component={Contracting} />
-        <Route exact path="/internal" component={Internal} />
-        <Route exact path="/addjobs" component={AddJobs} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/viewContact" component={viewDetail} />
-        <Route exact path="/allApplicant" component={allApplicant} />
-        <Route exact path="/viewJobDetail" component={viewJobDetail} />
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/alljobs/editJobs" component={EditJobs} />
+        <Route path="/alljobs" component={Alljobs} />
+
+        <Route path="/contracting" component={Contracting} />
+        <Route path="/internal" component={Internal} />
+        <Route path="/addjobs" component={AddJobs} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/viewContact" component={viewDetail} />
+        <Route path="/allApplicant" component={allApplicant} />
+        <Route path="/viewJobDetail" component={viewJobDetail} />
 
         <Route
           exact

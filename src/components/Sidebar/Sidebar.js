@@ -17,6 +17,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import WorkIcon from "@material-ui/icons/Work";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -76,6 +77,8 @@ const useStyle = makeStyles((theme) => ({
     // position: "fixed",
   },
   sidebarList: {
+    textDecoration: "none",
+    color: "#fff",
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#0F5373",
@@ -83,6 +86,7 @@ const useStyle = makeStyles((theme) => ({
   },
   nastedList: {
     backgroundColor: "#80b3ff",
+    textDecoration: "none",
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#0F5373",
@@ -126,18 +130,20 @@ const Sidebar = () => {
             aria-labelledby="nested-list-subheader"
             className={classes.sidebarMenuItem}
           >
-            <ListItem
-              button
-              className={classes.sidebarList}
-              onClick={() => {
-                window.location.pathname = "/dashboard";
-              }}
-            >
-              <ListItemIcon>
-                <HomeIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
+            <Link to="/">
+              <ListItem
+                button
+                className={classes.sidebarList}
+                // onClick={() => {
+                //   window.location.pathname = "/dashboard";
+                // }}
+              >
+                <ListItemIcon>
+                  <HomeIcon className={classes.sidebarIcon} />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+            </Link>
             <ListItem
               button
               onClick={handleClickJob}
@@ -151,28 +157,42 @@ const Sidebar = () => {
             </ListItem>
             <Collapse in={openJobs} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItem
-                  button
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/alljobs";
+                <Link
+                  to="/alljobs"
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
                   }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="All Jobs" />
-                </ListItem>
-                <ListItem
-                  button
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/addjobs";
+                  <ListItem
+                    button
+                    className={classes.sidebarList}
+                    className={classes.nastedList}
+                    // onClick={() => {
+                    //   window.location.pathname = "/alljobs";
+                    // }}
+                  >
+                    <ListItemText primary="All Jobs" />
+                  </ListItem>
+                </Link>
+                <Link
+                  to="/addjobs"
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
                   }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="Add Jobs" />
-                </ListItem>
+                  <ListItem
+                    button
+                    className={classes.sidebarList}
+                    className={classes.nastedList}
+                    // onClick={() => {
+                    //   window.location.pathname = "/addjobs";
+                    // }}
+                  >
+                    <ListItemText primary="Add Jobs" />
+                  </ListItem>
+                </Link>
               </List>
             </Collapse>
             <ListItem
@@ -188,67 +208,103 @@ const Sidebar = () => {
             </ListItem>
             <Collapse in={openApplicant} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItem
-                  button
-                  className={classes.nested}
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/allApplicant";
+                <Link
+                  to="/allApplicant"
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
                   }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="All Applicant" />
-                </ListItem>
-                <ListItem
-                  button
-                  className={classes.nested}
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/contracting";
+                  <ListItem
+                    button
+                    className={classes.nested}
+                    className={classes.sidebarList}
+                    className={classes.nastedList}
+                    // onClick={() => {
+                    //   window.location.pathname = "/allApplicant";
+                    // }}
+                  >
+                    <ListItemText primary="All Applicant" />
+                  </ListItem>
+                </Link>
+
+                <Link
+                  to="/contracting"
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
                   }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="Contract" />
-                </ListItem>
-                <ListItem
-                  button
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/internal";
+                  <ListItem
+                    button
+                    className={classes.nested}
+                    className={classes.sidebarList}
+                    className={classes.nastedList}
+                    // onClick={() => {
+                    //   window.location.pathname = "/contracting";
+                    // }}
+                  >
+                    <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
+                    <ListItemText primary="Contract" />
+                  </ListItem>
+                </Link>
+
+                <Link
+                  to="/internal"
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
                   }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="Internal" />
-                </ListItem>
+                  <ListItem
+                    button
+                    className={classes.sidebarList}
+                    className={classes.nastedList}
+                    // onClick={() => {
+                    //   window.location.pathname = "/internal";
+                    // }}
+                  >
+                    <ListItemText primary="Internal" />
+                  </ListItem>
+                </Link>
               </List>
             </Collapse>
-            <ListItem
-              button
-              className={classes.sidebarList}
-              onClick={() => {
-                window.location.pathname = "/contact";
+
+            <Link
+              to="/contact"
+              style={{
+                textDecoration: "none",
+                color: "#fff",
               }}
             >
-              <ListItemIcon>
-                <ContactsIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="All Query" />
-            </ListItem>
-            <ListItem
-              button
-              className={classes.sidebarList}
-              onClick={() => {
-                window.location.pathname = "/";
-              }}
-            >
-              <ListItemIcon>
-                <ExitToAppIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="Sign Out" />
-            </ListItem>
+              <ListItem
+                button
+                className={classes.sidebarList}
+                // onClick={() => {
+                //   window.location.pathname = "/contact";
+                // }}
+              >
+                <ListItemIcon>
+                  <ContactsIcon className={classes.sidebarIcon} />
+                </ListItemIcon>
+                <ListItemText primary="All Query" />
+              </ListItem>
+            </Link>
+
+            <Link to="/login">
+              <ListItem
+                button
+                className={classes.sidebarList}
+                // onClick={() => {
+                //   window.location.pathname = "/";
+                // }}
+              >
+                <ListItemIcon>
+                  <ExitToAppIcon className={classes.sidebarIcon} />
+                </ListItemIcon>
+                <ListItemText primary="Sign Out" />
+              </ListItem>
+            </Link>
           </List>
           {/* <div>
             <ul className={classes.sidebarMenuUl}>

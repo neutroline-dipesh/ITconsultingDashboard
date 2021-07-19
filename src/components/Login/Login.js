@@ -85,7 +85,7 @@ const useStyle = makeStyles((theme) => ({
     height: "3.9vh",
     fontSize: "12px",
     left: "35%",
-    marginTop: "10px",
+    marginTop: "2.5rem",
   },
   rightGrid: {
     background: "#EB7D50",
@@ -124,6 +124,7 @@ const useStyle = makeStyles((theme) => ({
 
 //Main funcation
 const Login = (props) => {
+  console.log(props.error);
   const classes = useStyle();
   //for validation
   const handleOnSubmit = (values) => {
@@ -162,7 +163,11 @@ const Login = (props) => {
               {...formik.getFieldProps("email")}
               required
             />
-            <div className={classes.errorMessage}>{formik.errors.email}</div>
+            <div className={classes.errorMessage}>
+              {props.error == "Invalid Email !"
+                ? props.error
+                : formik.errors.email}
+            </div>
 
             <input
               className={classes.password}
@@ -172,12 +177,16 @@ const Login = (props) => {
               {...formik.getFieldProps("password")}
               required
             />
-            <div className={classes.errorMessage}>{formik.errors.password}</div>
-            {props.error ? (
+            <div className={classes.errorMessage}>
+              {props.error == "Invalid Password !"
+                ? props.error
+                : formik.errors.password}
+            </div>
+            {/* {props.error ? (
               <p className={classes.forgetPassword}>Invalid Credentian !</p>
             ) : (
               <p> &nbsp;</p>
-            )}
+            )} */}
             {/* <p className={classes.forgetPassword}>{props.error}</p> */}
             {props.loading ? (
               <div style={{ textAlign: "center" }}>
