@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Redirect } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -146,8 +147,15 @@ const Login = (props) => {
       handleOnSubmit(values);
     },
   });
+
+  let authRedirect = null;
+  if(props.isAuthenticated){
+    authRedirect = <Redirect to="/dashboard"/>
+  }
   return (
-    <Grid containor className={classes.root}>
+    <>
+    {authRedirect}
+    <Grid container className={classes.root}>
       <Grid item sx={12} className={classes.centerGrid}>
         {/* hello world */}
         <Grid item className={classes.leftGrid}>
@@ -218,6 +226,7 @@ const Login = (props) => {
         </Grid>
       </Grid>
     </Grid>
+  </>
   );
 };
 
@@ -225,6 +234,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.loading,
     error: state.error,
+    isAuthenticated: state.token !== null,
   };
 };
 const mapDispatchToProps = (dispatch) => {
