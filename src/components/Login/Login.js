@@ -174,7 +174,7 @@ const Login = (props) => {
             />
             <div className={classes.errorMessage}>{formik.errors.password}</div>
             {props.error ? (
-              <p className={classes.forgetPassword}>Invalid Credentian !</p>
+              <p className={classes.forgetPassword}>Invalid Credential !</p>
             ) : (
               <p> &nbsp;</p>
             )}
