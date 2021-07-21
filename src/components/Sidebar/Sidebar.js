@@ -81,6 +81,8 @@ const useStyle = makeStyles((theme) => ({
     // position: "fixed",
   },
   sidebarList: {
+    textDecoration: "none",
+    color: "#fff",
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#0F5373",
@@ -89,6 +91,7 @@ const useStyle = makeStyles((theme) => ({
   },
   nastedList: {
     backgroundColor: "#80b3ff",
+    textDecoration: "none",
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#0F5373",

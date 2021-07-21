@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -103,6 +104,24 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Internal = () => {
+  //getting data from database
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/internal/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
+
   const classes = useStyle();
   useEffect(() => {
     $(document).ready(function () {
@@ -189,7 +208,7 @@ const Internal = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {internalData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -208,7 +227,11 @@ const Internal = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.firstName + " " + item.lastName}
+                            {item.firstName +
+                              " " +
+                              item.middleName +
+                              " " +
+                              item.lastName}
                           </td>
 
                           <td
@@ -218,7 +241,7 @@ const Internal = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.email}
+                            {item.gmail}
                           </td>
 
                           <td
@@ -237,7 +260,7 @@ const Internal = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.appliedDate}
+                            {item.postedDate}
                           </td>
                           <td
                             className={

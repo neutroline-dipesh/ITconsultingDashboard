@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -108,6 +109,24 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contracting = () => {
+  //getting data from database
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/contract/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
+
   const classes = useStyle();
   useEffect(() => {
     $(document).ready(function () {
@@ -168,7 +187,7 @@ const Contracting = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Applicant / Contracting</span>
+            <span className={classes.pageTabName}>Applicant / Contract</span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
@@ -199,7 +218,7 @@ const Contracting = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {contractData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -219,7 +238,11 @@ const Contracting = () => {
                             }
                           >
                             {" "}
-                            {item.firstName + " " + item.lastName}
+                            {item.firstName +
+                              " " +
+                              item.middleName +
+                              " " +
+                              item.lastName}
                           </td>
 
                           <td
@@ -229,7 +252,7 @@ const Contracting = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.email}
+                            {item.gmail}
                           </td>
 
                           <td
@@ -248,7 +271,7 @@ const Contracting = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.appliedDate}
+                            {item.postedDate}
                           </td>
                           <td
                             className={

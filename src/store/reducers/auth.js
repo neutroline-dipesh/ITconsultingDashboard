@@ -29,7 +29,7 @@ const authFail = (state, action) => {
     ...state,
     error: action.error,
     loading: false,
-  };
+  };  
 };
 
 const authLogout = (state, action) => {

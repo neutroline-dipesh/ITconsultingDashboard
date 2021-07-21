@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
+import axios from "axios";
+import { connect } from "react-redux";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,7 +14,6 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import { useState } from "react";
 import { contactData } from "./contactDate";
 
 const useStyle = makeStyles((theme) => ({
@@ -94,7 +95,28 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Contact = () => {
+const Contact = (props) => {
+  console.log(props);
+
+  //getting data from database start
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/allQueries/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
+  //end
+  // console.log(data1);
   const classes = useStyle();
   useEffect(() => {
     $(document).ready(function () {
@@ -183,9 +205,9 @@ const Contact = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {contactData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
-                        <tr>
+                        <tr key={key}>
                           <td
                             className={
                               item.status == "seen"
@@ -270,7 +292,7 @@ const Contact = () => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <ViewDetail />
+                              <ViewDetail value={item.Id} />
 
                               <Button
                                 className={classes.deleteButton}
@@ -296,5 +318,10 @@ const Contact = () => {
     </>
   );
 };
-
-export default Contact;
+const mapStateToProps = (state) => {
+  return {
+    allQueriesData: state.allQueriesData,
+    error: state.error,
+  };
+};
+export default connect(mapStateToProps)(Contact);

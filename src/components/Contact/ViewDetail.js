@@ -36,16 +36,6 @@ export default function AlertDialogSlide(props) {
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
 
-  //   console.log(typeof props.visible);
-
-  // if (props.visible == true) {
-  //   //   setOpen(true);
-  //   // console.log("true");
-  //   // console.clear();
-  // } else {
-  //   // console.log("false");
-  //   //   setOpen(false);
-  // }
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -53,13 +43,9 @@ export default function AlertDialogSlide(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  //   console.log(props.visible);
-
+  // console.log(props);
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
       <Button
         className={classes.viewButton}
         variant="contained"
