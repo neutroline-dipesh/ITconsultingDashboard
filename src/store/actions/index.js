@@ -1,1 +1,1 @@
-export { auth } from './auth.js';
+export { auth, logout, authCheckState} from './auth.js';

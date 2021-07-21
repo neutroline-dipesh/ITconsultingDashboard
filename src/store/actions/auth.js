@@ -7,10 +7,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (authData) => {
+export const authSuccess = (token, user) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    authData: authData,
+    token: token,
+    user: user,
   };
 };
 
@@ -18,6 +19,14 @@ export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
+  };
+};
+
+export const logout = () =>{
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  return{
+    type: actionTypes.AUTH_LOGOUT
   };
 };
 
@@ -32,12 +41,25 @@ export const auth = (email, password) => {
     axios
       .post("http://localhost:4000/user/login", authData)
       .then((response) => {
-        console.log(response);
-        dispatch(authSuccess(response.data));
+        console.log(response.data);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user',response.data.name);
+        dispatch(authSuccess(response.data.token, response.data.name));
       })
       .catch((error) => {
-        console.log(error.response.data.message);
         dispatch(authFail(error.response.data.message));
       });
   };
 };
+
+export const authCheckState = () => {
+  return dispatch =>{
+    const token = localStorage.getItem('token');
+    if(!token){
+      dispatch(logout());
+    }else{
+      const user = localStorage.getItem('user');
+      dispatch(authSuccess(token,user));
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import "./App.css";
+import {useEffect} from "react";
 import Login from "./components/Login/Login";
+import { connect } from 'react-redux';
 import Sidebar from "./components/Sidebar/Sidebar";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Alljobs from "./components/All jobs/Alljobs";
@@ -7,53 +9,53 @@ import Contracting from "./components/Contracting Applicant/Contracting";
 import Internal from "./components/Internal Applicant/Internal";
 import AddJobs from "./components/Add jobs/AddJobs";
 import Contact from "./components/Contact/Contact";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
+import GuardedRoute from "./components/Utility/GuardedRoute";
 import pageNotFound from "./components/PageNotFound";
 import EditJobs from "./components/All jobs/EditJobs";
 import viewDetail from "./components/Contact/ViewDetail";
 import allApplicant from "./components/allApplicant/allApplicant";
+import Logout from "./components/Logout/Logout";
 import viewApplicantDetail from "./components/viewApplicantDetail/viewApplicantDetail";
 import viewJobDetail from "./components/All jobs/viewJobDetail";
-function App() {
+import * as actions from "./store/actions/index";
+function App(props) {
+  useEffect(() => {
+    props.onTryAutoSignup();
+  }, []);
   return (
-    <BrowserRouter>
       <Switch>
-        <Route exact path="/login" component={Login} />
-
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/alljobs/editJobs" component={EditJobs} />
-        <Route path="/alljobs" component={Alljobs} />
-
-        <Route path="/contracting" component={Contracting} />
-        <Route path="/internal" component={Internal} />
-        <Route path="/addjobs" component={AddJobs} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/viewContact" component={viewDetail} />
-        <Route path="/allApplicant" component={allApplicant} />
-        <Route path="/viewJobDetail" component={viewJobDetail} />
-
-        <Route
+        <Route exact path="/" component={Login} />
+        <GuardedRoute exact path="/dashboard" component={Dashboard} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/alljobs" component={Alljobs} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/alljobs/editJobs" component={EditJobs} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/contracting" component={Contracting} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/internal" component={Internal} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/addjobs" component={AddJobs} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/contact" component={Contact} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/viewContact" component={viewDetail} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/allApplicant" component={allApplicant} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/viewJobDetail" component={viewJobDetail} auth={props.isAuthenticated}/>
+        <GuardedRoute exact path="/logout" component={Logout} auth={props.isAuthenticated}/>
+        <GuardedRoute
           exact
           path="/viewApplicatnDetail"
           component={viewApplicantDetail}
-        />
+        auth={props.isAuthenticated}/>
 
         <Route component={pageNotFound} />
       </Switch>
-    </BrowserRouter>
-    // <div>
-    //   {/* <Login /> */}
-    //   {/* <Sidebar /> */}
-    //   {/* <Dashboard /> */}
-    //   {/* <Alljobs /> */}
-    //   {/* <Contracting /> */}
-    //   {/* <Internal /> */}
-    //   <AddJobs />
-    //   {/* <Text /> */}
-
-    //   <div></div>
-    // </div>
   );
 }
+const mapStateToProps = state =>{
+  return{
+    isAuthenticated: state.token !== null
+  }
+}
+const mapDispatchToProps = dispatch =>{
+  return{
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  };
+}
 
-export default App;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
