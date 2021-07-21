@@ -15,7 +15,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "seen",
-    approvelStatus: "reject",
+    approvelStatus: "Reject",
     appliedDate: "2/2/2021",
   },
   {
@@ -34,7 +34,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "notSeen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
   {
@@ -53,7 +53,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "notSeen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
   {
@@ -72,7 +72,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "notSeen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
   {
@@ -90,7 +90,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "notSeen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
   {
@@ -108,7 +108,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "seen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
   {
@@ -126,7 +126,7 @@ export const contractData = [
     senioritylevel: "internship",
     message: "hello",
     status: "seen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
 ];

@@ -107,12 +107,16 @@ const useStyle = makeStyles((theme) => ({
     borderBottomColor: "#d1d1cf",
   },
   listHead: {
+    // backgroundColor: "red",
     fontSize: "1rem",
-    width: "20%",
+    width: "25%",
     fontWeight: "bold",
   },
   listBody: {
     marginLeft: "1rem",
+    // backgroundColor: "blue",
+    maxWidth: "508px",
+    textAlign: "justify",
   },
   resumeTitle: {
     marginLeft: "1rem",
@@ -128,10 +132,10 @@ const useStyle = makeStyles((theme) => ({
     height: "5vh",
   },
   acceptToggleBtn: {
-    backgroundColor: "#24803c",
+    backgroundColor: "#28A745",
     color: "#fff",
     "&:hover": {
-      backgroundColor: "#1cba45",
+      backgroundColor: "#1f7a1f",
       color: "#fff",
     },
     "&:active": {
@@ -141,18 +145,18 @@ const useStyle = makeStyles((theme) => ({
   },
   rejectToggleBtn: {
     marginLeft: "15px",
-    backgroundColor: "#660000",
+    backgroundColor: "#DC3545",
     color: "#fff",
     "&:hover": {
-      backgroundColor: "#ff0000",
+      backgroundColor: "#b30000",
       color: "#fff",
     },
   },
   blacklistToggleBtn: {
-    backgroundColor: "#b38f00",
+    backgroundColor: "#FFC107",
     color: "#fff",
     "&:hover": {
-      backgroundColor: "#ffcc00",
+      backgroundColor: "#b38f00",
       color: "#fff",
     },
   },
@@ -241,7 +245,7 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>
-                          Expected Salary:
+                          Expected Salary($):
                         </span>
                         <span className={classes.listBody}>15000</span>
                       </ListItem>
@@ -255,8 +259,8 @@ const Contracting = () => {
                         <span className={classes.listHead}>Message:</span>
                         <span className={classes.listBody}>
                           Here is the Here is the message Here is the message
-                          Here is the message Here is the message Here is the
-                          message Here is the message
+                          Here is the message Here is the Here is the message
+                          Here is the message Here is the message
                         </span>
                       </ListItem>
                     </List>
@@ -271,21 +275,21 @@ const Contracting = () => {
                     >
                       <ToggleButton
                         className={classes.acceptToggleBtn}
-                        value="accept"
+                        value="Accept"
                         aria-label="left aligned"
                       >
                         Accept
                       </ToggleButton>
                       <ToggleButton
                         className={classes.rejectToggleBtn}
-                        value="reject"
+                        value="Reject"
                         aria-label="centered"
                       >
                         Reject
                       </ToggleButton>
                       <ToggleButton
                         className={classes.blacklistToggleBtn}
-                        value="blackList"
+                        value="Hold"
                         aria-label="right aligned"
                       >
                         Hold

@@ -225,8 +225,8 @@ const Alljobs = (props) => {
                       {/* <th className={classes.tableHead}>Country</th> */}
                       <th className={classes.tableHead}>Address</th>
                       <th className={classes.tableHead}>Published By</th>
-                      <th className={classes.tableHead}>Action</th>
                       <th className={classes.tableHead}>Visibility</th>
+                      <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -243,6 +243,15 @@ const Alljobs = (props) => {
                             {item.country}, {item.state} , {item.city}
                           </td>
                           <td>{item.publishBy}</td>
+                          <td
+                            className={
+                              item.visibility == "Publish"
+                                ? classes.seenColor
+                                : classes.notColor
+                            }
+                          >
+                            {item.visibility}
+                          </td>
                           <td>
                             <div className={classes.buttomDiv}>
                               <Button
@@ -279,15 +288,6 @@ const Alljobs = (props) => {
                                 delete
                               </Button>
                             </div>
-                          </td>
-                          <td
-                            className={
-                              item.visibility == "Publish"
-                                ? classes.seenColor
-                                : classes.notColor
-                            }
-                          >
-                            {item.visibility}
                           </td>
                         </tr>
                       );

@@ -15,7 +15,7 @@ export const internalData = [
     senioritylevel: "internship",
     message: "hello",
     status: "seen",
-    approvelStatus: "hold",
+    approvelStatus: "Hold",
     appliedDate: "2/2/2021",
   },
   {
@@ -34,7 +34,7 @@ export const internalData = [
     senioritylevel: "internship",
     message: "hello",
     status: "notSeen",
-    approvelStatus: "accept",
+    approvelStatus: "Accept",
     appliedDate: "2/2/2021",
   },
 ];

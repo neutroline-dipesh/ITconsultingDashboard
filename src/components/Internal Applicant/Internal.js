@@ -117,7 +117,7 @@ const Internal = () => {
       });
     }, 100);
   }, []);
-
+  console.log(data1);
   useEffect(() => {
     $("#example").DataTable();
   }, [data1]);
@@ -292,11 +292,11 @@ const Internal = () => {
                             }
                             style={{
                               color:
-                                item.approvelStatus === "accept"
+                                item.approvelStatus === "Accept"
                                   ? "#24803c"
-                                  : item.approvelStatus === "reject"
-                                  ? "#cccc00"
-                                  : item.approvelStatus === "hold"
+                                  : item.approvelStatus === "Reject"
+                                  ? "#FFC107"
+                                  : item.approvelStatus === "Hold"
                                   ? "#660000"
                                   : "black",
                               fontWeight: "bold",
