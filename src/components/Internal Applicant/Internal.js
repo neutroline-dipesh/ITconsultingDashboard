@@ -24,22 +24,22 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
     fontSize: "2rem",
-    fontWeight: "600",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
   },
 
   ContentDiv: {
@@ -49,20 +49,21 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRadius: "5px",
+    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    paddingBottom: "2rem",
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#4487A9 !important",
+    backgroundColor: "#161D6F !important",
     color: "#fff",
-    height: "3vh !important",
+    fontWeight: "200 !important",
     textAlign: "center",
   },
   buttomDiv: {
@@ -93,13 +94,15 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   seenColor: {
-    // backgroundColor: "#F5F7F7 ! important",
+    backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
+    textAlign: "center",
   },
   noColor: {
     fontWeight: "bold",
     // backgroundColor: "#fff ! important",
     fontSize: "15px",
+    textAlign: "center",
   },
 }));
 
@@ -185,11 +188,7 @@ const Internal = () => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={
-                    classes.dataTable +
-                    " " +
-                    "table table-striped table-bordered"
-                  }
+                  className={classes.dataTable + " " + "table "}
                 >
                   <thead>
                     <tr>
@@ -198,7 +197,7 @@ const Internal = () => {
                       <th className={classes.tableHead}>Name</th>
 
                       <th className={classes.tableHead}>Email</th>
-                      <th className={classes.tableHead}>Phone</th>
+                      {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
                       <th className={classes.tableHead}>Status</th>
@@ -244,7 +243,7 @@ const Internal = () => {
                             {item.gmail}
                           </td>
 
-                          <td
+                          {/* <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -252,7 +251,7 @@ const Internal = () => {
                             }
                           >
                             {item.phone}
-                          </td>
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -295,9 +294,9 @@ const Internal = () => {
                                 item.approvelStatus === "Accept"
                                   ? "#24803c"
                                   : item.approvelStatus === "Reject"
-                                  ? "#FFC107"
-                                  : item.approvelStatus === "Hold"
                                   ? "#660000"
+                                  : item.approvelStatus === "Hold"
+                                  ? "#FFC107"
                                   : "black",
                               fontWeight: "bold",
                             }}

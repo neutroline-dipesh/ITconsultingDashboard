@@ -23,23 +23,23 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
     // fontFamily: "Roboto",
     fontSize: "2rem",
-    fontWeight: "600",
+    fontWeight: "400",
     marginLeft: "1rem",
-    color: "#062837",
+    color: "#fffff",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
   },
 
   ContentDiv: {
@@ -49,21 +49,28 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRadius: "5px",
+    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    paddingBottom: "2rem",
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
   },
+
   tableHead: {
-    backgroundColor: "#4487A9 !important",
+    backgroundColor: "#161D6F !important",
     color: "#fff",
-    height: "3vh !important",
+    fontWeight: "200 !important",
+    // height: "3vh !important",
     textAlign: "center",
+  },
+  tableBody: {
+    textAlign: "center",
+    // fontWeight: "200 !important",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -104,6 +111,7 @@ const useStyle = makeStyles((theme) => ({
   seenColor: {
     color: "#24803c",
     fontWeight: "bold",
+    textAlign: "center",
   },
 }));
 
@@ -201,7 +209,7 @@ const Alljobs = (props) => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>All Jobs</span>
+            <span className={classes.pageTabName}>Job / Jobs List</span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
@@ -209,11 +217,7 @@ const Alljobs = (props) => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={
-                    classes.dataTable +
-                    " " +
-                    "table table-striped table-bordered"
-                  }
+                  className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
@@ -234,20 +238,24 @@ const Alljobs = (props) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
-                          <td>{item.jobId}</td>
-                          <td>{item.jobTitle}</td>
-                          <td>{item.department}</td>
-                          <td>{item.jobType}</td>
+                          <td className={classes.tableBody}>{item.jobId}</td>
+                          <td className={classes.tableBody}>{item.jobTitle}</td>
+                          <td className={classes.tableBody}>
+                            {item.department}
+                          </td>
+                          <td className={classes.tableBody}>{item.jobType}</td>
                           {/* <td>{item.country}</td> */}
-                          <td>
+                          <td className={classes.tableBody}>
                             {item.country}, {item.state} , {item.city}
                           </td>
-                          <td>{item.publishBy}</td>
+                          <td className={classes.tableBody}>
+                            {item.publishBy}
+                          </td>
                           <td
                             className={
                               item.visibility == "Publish"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.notColor + " " + classes.tableBody
                             }
                           >
                             {item.visibility}

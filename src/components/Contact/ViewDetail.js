@@ -14,7 +14,7 @@ const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
     justifyContent: "space-between",
-    backgroundColor: "#4487A9",
+    backgroundColor: "#161D6F",
     color: "#fff",
   },
   viewButton: {

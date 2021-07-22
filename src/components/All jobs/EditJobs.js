@@ -24,22 +24,22 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
     fontSize: "2rem",
-    fontWeight: "600",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
   },
 
   ContentDiv: {
@@ -48,7 +48,7 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRadius: "5px",
+    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
@@ -304,7 +304,7 @@ const EditJobs = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Edit Jobs</span>
+            <span className={classes.pageTabName}>Job / Edit Jobs</span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>

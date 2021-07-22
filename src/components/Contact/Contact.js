@@ -25,23 +25,23 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
     // fontFamily: "Roboto",
     fontSize: "2rem",
-    fontWeight: "600",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
   },
 
   ContentDiv: {
@@ -51,20 +51,22 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRadius: "5px",
+    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    paddingBottom: "2rem",
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#4487A9 !important",
+    backgroundColor: "#161D6F !important",
     color: "#fff",
-    height: "3vh !important",
+    fontWeight: "200 !important",
+
     textAlign: "center",
   },
   buttomDiv: {
@@ -85,13 +87,15 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   seenColor: {
-    // backgroundColor: "#F5F7F7 ! important",
+    backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
+    textAlign: "center",
   },
   notColor: {
     fontWeight: "bold",
     // backgroundColor: "#fff ! important",
     fontSize: "15px",
+    textAlign: "center",
   },
 }));
 
@@ -186,11 +190,7 @@ const Contact = (props) => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={
-                    classes.dataTable +
-                    " " +
-                    "table table-striped table-bordered"
-                  }
+                  className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
@@ -198,7 +198,7 @@ const Contact = (props) => {
                       <th className={classes.tableHead}>Last Name</th>
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone</th>
-                      <th className={classes.tableHead}>Address</th>
+                      {/* <th className={classes.tableHead}>Address</th> */}
                       <th className={classes.tableHead}>Subject</th>
                       <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Action</th>
@@ -244,7 +244,7 @@ const Contact = (props) => {
                           >
                             {item.phone}
                           </td>
-                          <td
+                          {/* <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -252,7 +252,7 @@ const Contact = (props) => {
                             }
                           >
                             {item.address}
-                          </td>
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"

@@ -30,7 +30,7 @@ const useStyle = makeStyles((theme) => ({
   },
   smallBoxMainDiv: {
     // color: "red",
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
     // border: "solid 1px",
 
     height: "25vh",
@@ -44,7 +44,7 @@ const useStyle = makeStyles((theme) => ({
     width: "15%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    marginLeft: "1rem",
+    marginLeft: "3rem",
   },
   totcalContractingJob: {
     marginLeft: "2.4rem",
@@ -78,13 +78,13 @@ const useStyle = makeStyles((theme) => ({
   tableCalenderDivMain: {
     height: "67vh",
     // border: "solid 1px",
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#C7FFD8",
   },
   tableDiv: {
     backgroundColor: "#FFFFFF",
     float: "left",
     height: "60vh",
-    marginLeft: "1rem",
+    marginLeft: "3rem",
     width: "50.5%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
@@ -114,13 +114,16 @@ const useStyle = makeStyles((theme) => ({
     minWidth: 650,
   },
   viewAllButton: {
-    backgroundColor: "#04A8F6",
+    // backgroundColor: "#04A8F6",
     borderRadius: "20px",
     width: "13%",
     height: "3.9vh",
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      // backgroundColor: "#98DED9",
+    },
   },
   calenderDiv: {
     // width: "50%",
@@ -129,16 +132,16 @@ const useStyle = makeStyles((theme) => ({
     width: "22%",
     // backgroundColor: "blue",
     marginLeft: "4rem",
-    marginTop: "-2rem",
+    // marginTop: "-2rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
   viewDate: {
-    height: "19vh",
-    backgroundColor: "#E76B6B",
-    paddingTop: "0.5rem",
+    height: "15vh",
+    backgroundColor: "#161D6F",
+    // paddingTop: "0.5rem",
   },
   day: {
-    fontSize: "5rem",
+    fontSize: "4rem",
     fontWeight: "600",
     color: "#fff",
     marginLeft: "2rem",
