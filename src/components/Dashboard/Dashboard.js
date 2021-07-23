@@ -30,7 +30,7 @@ const useStyle = makeStyles((theme) => ({
   },
   smallBoxMainDiv: {
     // color: "red",
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
     // border: "solid 1px",
 
     height: "25vh",
@@ -46,8 +46,12 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "5px",
     marginLeft: "3rem",
   },
+  totcalContactJob: {
+    borderLeft: "4px solid #4e73df",
+  },
   totcalContractingJob: {
     marginLeft: "2.4rem",
+    borderLeft: "4px solid red",
   },
   totalConstractingNumber: {
     // backgroundColor: "red",
@@ -74,11 +78,16 @@ const useStyle = makeStyles((theme) => ({
   },
   totcalInernalJob: {
     marginLeft: "2.4rem",
+    borderLeft: "4px solid #1cc88a",
+  },
+  totalAllJob: {
+    marginLeft: "2.4rem",
+    borderLeft: "4px solid #f6c23e",
   },
   tableCalenderDivMain: {
     height: "67vh",
     // border: "solid 1px",
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
   },
   tableDiv: {
     backgroundColor: "#FFFFFF",
@@ -98,6 +107,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "1.5rem",
     marginLeft: "1.5rem",
+    color: "#4e73df",
   },
   tableHead: {
     fontSize: "1rem",
@@ -114,7 +124,7 @@ const useStyle = makeStyles((theme) => ({
     minWidth: 650,
   },
   viewAllButton: {
-    // backgroundColor: "#04A8F6",
+    backgroundColor: "#2653d4",
     borderRadius: "20px",
     width: "13%",
     height: "3.9vh",
@@ -137,7 +147,7 @@ const useStyle = makeStyles((theme) => ({
   },
   viewDate: {
     height: "15vh",
-    backgroundColor: "#161D6F",
+    backgroundColor: "#4e73df",
     // paddingTop: "0.5rem",
   },
   day: {
@@ -186,22 +196,51 @@ const Dashboard = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.smallBoxMainDiv}>
-            <div className={classes.totalJobs}>
+            <div className={classes.totalJobs + " " + classes.totcalContactJob}>
               <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Contract Jobs</span>
-              <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
+              <span style={{ color: "#4e73df" }} className={classes.totalText}>
+                Total Contract Jobs
+              </span>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "#4e73df" }}
+                className={classes.totolIcon}
+              />
+            </div>
+            <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
+              <span className={classes.totalConstractingNumber}>1,400</span>
+              <span style={{ color: "#1cc88a" }} className={classes.totalText}>
+                Total Internal Jobs
+              </span>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "#1cc88a" }}
+                className={classes.totolIcon}
+              />
             </div>
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
             >
               <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Internal Jobs</span>
-              <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
+              <span style={{ color: "red" }} className={classes.totalText}>
+                Total Client Query
+              </span>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "red" }}
+                className={classes.totolIcon}
+              />
             </div>
-            <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
+            <div className={classes.totalJobs + " " + classes.totalAllJob}>
               <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Client Query</span>
-              <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
+              <span style={{ color: "#f6c23e" }} className={classes.totalText}>
+                Total Internal Jobs
+              </span>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "#f6c23e" }}
+                className={classes.totolIcon}
+              />
             </div>
           </div>
           <div className={classes.tableCalenderDivMain}>

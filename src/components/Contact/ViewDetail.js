@@ -9,21 +9,23 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import CloseIcon from "@material-ui/icons/Close";
 import { ColorLensOutlined } from "@material-ui/icons";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
     justifyContent: "space-between",
-    backgroundColor: "#161D6F",
+    backgroundColor: "#4e73df",
     color: "#fff",
   },
   viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-    height: "3.9vh",
+    marginTop: "0.3rem",
+    marginBottom: "0.3rem",
+    height: "1.3rem",
+    width: "1.3rem",
+    color: "#fffff",
     "&:hover": {
-      color: "#fff",
+      color: "#4e73df",
     },
   },
 }));
@@ -46,7 +48,7 @@ export default function AlertDialogSlide(props) {
   // console.log(props);
   return (
     <div>
-      <Button
+      {/* <Button
         className={classes.viewButton}
         variant="contained"
         color="primary"
@@ -55,7 +57,11 @@ export default function AlertDialogSlide(props) {
         onClick={handleClickOpen}
       >
         View
-      </Button>
+      </Button> */}
+      <VisibilityIcon
+        className={classes.viewButton}
+        onClick={handleClickOpen}
+      />
       <Dialog
         open={open}
         TransitionComponent={Transition}

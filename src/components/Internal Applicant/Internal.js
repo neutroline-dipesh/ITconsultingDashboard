@@ -15,6 +15,10 @@ import $ from "jquery";
 
 import { internalData } from "./internalData";
 
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { AiOutlineFundView } from "react-icons/ai";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -24,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
     display: "flex",
@@ -39,7 +43,7 @@ const useStyle = makeStyles((theme) => ({
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -61,9 +65,9 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#161D6F !important",
+    backgroundColor: "#4e73df !important",
     color: "#fff",
-    fontWeight: "200 !important",
+    fontWeight: "400 !important",
     textAlign: "center",
   },
   buttomDiv: {
@@ -73,24 +77,25 @@ const useStyle = makeStyles((theme) => ({
   },
 
   viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-
-    height: "3.9vh",
+    marginTop: "0.3rem",
+    marginBottom: "0.3rem",
+    height: "1.3rem",
+    width: "1.3rem",
+    color: "#fffff",
     "&:hover": {
-      color: "#fff",
+      color: "#4e73df",
     },
   },
   deleteButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    marginLeft: "0.5rem",
-
-    backgroundColor: "#b30000",
-    height: "3.9vh",
+    marginLeft: "1rem",
+    color: "#e60000",
+    height: "1.2rem",
+    width: "1.2rem",
+    borderRadius: "20px",
+    marginTop: "0.4rem",
+    marginBottom: "0.4rem",
     "&:hover": {
-      color: "#fff",
+      color: "#ff0000",
     },
   },
   seenColor: {
@@ -99,8 +104,8 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
   noColor: {
-    fontWeight: "bold",
-    // backgroundColor: "#fff ! important",
+    fontWeight: "500",
+    color: "#000",
     fontSize: "15px",
     textAlign: "center",
   },
@@ -294,11 +299,11 @@ const Internal = () => {
                                 item.approvelStatus === "Accept"
                                   ? "#24803c"
                                   : item.approvelStatus === "Reject"
-                                  ? "#660000"
+                                  ? "#e60000"
                                   : item.approvelStatus === "Hold"
                                   ? "#FFC107"
                                   : "black",
-                              fontWeight: "bold",
+                              fontWeight: "500",
                             }}
                           >
                             {item.approvelStatus}
@@ -312,7 +317,7 @@ const Internal = () => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <Button
+                              {/* <Button
                                 className={classes.viewButton}
                                 variant="contained"
                                 color="primary"
@@ -333,7 +338,17 @@ const Internal = () => {
                                 onClick={() => deletFunction()}
                               >
                                 delete
-                              </Button>
+                              </Button> */}
+                              <VisibilityIcon
+                                className={classes.viewButton}
+                                onClick={() => {
+                                  window.open("/viewApplicatnDetail", "_blank");
+                                }}
+                              />
+                              <RiDeleteBin6Fill
+                                className={classes.deleteButton}
+                                onClick={() => deletFunction()}
+                              />
                             </div>
                           </td>
                         </tr>

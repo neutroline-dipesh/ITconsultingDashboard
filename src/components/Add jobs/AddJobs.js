@@ -24,7 +24,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
     // border: "solid 1px",
@@ -41,7 +41,7 @@ const useStyle = makeStyles((theme) => ({
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {

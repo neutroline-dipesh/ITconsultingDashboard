@@ -13,6 +13,11 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { allApplicantData } from "./allApplicantData";
 
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { AiOutlineFundView } from "react-icons/ai";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import Tooltip from "@material-ui/core/Tooltip";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -22,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
     display: "flex",
@@ -37,7 +42,7 @@ const useStyle = makeStyles((theme) => ({
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -59,9 +64,9 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#161D6F !important",
+    backgroundColor: "#4e73df !important",
     color: "#fff",
-    fontWeight: "200 !important",
+    fontWeight: "400 !important",
     // height: "3vh !important",
     textAlign: "center",
   },
@@ -73,24 +78,25 @@ const useStyle = makeStyles((theme) => ({
   },
 
   viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-
-    height: "3.9vh",
+    marginTop: "0.3rem",
+    marginBottom: "0.3rem",
+    height: "1.3rem",
+    width: "1.3rem",
+    color: "#04A8F6",
     "&:hover": {
-      color: "#fff",
+      color: "#4e73df",
     },
   },
   deleteButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    marginLeft: "0.5rem",
-
-    backgroundColor: "#b30000",
-    height: "3.9vh",
+    marginLeft: "1rem",
+    color: "#e60000",
+    height: "1.2rem",
+    width: "1.2rem",
+    borderRadius: "20px",
+    marginTop: "0.4rem",
+    marginBottom: "0.4rem",
     "&:hover": {
-      color: "#fff",
+      color: "#ff0000",
     },
   },
   confirmBtn: {
@@ -105,11 +111,26 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
   noColor: {
-    fontWeight: "bold",
+    fontWeight: "500",
+    color: "#000",
     fontSize: "15px",
     textAlign: "center",
   },
 }));
+
+const useStylesBootstrap = makeStyles((theme) => ({
+  arrow: {
+    color: theme.palette.common.black,
+  },
+  tooltip: {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
+function BootstrapTooltip(props) {
+  const classes = useStylesBootstrap();
+
+  return <Tooltip arrow classes={classes} {...props} />;
+}
 
 const Contracting = () => {
   const classes = useStyle();
@@ -197,7 +218,7 @@ const Contracting = () => {
                       <th className={classes.tableHead}>Applied Date</th>
 
                       <th className={classes.tableHead}>Status</th>
-                      <th className={classes.tableHead}>Approvel Status</th>
+                      <th className={classes.tableHead}>Approval Status</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
@@ -285,11 +306,11 @@ const Contracting = () => {
                                 item.approvelStatus === "Accept"
                                   ? "#24803c"
                                   : item.approvelStatus === "Reject"
-                                  ? "#660000"
+                                  ? "#e60000"
                                   : item.approvelStatus === "Hold"
                                   ? "#FFC107"
                                   : "black",
-                              fontWeight: "bold",
+                              fontWeight: "500",
                             }}
                           >
                             {item.approvelStatus}
@@ -302,7 +323,7 @@ const Contracting = () => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <Button
+                              {/* <Button
                                 className={classes.viewButton}
                                 variant="contained"
                                 color="primary"
@@ -312,9 +333,37 @@ const Contracting = () => {
                                 }}
                               >
                                 View
-                              </Button>
+                              </Button> */}
+                              {/* <span
+                                style={{
+                                  fontSize: "1rem",
+                                  color: "#4e73df",
+                                  marginTop: "0.2rem",
+                                  marginBottom: "0.2rem",
+                                  fontWeight: "400",
+                                }}
+                              >
+                                <u>View</u>
+                              </span> */}
+                              <Tooltip title="View">
+                                <VisibilityIcon
+                                  className={classes.viewButton}
+                                  onClick={() => {
+                                    window.open(
+                                      "/viewApplicatnDetail",
+                                      "_blank"
+                                    );
+                                  }}
+                                />
+                              </Tooltip>
 
-                              <Button
+                              <BootstrapTooltip title="Delete">
+                                <RiDeleteBin6Fill
+                                  className={classes.deleteButton}
+                                  onClick={() => deletFunction()}
+                                />
+                              </BootstrapTooltip>
+                              {/* <Button
                                 className={classes.deleteButton}
                                 variant="contained"
                                 color="primary"
@@ -322,7 +371,7 @@ const Contracting = () => {
                                 onClick={() => deletFunction()}
                               >
                                 delete
-                              </Button>
+                              </Button> */}
                             </div>
                           </td>
                         </tr>

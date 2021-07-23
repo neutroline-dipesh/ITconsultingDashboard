@@ -13,6 +13,11 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import axios from "axios";
 
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { AiOutlineFundView } from "react-icons/ai";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import { FaEdit } from "react-icons/fa";
+
 import { allJobsData } from "./alljobsData";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -23,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
     display: "flex",
@@ -39,7 +44,7 @@ const useStyle = makeStyles((theme) => ({
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C7FFD8",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -62,9 +67,9 @@ const useStyle = makeStyles((theme) => ({
   },
 
   tableHead: {
-    backgroundColor: "#161D6F !important",
+    backgroundColor: "#4e73df !important",
     color: "#fff",
-    fontWeight: "200 !important",
+    fontWeight: "400 !important",
     // height: "3vh !important",
     textAlign: "center",
   },
@@ -78,39 +83,47 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
   },
   editButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#04A8F6",
-    marginLeft: "0.5rem",
-    height: "3.9vh",
+    height: "1.3rem",
+    width: "1.3rem",
+    marginLeft: "1rem",
+    marginTop: "0.4rem",
+    marginBottom: "0.4rem",
+    color: "#2eb82e",
+
+    // fontSize: "0.7rem",
+    // // borderRadius: "20px",
+    // backgroundColor: "#04A8F6",
+    // marginLeft: "0.5rem",
+    // height: "3.9vh",
     "&:hover": {
-      color: "#fff",
+      color: "#1f7a1f",
     },
   },
   viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-
-    height: "3.9vh",
+    marginTop: "0.5rem",
+    marginBottom: "0.5rem",
+    height: "1.4rem",
+    width: "1.4rem",
+    color: "#04A8F6",
     "&:hover": {
-      color: "#fff",
+      color: "#4e73df",
     },
   },
   deleteButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    marginLeft: "0.5rem",
-
-    backgroundColor: "#b30000",
-    height: "3.9vh",
+    marginLeft: "1rem",
+    color: "#e60000",
+    height: "1.2rem",
+    width: "1.2rem",
+    borderRadius: "20px",
+    marginTop: "0.4rem",
+    marginBottom: "0.4rem",
     "&:hover": {
-      color: "#fff",
+      color: "#b30000",
     },
   },
   seenColor: {
     color: "#24803c",
-    fontWeight: "bold",
+    fontWeight: "500",
     textAlign: "center",
   },
 }));
@@ -262,7 +275,20 @@ const Alljobs = (props) => {
                           </td>
                           <td>
                             <div className={classes.buttomDiv}>
-                              <Button
+                              <VisibilityIcon
+                                className={classes.viewButton}
+                                onClick={() => {
+                                  window.open("/viewApplicatnDetail", "_blank");
+                                }}
+                              />
+                              <FaEdit className={classes.editButton} />
+
+                              <RiDeleteBin6Fill
+                                className={classes.deleteButton}
+                                onClick={() => deletFunction()}
+                              />
+
+                              {/* <Button
                                 className={classes.viewButton}
                                 variant="contained"
                                 color="primary"
@@ -294,7 +320,7 @@ const Alljobs = (props) => {
                                 onClick={() => deletFunction()}
                               >
                                 delete
-                              </Button>
+                              </Button> */}
                             </div>
                           </td>
                         </tr>

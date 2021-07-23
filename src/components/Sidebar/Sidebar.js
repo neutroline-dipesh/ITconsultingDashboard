@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import adimImage from "../../assets/images/admin.png";
+import adimImage from "../../assets/images/admin2.png";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -14,14 +14,15 @@ import WorkIcon from "@material-ui/icons/Work";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
-
+import { FaSmileWink } from "react-icons/fa";
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
     width: "15.5%",
     height: "100vh",
+
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-    backgroundColor: "#161D6F",
+    backgroundColor: "#2d4dab",
     textAlign: "center",
     // position: "fixed",
     //position: "absolute",
@@ -42,10 +43,19 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   sidenav: {},
+  simeIcon: {
+    color: "#fff",
+    fontSize: "2rem",
+    marginTop: "-1rem",
+  },
   companyName: {
     color: "#FFFFFF",
     fontSize: "30px",
     width: "100%",
+    marginLeft: "0.5rem",
+  },
+  hr: {
+    marginTop: "0.4rem",
   },
 
   NavbarMainDiv: {
@@ -60,20 +70,25 @@ const useStyle = makeStyles((theme) => ({
   NavbarMianDivOnClick: {
     height: "8vh",
     width: "84.5%",
-    float: "left",
+    float: "right",
     boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
     display: "flex",
+
     alignItems: "center",
-    justifyContent: "space-between",
+
+    justifyContent: "flex-end",
   },
   // hamburgurIcon: {
   //   marginLeft: "1rem",
   //   fontSize: "30px",
   // },
+  adminName: {
+    marginRight: "0.5rem",
+    color: "#858796",
+  },
   adminimg: {
     width: "40px",
     marginRight: "1rem",
-    align: "left",
   },
   sidebarMenuItem: {
     width: "100%",
@@ -85,22 +100,26 @@ const useStyle = makeStyles((theme) => ({
   sidebarList: {
     textDecoration: "none",
     color: "#fff",
+    zIndex: "1000",
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#F6F6F6",
-      // opacity: "0.8",
       color: "#161D6F",
       textDecoration: "none",
+      boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
+      transform: "scale(1.04)",
+      transition: "ease 0.3s",
     },
   },
   nastedList: {
     paddingLeft: "3.5rem",
-    backgroundColor: "#8080ff",
+    backgroundColor: "#4e73df",
     color: "#fff",
     textDecoration: "none",
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#4d4dff",
+      backgroundColor: "#fff",
+      color: "#161D6F",
     },
   },
   // sidebarIcon: {
@@ -135,7 +154,11 @@ const Sidebar = () => {
     <>
       {/* {showNav && ( */}
       <div className={classes.root}>
-        <span className={classes.companyName}>Neutrosys</span>
+        <FaSmileWink className={classes.simeIcon} />
+        <span className={classes.companyName}>
+          Neutrosys <hr className={classes.hr} />
+        </span>
+
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
@@ -258,6 +281,7 @@ const Sidebar = () => {
           className={classes.hamburgurIcon}
           onClick={() => setShowNav(!showNav)}
         /> */}
+        <span className={classes.adminName}>Dipesh Shrestha</span>
         <img className={classes.adminimg} src={adimImage} />
       </div>
     </>
