@@ -7,10 +7,17 @@ import {Provider} from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
 import authReducer from './store/reducers/auth';
+import jobReducer from './store/reducers/jobs';
 import thunk from 'redux-thunk';
+import { combineReducers } from 'redux';
+
+const rootReducer = combineReducers({
+    auth: authReducer,
+    jobs: jobReducer,
+});
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(authReducer, composeEnhancer(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -241,9 +241,9 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loading,
-    error: state.error,
-    isAuthenticated: state.token !== null,
+    loading: state.auth.loading,
+    error: state.auth.error,
+    isAuthenticated: state.auth.token !== null,
   };
 };
 const mapDispatchToProps = (dispatch) => {
