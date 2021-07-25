@@ -41,7 +41,7 @@ export const auth = (email, password) => {
     axios
       .post("http://localhost:4000/user/login", authData)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user',response.data.name);
         dispatch(authSuccess(response.data.token, response.data.name));

@@ -5,7 +5,7 @@ export const getAllQueries = (allQueriesData) => {
   return {
     type: actionTypes.GET_ALLQUERIES,
     allQueriesData: allQueriesData,
-  };
+  }; 
 };
 
 export const getAllQueriesFail = (error) => {
