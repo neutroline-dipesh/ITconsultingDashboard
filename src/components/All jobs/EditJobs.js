@@ -27,8 +27,10 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#f8f9fc",
 
     height: "10vh",
+    // border: "solid 1px",
     display: "flex",
     alignItems: "center",
+    // paddingTop: "0.5rem",
   },
   pageTabName: {
     fontSize: "2rem",
@@ -56,11 +58,11 @@ const useStyle = makeStyles((theme) => ({
   },
   form: {
     margin: "1rem",
-    paddingTop: "1rem",
+    // paddingTop: "1rem",
   },
   JobTitle: {},
   JobSubtitle: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
   },
   DepartmentJobTypeDiv: {
     display: "flex",
@@ -74,14 +76,14 @@ const useStyle = makeStyles((theme) => ({
     width: "48%",
   },
   Department: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     // width: "250%",
   },
   jobTypeDiv: {
     width: "48%",
   },
   JobType: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     marginLeft: "2.5rem",
     // width: "100%",
   },
@@ -90,7 +92,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   CountryStateCityDiv: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     display: "flex",
     // justifyContent: "space-between",
   },
@@ -495,7 +497,7 @@ const EditJobs = () => {
                           className={"btn btn-primary" + " " + classes.save}
                           onClick={() => saveFunction()}
                         >
-                          Update
+                          Save
                         </button>
                       </div>
                     </div>

@@ -18,6 +18,10 @@ import { AiOutlineFundView } from "react-icons/ai";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { FaEdit } from "react-icons/fa";
 
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
+
 import { allJobsData } from "./alljobsData";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -150,23 +154,23 @@ const Alljobs = (props) => {
   });
 
   //getting data from database
-  const [data1, setData1] = useState([]);
+  // const [data1, setData1] = useState([]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/allJobs/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-    }, 100);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     $("#example").DataTable().destroy();
+  //     axios.get("http://localhost:4000/allJobs/").then((response) => {
+  //       if (response.data) {
+  //         // value = response.data.data;
+  //         setData1(response.data.data);
+  //       }
+  //     });
+  //   }, 100);
+  // }, []);
 
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data1]);
+  // useEffect(() => {
+  //   $("#example").DataTable();
+  // }, [data1]);
 
   const classes = useStyle();
   useEffect(() => {
@@ -247,7 +251,7 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
@@ -275,19 +279,40 @@ const Alljobs = (props) => {
                           </td>
                           <td>
                             <div className={classes.buttomDiv}>
-                              <VisibilityIcon
-                                className={classes.viewButton}
-                                onClick={() => {
-                                  window.open("/viewApplicatnDetail", "_blank");
-                                }}
-                              />
-                              <FaEdit className={classes.editButton} />
+                              <Tooltip
+                                title="View"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="/viewJobDetail">
+                                  <VisibilityIcon
+                                    className={classes.viewButton}
+                                  />
+                                </Link>
+                              </Tooltip>
 
-                              <RiDeleteBin6Fill
-                                className={classes.deleteButton}
-                                onClick={() => deletFunction()}
-                              />
+                              <Tooltip
+                                title="Edit"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="/alljobs/editJobs">
+                                  <FaEdit className={classes.editButton} />
+                                </Link>
+                              </Tooltip>
 
+                              <Tooltip
+                                title="Delete"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link>
+                                  <RiDeleteBin6Fill
+                                    className={classes.deleteButton}
+                                    onClick={() => deletFunction()}
+                                  />
+                                </Link>
+                              </Tooltip>
                               {/* <Button
                                 className={classes.viewButton}
                                 variant="contained"

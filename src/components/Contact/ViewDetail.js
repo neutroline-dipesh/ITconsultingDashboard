@@ -10,6 +10,9 @@ import Slide from "@material-ui/core/Slide";
 import CloseIcon from "@material-ui/icons/Close";
 import { ColorLensOutlined } from "@material-ui/icons";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
@@ -23,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: "0.3rem",
     height: "1.3rem",
     width: "1.3rem",
-    color: "#fffff",
+    color: "#04A8F6",
     "&:hover": {
       color: "#4e73df",
     },
@@ -58,10 +61,14 @@ export default function AlertDialogSlide(props) {
       >
         View
       </Button> */}
-      <VisibilityIcon
-        className={classes.viewButton}
-        onClick={handleClickOpen}
-      />
+      <Tooltip title="View" TransitionComponent={Zoom} arrow>
+        <Link>
+          <VisibilityIcon
+            className={classes.viewButton}
+            onClick={handleClickOpen}
+          />
+        </Link>
+      </Tooltip>
       <Dialog
         open={open}
         TransitionComponent={Transition}

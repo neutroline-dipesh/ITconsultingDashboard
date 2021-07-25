@@ -15,6 +15,7 @@ import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
 import { allApplicantData } from "../allApplicant/allApplicantData";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -101,13 +102,16 @@ const useStyle = makeStyles((theme) => ({
   tableTitleBottonDiv: {
     display: "flex",
     justifyContent: "space-between",
-    paddingTop: "1.5rem",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    alignItems: "center",
+    backgroundColor: "#F8F9FC",
   },
   tableTitle: {
     fontWeight: "600",
-    fontSize: "1.5rem",
+    fontSize: "1.3rem",
     marginLeft: "1.5rem",
-    color: "#4e73df",
+    color: "#303f9f",
   },
   tableHead: {
     fontSize: "1rem",
@@ -124,9 +128,10 @@ const useStyle = makeStyles((theme) => ({
     minWidth: 650,
   },
   viewAllButton: {
+    textDecoration: "none",
     backgroundColor: "#2653d4",
     borderRadius: "20px",
-    width: "13%",
+    width: "7rem",
     height: "3.9vh",
     fontSize: "0.7rem",
     marginRight: "1.5rem",
@@ -247,17 +252,16 @@ const Dashboard = () => {
             <div className={classes.tableDiv}>
               <div className={classes.tableTitleBottonDiv}>
                 <span className={classes.tableTitle}>Recent Applicant</span>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                  className={classes.viewAllButton}
-                  onClick={() => {
-                    window.location.pathname = "/allApplicant";
-                  }}
-                >
-                  View All
-                </Button>
+                <Link to="/allApplicant">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    className={classes.viewAllButton}
+                  >
+                    View All
+                  </Button>
+                </Link>
               </div>
               <div className={classes.tableDataDiv}>
                 <Table className={classes.table} aria-label="simple table">
@@ -283,7 +287,7 @@ const Dashboard = () => {
                         <TableCell align="center">
                           {item.firstName + " " + item.lastName}
                         </TableCell>
-                        <TableCell align="center">{item.appliedDate}</TableCell>
+                        <TableCell align="center">{item.postedDate}</TableCell>
                         {/* <TableCell align="right">{row.fat}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
                         <TableCell align="right">{row.protein}</TableCell> */}

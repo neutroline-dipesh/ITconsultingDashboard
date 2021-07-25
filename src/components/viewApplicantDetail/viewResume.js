@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "1rem",
     fontSize: "0.9rem",
     // borderRadius: "20px",
-    backgroundColor: "#04A8F6",
+    // backgroundColor: "#04A8F6",
     height: "5vh",
     "&:hover": {
       color: "#fff",

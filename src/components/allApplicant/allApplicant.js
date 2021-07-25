@@ -17,6 +17,8 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -117,20 +119,6 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-
-const useStylesBootstrap = makeStyles((theme) => ({
-  arrow: {
-    color: theme.palette.common.black,
-  },
-  tooltip: {
-    backgroundColor: theme.palette.common.black,
-  },
-}));
-function BootstrapTooltip(props) {
-  const classes = useStylesBootstrap();
-
-  return <Tooltip arrow classes={classes} {...props} />;
-}
 
 const Contracting = () => {
   const classes = useStyle();
@@ -252,7 +240,7 @@ const Contracting = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.email}
+                            {item.gmail}
                           </td>
 
                           {/* <td
@@ -271,7 +259,7 @@ const Contracting = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.appliedDate}
+                            {item.postedDate}
                           </td>
                           <td
                             className={
@@ -345,24 +333,30 @@ const Contracting = () => {
                               >
                                 <u>View</u>
                               </span> */}
-                              <Tooltip title="View">
-                                <VisibilityIcon
-                                  className={classes.viewButton}
-                                  onClick={() => {
-                                    window.open(
-                                      "/viewApplicatnDetail",
-                                      "_blank"
-                                    );
-                                  }}
-                                />
+                              <Tooltip
+                                title="View"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="viewApplicatnDetail">
+                                  <VisibilityIcon
+                                    className={classes.viewButton}
+                                  />
+                                </Link>
                               </Tooltip>
 
-                              <BootstrapTooltip title="Delete">
-                                <RiDeleteBin6Fill
-                                  className={classes.deleteButton}
-                                  onClick={() => deletFunction()}
-                                />
-                              </BootstrapTooltip>
+                              <Tooltip
+                                title="Detete"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link>
+                                  <RiDeleteBin6Fill
+                                    className={classes.deleteButton}
+                                    onClick={() => deletFunction()}
+                                  />
+                                </Link>
+                              </Tooltip>
                               {/* <Button
                                 className={classes.deleteButton}
                                 variant="contained"

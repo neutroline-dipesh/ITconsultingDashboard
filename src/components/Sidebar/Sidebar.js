@@ -85,6 +85,7 @@ const useStyle = makeStyles((theme) => ({
   adminName: {
     marginRight: "0.5rem",
     color: "#858796",
+    fontSize: "0.9rem",
   },
   adminimg: {
     width: "40px",
@@ -164,7 +165,7 @@ const Sidebar = () => {
           aria-labelledby="nested-list-subheader"
           className={classes.sidebarMenuItem}
         >
-          <Link to="/dashboard" className={classes.linktext}>
+          <Link to="/" className={classes.linktext}>
             <ListItem button className={classes.sidebarList}>
               <HomeIcon className={classes.sidebarIcon} />
 

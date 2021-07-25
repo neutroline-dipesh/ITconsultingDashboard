@@ -17,6 +17,10 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -79,7 +83,7 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: "0.3rem",
     height: "1.3rem",
     width: "1.3rem",
-    color: "#fffff",
+    color: "#04A8F6",
     "&:hover": {
       color: "#4e73df",
     },
@@ -117,22 +121,22 @@ const useStyle = makeStyles((theme) => ({
 
 const Contracting = () => {
   //getting data from database
-  const [data1, setData1] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/contract/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-    }, 100);
-  }, []);
+  // const [data1, setData1] = useState([]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     $("#example").DataTable().destroy();
+  //     axios.get("http://localhost:4000/contract/").then((response) => {
+  //       if (response.data) {
+  //         // value = response.data.data;
+  //         setData1(response.data.data);
+  //       }
+  //     });
+  //   }, 100);
+  // }, []);
 
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data1]);
+  // useEffect(() => {
+  //   $("#example").DataTable();
+  // }, [data1]);
 
   const classes = useStyle();
   useEffect(() => {
@@ -221,7 +225,7 @@ const Contracting = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {contractData.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -348,16 +352,29 @@ const Contracting = () => {
                               >
                                 delete
                               </Button> */}
-                              <VisibilityIcon
-                                className={classes.viewButton}
-                                onClick={() => {
-                                  window.open("/viewApplicatnDetail", "_blank");
-                                }}
-                              />
-                              <RiDeleteBin6Fill
-                                className={classes.deleteButton}
-                                onClick={() => deletFunction()}
-                              />
+                              <Tooltip
+                                title="View"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="/viewApplicatnDetail">
+                                  <VisibilityIcon
+                                    className={classes.viewButton}
+                                  />
+                                </Link>
+                              </Tooltip>
+                              <Tooltip
+                                title="Detete"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link>
+                                  <RiDeleteBin6Fill
+                                    className={classes.deleteButton}
+                                    onClick={() => deletFunction()}
+                                  />
+                                </Link>
+                              </Tooltip>
                             </div>
                           </td>
                         </tr>

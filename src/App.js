@@ -24,6 +24,26 @@ function App(props) {
     props.onTryAutoSignup();
   }, []);
   return (
+    // <Switch>
+    //   <Route exact path="/login" component={Login} />
+    //   <Route exact path="/" component={Dashboard} />
+    //   <Route exact path="/alljobs" component={Alljobs} />
+    //   <Route exact path="/alljobs/editJobs" component={EditJobs} />
+    //   <Route exact path="/contracting" component={Contracting} />
+    //   <Route exact path="/internal" component={Internal} />
+    //   <Route exact path="/addjobs" component={AddJobs} />
+    //   <Route exact path="/contact" component={Contact} />
+    //   <Route exact path="/viewContact" component={viewDetail} />
+    //   <Route exact path="/allApplicant" component={allApplicant} />
+    //   <Route exact path="/viewJobDetail" component={viewJobDetail} />
+    //   <Route
+    //     exact
+    //     path="/viewApplicatnDetail"
+    //     component={viewApplicantDetail}
+    //   />
+    //   <Route exact path="/logout" component={Logout} />
+    //   <Route component={pageNotFound} />
+    // </Switch>
     <Switch>
       <Route exact path="/" component={Login} />
       <GuardedRoute
@@ -103,6 +123,7 @@ function App(props) {
     </Switch>
   );
 }
+// export default App;
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.token !== null,

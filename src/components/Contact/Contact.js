@@ -18,6 +18,9 @@ import { contactData } from "./contactDate";
 
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -109,23 +112,23 @@ const Contact = (props) => {
   console.log(props);
 
   //getting data from database start
-  const [data1, setData1] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/allQueries/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-    }, 100);
-  }, []);
+  // const [data1, setData1] = useState([]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     $("#example").DataTable().destroy();
+  //     axios.get("http://localhost:4000/allQueries/").then((response) => {
+  //       if (response.data) {
+  //         // value = response.data.data;
+  //         setData1(response.data.data);
+  //       }
+  //     });
+  //   }, 100);
+  // }, []);
 
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data1]);
-  //end
+  // useEffect(() => {
+  //   $("#example").DataTable();
+  // }, [data1]);
+  // //end
   // console.log(data1);
   const classes = useStyle();
   useEffect(() => {
@@ -211,7 +214,7 @@ const Contact = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {contactData.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td
@@ -309,10 +312,18 @@ const Contact = (props) => {
                               >
                                 delete
                               </Button> */}
-                              <RiDeleteBin6Fill
-                                className={classes.deleteButton}
-                                onClick={() => deletFunction()}
-                              />
+                              <Tooltip
+                                title="Detete"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link>
+                                  <RiDeleteBin6Fill
+                                    className={classes.deleteButton}
+                                    onClick={() => deletFunction()}
+                                  />
+                                </Link>
+                              </Tooltip>
                             </div>
                           </td>
                         </tr>
