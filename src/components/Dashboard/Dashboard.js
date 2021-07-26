@@ -40,14 +40,14 @@ const useStyle = makeStyles((theme) => ({
     height: "25vh",
     // border: "solid 1px",
     paddingTop: "3rem",
-    marginRight: "2rem",
+    marginRight: "3rem",
     marginLeft: "3rem",
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
-display:'flex',
-alignItems:'center',
-justifyContent:'space-between',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
     height: "12vh",
     width: "20%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
@@ -58,7 +58,6 @@ justifyContent:'space-between',
   },
 
   totcalContractingJob: {
-   
     borderLeft: "4px solid red",
   },
   totalConstractingNumber: {
@@ -66,7 +65,7 @@ justifyContent:'space-between',
     color: "#fffff",
     fontWeight: 500,
     fontSize: "1.5rem",
-    
+
     top: "1rem",
   },
   totalText: {
@@ -74,18 +73,15 @@ justifyContent:'space-between',
     // marginTop: "1rem",
     color: "rgba(0, 0, 0, 0.5)",
     fontSize: "0.9rem",
-  
   },
   totolIcon: {
     fontSize: "2rem",
-  marginRight:'0.5rem',
+    marginRight: "0.5rem",
   },
   totcalInernalJob: {
-   
     borderLeft: "4px solid #1cc88a",
   },
   totalAllJob: {
-   
     borderLeft: "4px solid #f6c23e",
   },
   tableCalenderDivMain: {
@@ -176,12 +172,11 @@ justifyContent:'space-between',
     // width: "10%",
   },
 
-  jobs: 
-  {
-    display:'flex',
-    flexDirection:"column",
-    paddingLeft:'0.5rem',
-  }
+  jobs: {
+    display: "flex",
+    flexDirection: "column",
+    paddingLeft: "0.5rem",
+  },
 }));
 const Dashboard = () => {
   const classes = useStyle();
@@ -215,10 +210,13 @@ const Dashboard = () => {
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
               <div className={classes.jobs}>
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span style={{ color: "#4e73df" }} className={classes.totalText}>
-                Total Contract Jobs
-              </span>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  style={{ color: "#4e73df" }}
+                  className={classes.totalText}
+                >
+                  Total Contract Jobs
+                </span>
               </div>
               <Icon
                 icon={fileEarmarkRichtext}
@@ -227,11 +225,14 @@ const Dashboard = () => {
               />
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
-            <div className={classes.jobs}>
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span style={{ color: "#1cc88a" }} className={classes.totalText}>
-                Total Internal Jobs
-              </span>
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  style={{ color: "#1cc88a" }}
+                  className={classes.totalText}
+                >
+                  Total Internal Jobs
+                </span>
               </div>
               <Icon
                 icon={fileEarmarkRichtext}
@@ -242,11 +243,11 @@ const Dashboard = () => {
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
             >
-               <div className={classes.jobs}>
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span style={{ color: "red" }} className={classes.totalText}>
-                Total Client Query
-              </span>
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span style={{ color: "red" }} className={classes.totalText}>
+                  Total Client Query
+                </span>
               </div>
               <Icon
                 icon={fileEarmarkRichtext}
@@ -255,11 +256,14 @@ const Dashboard = () => {
               />
             </div>
             <div className={classes.totalJobs + " " + classes.totalAllJob}>
-            <div className={classes.jobs}>
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span style={{ color: "#f6c23e" }} className={classes.totalText}>
-                Total Internal Jobs
-              </span>
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  style={{ color: "#f6c23e" }}
+                  className={classes.totalText}
+                >
+                  Total Internal Jobs
+                </span>
               </div>
               <Icon
                 icon={fileEarmarkRichtext}
