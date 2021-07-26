@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 
-
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -40,8 +39,6 @@ const useStyle = makeStyles((theme) => ({
     height: "25vh",
     // border: "solid 1px",
     paddingTop: "3rem",
-
-
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
@@ -52,11 +49,9 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "5px",
     marginLeft: "3rem",
 
-    [theme.breakpoints.up('lg')]: {
-       width:'16%',     
+    [theme.breakpoints.up("lg")]: {
+      width: "16%",
     },
-
-   
   },
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",
@@ -87,8 +82,6 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "2rem",
     marginLeft: "10rem",
     marginTop: "-1rem",
-  
-   
   },
   totcalInernalJob: {
     marginLeft: "2.4rem",
@@ -214,7 +207,6 @@ const Dashboard = () => {
 
       <div className={classes.root}>
         <div className={classes.maindiv}>
-         
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
               <span className={classes.totalConstractingNumber}>1,400</span>

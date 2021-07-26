@@ -175,7 +175,9 @@ const Contracting = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Applicant Detail</span>
+            <span className={classes.pageTabName}>
+              Applicant / Applicant Detail
+            </span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>

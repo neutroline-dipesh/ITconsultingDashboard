@@ -27,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
     height: "100vh",
 
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-    backgroundColor: "#2d4dab",
+    backgroundColor: "#4e73df",
     textAlign: "center",
     // position: "fixed",
     //position: "absolute",
@@ -48,19 +48,20 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   sidenav: {},
-  simeIcon: {
+  smileIcon: {
     color: "#fff",
     fontSize: "2rem",
     marginTop: "-1rem",
   },
   companyName: {
     color: "#FFFFFF",
-    fontSize: "30px",
+    fontSize: "25px",
     width: "100%",
-    marginLeft: "0.5rem",
+
+    marginLeft: "1rem",
   },
   hr: {
-    marginTop: "0.4rem",
+    marginTop: "0.8rem",
   },
 
   NavbarMainDiv: {
@@ -138,8 +139,9 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   nastedList: {
+    // textAlign: "center",
     paddingLeft: "3.5rem",
-    backgroundColor: "#4e73df",
+    backgroundColor: "#2854d7",
     color: "#fff",
     textDecoration: "none",
     "&:hover": {
@@ -148,6 +150,11 @@ const useStyle = makeStyles((theme) => ({
       color: "#161D6F",
     },
   },
+  // nastedListtext: {
+  //   backgroundColor: "#fff",
+  //   color: "#161D6F",
+  //   borderRadius: "5px",
+  // },
   // sidebarIcon: {
   //   color: "#fff",
   // },
@@ -180,7 +187,7 @@ const Sidebar = () => {
     <>
       {/* {showNav && ( */}
       <div className={classes.root}>
-        <FaSmileWink className={classes.simeIcon} />
+        <FaSmileWink className={classes.smileIcon} />
         <span className={classes.companyName}>
           Neutrosys <hr className={classes.hr} />
         </span>
@@ -218,7 +225,10 @@ const Sidebar = () => {
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="Job List" />
+                  <ListItemText
+                    className={classes.nastedListtext}
+                    primary="Job List"
+                  />
                 </ListItem>
               </Link>
 
@@ -245,14 +255,13 @@ const Sidebar = () => {
           </ListItem>
           <Collapse in={openApplicant} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/allApplicant" className={classes.linktext}>
+              <Link to="/internal" className={classes.linktext}>
                 <ListItem
                   button
-                  className={classes.nested}
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="All Applicant" />
+                  <ListItemText primary="Internal" />
                 </ListItem>
               </Link>
               <Link to="/contracting" className={classes.linktext}>
@@ -265,13 +274,15 @@ const Sidebar = () => {
                   <ListItemText primary="Contract" />
                 </ListItem>
               </Link>
-              <Link to="/internal" className={classes.linktext}>
+
+              <Link to="/allApplicant" className={classes.linktext}>
                 <ListItem
                   button
+                  className={classes.nested}
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="Internal" />
+                  <ListItemText primary="All Applicant" />
                 </ListItem>
               </Link>
             </List>
