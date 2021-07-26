@@ -47,8 +47,8 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    height: "12vh",
+    justifyContent: "space-around",
+    height: "13vh",
     width: "20%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
@@ -65,8 +65,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fffff",
     fontWeight: 500,
     fontSize: "1.5rem",
-
-    top: "1rem",
+   
   },
   totalText: {
     // backgroundColor: "red",
@@ -76,7 +75,7 @@ const useStyle = makeStyles((theme) => ({
   },
   totolIcon: {
     fontSize: "2rem",
-    marginRight: "0.5rem",
+    marginRight:'0.2rem',
   },
   totcalInernalJob: {
     borderLeft: "4px solid #1cc88a",
@@ -175,7 +174,7 @@ const useStyle = makeStyles((theme) => ({
   jobs: {
     display: "flex",
     flexDirection: "column",
-    paddingLeft: "0.5rem",
+   marginLeft:'0.2rem',
   },
 }));
 const Dashboard = () => {
