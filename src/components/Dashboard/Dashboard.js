@@ -40,7 +40,7 @@ const useStyle = makeStyles((theme) => ({
     height: "25vh",
     // border: "solid 1px",
     paddingTop: "3rem",
-    marginRight: "3rem",
+    marginRight: "2rem",
     marginLeft: "3rem",
   },
   totalJobs: {
