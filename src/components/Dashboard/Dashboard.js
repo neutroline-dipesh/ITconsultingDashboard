@@ -17,7 +17,6 @@ import "react-calendar/dist/Calendar.css";
 import { allApplicantData } from "../allApplicant/allApplicantData";
 import { Link } from "react-router-dom";
 
-
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -33,34 +32,31 @@ const useStyle = makeStyles((theme) => ({
   smallBoxMainDiv: {
     // color: "red",
     backgroundColor: "#f8f9fc",
-    // border: "solid 1px",
+    display: "flex",
+    justifyContent: "space-evenly",
 
     height: "25vh",
     // border: "solid 1px",
     paddingTop: "3rem",
-
-
+    marginRight: "2rem",
+    marginLeft: "3rem",
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
-    float: "left",
+display:'flex',
+alignItems:'center',
+justifyContent:'space-between',
     height: "12vh",
-    width: "15%",
+    width: "20%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    marginLeft: "3rem",
-
-    [theme.breakpoints.up('lg')]: {
-       width:'16%',     
-    },
-
-   
   },
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",
   },
+
   totcalContractingJob: {
-    marginLeft: "2.4rem",
+   
     borderLeft: "4px solid red",
   },
   totalConstractingNumber: {
@@ -68,8 +64,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fffff",
     fontWeight: 500,
     fontSize: "1.5rem",
-    marginLeft: "1rem",
-    position: "relative",
+    
     top: "1rem",
   },
   totalText: {
@@ -77,23 +72,18 @@ const useStyle = makeStyles((theme) => ({
     // marginTop: "1rem",
     color: "rgba(0, 0, 0, 0.5)",
     fontSize: "0.9rem",
-    position: "relative",
-    top: "2.4rem",
-    left: "-3.5rem",
+  
   },
   totolIcon: {
     fontSize: "2rem",
-    marginLeft: "10rem",
-    marginTop: "-1rem",
-  
-   
+  marginRight:'0.5rem',
   },
   totcalInernalJob: {
-    marginLeft: "2.4rem",
+   
     borderLeft: "4px solid #1cc88a",
   },
   totalAllJob: {
-    marginLeft: "2.4rem",
+   
     borderLeft: "4px solid #f6c23e",
   },
   tableCalenderDivMain: {
@@ -113,6 +103,7 @@ const useStyle = makeStyles((theme) => ({
   tableTitleBottonDiv: {
     display: "flex",
     justifyContent: "space-between",
+
     paddingTop: "1rem",
     paddingBottom: "1rem",
     alignItems: "center",
@@ -182,6 +173,13 @@ const useStyle = makeStyles((theme) => ({
     // height: "30vh",
     // width: "10%",
   },
+
+  jobs: 
+  {
+    display:'flex',
+    flexDirection:"column",
+    paddingLeft:'0.5rem',
+  }
 }));
 const Dashboard = () => {
   const classes = useStyle();
@@ -212,13 +210,14 @@ const Dashboard = () => {
 
       <div className={classes.root}>
         <div className={classes.maindiv}>
-         
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
+              <div className={classes.jobs}>
               <span className={classes.totalConstractingNumber}>1,400</span>
               <span style={{ color: "#4e73df" }} className={classes.totalText}>
                 Total Contract Jobs
               </span>
+              </div>
               <Icon
                 icon={fileEarmarkRichtext}
                 style={{ color: "#4e73df" }}
@@ -226,10 +225,12 @@ const Dashboard = () => {
               />
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
+            <div className={classes.jobs}>
               <span className={classes.totalConstractingNumber}>1,400</span>
               <span style={{ color: "#1cc88a" }} className={classes.totalText}>
                 Total Internal Jobs
               </span>
+              </div>
               <Icon
                 icon={fileEarmarkRichtext}
                 style={{ color: "#1cc88a" }}
@@ -239,10 +240,12 @@ const Dashboard = () => {
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
             >
+               <div className={classes.jobs}>
               <span className={classes.totalConstractingNumber}>1,400</span>
               <span style={{ color: "red" }} className={classes.totalText}>
                 Total Client Query
               </span>
+              </div>
               <Icon
                 icon={fileEarmarkRichtext}
                 style={{ color: "red" }}
@@ -250,10 +253,12 @@ const Dashboard = () => {
               />
             </div>
             <div className={classes.totalJobs + " " + classes.totalAllJob}>
+            <div className={classes.jobs}>
               <span className={classes.totalConstractingNumber}>1,400</span>
               <span style={{ color: "#f6c23e" }} className={classes.totalText}>
                 Total Internal Jobs
               </span>
+              </div>
               <Icon
                 icon={fileEarmarkRichtext}
                 style={{ color: "#f6c23e" }}
