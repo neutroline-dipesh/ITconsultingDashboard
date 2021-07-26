@@ -39,7 +39,7 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     // fontFamily: "Roboto",
-    fontSize: "2rem",
+    fontSize: "1.75rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",

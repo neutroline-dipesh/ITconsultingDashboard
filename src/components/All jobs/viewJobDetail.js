@@ -12,6 +12,11 @@ import ContactMailIcon from "@material-ui/icons/ContactMail";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import file from "../../assets/files/cv.pdf";
 
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
+import { CgArrowLeftR } from "react-icons/cg";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -21,22 +26,29 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   pageTabName: {
-    fontSize: "2rem",
-    fontWeight: "600",
+    fontSize: "1.75rem",
+    fontWeight: "400",
     marginLeft: "1rem",
-    color: "#062837",
+    color: "#fffff",
+  },
+  backIcon: {
+    color: "black !important",
+
+    fontSize: "1.9rem",
+    marginRight: "1rem",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -110,7 +122,12 @@ const JobsDetail = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Jobs Detail</span>
+            <span className={classes.pageTabName}>Jobs / Jobs Detail</span>
+            <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
+              <Link to="/alljobs">
+                <CgArrowLeftR className={classes.backIcon} />
+              </Link>
+            </Tooltip>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>

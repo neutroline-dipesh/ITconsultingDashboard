@@ -22,6 +22,7 @@ import { FaEdit } from "react-icons/fa";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
+import { CgAddR } from "react-icons/cg";
 
 import { allJobsData } from "./alljobsData";
 const useStyle = makeStyles((theme) => ({
@@ -37,14 +38,19 @@ const useStyle = makeStyles((theme) => ({
 
     height: "10vh",
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   pageTabName: {
-    // fontFamily: "Roboto",
-    fontSize: "2rem",
+    fontSize: "1.75rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#fffff",
+  },
+  addIcon: {
+    color: "black !important",
+    fontSize: "2rem",
+    marginRight: "1rem",
   },
   MainContentDiv: {
     height: "82vh",
@@ -55,11 +61,9 @@ const useStyle = makeStyles((theme) => ({
   ContentDiv: {
     backgroundColor: "#FFFFFF",
     float: "left",
-    // height: "80vh",
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
@@ -80,10 +84,8 @@ const useStyle = makeStyles((theme) => ({
   },
   tableBody: {
     textAlign: "center",
-    // fontWeight: "200 !important",
   },
   buttomDiv: {
-    // backgroundColor: "red",
     display: "flex",
     justifyContent: "center",
   },
@@ -94,12 +96,6 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "0.4rem",
     marginBottom: "0.4rem",
     color: "#2eb82e",
-
-    // fontSize: "0.7rem",
-    // // borderRadius: "20px",
-    // backgroundColor: "#04A8F6",
-    // marginLeft: "0.5rem",
-    // height: "3.9vh",
     "&:hover": {
       color: "#1f7a1f",
     },
@@ -195,6 +191,11 @@ const Alljobs = (props) => {
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
+            <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
+              <Link to="/addjobs">
+                <CgAddR className={classes.addIcon} />
+              </Link>
+            </Tooltip>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>

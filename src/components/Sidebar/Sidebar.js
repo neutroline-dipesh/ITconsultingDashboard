@@ -15,6 +15,11 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
+import { GrMail } from "react-icons/gr";
+
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
@@ -82,10 +87,30 @@ const useStyle = makeStyles((theme) => ({
   //   marginLeft: "1rem",
   //   fontSize: "30px",
   // },
+  messgaeIcon: {
+    fontSize: "1.3rem",
+    color: "#858796",
+  },
+  messageNumber: {
+    marginRight: "1rem",
+    color: "#fff",
+    // width: "0.6rem",
+    fontSize: "0.6rem",
+    borderRadius: "5px",
+    padding: "1px 3px 1px 3px",
+    marginTop: "-1rem",
+    backgroundColor: "#E74A3B",
+  },
   adminName: {
     marginRight: "0.5rem",
+    marginLeft: "1rem",
     color: "#858796",
     fontSize: "0.9rem",
+  },
+  verticalLine: {
+    color: "#858796",
+    fontSize: "2.5rem",
+    fontWeight: "100",
   },
   adminimg: {
     width: "40px",
@@ -282,6 +307,14 @@ const Sidebar = () => {
           className={classes.hamburgurIcon}
           onClick={() => setShowNav(!showNav)}
         /> */}
+        <Tooltip title="Message" TransitionComponent={Zoom} arrow>
+          <Link to="/contact">
+            <GrMail className={classes.messgaeIcon} />
+          </Link>
+        </Tooltip>
+        <span className={classes.messageNumber}>20</span>
+
+        <span className={classes.verticalLine}>l</span>
         <span className={classes.adminName}>Dipesh Shrestha</span>
         <img className={classes.adminimg} src={adimImage} />
       </div>
