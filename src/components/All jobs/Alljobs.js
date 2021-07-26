@@ -48,7 +48,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fffff",
   },
   addIcon: {
-    color: "black !important",
+    // color: "black !important",
     fontSize: "2rem",
     marginRight: "1rem",
   },

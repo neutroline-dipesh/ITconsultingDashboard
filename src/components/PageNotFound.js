@@ -7,6 +7,7 @@ import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
 import { BiArrowBack } from "react-icons/bi";
+// import Sidebar from "../components/Sidebar/Sidebar";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -36,23 +37,26 @@ const useStyle = makeStyles((theme) => ({
 const PageNotFound = () => {
   const classes = useStyle();
   return (
-    <div className={classes.root}>
-      <h1 className={classes.errorNumber + " " + "glitch"} data-text="404">
-        404
-      </h1>
-      <p className={classes.errorDetail}>
-        Oops! The Page you requested was not Found!
-      </p>
+    <>
+      {/* <Sidebar /> */}
+      <div className={classes.root}>
+        <h1 className={classes.errorNumber + " " + "glitch"} data-text="404">
+          404
+        </h1>
+        <p className={classes.errorDetail}>
+          Oops! The Page you requested was not Found!
+        </p>
 
-      <Tooltip title="Back To Dashboard" TransitionComponent={Zoom} arrow>
-        <Link to="/dashboard" style={{ textDecoration: "none" }}>
-          <div className={classes.backArrowBackToDashboardDIv}>
-            <BiArrowBack className={classes.backArrow} />
-            <p className={classes.backToDashboard}>Back to Dashboard</p>
-          </div>
-        </Link>
-      </Tooltip>
-    </div>
+        <Tooltip title="Back To Dashboard" TransitionComponent={Zoom} arrow>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+            <div className={classes.backArrowBackToDashboardDIv}>
+              <BiArrowBack className={classes.backArrow} />
+              <p className={classes.backToDashboard}>Back to Dashboard</p>
+            </div>
+          </Link>
+        </Tooltip>
+      </div>
+    </>
   );
 };
 

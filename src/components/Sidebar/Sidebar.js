@@ -115,7 +115,7 @@ const useStyle = makeStyles((theme) => ({
   },
   adminimg: {
     width: "40px",
-    marginRight: "1rem",
+    marginRight: "2.5rem",
   },
   sidebarMenuItem: {
     width: "100%",
