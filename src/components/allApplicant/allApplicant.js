@@ -36,7 +36,7 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
   },
   pageTabName: {
-    fontSize: "2rem",
+    fontSize: "1.75rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",

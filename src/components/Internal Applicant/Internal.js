@@ -38,7 +38,7 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
   },
   pageTabName: {
-    fontSize: "2rem",
+    fontSize: "1.75rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
@@ -347,7 +347,7 @@ const Internal = () => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to="/viewApplicatnDetail" target="_blank">
+                                <Link to="/viewApplicatnDetail">
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />
