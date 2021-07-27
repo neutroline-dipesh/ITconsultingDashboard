@@ -40,7 +40,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#062837",
   },
   MainContentDiv: {
-    height: "82vh",
+    // height: "82vh",
 
     backgroundColor: "#f8f9fc",
   },
@@ -55,12 +55,15 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "5px",
   },
   ContentDateDiv: {
-    overflow: "scroll",
-    maxHeight: "80vh",
+    // overflow: "scroll",
+    // maxHeight: "80vh",
     // display: "flex",
   },
   leftRightDiv: {
     display: "flex",
+    // backgroundColor: "red",
+    maxHeight: "70vh",
+    overflow: "scroll",
   },
   leftDiv: {
     // backgroundColor: "red",

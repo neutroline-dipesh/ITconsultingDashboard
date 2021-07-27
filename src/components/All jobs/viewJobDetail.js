@@ -94,12 +94,12 @@ const useStyle = makeStyles((theme) => ({
   listHead: {
     fontSize: "1rem",
     fontWeight: "bold",
-    color: "#858796",
+    // color: "#858796",
     width: "30%",
     marginLeft: "1rem",
   },
   listBody: {
-    color: "#858796",
+    // color: "#858796",
     marginLeft: "1rem",
     width: "60%",
   },
@@ -161,41 +161,47 @@ const JobsDetail = () => {
                   <div className={classes.lefttableTitleDiv}>
                     <span className={classes.lefttableTitle}>Job Overview</span>
                   </div>
-                  <List className={classes.listMain}>
-                    <ListItem>
-                      <span className={classes.listHead}>Job Id:</span>
-                      <span className={classes.listBody}>React Developer</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Job Title:</span>
-                      <span className={classes.listBody}>React Developer</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Job SubTitle:</span>
-                      <span className={classes.listBody}>
-                        Subtitle is here Subtitle is here Subtitle is here
-                        Subtitle is here
-                      </span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Department:</span>
-                      <span className={classes.listBody}>Technology</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Job Type:</span>
-                      <span className={classes.listBody}>Full Time</span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Address:</span>
-                      <span className={classes.listBody}>
-                        Nepal ,Provience 1, Damak-6
-                      </span>
-                    </ListItem>
-                    <ListItem>
-                      <span className={classes.listHead}>Publish Date:</span>
-                      <span className={classes.listBody}>7/7/2021</span>
-                    </ListItem>
-                  </List>
+                  <div className={classes.rightTableContectDiv}>
+                    <List className={classes.listMain}>
+                      <ListItem>
+                        <span className={classes.listHead}>Job Id:</span>
+                        <span className={classes.listBody}>
+                          React Developer
+                        </span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Job Title:</span>
+                        <span className={classes.listBody}>
+                          React Developer
+                        </span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Job SubTitle:</span>
+                        <span className={classes.listBody}>
+                          Subtitle is here Subtitle is here Subtitle is here
+                          Subtitle is here
+                        </span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Department:</span>
+                        <span className={classes.listBody}>Technology</span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Job Type:</span>
+                        <span className={classes.listBody}>Full Time</span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Address:</span>
+                        <span className={classes.listBody}>
+                          Nepal ,Provience 1, Damak-6
+                        </span>
+                      </ListItem>
+                      <ListItem>
+                        <span className={classes.listHead}>Publish Date:</span>
+                        <span className={classes.listBody}>7/7/2021</span>
+                      </ListItem>
+                    </List>
+                  </div>
                 </div>
                 <div className={classes.rightDiv}>
                   {/* <span className={classes.resumeTitle}>Resume:</span> */}

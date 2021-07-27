@@ -220,75 +220,72 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {allJobsData.map((item, key) => { */}
-                    {props.jobs ? (
-                      props.jobs.map((item, key) => {
-                        return (
-                          <tr key={key}>
-                            {/* <td>1</td> */}
-                            <td className={classes.tableBody}>{item.jobId}</td>
-                            <td className={classes.tableBody}>
-                              {item.jobTitle}
-                            </td>
-                            <td className={classes.tableBody}>
-                              {item.department}
-                            </td>
-                            <td className={classes.tableBody}>
-                              {item.jobType}
-                            </td>
-                            {/* <td>{item.country}</td> */}
-                            <td className={classes.tableBody}>
-                              {item.country}, {item.state} , {item.city}
-                            </td>
-                            <td className={classes.tableBody}>
-                              {item.publishBy}
-                            </td>
-                            <td
-                              className={
-                                item.visibility == "Publish"
-                                  ? classes.seenColor
-                                  : classes.notColor + " " + classes.tableBody
-                              }
-                            >
-                              {item.visibility}
-                            </td>
-                            <td>
-                              <div className={classes.buttomDiv}>
-                                <Tooltip
-                                  title="View"
-                                  TransitionComponent={Zoom}
-                                  arrow
-                                >
-                                  <Link to="/viewJobDetail">
-                                    <VisibilityIcon
-                                      className={classes.viewButton}
-                                    />
-                                  </Link>
-                                </Tooltip>
+                    {/* */}
+                    {/* {props.jobs ? (
+                      props.jobs.map((item, key) => { */}
+                    {allJobsData.map((item, key) => {
+                      return (
+                        <tr key={key}>
+                          {/* <td>1</td> */}
+                          <td className={classes.tableBody}>{item.jobId}</td>
+                          <td className={classes.tableBody}>{item.jobTitle}</td>
+                          <td className={classes.tableBody}>
+                            {item.department}
+                          </td>
+                          <td className={classes.tableBody}>{item.jobType}</td>
+                          {/* <td>{item.country}</td> */}
+                          <td className={classes.tableBody}>
+                            {item.country}, {item.state} , {item.city}
+                          </td>
+                          <td className={classes.tableBody}>
+                            {item.publishBy}
+                          </td>
+                          <td
+                            className={
+                              item.visibility == "Publish"
+                                ? classes.seenColor
+                                : classes.notColor + " " + classes.tableBody
+                            }
+                          >
+                            {item.visibility}
+                          </td>
+                          <td>
+                            <div className={classes.buttomDiv}>
+                              <Tooltip
+                                title="View"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="/viewJobDetail">
+                                  <VisibilityIcon
+                                    className={classes.viewButton}
+                                  />
+                                </Link>
+                              </Tooltip>
 
-                                <Tooltip
-                                  title="Edit"
-                                  TransitionComponent={Zoom}
-                                  arrow
-                                >
-                                  <Link to="/alljobs/editJobs">
-                                    <FaEdit className={classes.editButton} />
-                                  </Link>
-                                </Tooltip>
+                              <Tooltip
+                                title="Edit"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="/alljobs/editJobs">
+                                  <FaEdit className={classes.editButton} />
+                                </Link>
+                              </Tooltip>
 
-                                <Tooltip
-                                  title="Delete"
-                                  TransitionComponent={Zoom}
-                                  arrow
-                                >
-                                  <Link>
-                                    <RiDeleteBin6Fill
-                                      className={classes.deleteButton}
-                                      onClick={() => deletFunction()}
-                                    />
-                                  </Link>
-                                </Tooltip>
-                                {/* <Button
+                              <Tooltip
+                                title="Delete"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link>
+                                  <RiDeleteBin6Fill
+                                    className={classes.deleteButton}
+                                    onClick={() => deletFunction()}
+                                  />
+                                </Link>
+                              </Tooltip>
+                              {/* <Button
                                 className={classes.viewButton}
                                 variant="contained"
                                 color="primary"
@@ -321,14 +318,14 @@ const Alljobs = (props) => {
                               >
                                 delete
                               </Button> */}
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })
-                    ) : (
-                      <div>Loading</div>
-                    )}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    {/*  ); }) ) 
+                    : (<div>Loading</div>
+                     )} */}
                   </tbody>
                 </table>
               </div>

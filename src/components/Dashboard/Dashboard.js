@@ -21,7 +21,7 @@ import Zoom from "@material-ui/core/Zoom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    // height: "100vh",
     width: "100%",
     // top: "30",
     // position: "absolute",
@@ -104,13 +104,15 @@ const useStyle = makeStyles((theme) => ({
   },
   tableContainer: {
     // margin: "1rem",
-    height: "50vh",
+    // height: "50vh",
   },
   tableDiv: {
     backgroundColor: "#FFFFFF",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
     width: "60%",
+
+    // maxHeight: "50vh",
   },
   tableTitleBottonDiv: {
     borderRadius: "5px 5px 1px 1px",
@@ -139,6 +141,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
     marginLeft: "1rem",
     marginRight: "1rem",
+    overflow: "scroll",
   },
   table: {
     // minWidth: 700,
