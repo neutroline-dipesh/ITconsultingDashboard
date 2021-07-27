@@ -84,23 +84,28 @@ const useStyle = makeStyles((theme) => ({
     borderLeft: "4px solid #f6c23e",
   },
   tableCalenderDivMain: {
-    height: "67vh",
+   
     // border: "solid 1px",
     backgroundColor: "#f8f9fc",
+display:'flex',
+justifyContent:'space-around',
+alignItems:'center',
+margin:'1.5rem',
+
+  },
+  tableContainer: 
+  {
+
+    margin:'1rem',
   },
   tableDiv: {
     backgroundColor: "#FFFFFF",
-    float: "left",
-    height: "60vh",
-    marginLeft: "3rem",
-    width: "50.5%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
   },
   tableTitleBottonDiv: {
     display: "flex",
     justifyContent: "space-between",
-
     paddingTop: "1rem",
     paddingBottom: "1rem",
     alignItems: "center",
@@ -124,7 +129,7 @@ const useStyle = makeStyles((theme) => ({
     marginRight: "1rem",
   },
   table: {
-    minWidth: 650,
+    minWidth: 500,
   },
   viewAllButton: {
     textDecoration: "none",
@@ -141,11 +146,11 @@ const useStyle = makeStyles((theme) => ({
   },
   calenderDiv: {
     // width: "50%",
-    float: "left",
+  
     // height: "60vh",
-    width: "22%",
+    width: "25%",
     // backgroundColor: "blue",
-    marginLeft: "4rem",
+   
     // marginTop: "-2rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
@@ -271,6 +276,7 @@ const Dashboard = () => {
               />
             </div>
           </div>
+          <div className={classes.tableContainer}>
           <div className={classes.tableCalenderDivMain}>
             <div className={classes.tableDiv}>
               <div className={classes.tableTitleBottonDiv}>
@@ -320,6 +326,7 @@ const Dashboard = () => {
                 </Table>
               </div>
             </div>
+
             <div className={classes.calenderDiv}>
               <div className={classes.viewDate}>
                 <span className={classes.day}>{day}</span>
@@ -330,6 +337,7 @@ const Dashboard = () => {
                 onChange={calenderOnChange}
                 value={date}
               />
+            </div>
             </div>
           </div>
         </div>
