@@ -23,6 +23,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F8F9FC",
     color: "#303f9f",
     height: "15vh",
+    borderBottom: "solid 1px #e3e6f0",
   },
   titleCrossIconDiv: {
     display: "flex",

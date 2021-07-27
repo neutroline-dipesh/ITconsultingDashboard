@@ -64,13 +64,30 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     float: "left",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    // borderRadius: "5px",
+    borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+  },
+  lefttableTitleDiv: {
+    borderRadius: "5px 5px 1px 1px",
+    display: "flex",
+    alignItems: "center",
+
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    backgroundColor: "#F8F9FC",
+
+    borderBottom: "solid 1px #e3e6f0",
+  },
+  lefttableTitle: {
+    fontWeight: "600",
+    fontSize: "1.3rem",
+    marginLeft: "1.5rem",
+    color: "#303f9f",
   },
   form: {
     margin: "1rem",
@@ -332,6 +349,11 @@ const Addjobs = () => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
+                <div className={classes.lefttableTitleDiv}>
+                  <span className={classes.lefttableTitle}>
+                    Job Information
+                  </span>
+                </div>{" "}
                 <form className={classes.form}>
                   <div>
                     <input

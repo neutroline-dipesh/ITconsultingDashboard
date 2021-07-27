@@ -53,7 +53,7 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     // height: "80vh",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
   },

@@ -23,7 +23,7 @@ import Zoom from "@material-ui/core/Zoom";
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
-    width: "15.5%",
+    width: "16.5%",
     height: "100vh",
 
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
@@ -75,7 +75,7 @@ const useStyle = makeStyles((theme) => ({
   },
   NavbarMianDivOnClick: {
     height: "8vh",
-    width: "84.5%",
+    width: "83.5%",
     float: "right",
     boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
     display: "flex",
@@ -122,6 +122,7 @@ const useStyle = makeStyles((theme) => ({
     maxWidth: 360,
     color: "#fff",
     marginTop: "2rem",
+
     // position: "fixed",
   },
   sidebarList: {
@@ -202,7 +203,7 @@ const Sidebar = () => {
               <HomeIcon className={classes.sidebarIcon} />
 
               <ListItemText
-                style={{ marginLeft: "1rem" }}
+                style={{ marginLeft: "1.5rem" }}
                 primary="Dashboard"
               />
             </ListItem>
@@ -214,7 +215,7 @@ const Sidebar = () => {
           >
             <WorkIcon className={classes.sidebarIcon} />
 
-            <ListItemText style={{ marginLeft: "1rem" }} primary="Jobs" />
+            <ListItemText style={{ marginLeft: "1.5rem" }} primary="Jobs" />
             {openJobs ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={openJobs} timeout="auto" unmountOnExit>
@@ -250,7 +251,10 @@ const Sidebar = () => {
           >
             <WorkIcon className={classes.sidebarIcon} />
 
-            <ListItemText style={{ marginLeft: "1rem" }} primary="Applicant" />
+            <ListItemText
+              style={{ marginLeft: "1.5rem" }}
+              primary="Applicant"
+            />
             {openApplicant ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={openApplicant} timeout="auto" unmountOnExit>
@@ -293,7 +297,7 @@ const Sidebar = () => {
               <ContactsIcon className={classes.sidebarIcon} />
 
               <ListItemText
-                style={{ marginLeft: "1rem" }}
+                style={{ marginLeft: "1.5rem" }}
                 primary="All Query"
               />
             </ListItem>
@@ -303,7 +307,10 @@ const Sidebar = () => {
             <ListItem button className={classes.sidebarList}>
               <ExitToAppIcon className={classes.sidebarIcon} />
 
-              <ListItemText style={{ marginLeft: "1rem" }} primary="Sign Out" />
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Sign Out"
+              />
             </ListItem>
           </Link>
         </List>

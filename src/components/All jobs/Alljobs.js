@@ -62,7 +62,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     float: "left",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
   ContentDateDiv: {
