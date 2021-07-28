@@ -4,8 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
-import axios from "axios";
+import * as actions from '../../store/actions';
 import { connect } from "react-redux";
+import axios from 'axios';
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,13 +15,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import { contactData } from "./contactDate";
-
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { AiOutlineFundView } from "react-icons/ai";
-import Tooltip from "@material-ui/core/Tooltip";
-import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -39,7 +34,7 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     // fontFamily: "Roboto",
-    fontSize: "1.75rem",
+    fontSize: "2rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
@@ -55,7 +50,7 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     // height: "80vh",
     marginLeft: "1rem",
-    width: "81%",
+    width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
   },
@@ -109,26 +104,22 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
-  console.log(props);
+    const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/allQueries").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
 
-  //getting data from database start
-  // const [data1, setData1] = useState([]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     $("#example").DataTable().destroy();
-  //     axios.get("http://localhost:4000/allQueries/").then((response) => {
-  //       if (response.data) {
-  //         // value = response.data.data;
-  //         setData1(response.data.data);
-  //       }
-  //     });
-  //   }, 100);
-  // }, []);
-
-  // useEffect(() => {
-  //   $("#example").DataTable();
-  // }, [data1]);
-  // //end
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
   // console.log(data1);
   const classes = useStyle();
   useEffect(() => {
@@ -139,7 +130,8 @@ const Contact = (props) => {
 
   //alert message
 
-  const deletFunction = () => {
+  const deletFunction = (e) => {
+    console.log(e.target.id);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -214,7 +206,7 @@ const Contact = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {contactData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td
@@ -302,33 +294,17 @@ const Contact = (props) => {
                           >
                             <div className={classes.buttomDiv}>
                               <ViewDetail value={item.Id} />
-
-                              {/* <Button
+                              <RiDeleteBin6Fill
+                                id={item.id}
                                 className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={deletFunction}
-                              >
-                                delete
-                              </Button> */}
-                              <Tooltip
-                                title="Detete"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link>
-                                  <RiDeleteBin6Fill
-                                    className={classes.deleteButton}
-                                    onClick={() => deletFunction()}
-                                  />
-                                </Link>
-                              </Tooltip>
+                                onClick={(e) => deletFunction(e)} 
+                              />
                             </div>
                           </td>
                         </tr>
                       );
-                    })}
+                    })
+                    }
                   </tbody>
                 </table>
               </div>
@@ -341,8 +317,14 @@ const Contact = (props) => {
 };
 const mapStateToProps = (state) => {
   return {
-    allQueriesData: state.allQueriesData,
-    error: state.error,
+    data: state.allqueries.allQueriesData,
+    error: state.allqueries.error,
   };
 };
-export default connect(mapStateToProps)(Contact);
+
+const mapDispatchToProps = (dispatch) =>{
+ return{
+   onLoad: () => dispatch(actions.getAllQueries()),
+ }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

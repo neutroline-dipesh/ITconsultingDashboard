@@ -151,7 +151,7 @@ const Login = (props) => {
 
   let authRedirect = null;
   if(props.isAuthenticated){
-    authRedirect = <Redirect to="/dashboard"/>
+    authRedirect = <Redirect to={props.redirectPath}/>
   }
   return (
     <>
@@ -244,6 +244,7 @@ const mapStateToProps = (state) => {
     loading: state.auth.loading,
     error: state.auth.error,
     isAuthenticated: state.auth.token !== null,
+    redirectPath: state.auth.authRedirectPath,
   };
 };
 const mapDispatchToProps = (dispatch) => {

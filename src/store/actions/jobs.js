@@ -29,7 +29,7 @@ export const getAllJobs = () => {
                 dispatch(getAllJobsSuccess(response.data.data));
             }
         }).catch(err => {
-            console.log(err);
+            // console.log(err);
             dispatch(getAllJobsFail(err));
         })
     }

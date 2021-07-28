@@ -3,7 +3,8 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-import axios from "axios";
+import { connect } from "react-redux";
+import * as actions from '../../store/actions';
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,6 +13,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
+import axios from 'axios';
 import { contractData } from "./contractData";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
@@ -119,24 +121,24 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Contracting = () => {
+const Contracting = (props) => {
   //getting data from database
-  // const [data1, setData1] = useState([]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     $("#example").DataTable().destroy();
-  //     axios.get("http://localhost:4000/contract/").then((response) => {
-  //       if (response.data) {
-  //         // value = response.data.data;
-  //         setData1(response.data.data);
-  //       }
-  //     });
-  //   }, 100);
-  // }, []);
-
-  // useEffect(() => {
-  //   $("#example").DataTable();
-  // }, [data1]);
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/contract/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
+  console.log(data1);
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
 
   const classes = useStyle();
   useEffect(() => {
@@ -227,7 +229,7 @@ const Contracting = () => {
                   <tbody>
                     {contractData.map((item, key) => {
                       return (
-                        <tr>
+                        <tr key="key">
                           <td
                             className={
                               item.status == "seen"
@@ -379,7 +381,9 @@ const Contracting = () => {
                           </td>
                         </tr>
                       );
-                    })}
+                    })
+                    
+                    }
                   </tbody>
                 </table>
               </div>
@@ -391,4 +395,15 @@ const Contracting = () => {
   );
 };
 
-export default Contracting;
+const mapStateToProps = (state) =>{
+  return{
+    data: state.contract.data,
+    loading: state.contract.loading,
+  }
+}
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    onLoad: () => dispatch(actions.getContractApplicant()),
+  } 
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Contracting);

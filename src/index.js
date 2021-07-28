@@ -8,12 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
 import authReducer from './store/reducers/auth';
 import jobReducer from './store/reducers/jobs';
+import allqueriesReducer from './store/reducers/allqueries';
+import contractRedcer from './store/reducers/contract';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
     auth: authReducer,
     jobs: jobReducer,
+    allqueries: allqueriesReducer,
+    contract: contractRedcer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
