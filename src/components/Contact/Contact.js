@@ -4,8 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
-import axios from "axios";
+import * as actions from '../../store/actions';
 import { connect } from "react-redux";
+import axios from 'axios';
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,10 +15,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import { contactData } from "./contactDate";
-
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { AiOutlineFundView } from "react-icons/ai";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -106,14 +104,11 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
-  console.log(props);
-
-  //getting data from database start
-  const [data1, setData1] = useState([]);
+    const [data1, setData1] = useState([]);
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/allQueries/").then((response) => {
+      axios.get("http://localhost:4000/allQueries").then((response) => {
         if (response.data) {
           // value = response.data.data;
           setData1(response.data.data);
@@ -125,7 +120,6 @@ const Contact = (props) => {
   useEffect(() => {
     $("#example").DataTable();
   }, [data1]);
-  //end
   // console.log(data1);
   const classes = useStyle();
   useEffect(() => {
@@ -136,7 +130,8 @@ const Contact = (props) => {
 
   //alert message
 
-  const deletFunction = () => {
+  const deletFunction = (e) => {
+    console.log(e.target.id);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -299,25 +294,17 @@ const Contact = (props) => {
                           >
                             <div className={classes.buttomDiv}>
                               <ViewDetail value={item.Id} />
-
-                              {/* <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={deletFunction}
-                              >
-                                delete
-                              </Button> */}
                               <RiDeleteBin6Fill
+                                id={item.id}
                                 className={classes.deleteButton}
-                                onClick={() => deletFunction()}
+                                onClick={(item.id) => deletFunction(item.id)}
                               />
                             </div>
                           </td>
                         </tr>
                       );
-                    })}
+                    })
+                    }
                   </tbody>
                 </table>
               </div>
@@ -330,8 +317,14 @@ const Contact = (props) => {
 };
 const mapStateToProps = (state) => {
   return {
-    allQueriesData: state.allQueriesData,
-    error: state.error,
+    data: state.allqueries.allQueriesData,
+    error: state.allqueries.error,
   };
 };
-export default connect(mapStateToProps)(Contact);
+
+const mapDispatchToProps = (dispatch) =>{
+ return{
+   onLoad: () => dispatch(actions.getAllQueries()),
+ }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

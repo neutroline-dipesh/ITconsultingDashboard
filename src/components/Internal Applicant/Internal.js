@@ -12,11 +12,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-
-import { internalData } from "./internalData";
-
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { AiOutlineFundView } from "react-icons/ai";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const useStyle = makeStyles((theme) => ({
@@ -140,7 +136,6 @@ const Internal = () => {
   //alert message
 
   const deletFunction = () => {
-    console.log(internalData);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",

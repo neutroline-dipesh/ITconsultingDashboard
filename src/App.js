@@ -21,6 +21,9 @@ import viewJobDetail from "./components/All jobs/viewJobDetail";
 import * as actions from "./store/actions/index";
 function App(props) {
   useEffect(() => {
+    // if(localStorage.getItem('token')){
+    //   props.setPath(window.location.pathname);
+    // }
     props.onTryAutoSignup();
   }, []);
   return (
@@ -111,6 +114,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+    setPath: (path) => dispatch(actions.setAuthRedirectPath(path))
   };
 };
 

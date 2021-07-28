@@ -11,8 +11,8 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import axios from "axios";
 import * as actions from '../../store/actions';
+import axios from 'axios';
 
 import {connect} from 'react-redux';
 import { RiDeleteBin6Fill } from "react-icons/ri";
@@ -131,9 +131,22 @@ const useStyle = makeStyles((theme) => ({
 const Alljobs = (props) => {
       // console.log(props.jobs);
   //getting data from database
+  const [data1, setData1] = useState([]);
   useEffect(() => {
-    props.onLoad();
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/allJobs/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
   }, []);
+  console.log(data1);
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
 
   const classes = useStyle();
   useEffect(() => {
@@ -214,7 +227,8 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {props.jobs? props.jobs.map((item, key) => {
+                    {
+                    data1.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
@@ -292,7 +306,8 @@ const Alljobs = (props) => {
                           </td>
                         </tr>
                       );
-                    }): <div>Loading</div>}
+                    })
+                  }
                   </tbody>
                 </table>
               </div>
