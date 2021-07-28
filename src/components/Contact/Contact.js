@@ -16,13 +16,6 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-<<<<<<< HEAD
-=======
-import { AiOutlineFundView } from "react-icons/ai";
-import Tooltip from "@material-ui/core/Tooltip";
-import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -41,7 +34,7 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     // fontFamily: "Roboto",
-    fontSize: "1.75rem",
+    fontSize: "2rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
@@ -57,7 +50,7 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     // height: "80vh",
     marginLeft: "1rem",
-    width: "81%",
+    width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
   },
@@ -111,7 +104,6 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
-<<<<<<< HEAD
     const [data1, setData1] = useState([]);
   useEffect(() => {
     setTimeout(() => {
@@ -128,28 +120,6 @@ const Contact = (props) => {
   useEffect(() => {
     $("#example").DataTable();
   }, [data1]);
-=======
-  console.log(props);
-
-  //getting data from database start
-  // const [data1, setData1] = useState([]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     $("#example").DataTable().destroy();
-  //     axios.get("http://localhost:4000/allQueries/").then((response) => {
-  //       if (response.data) {
-  //         // value = response.data.data;
-  //         setData1(response.data.data);
-  //       }
-  //     });
-  //   }, 100);
-  // }, []);
-
-  // useEffect(() => {
-  //   $("#example").DataTable();
-  // }, [data1]);
-  // //end
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
   // console.log(data1);
   const classes = useStyle();
   useEffect(() => {
@@ -236,7 +206,7 @@ const Contact = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {contactData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td
@@ -324,36 +294,11 @@ const Contact = (props) => {
                           >
                             <div className={classes.buttomDiv}>
                               <ViewDetail value={item.Id} />
-<<<<<<< HEAD
                               <RiDeleteBin6Fill
                                 id={item.id}
                                 className={classes.deleteButton}
-                                onClick={(item.id) => deletFunction(item.id)}
+                                onClick={(e) => deletFunction(e)} 
                               />
-=======
-
-                              {/* <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={deletFunction}
-                              >
-                                delete
-                              </Button> */}
-                              <Tooltip
-                                title="Detete"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link>
-                                  <RiDeleteBin6Fill
-                                    className={classes.deleteButton}
-                                    onClick={() => deletFunction()}
-                                  />
-                                </Link>
-                              </Tooltip>
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
                             </div>
                           </td>
                         </tr>

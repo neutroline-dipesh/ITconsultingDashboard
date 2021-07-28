@@ -123,7 +123,6 @@ const useStyle = makeStyles((theme) => ({
 
 const Contracting = (props) => {
   //getting data from database
-<<<<<<< HEAD
   const [data1, setData1] = useState([]);
   useEffect(() => {
     setTimeout(() => {
@@ -140,24 +139,6 @@ const Contracting = (props) => {
   useEffect(() => {
     $("#example").DataTable();
   }, [data1]);
-=======
-  // const [data1, setData1] = useState([]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     $("#example").DataTable().destroy();
-  //     axios.get("http://localhost:4000/contract/").then((response) => {
-  //       if (response.data) {
-  //         // value = response.data.data;
-  //         setData1(response.data.data);
-  //       }
-  //     });
-  //   }, 100);
-  // }, []);
-
-  // useEffect(() => {
-  //   $("#example").DataTable();
-  // }, [data1]);
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
 
   const classes = useStyle();
   useEffect(() => {

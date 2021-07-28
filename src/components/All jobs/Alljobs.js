@@ -11,13 +11,8 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-<<<<<<< HEAD
 import * as actions from '../../store/actions';
 import axios from 'axios';
-=======
-import axios from "axios";
-import * as actions from "../../store/actions";
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
 
 import { connect } from "react-redux";
 import { RiDeleteBin6Fill } from "react-icons/ri";
@@ -133,7 +128,6 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-
 const Alljobs = (props) => {
   // console.log(props.jobs);
   //getting data from database
@@ -238,15 +232,8 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-<<<<<<< HEAD
                     {
                     data1.map((item, key) => {
-=======
-                    {/* */}
-                    {/* {props.jobs ? (
-                      props.jobs.map((item, key) => { */}
-                    {allJobsData.map((item, key) => {
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
@@ -345,15 +332,8 @@ const Alljobs = (props) => {
                           </td>
                         </tr>
                       );
-<<<<<<< HEAD
                     })
                   }
-=======
-                    })}
-                    {/*  ); }) ) 
-                    : (<div>Loading</div>
-                     )} */}
->>>>>>> 41ffa6fdbc8c0326124224bdc4242c68f2893e56
                   </tbody>
                 </table>
               </div>
