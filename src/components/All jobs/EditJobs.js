@@ -10,6 +10,11 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
+import { CgArrowLeftR } from "react-icons/cg";
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -27,14 +32,24 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#f8f9fc",
 
     height: "10vh",
+    // border: "solid 1px",
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
+
+    // paddingTop: "0.5rem",
   },
   pageTabName: {
-    fontSize: "2rem",
+    fontSize: "1.75rem",
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
+  },
+  backIcon: {
+    // color: "black !important",
+
+    fontSize: "1.9rem",
+    marginRight: "1rem",
   },
   MainContentDiv: {
     height: "82vh",
@@ -46,21 +61,39 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     float: "left",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    // borderRadius: "5px",
+    borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    // borderRadius: "10px",
+  },
+  lefttableTitleDiv: {
+    borderRadius: "5px 5px 1px 1px",
+    display: "flex",
+    alignItems: "center",
+
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    backgroundColor: "#F8F9FC",
+
+    borderBottom: "solid 1px #e3e6f0",
+  },
+  lefttableTitle: {
+    fontWeight: "600",
+    fontSize: "1.3rem",
+    marginLeft: "1.5rem",
+    color: "#303f9f",
   },
   form: {
     margin: "1rem",
-    paddingTop: "1rem",
+    // paddingTop: "1rem",
   },
   JobTitle: {},
   JobSubtitle: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
   },
   DepartmentJobTypeDiv: {
     display: "flex",
@@ -74,14 +107,14 @@ const useStyle = makeStyles((theme) => ({
     width: "48%",
   },
   Department: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     // width: "250%",
   },
   jobTypeDiv: {
     width: "48%",
   },
   JobType: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     marginLeft: "2.5rem",
     // width: "100%",
   },
@@ -90,7 +123,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   CountryStateCityDiv: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     display: "flex",
     // justifyContent: "space-between",
   },
@@ -305,10 +338,20 @@ const EditJobs = () => {
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Edit Jobs</span>
+            <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
+              <Link to="/alljobs">
+                <CgArrowLeftR className={classes.backIcon} />
+              </Link>
+            </Tooltip>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
+                <div className={classes.lefttableTitleDiv}>
+                  <span className={classes.lefttableTitle}>
+                    Job Information
+                  </span>
+                </div>{" "}
                 <form className={classes.form}>
                   <div>
                     <input
@@ -495,7 +538,7 @@ const EditJobs = () => {
                           className={"btn btn-primary" + " " + classes.save}
                           onClick={() => saveFunction()}
                         >
-                          Update
+                          Save
                         </button>
                       </div>
                     </div>

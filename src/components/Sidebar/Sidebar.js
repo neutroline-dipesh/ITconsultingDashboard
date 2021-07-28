@@ -15,14 +15,19 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
+import { GrMail } from "react-icons/gr";
+
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
-    width: "15.5%",
+    width: "16.5%",
     height: "100vh",
 
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-    backgroundColor: "#2d4dab",
+    backgroundColor: "#4e73df",
     textAlign: "center",
     // position: "fixed",
     //position: "absolute",
@@ -43,19 +48,20 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   sidenav: {},
-  simeIcon: {
+  smileIcon: {
     color: "#fff",
     fontSize: "2rem",
     marginTop: "-1rem",
   },
   companyName: {
     color: "#FFFFFF",
-    fontSize: "30px",
+    fontSize: "25px",
     width: "100%",
-    marginLeft: "0.5rem",
+
+    marginLeft: "1rem",
   },
   hr: {
-    marginTop: "0.4rem",
+    marginTop: "0.8rem",
   },
 
   NavbarMainDiv: {
@@ -69,7 +75,7 @@ const useStyle = makeStyles((theme) => ({
   },
   NavbarMianDivOnClick: {
     height: "8vh",
-    width: "84.5%",
+    width: "83.5%",
     float: "right",
     boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
     display: "flex",
@@ -82,19 +88,41 @@ const useStyle = makeStyles((theme) => ({
   //   marginLeft: "1rem",
   //   fontSize: "30px",
   // },
+  messgaeIcon: {
+    fontSize: "1.3rem",
+    color: "#858796",
+  },
+  messageNumber: {
+    marginRight: "1rem",
+    color: "#fff",
+    // width: "0.6rem",
+    fontSize: "0.6rem",
+    borderRadius: "5px",
+    padding: "1px 3px 1px 3px",
+    marginTop: "-1rem",
+    backgroundColor: "#E74A3B",
+  },
   adminName: {
     marginRight: "0.5rem",
+    marginLeft: "1rem",
     color: "#858796",
+    fontSize: "0.9rem",
+  },
+  verticalLine: {
+    color: "#858796",
+    fontSize: "2.5rem",
+    fontWeight: "100",
   },
   adminimg: {
     width: "40px",
-    marginRight: "1rem",
+    marginRight: "2.5rem",
   },
   sidebarMenuItem: {
     width: "100%",
     maxWidth: 360,
     color: "#fff",
     marginTop: "2rem",
+
     // position: "fixed",
   },
   sidebarList: {
@@ -112,8 +140,9 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   nastedList: {
+    // textAlign: "center",
     paddingLeft: "3.5rem",
-    backgroundColor: "#4e73df",
+    backgroundColor: "#2854d7",
     color: "#fff",
     textDecoration: "none",
     "&:hover": {
@@ -122,6 +151,11 @@ const useStyle = makeStyles((theme) => ({
       color: "#161D6F",
     },
   },
+  // nastedListtext: {
+  //   backgroundColor: "#fff",
+  //   color: "#161D6F",
+  //   borderRadius: "5px",
+  // },
   // sidebarIcon: {
   //   color: "#fff",
   // },
@@ -154,7 +188,7 @@ const Sidebar = () => {
     <>
       {/* {showNav && ( */}
       <div className={classes.root}>
-        <FaSmileWink className={classes.simeIcon} />
+        <FaSmileWink className={classes.smileIcon} />
         <span className={classes.companyName}>
           Neutrosys <hr className={classes.hr} />
         </span>
@@ -164,12 +198,12 @@ const Sidebar = () => {
           aria-labelledby="nested-list-subheader"
           className={classes.sidebarMenuItem}
         >
-          <Link to="/dashboard" className={classes.linktext}>
+          <Link to="/" className={classes.linktext}>
             <ListItem button className={classes.sidebarList}>
               <HomeIcon className={classes.sidebarIcon} />
 
               <ListItemText
-                style={{ marginLeft: "1rem" }}
+                style={{ marginLeft: "1.5rem" }}
                 primary="Dashboard"
               />
             </ListItem>
@@ -181,7 +215,7 @@ const Sidebar = () => {
           >
             <WorkIcon className={classes.sidebarIcon} />
 
-            <ListItemText style={{ marginLeft: "1rem" }} primary="Jobs" />
+            <ListItemText style={{ marginLeft: "1.5rem" }} primary="Jobs" />
             {openJobs ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={openJobs} timeout="auto" unmountOnExit>
@@ -192,7 +226,10 @@ const Sidebar = () => {
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="Job List" />
+                  <ListItemText
+                    className={classes.nastedListtext}
+                    primary="Job List"
+                  />
                 </ListItem>
               </Link>
 
@@ -214,19 +251,21 @@ const Sidebar = () => {
           >
             <WorkIcon className={classes.sidebarIcon} />
 
-            <ListItemText style={{ marginLeft: "1rem" }} primary="Applicant" />
+            <ListItemText
+              style={{ marginLeft: "1.5rem" }}
+              primary="Applicant"
+            />
             {openApplicant ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={openApplicant} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/allApplicant" className={classes.linktext}>
+              <Link to="/internal" className={classes.linktext}>
                 <ListItem
                   button
-                  className={classes.nested}
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="All Applicant" />
+                  <ListItemText primary="Internal" />
                 </ListItem>
               </Link>
               <Link to="/contracting" className={classes.linktext}>
@@ -239,13 +278,15 @@ const Sidebar = () => {
                   <ListItemText primary="Contract" />
                 </ListItem>
               </Link>
-              <Link to="/internal" className={classes.linktext}>
+
+              <Link to="/allApplicant" className={classes.linktext}>
                 <ListItem
                   button
+                  className={classes.nested}
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="Internal" />
+                  <ListItemText primary="All Applicant" />
                 </ListItem>
               </Link>
             </List>
@@ -256,7 +297,7 @@ const Sidebar = () => {
               <ContactsIcon className={classes.sidebarIcon} />
 
               <ListItemText
-                style={{ marginLeft: "1rem" }}
+                style={{ marginLeft: "1.5rem" }}
                 primary="All Query"
               />
             </ListItem>
@@ -266,7 +307,10 @@ const Sidebar = () => {
             <ListItem button className={classes.sidebarList}>
               <ExitToAppIcon className={classes.sidebarIcon} />
 
-              <ListItemText style={{ marginLeft: "1rem" }} primary="Sign Out" />
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Sign Out"
+              />
             </ListItem>
           </Link>
         </List>
@@ -281,6 +325,14 @@ const Sidebar = () => {
           className={classes.hamburgurIcon}
           onClick={() => setShowNav(!showNav)}
         /> */}
+        <Tooltip title="Message" TransitionComponent={Zoom} arrow>
+          <Link to="/contact">
+            <GrMail className={classes.messgaeIcon} />
+          </Link>
+        </Tooltip>
+        <span className={classes.messageNumber}>20</span>
+
+        <span className={classes.verticalLine}>l</span>
         <span className={classes.adminName}>Dipesh Shrestha</span>
         <img className={classes.adminimg} src={adimImage} />
       </div>

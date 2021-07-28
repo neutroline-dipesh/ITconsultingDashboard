@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
     backgroundColor: "#4487A9",
+    // height: "8vh",
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "1rem",
     fontSize: "0.9rem",
     // borderRadius: "20px",
-    backgroundColor: "#04A8F6",
+    // backgroundColor: "#04A8F6",
     height: "5vh",
     "&:hover": {
       color: "#fff",

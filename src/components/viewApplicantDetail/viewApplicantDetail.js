@@ -27,22 +27,22 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
-    fontSize: "2rem",
-    fontWeight: "600",
+    fontSize: "1.75rem",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
   MainContentDiv: {
-    height: "82vh",
+    // height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -50,17 +50,20 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     // height: "80vh",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
   },
   ContentDateDiv: {
-    overflow: "scroll",
-    maxHeight: "80vh",
+    // overflow: "scroll",
+    // maxHeight: "80vh",
     // display: "flex",
   },
   leftRightDiv: {
     display: "flex",
+    // backgroundColor: "red",
+    maxHeight: "70vh",
+    overflow: "scroll",
   },
   leftDiv: {
     // backgroundColor: "red",
@@ -75,6 +78,23 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "1rem",
     marginBottom: "1rem",
     // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
+  },
+  lefttableTitleDiv: {
+    borderRadius: "5px 5px 1px 1px",
+    display: "flex",
+    alignItems: "center",
+
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    backgroundColor: "#F8F9FC",
+
+    borderBottom: "solid 1px #e3e6f0",
+  },
+  lefttableTitle: {
+    fontWeight: "600",
+    fontSize: "1.3rem",
+    marginLeft: "1.5rem",
+    color: "#303f9f",
   },
   image: {
     marginTop: "1rem",
@@ -175,14 +195,20 @@ const Contracting = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Applicant Detail</span>
+            <span className={classes.pageTabName}>
+              Applicant / Applicant Detail
+            </span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
+                <div className={classes.lefttableTitleDiv}>
+                  <span className={classes.lefttableTitle}>
+                    Personal Information
+                  </span>
+                </div>{" "}
                 <div className={classes.leftRightDiv}>
                   <div className={classes.leftDiv}>
-                    {/* <img className={classes.image} src={adimImage} /> */}
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
