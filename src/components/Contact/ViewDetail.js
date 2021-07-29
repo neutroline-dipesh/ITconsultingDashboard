@@ -9,22 +9,51 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import CloseIcon from "@material-ui/icons/Close";
 import { ColorLensOutlined } from "@material-ui/icons";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import IconButton from "@material-ui/core/IconButton";
+import adimImage from "../../assets/images/admin2.png";
+
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
-    justifyContent: "space-between",
-    backgroundColor: "#4487A9",
-    color: "#fff",
+    backgroundColor: "#F8F9FC",
+    color: "#303f9f",
+    height: "15vh",
+    borderBottom: "solid 1px #e3e6f0",
   },
+  titleCrossIconDiv: {
+    display: "flex",
+    alignItems: "center",
+  },
+  nameAddressDiv: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  phone: {
+    fontSize: "14px",
+  },
+  message: {
+    marginTop: "1rem",
+    textAlign: "justify",
+  },
+
   viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-    height: "3.9vh",
+    marginTop: "0.3rem",
+    marginBottom: "0.3rem",
+    height: "1.3rem",
+    width: "1.3rem",
+    color: "#04A8F6",
     "&:hover": {
-      color: "#fff",
+      color: "#4e73df",
     },
+  },
+  adminimg: {
+    width: "80px",
+    marginRight: "1rem",
   },
 }));
 
@@ -36,16 +65,6 @@ export default function AlertDialogSlide(props) {
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
 
-  //   console.log(typeof props.visible);
-
-  // if (props.visible == true) {
-  //   //   setOpen(true);
-  //   // console.log("true");
-  //   // console.clear();
-  // } else {
-  //   // console.log("false");
-  //   //   setOpen(false);
-  // }
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -53,23 +72,17 @@ export default function AlertDialogSlide(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  //   console.log(props.visible);
-
+  // console.log(props);
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
-      <Button
-        className={classes.viewButton}
-        variant="contained"
-        color="primary"
-        href="#contained-buttons"
-        // onClick={handleClickOpenViewTable}
-        onClick={handleClickOpen}
-      >
-        View
-      </Button>
+      <Tooltip title="View" TransitionComponent={Zoom} arrow>
+        <Link>
+          <VisibilityIcon
+            className={classes.viewButton}
+            onClick={handleClickOpen}
+          />
+        </Link>
+      </Tooltip>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -78,43 +91,45 @@ export default function AlertDialogSlide(props) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle
-          className={classes.DialogTitle}
-          id="alert-dialog-slide-title"
-        >
-          <span>{"Queries"}</span>
-          {/* <CloseIcon /> */}
+        <DialogTitle className={classes.DialogTitle}>
+          <div className={classes.titleCrossIconDiv}>
+            <img className={classes.adminimg} src={adimImage} />
+            <div className={classes.nameAddressDiv}>
+              <span>{"Dipesh Shrestha (dipeshxtha129@gmail.com)"}</span>
+              <span className={classes.phone}>
+                {" 9816940668 "}
+                <font style={{ marginLeft: "1rem" }}>Damak-11, Jhapa</font>
+              </span>
+            </div>
+            {/* <CloseIcon /> */}
+            {/* <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+              className={classes.crossIcon}
+            >
+              
+            </IconButton> */}
+          </div>
         </DialogTitle>
 
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Name : Dipesh Shrestha
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-slide-description">
-            Email : dipeshxtha129@gmail.com
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-slide-description">
-            Phone : 9816940668
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-slide-description">
-            Address : Damak-11, Jhapa
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-slide-description">
-            Subject : Subject is here
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-slide-description">
-            Message : Here is the message .Here is the message .Here is the
-            message .Here is the message .Here is the message .Here is the
-            message .Here is the message .Here is the message .Here is the
-            message .Here is the message .Here is the message .
+          {/* <DialogContentText>Name : Dipesh Shrestha</DialogContentText>
+          <DialogContentText>Email : dipeshxtha129@gmail.com</DialogContentText> */}
+          {/* <DialogContentText>Phone : 9816940668</DialogContentText>
+          <DialogContentText>Address : Damak-11, Jhapa</DialogContentText> */}
+          {/* <DialogContentText>Subject : Subject is here</DialogContentText> */}
+          <DialogContentText className={classes.message}>
+            Here is the message .Here is the message .Here is the message .Here
+            is the message .Here is the message .Here is the message .Here is
+            the message .Here is the message .Here is the message .Here is the
+            message .Here is the message .
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button> */}
           <Button onClick={handleClose} color="primary">
-            Cancel
+            Done
           </Button>
         </DialogActions>
       </Dialog>

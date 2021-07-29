@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
+import * as actions from "../../store/actions";
+import { connect } from "react-redux";
+import axios from "axios";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,8 +15,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import { useState } from "react";
-import { contactData } from "./contactDate";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -24,23 +26,23 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
     // fontFamily: "Roboto",
     fontSize: "2rem",
-    fontWeight: "600",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -50,21 +52,24 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRadius: "5px",
+    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    paddingBottom: "2rem",
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#4487A9 !important",
+    backgroundColor: "#4e73df !important",
     color: "#fff",
-    height: "3vh !important",
+    fontWeight: "400 !important",
+
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -74,27 +79,49 @@ const useStyle = makeStyles((theme) => ({
   },
 
   deleteButton: {
-    fontSize: "0.7rem",
-    marginLeft: "0.5rem",
-    // borderRadius: "20px",
-    backgroundColor: "#b30000",
-    height: "3.9vh",
+    marginLeft: "1rem",
+    color: "#e60000",
+    height: "1.2rem",
+    width: "1.2rem",
+    borderRadius: "20px",
+    marginTop: "0.4rem",
+    marginBottom: "0.4rem",
     "&:hover": {
-      color: "#fff",
+      color: "#ff0000",
     },
   },
   seenColor: {
-    // backgroundColor: "#F5F7F7 ! important",
+    backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
+
+    textAlign: "center",
   },
-  notColor: {
-    fontWeight: "bold",
-    // backgroundColor: "#fff ! important",
+  noColor: {
+    // fontWeight: "500",
+    // color: "red",
     fontSize: "15px",
+    textAlign: "center",
   },
 }));
 
-const Contact = () => {
+const Contact = (props) => {
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/allQueries").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
+  // console.log(data1);
   const classes = useStyle();
   useEffect(() => {
     $(document).ready(function () {
@@ -104,7 +131,8 @@ const Contact = () => {
 
   //alert message
 
-  const deletFunction = () => {
+  const deletFunction = (e) => {
+    console.log(e.target.id);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -164,11 +192,7 @@ const Contact = () => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={
-                    classes.dataTable +
-                    " " +
-                    "table table-striped table-bordered"
-                  }
+                  className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
@@ -176,21 +200,21 @@ const Contact = () => {
                       <th className={classes.tableHead}>Last Name</th>
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone</th>
-                      <th className={classes.tableHead}>Address</th>
+                      {/* <th className={classes.tableHead}>Address</th> */}
                       <th className={classes.tableHead}>Subject</th>
                       <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {contactData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
-                        <tr>
+                        <tr key={key}>
                           <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             {item.firstName}
@@ -199,7 +223,7 @@ const Contact = () => {
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             {item.lastName}
@@ -208,7 +232,7 @@ const Contact = () => {
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             {item.email}
@@ -217,12 +241,12 @@ const Contact = () => {
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             {item.phone}
                           </td>
-                          <td
+                          {/* <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -230,12 +254,12 @@ const Contact = () => {
                             }
                           >
                             {item.address}
-                          </td>
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             {item.subject}
@@ -244,7 +268,7 @@ const Contact = () => {
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             <select id="select">
@@ -266,21 +290,16 @@ const Contact = () => {
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
-                                : classes.notColor
+                                : classes.noColor
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <ViewDetail visible={openViewTable} />
-
-                              <Button
+                              <ViewDetail value={item.Id} />
+                              <RiDeleteBin6Fill
+                                id={item.id}
                                 className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={deletFunction}
-                              >
-                                delete
-                              </Button>
+                                onClick={(e) => deletFunction(e)}
+                              />
                             </div>
                           </td>
                         </tr>
@@ -296,5 +315,16 @@ const Contact = () => {
     </>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    data: state.allqueries.allQueriesData,
+    error: state.allqueries.error,
+  };
+};
 
-export default Contact;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoad: () => dispatch(actions.getAllQueries()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

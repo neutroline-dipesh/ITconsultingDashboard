@@ -5,6 +5,10 @@ import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { Redirect } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -13,7 +17,6 @@ const useStyle = makeStyles((theme) => ({
     background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
     display: "flex",
     justifyContent: "center",
-
     position: "relative",
   },
   centerGrid: {
@@ -68,7 +71,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "15px",
   },
   forgetPassword: {
-    color: "#000000",
+    color: "red",
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: "12px",
@@ -83,7 +86,7 @@ const useStyle = makeStyles((theme) => ({
     height: "3.9vh",
     fontSize: "12px",
     left: "35%",
-    marginTop: "10px",
+    marginTop: "2.5rem",
   },
   rightGrid: {
     background: "#EB7D50",
@@ -121,9 +124,13 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 //Main funcation
-const Login = () => {
+const Login = (props) => {
+  console.log(props.error);
   const classes = useStyle();
   //for validation
+  const handleOnSubmit = (values) => {
+    props.onAuth(values.email, values.password);
+  };
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -138,16 +145,23 @@ const Login = () => {
     }),
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      handleOnSubmit(values);
     },
   });
+
+  let authRedirect = null;
+  if(props.isAuthenticated){
+    authRedirect = <Redirect to={props.redirectPath}/>
+  }
   return (
-    <Grid containor className={classes.root}>
+    <>
+    {authRedirect}
+    <Grid container className={classes.root}>
       <Grid item sx={12} className={classes.centerGrid}>
         {/* hello world */}
         <Grid item className={classes.leftGrid}>
           <p className={classes.login}>Login</p>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <input
               className={classes.email}
               type="email"
@@ -157,7 +171,11 @@ const Login = () => {
               {...formik.getFieldProps("email")}
               required
             />
-            <div className={classes.errorMessage}>{formik.errors.email}</div>
+            <div className={classes.errorMessage}>
+              {props.error == "Invalid Email !"
+                ? props.error
+                : formik.errors.email}
+            </div>
 
             <input
               className={classes.password}
@@ -167,19 +185,32 @@ const Login = () => {
               {...formik.getFieldProps("password")}
               required
             />
-            <div className={classes.errorMessage}>{formik.errors.password}</div>
-
-            <p className={classes.forgetPassword}>Forget Your password?</p>
-
-            <Button
-              type="submit"
-              variant="contained"
-              size="small"
-              color="primary"
-              className={classes.loiginButton}
-            >
-              LOG IN
-            </Button>
+            <div className={classes.errorMessage}>
+              {props.error == "Invalid Password !"
+                ? props.error
+                : formik.errors.password}
+            </div>
+            {/* {props.error ? (
+              <p className={classes.forgetPassword}>Invalid Credentian !</p>
+            ) : (
+              <p> &nbsp;</p>
+            )} */}
+            {/* <p className={classes.forgetPassword}>{props.error}</p> */}
+            {props.loading ? (
+              <div style={{ textAlign: "center" }}>
+                <CircularProgress />
+              </div>
+            ) : (
+              <Button
+                type="submit"
+                variant="contained"
+                size="small"
+                color="primary"
+                className={classes.loiginButton}
+              >
+                LOG IN
+              </Button>
+            )}
           </form>
         </Grid>
         <Grid item className={classes.rightGrid}>
@@ -204,7 +235,21 @@ const Login = () => {
         </Grid>
       </Grid>
     </Grid>
+  </>
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error,
+    isAuthenticated: state.auth.token !== null,
+    redirectPath: state.auth.authRedirectPath,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuth: (email, password) => dispatch(actions.auth(email, password)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

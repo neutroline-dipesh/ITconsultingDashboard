@@ -12,13 +12,17 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Calendar from "react-calendar";
+import { CalendarComponent } from "@syncfusion/ej2-react-calendars";
 
 import "react-calendar/dist/Calendar.css";
 import { allApplicantData } from "../allApplicant/allApplicantData";
+import { Link } from "react-router-dom";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    // height: "100vh",
     width: "100%",
     // top: "30",
     // position: "absolute",
@@ -30,78 +34,107 @@ const useStyle = makeStyles((theme) => ({
   },
   smallBoxMainDiv: {
     // color: "red",
-    backgroundColor: "#C4C4C4",
-    // border: "solid 1px",
+    backgroundColor: "#f8f9fc",
+    display: "flex",
+    justifyContent: "space-evenly",
+    width: "83.5%",
 
     height: "25vh",
     // border: "solid 1px",
     paddingTop: "3rem",
+    marginRight: "2rem",
+    marginLeft: "2rem",
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
-    float: "left",
-    height: "12vh",
-    width: "15%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-around",
+    height: "13vh",
+    width: "20%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    marginLeft: "1rem",
   },
+  totcalContactJob: {
+    borderLeft: "4px solid #4e73df",
+  },
+
   totcalContractingJob: {
-    marginLeft: "2.4rem",
+    borderLeft: "4px solid red",
   },
   totalConstractingNumber: {
     // backgroundColor: "red",
     color: "#fffff",
     fontWeight: 500,
     fontSize: "1.5rem",
-    marginLeft: "1rem",
-    position: "relative",
-    top: "1rem",
   },
   totalText: {
     // backgroundColor: "red",
     // marginTop: "1rem",
     color: "rgba(0, 0, 0, 0.5)",
     fontSize: "0.9rem",
-    position: "relative",
-    top: "2.4rem",
-    left: "-3.5rem",
   },
   totolIcon: {
     fontSize: "2rem",
-    marginLeft: "10rem",
-    marginTop: "-1rem",
+    marginRight: "0.2rem",
   },
   totcalInernalJob: {
-    marginLeft: "2.4rem",
+    borderLeft: "4px solid #1cc88a",
+  },
+  totalAllJob: {
+    borderLeft: "4px solid #f6c23e",
+  },
+  messageNumber: {
+    marginLeft: "-2.5rem",
+    color: "#fff",
+    // width: "0.6rem",
+    fontSize: "0.6rem",
+    borderRadius: "5px",
+    padding: "1px 3px 1px 3px",
+    marginTop: "-2.5rem",
+    backgroundColor: "#E74A3B",
   },
   tableCalenderDivMain: {
-    height: "67vh",
     // border: "solid 1px",
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
+    display: "flex",
+    justifyContent: "space-around",
+    // alignItems: "center",
+    height: "67vh",
+    // margin: "1.5rem",
+  },
+  tableContainer: {
+    // margin: "1rem",
+    // height: "50vh",
   },
   tableDiv: {
     backgroundColor: "#FFFFFF",
-    float: "left",
-    height: "60vh",
-    marginLeft: "1rem",
-    width: "50.5%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
+    width: "60%",
+    marginBottom: "1.5rem",
+    // maxHeight: "50vh",
   },
   tableTitleBottonDiv: {
+    borderRadius: "5px 5px 1px 1px",
+
     display: "flex",
     justifyContent: "space-between",
-    paddingTop: "1.5rem",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    alignItems: "center",
+    backgroundColor: "#F8F9FC",
+    borderBottom: "solid 1px #e3e6f0",
   },
   tableTitle: {
     fontWeight: "600",
-    fontSize: "1.5rem",
+    fontSize: "1.3rem",
     marginLeft: "1.5rem",
+    color: "#303f9f",
   },
   tableHead: {
     fontSize: "1rem",
-    fontWeight: "600",
+    // fontWeight: "00",
   },
   tableDataDiv: {
     height: "51vh",
@@ -109,49 +142,63 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
     marginLeft: "1rem",
     marginRight: "1rem",
+    overflow: "scroll",
   },
   table: {
-    minWidth: 650,
+    // minWidth: 700,
   },
   viewAllButton: {
-    backgroundColor: "#04A8F6",
+    textDecoration: "none",
+    backgroundColor: "#2653d4",
     borderRadius: "20px",
-    width: "13%",
+    width: "7rem",
     height: "3.9vh",
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      // backgroundColor: "#98DED9",
+    },
   },
   calenderDiv: {
-    // width: "50%",
-    float: "left",
-    // height: "60vh",
-    width: "22%",
-    // backgroundColor: "blue",
-    marginLeft: "4rem",
-    marginTop: "-2rem",
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    width: "25%",
+    // marginTop: "",
+
+    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
-  viewDate: {
-    height: "19vh",
-    backgroundColor: "#E76B6B",
-    paddingTop: "0.5rem",
-  },
-  day: {
-    fontSize: "5rem",
-    fontWeight: "600",
-    color: "#fff",
-    marginLeft: "2rem",
-  },
-  month: {
-    fontSize: "2rem",
-    fontWeight: "600",
-    color: "#fff",
-  },
+  // viewDate: {
+  //   height: "10vh",
+  //   backgroundColor: "#4e73df",
+  //   display: "flex",
+  //   alignItems: "center",
+  // },
+  // day: {
+  //   fontSize: "3rem",
+  //   fontWeight: "200",
+  //   color: "#fff",
+  //   marginLeft: "1rem",
+
+  //   // marginTop: "0rem",
+  // },
+  // month: {
+  //   fontSize: "2rem",
+  //   fontWeight: "200",
+  //   color: "#fff",
+  //   marginTop: "1rem",
+  // },
 
   calender: {
     // height: "30vh",
     // width: "10%",
+    // marginRight: "-1rem",
+    borderRadius: "5px",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+  },
+
+  jobs: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "0.2rem",
   },
 }));
 const Dashboard = () => {
@@ -180,87 +227,151 @@ const Dashboard = () => {
   return (
     <>
       <Sidebar />
+
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.smallBoxMainDiv}>
-            <div className={classes.totalJobs}>
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Contract Jobs</span>
-              <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
+            <div className={classes.totalJobs + " " + classes.totcalContactJob}>
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  style={{ color: "#4e73df" }}
+                  className={classes.totalText}
+                >
+                  Total Contract Jobs
+                </span>
+              </div>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "#4e73df" }}
+                className={classes.totolIcon}
+              />
+              <span className={classes.messageNumber}>20</span>
+            </div>
+            <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  style={{ color: "#1cc88a" }}
+                  className={classes.totalText}
+                >
+                  Total Internal Jobs
+                </span>
+              </div>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "#1cc88a" }}
+                className={classes.totolIcon}
+              />
+              <span className={classes.messageNumber}>20</span>
             </div>
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
             >
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Internal Jobs</span>
-              <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span style={{ color: "red" }} className={classes.totalText}>
+                  Total Client Query
+                </span>
+              </div>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "red" }}
+                className={classes.totolIcon}
+              />
+              <span className={classes.messageNumber}>20</span>
             </div>
-            <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
-              <span className={classes.totalConstractingNumber}>1,400</span>
-              <span className={classes.totalText}>Total Client Query</span>
-              <Icon icon={fileEarmarkRichtext} className={classes.totolIcon} />
+            <div className={classes.totalJobs + " " + classes.totalAllJob}>
+              <div className={classes.jobs}>
+                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  style={{ color: "#f6c23e" }}
+                  className={classes.totalText}
+                >
+                  Total Internal Jobs
+                </span>
+              </div>
+              <Icon
+                icon={fileEarmarkRichtext}
+                style={{ color: "#f6c23e" }}
+                className={classes.totolIcon}
+              />
+              <span className={classes.messageNumber}>20</span>
             </div>
           </div>
-          <div className={classes.tableCalenderDivMain}>
-            <div className={classes.tableDiv}>
-              <div className={classes.tableTitleBottonDiv}>
-                <span className={classes.tableTitle}>Recent Applicant</span>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                  className={classes.viewAllButton}
-                  onClick={() => {
-                    window.location.pathname = "/allApplicant";
-                  }}
-                >
-                  View All
-                </Button>
-              </div>
-              <div className={classes.tableDataDiv}>
-                <Table className={classes.table} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={classes.tableHead}>
-                        Job Title
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="center">
-                        Name
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="center">
-                        Applid Date
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {allApplicantData.slice(0, 5).map((item) => (
+          <div className={classes.tableContainer}>
+            <div className={classes.tableCalenderDivMain}>
+              <div className={classes.tableDiv}>
+                <div className={classes.tableTitleBottonDiv}>
+                  <span className={classes.tableTitle}>Recent Applicant</span>
+                  <Link to="/allApplicant">
+                    <Button
+                      variant="contained"
+                      size="small"
+                      color="primary"
+                      className={classes.viewAllButton}
+                    >
+                      View All
+                    </Button>
+                  </Link>
+                </div>
+                <div className={classes.tableDataDiv}>
+                  <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
                       <TableRow>
-                        <TableCell component="th" scope="row">
-                          {item.jobTitle}
+                        <TableCell className={classes.tableHead}>
+                          Job Title
                         </TableCell>
-                        <TableCell align="center">
-                          {item.firstName + " " + item.lastName}
+                        <TableCell className={classes.tableHead} align="center">
+                          Name
                         </TableCell>
-                        <TableCell align="center">{item.appliedDate}</TableCell>
-                        {/* <TableCell align="right">{row.fat}</TableCell>
+                        <TableCell className={classes.tableHead} align="center">
+                          Seniority Level
+                        </TableCell>
+                        <TableCell className={classes.tableHead} align="center">
+                          Applid Date
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {allApplicantData.slice(0, 5).map((item) => (
+                        <TableRow>
+                          <TableCell component="th" scope="row">
+                            {item.jobTitle}
+                          </TableCell>
+                          <TableCell align="center">
+                            {item.firstName + " " + item.lastName}
+                          </TableCell>
+                          <TableCell align="center">
+                            {item.senioritylevel}
+                          </TableCell>
+                          <TableCell align="center">
+                            {item.postedDate}
+                          </TableCell>
+                          {/* <TableCell align="right">{row.fat}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
                         <TableCell align="right">{row.protein}</TableCell> */}
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </div>
-            </div>
-            <div className={classes.calenderDiv}>
-              <div className={classes.viewDate}>
-                <span className={classes.day}>{day}</span>
-                <span className={classes.month}>{month}</span>
+
+              <div className={classes.calenderDiv}>
+                {/* <div className={classes.viewDate}>
+                  <span className={classes.day}>{day}</span>
+                  <span className={classes.month}>{month}</span>
+                </div> */}
+                {/* <Calendar
+                  className={classes.calender}
+                  onChange={calenderOnChange}
+                  value={date}
+                /> */}
+                <CalendarComponent
+                  className={classes.calender}
+                ></CalendarComponent>
               </div>
-              <Calendar
-                className={classes.calender}
-                onChange={calenderOnChange}
-                value={date}
-              />
             </div>
           </div>
         </div>

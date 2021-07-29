@@ -13,6 +13,13 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { allApplicantData } from "./allApplicantData";
 
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { AiOutlineFundView } from "react-icons/ai";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -22,22 +29,22 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
-    // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    alignItems: "center",
   },
   pageTabName: {
-    fontSize: "2rem",
-    fontWeight: "600",
+    fontSize: "1.75rem",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
@@ -45,24 +52,28 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     // height: "80vh",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRadius: "5px",
+    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    paddingBottom: "2rem",
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
   },
   tableHead: {
-    backgroundColor: "#4487A9 !important",
+    backgroundColor: "#4e73df !important",
     color: "#fff",
-    height: "3vh !important",
+    fontWeight: "400 !important",
+    // height: "3vh !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
+
   buttomDiv: {
     // backgroundColor: "red",
     display: "flex",
@@ -70,24 +81,25 @@ const useStyle = makeStyles((theme) => ({
   },
 
   viewButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    backgroundColor: "#00264d",
-
-    height: "3.9vh",
+    marginTop: "0.3rem",
+    marginBottom: "0.3rem",
+    height: "1.3rem",
+    width: "1.3rem",
+    color: "#04A8F6",
     "&:hover": {
-      color: "#fff",
+      color: "#4e73df",
     },
   },
   deleteButton: {
-    fontSize: "0.7rem",
-    // borderRadius: "20px",
-    marginLeft: "0.5rem",
-
-    backgroundColor: "#b30000",
-    height: "3.9vh",
+    marginLeft: "1rem",
+    color: "#e60000",
+    height: "1.2rem",
+    width: "1.2rem",
+    borderRadius: "20px",
+    marginTop: "0.4rem",
+    marginBottom: "0.4rem",
     "&:hover": {
-      color: "#fff",
+      color: "#ff0000",
     },
   },
   confirmBtn: {
@@ -97,13 +109,15 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "yellow",
   },
   seenColor: {
-    // backgroundColor: "#F5F7F7 ! important",
+    backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
+    textAlign: "center",
   },
   noColor: {
-    fontWeight: "bold",
-    // backgroundColor: "#fff ! important",
+    // fontWeight: "500",
+    color: "#000",
     fontSize: "15px",
+    textAlign: "center",
   },
 }));
 
@@ -170,7 +184,9 @@ const Contracting = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>All Applicant</span>
+            <span className={classes.pageTabName}>
+              Applicant / All Applicant
+            </span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
@@ -178,11 +194,7 @@ const Contracting = () => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={
-                    classes.dataTable +
-                    " " +
-                    "table table-striped table-bordered"
-                  }
+                  className={classes.dataTable + " " + "table "}
                 >
                   <thead>
                     <tr>
@@ -191,11 +203,11 @@ const Contracting = () => {
                       <th className={classes.tableHead}>Name</th>
 
                       <th className={classes.tableHead}>Email</th>
-                      <th className={classes.tableHead}>Phone</th>
+                      {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
                       <th className={classes.tableHead}>Status</th>
-                      <th className={classes.tableHead}>Approvel Status</th>
+                      <th className={classes.tableHead}>Approval Status</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
@@ -229,10 +241,10 @@ const Contracting = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.email}
+                            {item.gmail}
                           </td>
 
-                          <td
+                          {/* <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -240,7 +252,7 @@ const Contracting = () => {
                             }
                           >
                             {item.phone}
-                          </td>
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -248,7 +260,7 @@ const Contracting = () => {
                                 : classes.noColor
                             }
                           >
-                            {item.appliedDate}
+                            {item.postedDate}
                           </td>
                           <td
                             className={
@@ -280,14 +292,14 @@ const Contracting = () => {
                             }
                             style={{
                               color:
-                                item.approvelStatus === "accept"
+                                item.approvelStatus === "Accept"
                                   ? "#24803c"
-                                  : item.approvelStatus === "reject"
-                                  ? "#cccc00"
-                                  : item.approvelStatus === "hold"
-                                  ? "#660000"
+                                  : item.approvelStatus === "Reject"
+                                  ? "#e60000"
+                                  : item.approvelStatus === "Hold"
+                                  ? "#FFC107"
                                   : "black",
-                              fontWeight: "bold",
+                              fontWeight: "500",
                             }}
                           >
                             {item.approvelStatus}
@@ -300,7 +312,7 @@ const Contracting = () => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <Button
+                              {/* <Button
                                 className={classes.viewButton}
                                 variant="contained"
                                 color="primary"
@@ -310,9 +322,43 @@ const Contracting = () => {
                                 }}
                               >
                                 View
-                              </Button>
+                              </Button> */}
+                              {/* <span
+                                style={{
+                                  fontSize: "1rem",
+                                  color: "#4e73df",
+                                  marginTop: "0.2rem",
+                                  marginBottom: "0.2rem",
+                                  fontWeight: "400",
+                                }}
+                              >
+                                <u>View</u>
+                              </span> */}
+                              <Tooltip
+                                title="View"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link to="viewApplicatnDetail">
+                                  <VisibilityIcon
+                                    className={classes.viewButton}
+                                  />
+                                </Link>
+                              </Tooltip>
 
-                              <Button
+                              <Tooltip
+                                title="Detete"
+                                TransitionComponent={Zoom}
+                                arrow
+                              >
+                                <Link>
+                                  <RiDeleteBin6Fill
+                                    className={classes.deleteButton}
+                                    onClick={() => deletFunction()}
+                                  />
+                                </Link>
+                              </Tooltip>
+                              {/* <Button
                                 className={classes.deleteButton}
                                 variant="contained"
                                 color="primary"
@@ -320,7 +366,7 @@ const Contracting = () => {
                                 onClick={() => deletFunction()}
                               >
                                 delete
-                              </Button>
+                              </Button> */}
                             </div>
                           </td>
                         </tr>

@@ -10,6 +10,15 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link } from "react-router-dom";
+import { CgArrowLeftR } from "react-icons/cg";
+import { IoMdArrowBack } from "react-icons/io";
+import Button from "@material-ui/core/Button";
+
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -24,29 +33,53 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
 
     height: "10vh",
     // border: "solid 1px",
-    paddingTop: "1rem",
+    display: "flex",
+    justifyContent: "space-between",
+
+    alignItems: "center",
+    // paddingTop: "0.5rem",
   },
+
   pageTabName: {
-    fontSize: "2rem",
-    fontWeight: "600",
+    fontSize: "1.75rem",
+    fontWeight: "400",
     marginLeft: "1rem",
     color: "#062837",
   },
+  jobListButton: {
+    textDecoration: "none",
+    backgroundColor: "#2653d4",
+    borderRadius: "20px",
+    width: "7rem",
+    height: "3.9vh",
+    fontSize: "0.7rem",
+    marginRight: "1.5rem",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      // backgroundColor: "#98DED9",
+    },
+  },
+  jobListIcon: {
+    // color: "black !important",
+    fontSize: "1rem",
+    marginRight: "1rem",
+  },
+
   MainContentDiv: {
     height: "82vh",
 
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
     backgroundColor: "#FFFFFF",
     float: "left",
     marginLeft: "1rem",
-    width: "82%",
+    width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
   },
@@ -54,13 +87,33 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
   },
+  lefttableTitleDiv: {
+    borderRadius: "5px 5px 1px 1px",
+    display: "flex",
+    alignItems: "center",
+
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    backgroundColor: "#F8F9FC",
+
+    borderBottom: "solid 1px #e3e6f0",
+  },
+  lefttableTitle: {
+    fontWeight: "600",
+    fontSize: "1.3rem",
+    marginLeft: "1.5rem",
+    color: "#303f9f",
+  },
   form: {
     margin: "1rem",
-    paddingTop: "1rem",
+    // paddingTop: "1rem",
+  },
+  inputBoderColor: {
+    borderColor: "#ff0000 !important",
   },
   JobTitle: {},
   JobSubtitle: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
   },
   DepartmentJobTypeDiv: {
     display: "flex",
@@ -74,14 +127,14 @@ const useStyle = makeStyles((theme) => ({
     width: "48%",
   },
   Department: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     // width: "250%",
   },
   jobTypeDiv: {
     width: "48%",
   },
   JobType: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     marginLeft: "2.5rem",
     // width: "100%",
   },
@@ -90,7 +143,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   CountryStateCityDiv: {
-    marginTop: "2rem",
+    marginTop: "1.5rem",
     display: "flex",
     // justifyContent: "space-between",
   },
@@ -304,14 +357,33 @@ const Addjobs = () => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Add Jobs</span>
+            <span className={classes.pageTabName}>Job / Add Jobs</span>
+            <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
+              <Link to="/alljobs">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className={classes.jobListButton}
+                >
+                  <IoMdArrowBack className={classes.jobListIcon} /> Job List
+                </Button>
+              </Link>
+            </Tooltip>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
+                <div className={classes.lefttableTitleDiv}>
+                  <span className={classes.lefttableTitle}>
+                    Job Information
+                  </span>
+                </div>{" "}
                 <form className={classes.form}>
                   <div>
                     <input
+                      className={classes.inputBoderColor}
+                      style={{ borderColor: "#0066ff" }}
                       type="text"
                       className="form-control"
                       aria-describedby="emailHelp"
@@ -325,6 +397,7 @@ const Addjobs = () => {
                     </div>
                     <input
                       type="text"
+                      style={{ borderColor: "#0066ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
@@ -337,6 +410,7 @@ const Addjobs = () => {
                     </div>
                     <input
                       type="text"
+                      style={{ borderColor: "#0066ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
@@ -350,6 +424,7 @@ const Addjobs = () => {
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
                         >
@@ -367,6 +442,7 @@ const Addjobs = () => {
                       </div>
                       <div className={classes.jobTypeDiv}>
                         <select
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
@@ -389,7 +465,17 @@ const Addjobs = () => {
 
                     <div className={classes.CountryStateCityDiv}>
                       <div className={classes.countryDiv}>
-                        <select
+                        <input
+                          style={{ borderColor: "#0066ff" }}
+                          type="text"
+                          className={"form-control" + " " + classes.Country}
+                          aria-describedby="emailHelp"
+                          placeholder="Enter Country"
+                          name="jobTitle"
+                          {...formik.getFieldProps("country")}
+                          required
+                        />
+                        {/* <select
                           className={"form-select" + " " + classes.Country}
                           {...formik.getFieldProps("country")}
                         >
@@ -401,7 +487,7 @@ const Addjobs = () => {
                           <option>3</option>
                           <option>4</option>
                           <option>5</option>
-                        </select>
+                        </select> */}
                         <div
                           className={
                             classes.errorMessage + " " + classes.countryErrorMsg
@@ -412,7 +498,17 @@ const Addjobs = () => {
                       </div>
 
                       <div className={classes.stateDiv}>
-                        <select
+                        <input
+                          style={{ borderColor: "#0066ff" }}
+                          type="text"
+                          className={"form-control" + " " + classes.State}
+                          aria-describedby="emailHelp"
+                          placeholder="Enter State"
+                          name="jobTitle"
+                          {...formik.getFieldProps("state")}
+                          required
+                        />
+                        {/* <select
                           className={"form-select" + " " + classes.State}
                           {...formik.getFieldProps("state")}
                         >
@@ -424,7 +520,7 @@ const Addjobs = () => {
                           <option>3</option>
                           <option>4</option>
                           <option>5</option>
-                        </select>
+                        </select> */}
                         <div
                           className={
                             classes.errorMessage + " " + classes.stateErrorMsg
@@ -434,7 +530,17 @@ const Addjobs = () => {
                         </div>
                       </div>
                       <div className={classes.cityDiv}>
-                        <select
+                        <input
+                          type="text"
+                          style={{ borderColor: "#0066ff" }}
+                          className={"form-control" + " " + classes.city}
+                          aria-describedby="emailHelp"
+                          placeholder="Enter City"
+                          name="jobTitle"
+                          {...formik.getFieldProps("city")}
+                          required
+                        />
+                        {/* <select
                           className={"form-select" + " " + classes.city}
                           {...formik.getFieldProps("city")}
                         >
@@ -446,7 +552,7 @@ const Addjobs = () => {
                           <option>3</option>
                           <option>4</option>
                           <option>5</option>
-                        </select>
+                        </select> */}
                         <div
                           className={
                             classes.errorMessage + " " + classes.cityErrorMsg

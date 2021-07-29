@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { SidebarData } from "./sidebarData";
 import MenuIcon from "@material-ui/icons/Menu";
-import adimImage from "../../assets/images/admin.png";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import adimImage from "../../assets/images/admin2.png";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -12,18 +9,28 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
 import HomeIcon from "@material-ui/icons/Home";
 import WorkIcon from "@material-ui/icons/Work";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { Link } from "react-router-dom";
+import { FaSmileWink } from "react-icons/fa";
+import { GrMail } from "react-icons/gr";
 
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { RiDashboard3Fill } from "react-icons/ri";
+import Notification from "./Notification";
+import { MdNotificationsActive } from "react-icons/md";
+import SignOut from "./SignOut";
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
-    width: "15.5%",
+    width: "16.5%",
     height: "100vh",
-    background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
+
+    // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
+    backgroundColor: "#4e73df",
     textAlign: "center",
     // position: "fixed",
     //position: "absolute",
@@ -35,11 +42,29 @@ const useStyle = makeStyles((theme) => ({
     // justifyContent: "center",
     paddingTop: "0.4rem",
   },
+  linktext: {
+    textDecoration: "none",
+    color: "#fff",
+    "&:hover": {
+      textDecoration: "none",
+      color: "#fff",
+    },
+  },
   sidenav: {},
+  smileIcon: {
+    color: "#fff",
+    fontSize: "2rem",
+    marginTop: "-1rem",
+  },
   companyName: {
     color: "#FFFFFF",
-    fontSize: "30px",
+    fontSize: "25px",
     width: "100%",
+
+    marginLeft: "1rem",
+  },
+  hr: {
+    marginTop: "0.8rem",
   },
 
   NavbarMainDiv: {
@@ -53,44 +78,106 @@ const useStyle = makeStyles((theme) => ({
   },
   NavbarMianDivOnClick: {
     height: "8vh",
-    width: "84.5%",
-    float: "left",
+    width: "83.5%",
+    float: "right",
     boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
     display: "flex",
+
     alignItems: "center",
-    justifyContent: "space-between",
+
+    justifyContent: "flex-end",
   },
-  hamburgurIcon: {
+  // hamburgurIcon: {
+  //   marginLeft: "1rem",
+  //   fontSize: "30px",
+  // },
+  notificationIcon: {
+    color: "#858796",
+    fontSize: "1.3rem",
+    marginTop: "0.3rem",
+  },
+  notificationNumber: {
+    marginRight: "1rem",
+    color: "#fff",
+    // width: "0.6rem",
+    fontSize: "0.6rem",
+    borderRadius: "5px",
+    padding: "1px 3px 1px 3px",
+    marginTop: "-1rem",
+    backgroundColor: "#E74A3B",
+  },
+
+  messgaeIcon: {
+    fontSize: "1.3rem",
+    color: "#858796",
+  },
+  messageNumber: {
+    marginRight: "1rem",
+    color: "#fff",
+    // width: "0.6rem",
+    fontSize: "0.6rem",
+    borderRadius: "5px",
+    padding: "1px 3px 1px 3px",
+    marginTop: "-1rem",
+    backgroundColor: "#E74A3B",
+  },
+  adminName: {
+    marginRight: "0.5rem",
     marginLeft: "1rem",
-    fontSize: "30px",
+    color: "#858796",
+    fontSize: "0.9rem",
+  },
+  verticalLine: {
+    color: "#858796",
+    fontSize: "2.5rem",
+    fontWeight: "100",
   },
   adminimg: {
     width: "40px",
-    marginRight: "1rem",
+    marginRight: "2.5rem",
   },
   sidebarMenuItem: {
     width: "100%",
     maxWidth: 360,
     color: "#fff",
     marginTop: "2rem",
+
     // position: "fixed",
   },
   sidebarList: {
+    textDecoration: "none",
+    color: "#fff",
+    zIndex: "1000",
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#0F5373",
+      backgroundColor: "#F6F6F6",
+      color: "#161D6F",
+      textDecoration: "none",
+      boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
+      transform: "scale(1.04)",
+      transition: "ease 0.3s",
     },
   },
   nastedList: {
-    backgroundColor: "#80b3ff",
+    // textAlign: "center",
+    paddingLeft: "3.5rem",
+    backgroundColor: "#2854d7",
+    color: "#fff",
+    textDecoration: "none",
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#0F5373",
+      backgroundColor: "#fff",
+      color: "#161D6F",
     },
   },
-  sidebarIcon: {
-    color: "#fff",
-  },
+  // nastedListtext: {
+  //   backgroundColor: "#fff",
+  //   color: "#161D6F",
+  //   borderRadius: "5px",
+  // },
+  // sidebarIcon: {
+  //   color: "#fff",
+  // },
 }));
 
 const Sidebar = () => {
@@ -118,182 +205,166 @@ const Sidebar = () => {
 
   return (
     <>
-      {showNav && (
-        <div className={classes.root}>
-          <span className={classes.companyName}>Neutrosys</span>
-          <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            className={classes.sidebarMenuItem}
+      {/* {showNav && ( */}
+      <div className={classes.root}>
+        <FaSmileWink className={classes.smileIcon} />
+        <span className={classes.companyName}>
+          Neutrosys <hr className={classes.hr} />
+        </span>
+
+        <List
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          className={classes.sidebarMenuItem}
+        >
+          <Link to="/" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
+              <RiDashboard3Fill
+                style={{ fontSize: "1.56rem" }}
+                className={classes.sidebarIcon}
+              />
+
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Dashboard"
+              />
+            </ListItem>
+          </Link>
+          <ListItem
+            button
+            onClick={handleClickJob}
+            className={classes.sidebarList}
           >
-            <ListItem
-              button
-              className={classes.sidebarList}
-              onClick={() => {
-                window.location.pathname = "/dashboard";
-              }}
-            >
-              <ListItemIcon>
-                <HomeIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-            <ListItem
-              button
-              onClick={handleClickJob}
-              className={classes.sidebarList}
-            >
-              <ListItemIcon>
-                <WorkIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="Jobs" />
-              {openJobs ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={openJobs} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
+            <WorkIcon className={classes.sidebarIcon} />
+
+            <ListItemText style={{ marginLeft: "1.5rem" }} primary="Jobs" />
+            {openJobs ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openJobs} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <Link to="/alljobs" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.sidebarList}
                   className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/alljobs";
-                  }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="All Jobs" />
+                  <ListItemText
+                    className={classes.nastedListtext}
+                    primary="Job List"
+                  />
                 </ListItem>
+              </Link>
+
+              <Link to="/addjobs" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.sidebarList}
                   className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/addjobs";
-                  }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
                   <ListItemText primary="Add Jobs" />
                 </ListItem>
-              </List>
-            </Collapse>
-            <ListItem
-              button
-              onClick={handleClickApplicant}
-              className={classes.sidebarList}
-            >
-              <ListItemIcon>
-                <WorkIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="Applicant" />
-              {openApplicant ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={openApplicant} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem
-                  button
-                  className={classes.nested}
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/allApplicant";
-                  }}
-                >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="All Applicant" />
-                </ListItem>
-                <ListItem
-                  button
-                  className={classes.nested}
-                  className={classes.sidebarList}
-                  className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/contracting";
-                  }}
-                >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
-                  <ListItemText primary="Contract" />
-                </ListItem>
+              </Link>
+            </List>
+          </Collapse>
+          <ListItem
+            button
+            onClick={handleClickApplicant}
+            className={classes.sidebarList}
+          >
+            <WorkIcon className={classes.sidebarIcon} />
+
+            <ListItemText
+              style={{ marginLeft: "1.5rem" }}
+              primary="Applicant"
+            />
+            {openApplicant ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openApplicant} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <Link to="/internal" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.sidebarList}
                   className={classes.nastedList}
-                  onClick={() => {
-                    window.location.pathname = "/internal";
-                  }}
                 >
-                  <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
                   <ListItemText primary="Internal" />
                 </ListItem>
-              </List>
-            </Collapse>
-            <ListItem
-              button
-              className={classes.sidebarList}
-              onClick={() => {
-                window.location.pathname = "/contact";
-              }}
-            >
-              <ListItemIcon>
-                <ContactsIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="All Query" />
-            </ListItem>
-            <ListItem
-              button
-              className={classes.sidebarList}
-              onClick={() => {
-                window.location.pathname = "/";
-              }}
-            >
-              <ListItemIcon>
-                <ExitToAppIcon className={classes.sidebarIcon} />
-              </ListItemIcon>
-              <ListItemText primary="Sign Out" />
-            </ListItem>
-          </List>
-          {/* <div>
-            <ul className={classes.sidebarMenuUl}>
-              {SidebarData.map((item, key) => {
-                return (
-                  <li
-                    className={classes.sidebarListAll}
-                    key={key}
-                    id="active"
-                    onClick={() => showSubnav(key)}
-                  >
-                    <i className={classes.SidebarIcon}> {item.icon}</i>
+              </Link>
+              <Link to="/contracting" className={classes.linktext}>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  className={classes.sidebarList}
+                  className={classes.nastedList}
+                >
+                  <ListItemText primary="Contract" />
+                </ListItem>
+              </Link>
 
-                    {item.title}
+              <Link to="/allApplicant" className={classes.linktext}>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  className={classes.sidebarList}
+                  className={classes.nastedList}
+                >
+                  <ListItemText primary="All Applicant" />
+                </ListItem>
+              </Link>
+            </List>
+          </Collapse>
 
-                    <i className={classes.downUpArrow}>
-                      {subnav[key] ? item.iconeOpen : item.iconClosed}
-                    </i>
-                    <ul className={classes.submenuUl}>
-                      {subnav[key] &&
-                        item.subNav.map((item, index) => {
-                          return (
-                            <li className={classes.submenuItem}>
-                              <a>{item.title}</a>
-                            </li>
-                          );
-                        })}
-                    </ul>
-                  </li>
-                );
-              })}
-            </ul>
-          </div> */}
-        </div>
-      )}
+          <Link to="/contact" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
+              <ContactsIcon className={classes.sidebarIcon} />
+
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="All Query"
+              />
+            </ListItem>
+          </Link>
+
+          <Link to="/logout" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
+              <ExitToAppIcon className={classes.sidebarIcon} />
+
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Sign Out"
+              />
+            </ListItem>
+          </Link>
+        </List>
+      </div>
+      {/* )} */}
       <div
         className={
           showNav ? classes.NavbarMianDivOnClick : classes.NavbarMainDiv
         }
       >
-        <MenuIcon
+        {/* <MenuIcon
           className={classes.hamburgurIcon}
           onClick={() => setShowNav(!showNav)}
-        />
-        <img className={classes.adminimg} src={adimImage} />
+        /> */}
+        {/* <Tooltip title="Notification" TransitionComponent={Zoom} arrow>
+          <Link>
+            <MdNotificationsActive className={classes.notificationIcon} />
+          </Link>
+        </Tooltip>
+        <span className={classes.notificationNumber}>20</span> */}
+        <Notification />
+        <Tooltip title="Message" TransitionComponent={Zoom} arrow>
+          <Link to="/contact">
+            <GrMail className={classes.messgaeIcon} />
+          </Link>
+        </Tooltip>
+        <span className={classes.messageNumber}>20</span>
+
+        <span className={classes.verticalLine}>l</span>
+        <span className={classes.adminName}>Dipesh Shrestha</span>
+        {/* <img className={classes.adminimg} src={adimImage} /> */}
+        <SignOut />
       </div>
     </>
   );
