@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.3rem",
     marginTop: "0.3rem",
   },
+  MuiPaperElevation1:{
+    position:"absolute",
+    left:"-30%"
+    
+  },
   notificationNumber: {
     // marginRight: "1rem",
     color: "#fff",
@@ -172,7 +177,8 @@ export default function SignOut() {
           role={undefined}
           transition
           disablePortal
-          style={{ width: "15%", zIndex: "500" }}
+
+          style={{ width: "15%", zIndex: "500", marginRight:"9%", overflow:"hidden", }}
           //   anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           //   transformOrigin={{ vertical: "top", horizontal: "left" }}
         >
