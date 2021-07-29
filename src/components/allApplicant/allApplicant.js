@@ -71,6 +71,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 !important",
     // height: "3vh !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 
   buttomDiv: {
@@ -113,7 +114,7 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",

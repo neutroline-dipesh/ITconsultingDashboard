@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
-import * as actions from '../../store/actions';
+import * as actions from "../../store/actions";
 import { connect } from "react-redux";
-import axios from 'axios';
+import axios from "axios";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -69,6 +69,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 !important",
 
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -96,7 +97,7 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     // color: "red",
     fontSize: "15px",
     textAlign: "center",
@@ -104,7 +105,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
-    const [data1, setData1] = useState([]);
+  const [data1, setData1] = useState([]);
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
@@ -297,14 +298,13 @@ const Contact = (props) => {
                               <RiDeleteBin6Fill
                                 id={item.id}
                                 className={classes.deleteButton}
-                                onClick={(e) => deletFunction(e)} 
+                                onClick={(e) => deletFunction(e)}
                               />
                             </div>
                           </td>
                         </tr>
                       );
-                    })
-                    }
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -322,9 +322,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) =>{
- return{
-   onLoad: () => dispatch(actions.getAllQueries()),
- }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoad: () => dispatch(actions.getAllQueries()),
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);

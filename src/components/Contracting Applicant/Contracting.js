@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
-import * as actions from '../../store/actions';
+import * as actions from "../../store/actions";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,7 +13,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import axios from 'axios';
+import axios from "axios";
 import { contractData } from "./contractData";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
@@ -73,6 +73,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fff",
     fontWeight: "400 !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -114,7 +115,7 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
@@ -381,9 +382,7 @@ const Contracting = (props) => {
                           </td>
                         </tr>
                       );
-                    })
-                    
-                    }
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -395,15 +394,15 @@ const Contracting = (props) => {
   );
 };
 
-const mapStateToProps = (state) =>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     data: state.contract.data,
     loading: state.contract.loading,
-  }
-}
-const mapDispatchToProps = (dispatch) =>{
-  return{
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
     onLoad: () => dispatch(actions.getContractApplicant()),
-  } 
-}
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Contracting);

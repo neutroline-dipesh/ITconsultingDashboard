@@ -19,7 +19,10 @@ import { GrMail } from "react-icons/gr";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-
+import { RiDashboard3Fill } from "react-icons/ri";
+import Notification from "./Notification";
+import { MdNotificationsActive } from "react-icons/md";
+import SignOut from "./SignOut";
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
@@ -88,6 +91,22 @@ const useStyle = makeStyles((theme) => ({
   //   marginLeft: "1rem",
   //   fontSize: "30px",
   // },
+  notificationIcon: {
+    color: "#858796",
+    fontSize: "1.3rem",
+    marginTop: "0.3rem",
+  },
+  notificationNumber: {
+    marginRight: "1rem",
+    color: "#fff",
+    // width: "0.6rem",
+    fontSize: "0.6rem",
+    borderRadius: "5px",
+    padding: "1px 3px 1px 3px",
+    marginTop: "-1rem",
+    backgroundColor: "#E74A3B",
+  },
+
   messgaeIcon: {
     fontSize: "1.3rem",
     color: "#858796",
@@ -200,7 +219,10 @@ const Sidebar = () => {
         >
           <Link to="/" className={classes.linktext}>
             <ListItem button className={classes.sidebarList}>
-              <HomeIcon className={classes.sidebarIcon} />
+              <RiDashboard3Fill
+                style={{ fontSize: "1.56rem" }}
+                className={classes.sidebarIcon}
+              />
 
               <ListItemText
                 style={{ marginLeft: "1.5rem" }}
@@ -325,6 +347,13 @@ const Sidebar = () => {
           className={classes.hamburgurIcon}
           onClick={() => setShowNav(!showNav)}
         /> */}
+        {/* <Tooltip title="Notification" TransitionComponent={Zoom} arrow>
+          <Link>
+            <MdNotificationsActive className={classes.notificationIcon} />
+          </Link>
+        </Tooltip>
+        <span className={classes.notificationNumber}>20</span> */}
+        <Notification />
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
           <Link to="/contact">
             <GrMail className={classes.messgaeIcon} />
@@ -334,7 +363,8 @@ const Sidebar = () => {
 
         <span className={classes.verticalLine}>l</span>
         <span className={classes.adminName}>Dipesh Shrestha</span>
-        <img className={classes.adminimg} src={adimImage} />
+        {/* <img className={classes.adminimg} src={adimImage} /> */}
+        <SignOut />
       </div>
     </>
   );

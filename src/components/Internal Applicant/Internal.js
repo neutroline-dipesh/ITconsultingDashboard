@@ -17,6 +17,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
+import { internalData } from "./internalData";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -68,6 +69,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fff",
     fontWeight: "400 !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -103,7 +105,7 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",

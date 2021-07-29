@@ -11,8 +11,8 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import * as actions from '../../store/actions';
-import axios from 'axios';
+import * as actions from "../../store/actions";
+import axios from "axios";
 
 import { connect } from "react-redux";
 import { RiDeleteBin6Fill } from "react-icons/ri";
@@ -23,7 +23,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { CgAddR } from "react-icons/cg";
-
+import { IoMdAdd } from "react-icons/io";
 import { allJobsData } from "./alljobsData";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -47,9 +47,22 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     color: "#fffff",
   },
+  addJobButton: {
+    textDecoration: "none",
+    backgroundColor: "#2653d4",
+    borderRadius: "20px",
+    width: "7rem",
+    height: "3.9vh",
+    fontSize: "0.7rem",
+    marginRight: "1.5rem",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      // backgroundColor: "#98DED9",
+    },
+  },
   addIcon: {
     // color: "black !important",
-    fontSize: "2rem",
+    fontSize: "1rem",
     marginRight: "1rem",
   },
   MainContentDiv: {
@@ -81,6 +94,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 !important",
     // height: "3vh !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   tableBody: {
     textAlign: "center",
@@ -157,7 +171,8 @@ const Alljobs = (props) => {
 
   //alert message
 
-  const deletFunction = () => {
+  const deletFunction = (e) => {
+    console.log(e);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -205,7 +220,14 @@ const Alljobs = (props) => {
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
               <Link to="/addjobs">
-                <CgAddR className={classes.addIcon} />
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className={classes.addJobButton}
+                >
+                  <IoMdAdd className={classes.addIcon} /> Add Job
+                </Button>
               </Link>
             </Tooltip>
           </div>
@@ -232,8 +254,7 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {
-                    data1.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
@@ -245,7 +266,7 @@ const Alljobs = (props) => {
                           <td className={classes.tableBody}>{item.jobType}</td>
                           {/* <td>{item.country}</td> */}
                           <td className={classes.tableBody}>
-                            {item.country}, {item.state} , {item.city}
+                            {item.state} , {item.city}
                           </td>
                           <td className={classes.tableBody}>
                             {item.publishBy}
@@ -291,7 +312,7 @@ const Alljobs = (props) => {
                                 <Link>
                                   <RiDeleteBin6Fill
                                     className={classes.deleteButton}
-                                    onClick={() => deletFunction()}
+                                    onClick={() => deletFunction(item.id)}
                                   />
                                 </Link>
                               </Tooltip>
@@ -332,8 +353,7 @@ const Alljobs = (props) => {
                           </td>
                         </tr>
                       );
-                    })
-                  }
+                    })}
                   </tbody>
                 </table>
               </div>

@@ -15,6 +15,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
+import { IoMdArrowBack } from "react-icons/io";
+import Button from "@material-ui/core/Button";
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -45,10 +47,22 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     color: "#062837",
   },
-  backIcon: {
+  jobListButton: {
+    textDecoration: "none",
+    backgroundColor: "#2653d4",
+    borderRadius: "20px",
+    width: "7rem",
+    height: "3.9vh",
+    fontSize: "0.7rem",
+    marginRight: "1.5rem",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      // backgroundColor: "#98DED9",
+    },
+  },
+  jobListIcon: {
     // color: "black !important",
-
-    fontSize: "1.9rem",
+    fontSize: "1rem",
     marginRight: "1rem",
   },
   MainContentDiv: {
@@ -340,7 +354,14 @@ const EditJobs = () => {
             <span className={classes.pageTabName}>Job / Edit Jobs</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
               <Link to="/alljobs">
-                <CgArrowLeftR className={classes.backIcon} />
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className={classes.jobListButton}
+                >
+                  <IoMdArrowBack className={classes.jobListIcon} /> Job List
+                </Button>
               </Link>
             </Tooltip>
           </div>

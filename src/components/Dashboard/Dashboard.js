@@ -12,6 +12,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Calendar from "react-calendar";
+import { CalendarComponent } from "@syncfusion/ej2-react-calendars";
 
 import "react-calendar/dist/Calendar.css";
 import { allApplicantData } from "../allApplicant/allApplicantData";
@@ -98,7 +99,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#f8f9fc",
     display: "flex",
     justifyContent: "space-around",
-    alignItems: "center",
+    // alignItems: "center",
     height: "67vh",
     // margin: "1.5rem",
   },
@@ -111,7 +112,7 @@ const useStyle = makeStyles((theme) => ({
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
     width: "60%",
-
+    marginBottom: "1.5rem",
     // maxHeight: "50vh",
   },
   tableTitleBottonDiv: {
@@ -133,7 +134,7 @@ const useStyle = makeStyles((theme) => ({
   },
   tableHead: {
     fontSize: "1rem",
-    fontWeight: "600",
+    // fontWeight: "00",
   },
   tableDataDiv: {
     height: "51vh",
@@ -161,33 +162,37 @@ const useStyle = makeStyles((theme) => ({
   },
   calenderDiv: {
     width: "25%",
+    // marginTop: "",
 
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
-  viewDate: {
-    height: "10vh",
-    backgroundColor: "#4e73df",
-    display: "flex",
-    alignItems: "center",
-  },
-  day: {
-    fontSize: "3rem",
-    fontWeight: "200",
-    color: "#fff",
-    marginLeft: "1rem",
+  // viewDate: {
+  //   height: "10vh",
+  //   backgroundColor: "#4e73df",
+  //   display: "flex",
+  //   alignItems: "center",
+  // },
+  // day: {
+  //   fontSize: "3rem",
+  //   fontWeight: "200",
+  //   color: "#fff",
+  //   marginLeft: "1rem",
 
-    // marginTop: "0rem",
-  },
-  month: {
-    fontSize: "2rem",
-    fontWeight: "200",
-    color: "#fff",
-    marginTop: "1rem",
-  },
+  //   // marginTop: "0rem",
+  // },
+  // month: {
+  //   fontSize: "2rem",
+  //   fontWeight: "200",
+  //   color: "#fff",
+  //   marginTop: "1rem",
+  // },
 
   calender: {
     // height: "30vh",
     // width: "10%",
+    // marginRight: "-1rem",
+    borderRadius: "5px",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
 
   jobs: {
@@ -354,15 +359,18 @@ const Dashboard = () => {
               </div>
 
               <div className={classes.calenderDiv}>
-                <div className={classes.viewDate}>
+                {/* <div className={classes.viewDate}>
                   <span className={classes.day}>{day}</span>
                   <span className={classes.month}>{month}</span>
-                </div>
-                <Calendar
+                </div> */}
+                {/* <Calendar
                   className={classes.calender}
                   onChange={calenderOnChange}
                   value={date}
-                />
+                /> */}
+                <CalendarComponent
+                  className={classes.calender}
+                ></CalendarComponent>
               </div>
             </div>
           </div>
