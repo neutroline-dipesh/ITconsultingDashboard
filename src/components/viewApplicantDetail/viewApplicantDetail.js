@@ -64,6 +64,8 @@ const useStyle = makeStyles((theme) => ({
     // backgroundColor: "red",
     maxHeight: "70vh",
     overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
   },
   leftDiv: {
     // backgroundColor: "red",
@@ -89,6 +91,8 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F8F9FC",
 
     borderBottom: "solid 1px #e3e6f0",
+    display: "flex",
+    justifyContent: "space-between",
   },
   lefttableTitle: {
     fontWeight: "600",
@@ -147,8 +151,8 @@ const useStyle = makeStyles((theme) => ({
     height: "80vh",
   },
   toogleButton: {
-    marginTop: "2rem",
-    marginLeft: "1rem",
+    // marginTop: "2rem",
+    marginRight: "1rem",
     height: "5vh",
   },
   acceptToggleBtn: {
@@ -206,6 +210,35 @@ const Contracting = () => {
                   <span className={classes.lefttableTitle}>
                     Personal Information
                   </span>
+                  <ToggleButtonGroup
+                    className={classes.toogleButton}
+                    value={alignment}
+                    exclusive
+                    onChange={handleAlignment}
+                    aria-label="text alignment"
+                  >
+                    <ToggleButton
+                      className={classes.acceptToggleBtn}
+                      value="Accept"
+                      aria-label="left aligned"
+                    >
+                      Accept
+                    </ToggleButton>
+                    <ToggleButton
+                      className={classes.rejectToggleBtn}
+                      value="Reject"
+                      aria-label="centered"
+                    >
+                      Reject
+                    </ToggleButton>
+                    <ToggleButton
+                      className={classes.blacklistToggleBtn}
+                      value="Hold"
+                      aria-label="right aligned"
+                    >
+                      Hold
+                    </ToggleButton>
+                  </ToggleButtonGroup>
                 </div>{" "}
                 <div className={classes.leftRightDiv}>
                   <div className={classes.leftDiv}>
@@ -292,35 +325,7 @@ const Contracting = () => {
                     </List>
                     <ViewMessage />
                     <CoverLetter />
-                    <ToggleButtonGroup
-                      className={classes.toogleButton}
-                      value={alignment}
-                      exclusive
-                      onChange={handleAlignment}
-                      aria-label="text alignment"
-                    >
-                      <ToggleButton
-                        className={classes.acceptToggleBtn}
-                        value="Accept"
-                        aria-label="left aligned"
-                      >
-                        Accept
-                      </ToggleButton>
-                      <ToggleButton
-                        className={classes.rejectToggleBtn}
-                        value="Reject"
-                        aria-label="centered"
-                      >
-                        Reject
-                      </ToggleButton>
-                      <ToggleButton
-                        className={classes.blacklistToggleBtn}
-                        value="Hold"
-                        aria-label="right aligned"
-                      >
-                        Hold
-                      </ToggleButton>
-                    </ToggleButtonGroup>
+
                     {/* <span className={classes.resumeTitle}>Resume:</span> */}
                     {/* <embed className={classes.cv} src={file}></embed> */}
                   </div>

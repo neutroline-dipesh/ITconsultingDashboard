@@ -16,26 +16,18 @@ import IconButton from "@material-ui/core/IconButton";
 import adimImage from "../../assets/images/admin2.png";
 
 import { Link } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
+import ContactsIcon from "@material-ui/icons/Contacts";
 
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
-    backgroundColor: "#F8F9FC",
-    color: "#303f9f",
-    height: "15vh",
+    // backgroundColor: "#4e73df",
+    // color: "#fff",
+    // height: "15vh",
     borderBottom: "solid 1px #e3e6f0",
   },
-  titleCrossIconDiv: {
-    display: "flex",
-    alignItems: "center",
-  },
-  nameAddressDiv: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  phone: {
-    fontSize: "14px",
-  },
+
   message: {
     marginTop: "1rem",
     textAlign: "justify",
@@ -54,6 +46,18 @@ const useStyle = makeStyles((theme) => ({
   adminimg: {
     width: "80px",
     marginRight: "1rem",
+  },
+  iconBodyDiv: {
+    display: "flex",
+    alignItems: "center",
+  },
+  avatar: {
+    backgroundColor: "#fff",
+    color: "red",
+    border: "1px solid #4e73df",
+  },
+  dialogBody: {
+    marginLeft: "1rem",
   },
 }));
 
@@ -92,31 +96,16 @@ export default function AlertDialogSlide(props) {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle className={classes.DialogTitle}>
-          <div className={classes.titleCrossIconDiv}>
-            <img className={classes.adminimg} src={adimImage} />
-            <div className={classes.nameAddressDiv}>
-              <span>{"Dipesh Shrestha (dipeshxtha129@gmail.com)"}</span>
-              <span className={classes.phone}>
-                {" 9816940668 "}
-                <font style={{ marginLeft: "1rem" }}>Damak-11, Jhapa</font>
-              </span>
-            </div>
-            {/* <CloseIcon /> */}
-            {/* <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-              className={classes.crossIcon}
-            >
-              
-            </IconButton> */}
-          </div>
+          <span>{"Dipesh Shrestha "}</span>
         </DialogTitle>
 
         <DialogContent>
-          {/* <DialogContentText>Name : Dipesh Shrestha</DialogContentText>
-          <DialogContentText>Email : dipeshxtha129@gmail.com</DialogContentText> */}
+          <DialogContentText className={classes.iconBodyDiv}>
+            <Avatar className={classes.avatar}>
+              <ContactsIcon className={classes.icon} />
+            </Avatar>
+            <span className={classes.dialogBody}> dipeshxtha129@gmail.com</span>
+          </DialogContentText>
           {/* <DialogContentText>Phone : 9816940668</DialogContentText>
           <DialogContentText>Address : Damak-11, Jhapa</DialogContentText> */}
           {/* <DialogContentText>Subject : Subject is here</DialogContentText> */}

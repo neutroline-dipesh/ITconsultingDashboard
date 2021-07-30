@@ -18,6 +18,8 @@ import allApplicant from "./components/allApplicant/allApplicant";
 import Logout from "./components/Logout/Logout";
 import viewApplicantDetail from "./components/viewApplicantDetail/viewApplicantDetail";
 import viewJobDetail from "./components/All jobs/viewJobDetail";
+import Notification from "./components/Sidebar/Notification";
+import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 function App(props) {
   useEffect(() => {
@@ -39,11 +41,14 @@ function App(props) {
     //   <Route exact path="/viewContact" component={viewDetail} />
     //   <Route exact path="/allApplicant" component={allApplicant} />
     //   <Route exact path="/viewJobDetail" component={viewJobDetail} />
+    //   <Route exact path="/notification" component={Notification} />
+
     //   <Route
     //     exact
     //     path="/viewApplicatnDetail"
     //     component={viewApplicantDetail}
     //   />
+    //   <Route exact path="/signout" component={signout} />
     //   <Route exact path="/logout" component={Logout} />
     //   <Route component={pageNotFound} />
     // </Switch>

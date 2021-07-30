@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
-import * as actions from '../../store/actions';
+import * as actions from "../../store/actions";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,7 +13,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import axios from 'axios';
+import axios from "axios";
 import { contractData } from "./contractData";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
@@ -63,6 +63,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -73,6 +74,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fff",
     fontWeight: "400 !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -112,12 +114,14 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -246,7 +250,6 @@ const Contracting = (props) => {
                       {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
-                      <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Approvel Status</th>
 
                       <th className={classes.tableHead}>Action</th>
@@ -308,28 +311,7 @@ const Contracting = (props) => {
                           >
                             {item.postedDate}
                           </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <select>
-                              <option
-                                value="notSeen"
-                                selected={item.status == "notSeen"}
-                              >
-                                Not Seen
-                              </option>
-                              <option
-                                value="seen"
-                                selected={item.status == "seen"}
-                              >
-                                Seen
-                              </option>
-                            </select>
-                          </td>
+
                           <td
                             className={
                               item.status == "seen"
@@ -407,9 +389,7 @@ const Contracting = (props) => {
                           </td>
                         </tr>
                       );
-                    })
-                    
-                    }
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -421,15 +401,15 @@ const Contracting = (props) => {
   );
 };
 
-const mapStateToProps = (state) =>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     data: state.contract.data,
     loading: state.contract.loading,
-  }
-}
-const mapDispatchToProps = (dispatch) =>{
-  return{
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
     onLoad: () => dispatch(actions.getContractApplicant()),
-  } 
-}
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Contracting);

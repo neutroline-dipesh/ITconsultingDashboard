@@ -16,6 +16,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
+import { IoMdArrowBack } from "react-icons/io";
+import Button from "@material-ui/core/Button";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -38,6 +40,24 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400",
     marginLeft: "1rem",
     color: "#fffff",
+  },
+  jobListButton: {
+    textDecoration: "none",
+    backgroundColor: "#2653d4",
+    borderRadius: "20px",
+    width: "7rem",
+    height: "3.9vh",
+    fontSize: "0.7rem",
+    marginRight: "1.5rem",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      // backgroundColor: "#98DED9",
+    },
+  },
+  jobListIcon: {
+    // color: "black !important",
+    fontSize: "1rem",
+    marginRight: "1rem",
   },
   backIcon: {
     // color: "black !important",
@@ -66,13 +86,13 @@ const useStyle = makeStyles((theme) => ({
     width: "33%",
     display: "flex",
     flexDirection: "column",
-    marginTop: "1rem",
+    // marginTop: "1rem",
     marginBottom: "1rem",
     backgroundColor: "#ffffff",
     boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
   listMain: {
-    marginTop: "1rem",
+    // marginTop: "1rem",
   },
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
@@ -92,11 +112,11 @@ const useStyle = makeStyles((theme) => ({
     color: "#303f9f",
   },
   listHead: {
-    fontSize: "1rem",
+    fontSize: "0.875rem",
     fontWeight: "bold",
     // color: "#858796",
     width: "30%",
-    marginLeft: "1rem",
+    // marginLeft: "1rem",
   },
   listBody: {
     // color: "#858796",
@@ -110,7 +130,7 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginLeft: "1rem",
-    marginTop: "1rem",
+    // marginTop: "1rem",
     marginBottom: "1rem",
     marginRight: "0.5rem",
     backgroundColor: "#ffffff",
@@ -133,8 +153,14 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1.5rem",
     color: "#303f9f",
   },
+  leftTableContectDiv: {
+    overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
+  },
   rightTableContectDiv: {
     overflow: "scroll",
+    overflowX: "hidden",
   },
 }));
 
@@ -150,7 +176,14 @@ const JobsDetail = () => {
             <span className={classes.pageTabName}>Jobs / Jobs Detail</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
               <Link to="/alljobs">
-                <CgArrowLeftR className={classes.backIcon} />
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className={classes.jobListButton}
+                >
+                  <IoMdArrowBack className={classes.jobListIcon} /> Job List
+                </Button>
               </Link>
             </Tooltip>
           </div>
@@ -161,21 +194,36 @@ const JobsDetail = () => {
                   <div className={classes.lefttableTitleDiv}>
                     <span className={classes.lefttableTitle}>Job Overview</span>
                   </div>
-                  <div className={classes.rightTableContectDiv}>
+                  <div className={classes.leftTableContectDiv}>
                     <List className={classes.listMain}>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Job Id:</span>
                         <span className={classes.listBody}>
                           React Developer
                         </span>
                       </ListItem>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Job Title:</span>
                         <span className={classes.listBody}>
                           React Developer
                         </span>
                       </ListItem>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Job SubTitle:</span>
                         <span className={classes.listBody}>
                           Subtitle is here Subtitle is here Subtitle is here
@@ -183,20 +231,40 @@ const JobsDetail = () => {
                         </span>
                       </ListItem>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Department:</span>
                         <span className={classes.listBody}>Technology</span>
                       </ListItem>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Job Type:</span>
                         <span className={classes.listBody}>Full Time</span>
                       </ListItem>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Address:</span>
                         <span className={classes.listBody}>
                           Nepal ,Provience 1, Damak-6
                         </span>
                       </ListItem>
                       <ListItem>
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ContactsIcon />
+                          </Avatar>
+                        </ListItemAvatar>
                         <span className={classes.listHead}>Publish Date:</span>
                         <span className={classes.listBody}>7/7/2021</span>
                       </ListItem>

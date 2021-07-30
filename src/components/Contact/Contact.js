@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
-import * as actions from '../../store/actions';
+import * as actions from "../../store/actions";
 import { connect } from "react-redux";
 import axios from 'axios';
 //Bootstrap and jQuery libraries
@@ -15,6 +15,7 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { contactData } from "./contactDate";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -57,6 +58,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -68,6 +70,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 !important",
 
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -93,12 +96,14 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "15px",
 
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     // color: "red",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -224,7 +229,6 @@ const Contact = (props) => {
                       <th className={classes.tableHead}>Phone</th>
                       {/* <th className={classes.tableHead}>Address</th> */}
                       <th className={classes.tableHead}>Subject</th>
-                      <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
@@ -286,28 +290,7 @@ const Contact = (props) => {
                           >
                             {item.subject}
                           </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <select id="select">
-                              <option
-                                value="notSeen"
-                                selected={item.status == "notSeen"}
-                              >
-                                Not Seen
-                              </option>
-                              <option
-                                value="seen"
-                                selected={item.status == "seen"}
-                              >
-                                Seen
-                              </option>
-                            </select>
-                          </td>
+
                           <td
                             className={
                               item.status == "seen"
@@ -335,8 +318,7 @@ const Contact = (props) => {
                           </td>
                         </tr>
                       );
-                    })
-                    }
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -355,9 +337,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) =>{
- return{
-   onLoad: () => dispatch(actions.getAllQueries()),
- }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoad: () => dispatch(actions.getAllQueries()),
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);

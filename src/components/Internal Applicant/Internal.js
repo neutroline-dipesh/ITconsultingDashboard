@@ -18,6 +18,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
+import { internalData } from "./internalData";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -69,6 +71,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#fff",
     fontWeight: "400 !important",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -102,12 +105,14 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   noColor: {
-    fontWeight: "500",
+    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -232,7 +237,7 @@ const Internal = (props) => {
                       {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
-                      <th className={classes.tableHead}>Status</th>
+                      {/* <th className={classes.tableHead}>Status</th> */}
                       <th className={classes.tableHead}>Approvel Status</th>
 
                       <th className={classes.tableHead}>Action</th>
@@ -245,7 +250,7 @@ const Internal = (props) => {
                           <td
                             className={
                               item.status == "seen"
-                                ? classes.seenColor
+                                ? classes.seenColor 
                                 : classes.noColor
                             }
                           >
@@ -293,7 +298,7 @@ const Internal = (props) => {
                           >
                             {item.postedDate}
                           </td>
-                          <td
+                          {/* <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -314,7 +319,7 @@ const Internal = (props) => {
                                 Seen
                               </option>
                             </select>
-                          </td>
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"
