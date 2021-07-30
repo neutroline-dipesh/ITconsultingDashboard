@@ -538,7 +538,6 @@ const Addjobs = () => {
                         <button
                           type="submit"
                           className={"btn btn-primary" + " " + classes.save}
-                          onClick={() => saveFunction()}
                         >
                           Save
                         </button>

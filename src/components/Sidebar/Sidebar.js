@@ -326,7 +326,7 @@ const Sidebar = () => {
           onClick={() => setShowNav(!showNav)}
         /> */}
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
-          <Link to="/contact">
+          <Link to="/viewContact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>

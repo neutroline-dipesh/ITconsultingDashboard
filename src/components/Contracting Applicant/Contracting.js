@@ -122,17 +122,12 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contracting = (props) => {
+   const [data1, setData1] = useState([]);
   //getting data from database
-  const [data1, setData1] = useState([]);
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/contract/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
+      fetchData();
     }, 100);
   }, []);
   console.log(data1);
@@ -147,9 +142,20 @@ const Contracting = (props) => {
     });
   });
 
+
+
   //alert message
 
-  const deletFunction = () => {
+  const fetchData = () =>{
+          axios.get("http://localhost:4000/contract/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+  }
+
+  const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -176,11 +182,31 @@ const Contracting = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-          );
+          axios.delete("http://localhost:4000/contract/"+ id, 
+          {
+            headers: {'Authorization': localStorage.getItem('token')} ,
+            data:{
+              id:id,
+            }
+          }
+          ).then(
+            res =>{
+              console.log('deleted id'+id);
+               swalWithBootstrapButtons.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              );
+              fetchData();
+            }
+          ).catch(err =>{
+            console.log(err);
+            swalWithBootstrapButtons.fire(
+              "Something Went Wrong!",
+              "Job not deleted!",
+              "fail"
+            )
+          })
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -227,7 +253,7 @@ const Contracting = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {contractData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr key="key">
                           <td
@@ -373,7 +399,7 @@ const Contracting = (props) => {
                                 <Link>
                                   <RiDeleteBin6Fill
                                     className={classes.deleteButton}
-                                    onClick={() => deletFunction()}
+                                    onClick={() => deletFunction(item.id)}
                                   />
                                 </Link>
                               </Tooltip>
