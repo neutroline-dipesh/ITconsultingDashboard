@@ -210,8 +210,8 @@ const Contact = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
-                      // {contactData.map((item, key) => {
+                    {/* {data1.map((item, key) => { */}
+                    {contactData.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td

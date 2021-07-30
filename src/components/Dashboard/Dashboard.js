@@ -135,6 +135,7 @@ const useStyle = makeStyles((theme) => ({
   tableHead: {
     fontSize: "1rem",
     // fontWeight: "00",
+    whiteSpace: "nowrap",
   },
   tableDataDiv: {
     height: "51vh",
@@ -337,16 +338,29 @@ const Dashboard = () => {
                     <TableBody>
                       {allApplicantData.map((item) => (
                         <TableRow>
-                          <TableCell component="th" scope="row">
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.jobTitle}
                           </TableCell>
-                          <TableCell align="center">
+                          <TableCell
+                            align="center"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.firstName + " " + item.lastName}
                           </TableCell>
-                          <TableCell align="center">
+                          <TableCell
+                            align="center"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.senioritylevel}
                           </TableCell>
-                          <TableCell align="center">
+                          <TableCell
+                            align="center"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.postedDate}
                           </TableCell>
                           {/* <TableCell align="right">{row.fat}</TableCell>

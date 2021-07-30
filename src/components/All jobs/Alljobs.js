@@ -256,10 +256,9 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
-                      {
-                        /* {allJobsData.map((item, key) => { */
-                      }
+                    {/* {data1.map((item, key) => { */}
+
+                    {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}

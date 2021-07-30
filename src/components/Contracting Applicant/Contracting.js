@@ -230,8 +230,10 @@ const Contracting = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {contractData.map((item, key) => { */}
-                    {data1.map((item, key) => {
+                    {contractData.map((item, key) => {
+                      {
+                        /* {data1.map((item, key) => { */
+                      }
                       return (
                         <tr key="key">
                           <td

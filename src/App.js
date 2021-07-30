@@ -29,119 +29,119 @@ function App(props) {
   //   props.onTryAutoSignup();
   // }, []);
   return (
-    // <Switch>
-    //   <Route exact path="/login" component={Login} />
-    //   <Route exact path="/" component={Dashboard} />
-    //   <Route exact path="/alljobs" component={Alljobs} />
-    //   <Route exact path="/alljobs/editJobs" component={EditJobs} />
-    //   <Route exact path="/contracting" component={Contracting} />
-    //   <Route exact path="/internal" component={Internal} />
-    //   <Route exact path="/addjobs" component={AddJobs} />
-    //   <Route exact path="/contact" component={Contact} />
-    //   <Route exact path="/viewContact" component={viewDetail} />
-    //   <Route exact path="/allApplicant" component={allApplicant} />
-    //   <Route exact path="/viewJobDetail" component={viewJobDetail} />
-    //   <Route exact path="/notification" component={Notification} />
-
-    //   <Route
-    //     exact
-    //     path="/viewApplicatnDetail"
-    //     component={viewApplicantDetail}
-    //   />
-    //   <Route exact path="/signout" component={signout} />
-    //   <Route exact path="/logout" component={Logout} />
-    //   <Route component={pageNotFound} />
-    // </Switch>
     <Switch>
-      <Route exact path="/" component={Login} />
-      <GuardedRoute
-        exact
-        path="/dashboard"
-        component={Dashboard}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/alljobs"
-        component={Alljobs}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/alljobs/editJobs"
-        component={EditJobs}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/contracting"
-        component={Contracting}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/internal"
-        component={Internal}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/addjobs"
-        component={AddJobs}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/contact"
-        component={Contact}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/viewContact"
-        component={viewDetail}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/allApplicant"
-        component={allApplicant}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/viewJobDetail"
-        component={viewJobDetail}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
-        exact
-        path="/logout"
-        component={Logout}
-        auth={props.isAuthenticated}
-      />
-      <GuardedRoute
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/alljobs" component={Alljobs} />
+      <Route exact path="/alljobs/editJobs" component={EditJobs} />
+      <Route exact path="/contracting" component={Contracting} />
+      <Route exact path="/internal" component={Internal} />
+      <Route exact path="/addjobs" component={AddJobs} />
+      <Route exact path="/contact" component={Contact} />
+      <Route exact path="/viewContact" component={viewDetail} />
+      <Route exact path="/allApplicant" component={allApplicant} />
+      <Route exact path="/viewJobDetail" component={viewJobDetail} />
+      <Route exact path="/notification" component={Notification} />
+
+      <Route
         exact
         path="/viewApplicatnDetail"
         component={viewApplicantDetail}
-        auth={props.isAuthenticated}
       />
-
+      <Route exact path="/signout" component={signout} />
+      <Route exact path="/logout" component={Logout} />
       <Route component={pageNotFound} />
     </Switch>
+    // <Switch>
+    //   <Route exact path="/" component={Login} />
+    //   <GuardedRoute
+    //     exact
+    //     path="/dashboard"
+    //     component={Dashboard}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/alljobs"
+    //     component={Alljobs}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/alljobs/editJobs"
+    //     component={EditJobs}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/contracting"
+    //     component={Contracting}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/internal"
+    //     component={Internal}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/addjobs"
+    //     component={AddJobs}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/contact"
+    //     component={Contact}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/viewContact"
+    //     component={viewDetail}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/allApplicant"
+    //     component={allApplicant}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/viewJobDetail"
+    //     component={viewJobDetail}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/logout"
+    //     component={Logout}
+    //     auth={props.isAuthenticated}
+    //   />
+    //   <GuardedRoute
+    //     exact
+    //     path="/viewApplicatnDetail"
+    //     component={viewApplicantDetail}
+    //     auth={props.isAuthenticated}
+    //   />
+
+    //   <Route component={pageNotFound} />
+    // </Switch>
   );
 }
-// export default App;
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.auth.token !== null,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState()),
-    setPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
-  };
-};
+export default App;
+// const mapStateToProps = (state) => {
+//   return {
+//     isAuthenticated: state.auth.token !== null,
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+//     setPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+//   };
+// };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

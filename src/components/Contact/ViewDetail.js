@@ -17,20 +17,27 @@ import adimImage from "../../assets/images/admin2.png";
 
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
-import ContactsIcon from "@material-ui/icons/Contacts";
-
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { FaAddressCard } from "react-icons/fa";
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
-    // backgroundColor: "#4e73df",
-    // color: "#fff",
-    // height: "15vh",
+    backgroundColor: "#F8F9FC",
     borderBottom: "solid 1px #e3e6f0",
   },
-
+  phoneAddressDiv: {
+    display: "flex",
+  },
   message: {
     marginTop: "1rem",
     textAlign: "justify",
+    border: "1px solid #e3e6f0",
+    borderRadius: "5px",
+    padding: "1rem",
+    color: "black",
+    backgroundColor: "#F8F9FC",
+    width: "32rem",
   },
 
   viewButton: {
@@ -43,21 +50,37 @@ const useStyle = makeStyles((theme) => ({
       color: "#4e73df",
     },
   },
-  adminimg: {
-    width: "80px",
-    marginRight: "1rem",
-  },
+
   iconBodyDiv: {
     display: "flex",
     alignItems: "center",
   },
   avatar: {
     backgroundColor: "#fff",
-    color: "red",
+    color: "#4e73df",
     border: "1px solid #4e73df",
+    height: "2rem",
+    width: "2rem",
+  },
+  icon: {
+    fontSize: "1rem",
   },
   dialogBody: {
     marginLeft: "1rem",
+    color: "black",
+  },
+  doneButton: {
+    color: "#fff",
+    backgroundColor: "#2653d4",
+    borderRadius: "20px",
+    width: "7rem",
+    height: "3.9vh",
+    fontSize: "0.7rem",
+    marginRight: "1.5rem",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {
+      backgroundColor: "#2929a3",
+    },
   },
 }));
 
@@ -94,30 +117,67 @@ export default function AlertDialogSlide(props) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
+        className={classes.dialog}
       >
         <DialogTitle className={classes.DialogTitle}>
           <span>{"Dipesh Shrestha "}</span>
         </DialogTitle>
 
         <DialogContent>
-          <DialogContentText className={classes.iconBodyDiv}>
-            <Avatar className={classes.avatar}>
-              <ContactsIcon className={classes.icon} />
-            </Avatar>
-            <span className={classes.dialogBody}> dipeshxtha129@gmail.com</span>
-          </DialogContentText>
+          <div className={classes.phoneAddressDiv}>
+            <DialogContentText
+              className={classes.iconBodyDiv}
+              style={{ minWidth: "50%" }}
+            >
+              <Avatar className={classes.avatar}>
+                <FaPhoneAlt className={classes.icon} />
+              </Avatar>
+              <span className={classes.dialogBody}> 9816940668</span>
+            </DialogContentText>
+            <DialogContentText className={classes.iconBodyDiv}>
+              <Avatar className={classes.avatar}>
+                <FaAddressCard className={classes.icon} />
+              </Avatar>
+              <span className={classes.dialogBody}> Damak-11, Jhapa</span>
+            </DialogContentText>
+          </div>
+          <div className={classes.phoneAddressDiv}>
+            <DialogContentText
+              className={classes.iconBodyDiv}
+              style={{ minWidth: "50%" }}
+            >
+              <Avatar className={classes.avatar}>
+                <MdEmail className={classes.icon} />
+              </Avatar>
+              <span className={classes.dialogBody}>
+                {" "}
+                dipeshxtha129@gmail.com
+              </span>
+            </DialogContentText>
+            <DialogContentText className={classes.iconBodyDiv}>
+              <Avatar className={classes.avatar}>
+                <FaAddressCard className={classes.icon} />
+              </Avatar>
+              <span className={classes.dialogBody}> 1/12/2021</span>
+            </DialogContentText>
+          </div>
           {/* <DialogContentText>Phone : 9816940668</DialogContentText>
           <DialogContentText>Address : Damak-11, Jhapa</DialogContentText> */}
           {/* <DialogContentText>Subject : Subject is here</DialogContentText> */}
           <DialogContentText className={classes.message}>
-            Here is the message .Here is the message .Here is the message .Here
-            is the message .Here is the message .Here is the message .Here is
-            the message .Here is the message .Here is the message .Here is the
-            message .Here is the message .
+            Here is the message . Here is the message .Here is the message .
+            Here is the message .Here is the message . Here is the message .
+            Here is the message . Here is the messageHere is the message . Here
+            is the message Here is the messageHere is the message . Here is the
+            message
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button
+            onClick={handleClose}
+            color="primary"
+            className={classes.doneButton}
+          >
             Done
           </Button>
         </DialogActions>
