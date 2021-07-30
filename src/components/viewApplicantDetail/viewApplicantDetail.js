@@ -64,6 +64,8 @@ const useStyle = makeStyles((theme) => ({
     // backgroundColor: "red",
     maxHeight: "70vh",
     overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
   },
   leftDiv: {
     // backgroundColor: "red",

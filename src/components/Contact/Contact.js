@@ -16,6 +16,7 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { contactData } from "./contactDate";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -58,6 +59,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -95,12 +97,14 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "15px",
 
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   noColor: {
     // fontWeight: "500",
     // color: "red",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -202,12 +206,12 @@ const Contact = (props) => {
                       <th className={classes.tableHead}>Phone</th>
                       {/* <th className={classes.tableHead}>Address</th> */}
                       <th className={classes.tableHead}>Subject</th>
-                      <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data1.map((item, key) => {
+                      // {contactData.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td
@@ -264,28 +268,7 @@ const Contact = (props) => {
                           >
                             {item.subject}
                           </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <select id="select">
-                              <option
-                                value="notSeen"
-                                selected={item.status == "notSeen"}
-                              >
-                                Not Seen
-                              </option>
-                              <option
-                                value="seen"
-                                selected={item.status == "seen"}
-                              >
-                                Seen
-                              </option>
-                            </select>
-                          </td>
+
                           <td
                             className={
                               item.status == "seen"

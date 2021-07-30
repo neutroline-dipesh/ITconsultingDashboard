@@ -38,10 +38,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.3rem",
     marginTop: "0.3rem",
   },
-  MuiPaperElevation1:{
-    position:"absolute",
-    left:"-30%"
-    
+  MuiPaperElevation1: {
+    position: "absolute",
+    left: "-30%",
   },
   notificationNumber: {
     // marginRight: "1rem",
@@ -108,6 +107,8 @@ const useStyles = makeStyles((theme) => ({
     // marginTop: "1rem",
   },
   adminDetailMenu: {
+    borderBottom: "1px solid #858796",
+
     "&:hover": {
       backgroundColor: "#fff",
     },
@@ -177,10 +178,15 @@ export default function SignOut() {
           role={undefined}
           transition
           disablePortal
-
-          style={{ width: "15%", zIndex: "500", marginRight:"9%", overflow:"hidden", }}
-          //   anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-          //   transformOrigin={{ vertical: "top", horizontal: "left" }}
+          style={{
+            width: "15%",
+            zIndex: "500",
+            marginRight: "10%",
+            marginTop: "-0.5rem",
+            overflow: "hidden",
+            boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.07)",
+            borderRadius: "5px",
+          }}
         >
           {({ TransitionProps, placement }) => (
             <Grow

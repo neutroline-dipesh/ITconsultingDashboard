@@ -143,6 +143,7 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     marginRight: "1rem",
     overflow: "scroll",
+    overflowX: "hidden",
   },
   table: {
     // minWidth: 700,
@@ -334,7 +335,7 @@ const Dashboard = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {allApplicantData.slice(0, 5).map((item) => (
+                      {allApplicantData.map((item) => (
                         <TableRow>
                           <TableCell component="th" scope="row">
                             {item.jobTitle}

@@ -82,6 +82,8 @@ const useStyle = makeStyles((theme) => ({
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
+    overflowX: "hidden",
+
     // borderRadius: "10px",
   },
   lefttableTitleDiv: {

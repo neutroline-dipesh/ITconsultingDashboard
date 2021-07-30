@@ -82,6 +82,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -140,6 +141,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#24803c",
     fontWeight: "500",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 const Alljobs = (props) => {
@@ -255,6 +257,9 @@ const Alljobs = (props) => {
                   </thead>
                   <tbody>
                     {data1.map((item, key) => {
+                      {
+                        /* {allJobsData.map((item, key) => { */
+                      }
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}

@@ -86,7 +86,7 @@ const useStyle = makeStyles((theme) => ({
     width: "33%",
     display: "flex",
     flexDirection: "column",
-    marginTop: "1rem",
+    // marginTop: "1rem",
     marginBottom: "1rem",
     backgroundColor: "#ffffff",
     boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
@@ -130,7 +130,7 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginLeft: "1rem",
-    marginTop: "1rem",
+    // marginTop: "1rem",
     marginBottom: "1rem",
     marginRight: "0.5rem",
     backgroundColor: "#ffffff",
@@ -153,8 +153,14 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1.5rem",
     color: "#303f9f",
   },
+  leftTableContectDiv: {
+    overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
+  },
   rightTableContectDiv: {
     overflow: "scroll",
+    overflowX: "hidden",
   },
 }));
 
@@ -188,7 +194,7 @@ const JobsDetail = () => {
                   <div className={classes.lefttableTitleDiv}>
                     <span className={classes.lefttableTitle}>Job Overview</span>
                   </div>
-                  <div className={classes.rightTableContectDiv}>
+                  <div className={classes.leftTableContectDiv}>
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>

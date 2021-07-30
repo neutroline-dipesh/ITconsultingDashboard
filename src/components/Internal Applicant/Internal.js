@@ -59,6 +59,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -103,33 +104,35 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   noColor: {
     // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 
 const Internal = () => {
-  //getting data from database
-  // const [data1, setData1] = useState([]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     $("#example").DataTable().destroy();
-  //     axios.get("http://localhost:4000/internal/").then((response) => {
-  //       if (response.data) {
-  //         // value = response.data.data;
-  //         setData1(response.data.data);
-  //       }
-  //     });
-  //   }, 100);
-  // }, []);
-  // console.log(data1);
-  // useEffect(() => {
-  //   $("#example").DataTable();
-  // }, [data1]);
+  // getting data from database
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      axios.get("http://localhost:4000/internal/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+    }, 100);
+  }, []);
+  console.log(data1);
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
 
   const classes = useStyle();
   useEffect(() => {
@@ -205,14 +208,15 @@ const Internal = () => {
                       {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
-                      <th className={classes.tableHead}>Status</th>
+                      {/* <th className={classes.tableHead}>Status</th> */}
                       <th className={classes.tableHead}>Approvel Status</th>
 
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {internalData.map((item, key) => {
+                    {/* {internalData.map((item, key) => { */}
+                    {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -266,7 +270,7 @@ const Internal = () => {
                           >
                             {item.postedDate}
                           </td>
-                          <td
+                          {/* <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -287,7 +291,7 @@ const Internal = () => {
                                 Seen
                               </option>
                             </select>
-                          </td>
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"

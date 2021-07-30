@@ -63,6 +63,7 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
+    overflowX: "hidden",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -113,12 +114,14 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
   noColor: {
     // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -221,14 +224,14 @@ const Contracting = (props) => {
                       {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
-                      <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Approvel Status</th>
 
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {contractData.map((item, key) => {
+                    {/* {contractData.map((item, key) => { */}
+                    {data1.map((item, key) => {
                       return (
                         <tr key="key">
                           <td
@@ -283,28 +286,7 @@ const Contracting = (props) => {
                           >
                             {item.postedDate}
                           </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <select>
-                              <option
-                                value="notSeen"
-                                selected={item.status == "notSeen"}
-                              >
-                                Not Seen
-                              </option>
-                              <option
-                                value="seen"
-                                selected={item.status == "seen"}
-                              >
-                                Seen
-                              </option>
-                            </select>
-                          </td>
+
                           <td
                             className={
                               item.status == "seen"
