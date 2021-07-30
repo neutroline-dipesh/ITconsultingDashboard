@@ -112,7 +112,7 @@ const Contact = (props) => {
       $("#example").DataTable().destroy();
       fetchContactData();
     }, 100);
-  }, []);
+  }, []);   
 
    useEffect(() => {
     $("#example").DataTable();
