@@ -54,16 +54,24 @@ const useStyle = makeStyles((theme) => ({
     width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
+
+   
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
+    [theme.breakpoints.down('md')]: {
+     overflowX:"scroll",
+    
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
+
+   
   },
   tableHead: {
     backgroundColor: "#4e73df !important",
@@ -71,6 +79,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 !important",
     textAlign: "center",
     whiteSpace: "nowrap",
+    
   },
   buttomDiv: {
     // backgroundColor: "red",
