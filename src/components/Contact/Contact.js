@@ -6,8 +6,7 @@ import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
-import axios from "axios";
-
+import axios from 'axios';
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -109,23 +108,22 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
-  const [data1, setData1] = useState([]);
+  const [data, setData] = useState([]);
+
+  //getting data from database start
+  
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/allQueries").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
+      fetchContactData();
     }, 100);
-  }, []);
+  }, []);   
 
-  useEffect(() => {
+   useEffect(() => {
     $("#example").DataTable();
-  }, [data1]);
-  // console.log(data1);
+  }, [data]);
+
+
   const classes = useStyle();
   useEffect(() => {
     $(document).ready(function () {
@@ -134,9 +132,14 @@ const Contact = (props) => {
   });
 
   //alert message
+  const fetchContactData = () =>{
+    axios.get('http://localhost:4000/allQueries').then(response =>{
+      console.log(response.data);
+      setData(response.data.data);
+    })
+  }
 
-  const deletFunction = (e) => {
-    console.log(e.target.id);
+  const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -157,11 +160,31 @@ const Contact = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-          );
+          axios.delete("http://localhost:4000/allQueries/"+ id, 
+          {
+            headers: {'Authorization': localStorage.getItem('token')} ,
+            data:{
+              id:id,
+            }
+          }
+          ).then(
+            res =>{
+              console.log('deleted id'+id);
+               swalWithBootstrapButtons.fire(
+                "Deleted!",
+                "Selected item has been deleted",
+                "success"
+              );
+              fetchContactData();
+            }
+          ).catch(err =>{
+            console.log(err);
+            swalWithBootstrapButtons.fire(
+              "Something Went Wrong!",
+              "Not deleted!",
+              "fail"
+            )
+          })
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -210,8 +233,7 @@ const Contact = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
-                      // {contactData.map((item, key) => {
+                    {data.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td
@@ -278,10 +300,19 @@ const Contact = (props) => {
                           >
                             <div className={classes.buttomDiv}>
                               <ViewDetail value={item.Id} />
-                              <RiDeleteBin6Fill
-                                id={item.id}
+
+                              {/* <Button
                                 className={classes.deleteButton}
-                                onClick={(e) => deletFunction(e)}
+                                variant="contained"
+                                color="primary"
+                                href="#contained-buttons"
+                                onClick={deletFunction}
+                              >
+                                delete
+                              </Button> */}
+                              <RiDeleteBin6Fill
+                                className={classes.deleteButton}
+                                onClick={() => deletFunction(item.Id)}
                               />
                             </div>
                           </td>
@@ -302,6 +333,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.allqueries.allQueriesData,
     error: state.allqueries.error,
+    token: state.auth.token,
   };
 };
 

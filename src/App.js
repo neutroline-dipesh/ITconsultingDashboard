@@ -22,12 +22,12 @@ import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 function App(props) {
-  // useEffect(() => {
-  //   // if(localStorage.getItem('token')){
-  //   //   props.setPath(window.location.pathname);
-  //   // }
-  //   props.onTryAutoSignup();
-  // }, []);
+  useEffect(() => {
+    // if(localStorage.getItem('token')){
+    //   props.setPath(window.location.pathname);
+    // }
+    props.onTryAutoSignup();
+  }, []);
   return (
     // <Switch>
     //   <Route exact path="/login" component={Login} />
@@ -131,7 +131,6 @@ function App(props) {
     </Switch>
   );
 }
-// export default App;
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
@@ -140,7 +139,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
-    setPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+    setPath: (path) => dispatch(actions.setAuthRedirectPath(path))
   };
 };
 

@@ -12,6 +12,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
+import { connect } from 'react-redux';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -124,18 +125,14 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Internal = () => {
+const Internal = (props) => {
+  console.log(props.token);
   // getting data from database
   const [data1, setData1] = useState([]);
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/internal/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
+      fetchData();
     }, 100);
   }, []);
   console.log(data1);
@@ -152,7 +149,17 @@ const Internal = () => {
 
   //alert message
 
-  const deletFunction = () => {
+  const fetchData = () =>{
+          axios.get("http://localhost:4000/internal/").then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
+  }
+
+  const deletFunction = (id) => {
+    console.log(id);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -173,11 +180,32 @@ const Internal = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-          );
+          axios.delete("http://localhost:4000/internal/"+ id, 
+          {
+            headers: {'Authorization': localStorage.getItem('token')} ,
+            data:{
+              id:id,
+            }
+          }
+          ).then(
+            res =>{
+              console.log('deleted id'+id);
+               swalWithBootstrapButtons.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              );
+              fetchData();
+            }
+          ).catch(err =>{
+            console.log(err);
+            swalWithBootstrapButtons.fire(
+              "Something Went Wrong!",
+              "Job not deleted!",
+              "fail"
+            )
+          })
+
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -189,6 +217,7 @@ const Internal = () => {
           );
         }
       });
+      $("#example").DataTable();
   };
 
   return (
@@ -224,14 +253,13 @@ const Internal = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {internalData.map((item, key) => { */}
                     {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
                             className={
                               item.status == "seen"
-                                ? classes.seenColor
+                                ? classes.seenColor 
                                 : classes.noColor
                             }
                           >
@@ -371,7 +399,7 @@ const Internal = () => {
                                 <Link>
                                   <RiDeleteBin6Fill
                                     className={classes.deleteButton}
-                                    onClick={() => deletFunction()}
+                                    onClick={() => deletFunction(item.id)}
                                   />
                                 </Link>
                               </Tooltip>
@@ -391,4 +419,10 @@ const Internal = () => {
   );
 };
 
-export default Internal;
+const mapStateToProps = (state) =>{
+  return{
+    token: state.auth.token,
+  }
+}
+
+export default connect(mapStateToProps)(Internal);

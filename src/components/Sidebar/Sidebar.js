@@ -355,7 +355,7 @@ const Sidebar = () => {
         <span className={classes.notificationNumber}>20</span> */}
         <Notification />
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
-          <Link to="/contact">
+          <Link to="/viewContact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>
