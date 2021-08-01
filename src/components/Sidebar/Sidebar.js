@@ -108,8 +108,8 @@ const useStyle = makeStyles((theme) => ({
   },
 
   messgaeIcon: {
-    fontSize: "1.3rem",
-    color: "#858796",
+    fontSize: "1.2rem",
+    color: "#4E73DF",
   },
   messageNumber: {
     marginRight: "1rem",

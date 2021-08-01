@@ -25,6 +25,7 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     backgroundColor: "#F8F9FC",
     borderBottom: "solid 1px #e3e6f0",
+    color: "#303f9f",
   },
   phoneAddressDiv: {
     display: "flex",

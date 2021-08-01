@@ -90,6 +90,8 @@ const useStyle = makeStyles((theme) => ({
   },
 
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
