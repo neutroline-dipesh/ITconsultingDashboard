@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
+import axios from 'axios';
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
@@ -292,9 +293,37 @@ const Addjobs = () => {
     }),
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      handleSubmit(values);
+      formik.resetForm();
     },
   });
+
+    const headers = {
+      Authorization: localStorage.getItem('token'),
+    }
+  const handleSubmit = (values) =>{
+    const job = {
+      jobTitle: values.jobTitle,
+      jobSubTitle: values.jobSubTitle,
+      department: values.department,
+      jobType: values.jobType,
+      country: values.country,
+      state: values.state,
+      city: values.city,
+      publishBy: values.publishBy,
+    }
+    console.log(job);
+    console.log(headers);
+
+    axios.post("http://localhost:4000/allJobs/", job, {headers}).then(res=>{
+      console.log('success');
+      console.log(res);
+    }).catch(err=>{
+      console.log(err);
+      console.log('unsuccessful');
+    })
+
+  }
 
   //alert message
   const saveFunction = () => {
@@ -383,8 +412,8 @@ const Addjobs = () => {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form}>
-                  <div className={classes.formDiv}>
+                <form className={classes.form} onSubmit={formik.handleSubmit}>
+                  <div>
                     <input
                       className={classes.inputBoderColor}
                       style={{ borderColor: "#0066ff" }}
@@ -603,7 +632,6 @@ const Addjobs = () => {
                         <button
                           type="submit"
                           className={"btn btn-primary" + " " + classes.save}
-                          onClick={() => saveFunction()}
                         >
                           Save
                         </button>
