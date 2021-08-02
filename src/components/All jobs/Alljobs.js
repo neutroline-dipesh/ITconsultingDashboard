@@ -151,12 +151,7 @@ const Alljobs = (props) => {
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
-      axios.get("http://localhost:4000/allJobs/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
+      fetchAllData();
     }, 100);
   }, []);
   console.log(data1);
@@ -172,9 +167,16 @@ const Alljobs = (props) => {
   });
 
   //alert message
+  const fetchAllData = () => {
+    axios.get("http://localhost:4000/allJobs/").then((response) => {
+      if (response.data) {
+        // value = response.data.data;
+        setData1(response.data.data);
+      }
+    });
+  };
 
-  const deletFunction = (e) => {
-    console.log(e);
+  const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -195,11 +197,30 @@ const Alljobs = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-          );
+          axios
+            .delete("http://localhost:4000/allJobs/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              );
+              fetchAllData();
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Job not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -256,9 +277,8 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {data1.map((item, key) => { */}
-
-                    {allJobsData.map((item, key) => {
+                    {data1.map((item, key) => {
+                      // {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
