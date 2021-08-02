@@ -83,7 +83,7 @@ const useStyle = makeStyles((theme) => ({
   },
   leftDiv: {
     borderRadius: "5px",
-    width: "33%",
+    width: "40%",
     display: "flex",
     flexDirection: "column",
     // marginTop: "1rem",
@@ -198,9 +198,7 @@ const JobsDetail = () => {
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/id-verified.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Id:</span>
                         <span className={classes.listBody}>
@@ -209,9 +207,7 @@ const JobsDetail = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/show-permit-card.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Title:</span>
                         <span className={classes.listBody}>
@@ -220,9 +216,7 @@ const JobsDetail = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/worker-id-card.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job SubTitle:</span>
                         <span className={classes.listBody}>
@@ -232,27 +226,21 @@ const JobsDetail = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/org-unit.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Department:</span>
                         <span className={classes.listBody}>Technology</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/find-matching-job.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Type:</span>
                         <span className={classes.listBody}>Full Time</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/address--v1.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Address:</span>
                         <span className={classes.listBody}>
@@ -261,9 +249,7 @@ const JobsDetail = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/calendar--v1.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Publish Date:</span>
                         <span className={classes.listBody}>7/7/2021</span>

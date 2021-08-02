@@ -37,9 +37,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     height: "82vh",
@@ -67,6 +67,8 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
@@ -192,12 +194,13 @@ const Contracting = () => {
             </span>
           </div>
           <div className={classes.MainContentDiv}>
-            <div className={classes.ContentDiv}>
-              <div className={classes.ContentDateDiv}>
+            <div className={classes.ContentDiv} >
+              <div className={classes.ContentDateDiv} >
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
                   className={classes.dataTable + " " + "table "}
+
                 >
                   <thead>
                     <tr>

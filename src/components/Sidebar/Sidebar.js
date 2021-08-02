@@ -115,7 +115,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   messgaeIcon: {
-    fontSize: "1.3rem",
+    fontSize: "1.2rem",
     color: "#F7A000",
   },
   messageNumber: {
@@ -163,6 +163,7 @@ const useStyle = makeStyles((theme) => ({
       boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
       transform: "scale(1.04)",
       transition: "ease 0.3s",
+      borderRight:"3px solid #4E73DF",
     },
   },
   nastedList: {

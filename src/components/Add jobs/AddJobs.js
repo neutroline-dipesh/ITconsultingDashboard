@@ -45,10 +45,10 @@ const useStyle = makeStyles((theme) => ({
   },
 
   pageTabName: {
-    fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+   fontSize: "1.75rem",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   jobListButton: {
     textDecoration: "none",
@@ -83,11 +83,7 @@ const useStyle = makeStyles((theme) => ({
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
   },
-  ContentDateDiv: {
-    overflow: "scroll",
-    maxHeight: "80vh",
-    overflowX: "hidden",
-  },
+  ContentDateDiv: {},
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
@@ -104,6 +100,13 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
     color: "#303f9f",
+  },
+  formDiv: {
+    maxHeight: "65vh",
+    overflow: "scroll",
+
+    overflowX: "hidden",
+    paddingRight: "1rem",
   },
   form: {
     margin: "1rem",
@@ -381,7 +384,7 @@ const Addjobs = () => {
                   </span>
                 </div>{" "}
                 <form className={classes.form}>
-                  <div>
+                  <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
                       style={{ borderColor: "#0066ff" }}
