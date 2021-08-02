@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -265,6 +266,7 @@ const IOSSwitch = withStyles((theme) => ({
 
 const Addjobs = () => {
   const classes = useStyle();
+  let history = useHistory();
 
   //for validation
   const formik = useFormik({
@@ -295,6 +297,7 @@ const Addjobs = () => {
     onSubmit: (values) => {
       handleSubmit(values);
       formik.resetForm();
+      history.push("/Alljobs")
     },
   });
 
@@ -314,10 +317,11 @@ const Addjobs = () => {
     };
     console.log(job);
     console.log(headers);
-
+      
     axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
+        saveFunction();
         console.log("success");
         console.log(res);
       })
