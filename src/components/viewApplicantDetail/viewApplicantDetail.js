@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import adimImage from "../../assets/images/admin2.jpeg";
+import axios from 'axios';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -18,6 +19,7 @@ import ViewMessage from "./viewResume";
 import CoverLetter from "./viewCoverLetter";
 
 import file from "../../assets/files/cv.pdf";
+import { useParams } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -187,10 +189,63 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contracting = () => {
+  let {id} = useParams();
+  console.log(id);
+  const [applicant, setApplicant] = useState({
+    firstName: null,
+    middleName:null,
+    lastName:null,
+    phone: null,
+    currentAddress: null,
+    country: null,
+    gmail:null,
+    gender: null,
+    postedDate: null,
+    senioritylevel:null,
+    jobTitle: null,
+    message: null,
+    error: false,
+    loading: false
+  });
   const classes = useStyle();
   const [alignment, setAlignment] = React.useState("left");
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
+  };
+  useEffect(() => {
+    getApplicantDetails();
+    console.log(applicant);
+  }, []);
+
+  const getApplicantDetails = () =>{
+    axios.get("http://localhost:4000/internal/" + id).then( response =>{
+      console.log(response.data.data[0]);
+      setApplicant({
+            firstName: response.data.data[0].firstName,
+            middleName:response.data.data[0].middleName,
+            lastName:response.data.data[0].lastName,
+            phone: response.data.data[0].phone,
+            currentAddress: response.data.data[0].currentAddress,
+            country: response.data.data[0].country,
+            gmail:response.data.data[0].gmail,
+            gender: response.data.data[0].gender,
+            postedDate: response.data.data[0].postedDate,
+            senioritylevel:response.data.data[0].senioritylevel,
+            jobTitle: response.data.data[0].jobTitle,
+            message: response.data.data[0].message,
+            error: false,
+            loading: false
+      });
+     }).catch(err=>{
+       console.log('error',err);
+       setApplicant(
+         {
+         ...applicant,
+         error:true,
+         loading: false,
+         }
+       )
+     })
   };
 
   return (
@@ -249,7 +304,7 @@ const Contracting = () => {
                             <ContactsIcon />
                           </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary="Dipesh kumar Shrestha" />
+                        <ListItemText primary={applicant.firstName + " " + applicant.middleName + " " + applicant.lastName} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -257,7 +312,7 @@ const Contracting = () => {
                             <ContactPhoneIcon />
                           </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary=" +977-9816940668" />
+                        <ListItemText primary={applicant.phone} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -265,7 +320,7 @@ const Contracting = () => {
                             <ContactMailIcon />
                           </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary="Kathmandu, Nepal" />
+                        <ListItemText primary={applicant.currentAddress + " " + applicant.country} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -273,7 +328,7 @@ const Contracting = () => {
                             <ContactMailIcon />
                           </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary="dipeshxtha129@gmail.com" />
+                        <ListItemText primary={applicant.gmail} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -281,7 +336,7 @@ const Contracting = () => {
                             <WcIcon />
                           </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary="Male" />
+                        <ListItemText primary={applicant.gender} />
                       </ListItem>
 
                       <ListItem>
@@ -290,7 +345,7 @@ const Contracting = () => {
                             <CalendarTodayIcon />
                           </Avatar>
                         </ListItemAvatar>
-                        <ListItemText primary="4 july 2021" />
+                        <ListItemText primary={applicant.postedDate} />
                       </ListItem>
                     </List>
                   </div>
@@ -300,7 +355,7 @@ const Contracting = () => {
                         <span className={classes.listHead}>
                           Seniority Level:
                         </span>
-                        <span className={classes.listBody}>Internship</span>
+                        <span className={classes.listBody}>{applicant.senioritylevel}</span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>
@@ -311,15 +366,13 @@ const Contracting = () => {
                       <ListItem>
                         <span className={classes.listHead}>Applied Job:</span>
                         <span className={classes.listBody}>
-                          Web development
+                          {applicant.jobTitle}
                         </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Message:</span>
                         <span className={classes.listBody}>
-                          Here is the Here is the message Here is the message
-                          Here is the message Here is the Here is the message
-                          Here is the message Here is the message
+                          {applicant.message}
                         </span>
                       </ListItem>
                     </List>

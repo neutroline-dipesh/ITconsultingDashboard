@@ -45,7 +45,7 @@ function App(props) {
 
       <Route
         exact
-        path="/viewApplicatnDetail"
+        path="/applicant-detail/:id"
         component={viewApplicantDetail}
       />
       <Route exact path="/signout" component={signout} />
