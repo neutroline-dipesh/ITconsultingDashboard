@@ -63,7 +63,9 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    
+    [theme.breakpoints.down('md')]: {
+      overflowX: "scroll",
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
