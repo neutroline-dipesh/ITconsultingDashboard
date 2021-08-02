@@ -22,12 +22,12 @@ import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 function App(props) {
-  useEffect(() => {
-    // if (localStorage.getItem("token")) {
-    //   props.setPath(window.location.pathname);
-    // }
-    props.onTryAutoSignup();
-  }, []);
+ // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     props.setPath(window.location.pathname);
+  //   }
+  //   props.onTryAutoSignup();
+  // }, []);
   return (
     // <Switch>
     //   <Route exact path="/login" component={Login} />
@@ -54,77 +54,77 @@ function App(props) {
     // </Switch>
     <Switch>
       <Route exact path="/" component={Login} />
-      <GuardedRoute
+      <Route
         exact
         path="/dashboard"
         component={Dashboard}
-        auth={props.isAuthenticated}
+     //   auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/alljobs"
         component={Alljobs}
-        auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/alljobs/editJobs"
         component={EditJobs}
-        auth={props.isAuthenticated}
+       // auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/contracting"
         component={Contracting}
-        auth={props.isAuthenticated}
+//auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/internal"
         component={Internal}
-        auth={props.isAuthenticated}
+       // auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/addjobs"
         component={AddJobs}
-        auth={props.isAuthenticated}
+       // auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/contact"
         component={Contact}
-        auth={props.isAuthenticated}
+       //auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewContact"
         component={viewDetail}
-        auth={props.isAuthenticated}
+       //auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/allApplicant"
         component={allApplicant}
-        auth={props.isAuthenticated}
+       //auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewJobDetail"
         component={viewJobDetail}
-        auth={props.isAuthenticated}
+       //auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/logout"
         component={Logout}
-        auth={props.isAuthenticated}
+       //auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/applicant-detail/:id"
         component={viewApplicantDetail}
-        auth={props.isAuthenticated}
+       //auth={props.isAuthenticated}
       />
 
       <Route component={pageNotFound} />
