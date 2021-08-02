@@ -5,7 +5,7 @@ const initialState = {
   userName: null,
   error: null,
   loading: false,
-  authRedirectPath: '/dashboard',
+  authRedirectPath: "/dashboard",
 };
 
 const authStart = (state, action) => {
@@ -30,7 +30,7 @@ const authFail = (state, action) => {
     ...state,
     error: action.error,
     loading: false,
-  };  
+  };
 };
 
 const authLogout = (state, action) => {
@@ -41,12 +41,12 @@ const authLogout = (state, action) => {
   };
 };
 
-const setAuthRedirectPath = (state,action)=>{
-  return{
+const setAuthRedirectPath = (state, action) => {
+  return {
     ...state,
     authRedirectPath: action.path,
-  }
-}
+  };
+};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_START:

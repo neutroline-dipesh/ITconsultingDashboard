@@ -23,9 +23,9 @@ import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 function App(props) {
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      props.setPath(window.location.pathname);
-    }
+    // if (localStorage.getItem("token")) {
+    //   props.setPath(window.location.pathname);
+    // }
     props.onTryAutoSignup();
   }, []);
   return (
@@ -45,7 +45,7 @@ function App(props) {
 
     //   <Route
     //     exact
-    //     path="/applicant-detail/:id"
+    //     path="/viewApplicatnDetail"
     //     component={viewApplicantDetail}
     //   />
     //   <Route exact path="/signout" component={signout} />
@@ -122,7 +122,7 @@ function App(props) {
       />
       <GuardedRoute
         exact
-        path="/viewApplicatnDetail"
+        path="/applicant-detail/:id"
         component={viewApplicantDetail}
         auth={props.isAuthenticated}
       />
@@ -131,6 +131,7 @@ function App(props) {
     </Switch>
   );
 }
+// export default App;
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,

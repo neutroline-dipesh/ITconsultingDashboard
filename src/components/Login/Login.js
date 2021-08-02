@@ -150,92 +150,92 @@ const Login = (props) => {
   });
 
   let authRedirect = null;
-  if(props.isAuthenticated){
-    authRedirect = <Redirect to={props.redirectPath}/>
+  if (props.isAuthenticated) {
+    authRedirect = <Redirect to={props.redirectPath} />;
   }
   return (
     <>
-    {authRedirect}
-    <Grid container className={classes.root}>
-      <Grid item sx={12} className={classes.centerGrid}>
-        {/* hello world */}
-        <Grid item className={classes.leftGrid}>
-          <p className={classes.login}>Login</p>
-          <form onSubmit={formik.handleSubmit}>
-            <input
-              className={classes.email}
-              type="email"
-              label="hello"
-              name="email"
-              placeholder="   Email"
-              {...formik.getFieldProps("email")}
-              required
-            />
-            <div className={classes.errorMessage}>
-              {props.error == "Invalid Email !"
-                ? props.error
-                : formik.errors.email}
-            </div>
+      {authRedirect}
+      <Grid container className={classes.root}>
+        <Grid item sx={12} className={classes.centerGrid}>
+          {/* hello world */}
+          <Grid item className={classes.leftGrid}>
+            <p className={classes.login}>Login</p>
+            <form onSubmit={formik.handleSubmit}>
+              <input
+                className={classes.email}
+                type="email"
+                label="hello"
+                name="email"
+                placeholder="   Email"
+                {...formik.getFieldProps("email")}
+                required
+              />
+              <div className={classes.errorMessage}>
+                {props.error == "Invalid Email !"
+                  ? props.error
+                  : formik.errors.email}
+              </div>
 
-            <input
-              className={classes.password}
-              type="Password"
-              name="Password"
-              placeholder="   Password"
-              {...formik.getFieldProps("password")}
-              required
-            />
-            <div className={classes.errorMessage}>
-              {props.error == "Invalid Password !"
-                ? props.error
-                : formik.errors.password}
-            </div>
-            {/* {props.error ? (
+              <input
+                className={classes.password}
+                type="Password"
+                name="Password"
+                placeholder="   Password"
+                {...formik.getFieldProps("password")}
+                required
+              />
+              <div className={classes.errorMessage}>
+                {props.error == "Invalid Password !"
+                  ? props.error
+                  : formik.errors.password}
+              </div>
+              {/* {props.error ? (
               <p className={classes.forgetPassword}>Invalid Credentian !</p>
             ) : (
               <p> &nbsp;</p>
             )} */}
-            {/* <p className={classes.forgetPassword}>{props.error}</p> */}
-            {props.loading ? (
-              <div style={{ textAlign: "center" }}>
-                <CircularProgress />
-              </div>
-            ) : (
-              <Button
-                type="submit"
-                variant="contained"
-                size="small"
-                color="primary"
-                className={classes.loiginButton}
-              >
-                LOG IN
-              </Button>
-            )}
-          </form>
-        </Grid>
-        <Grid item className={classes.rightGrid}>
-          <p
-            className={
-              classes.welcomeBack +
-              " " +
-              "animate__animated animate__slideInLeft "
-            }
-          >
-            Welcome Back
-          </p>
-          <p
-            className={
-              classes.welcomeBackNote +
-              " " +
-              "animate__animated animate__slideInRight"
-            }
-          >
-            To keep connected login with your personal info
-          </p>
+              {/* <p className={classes.forgetPassword}>{props.error}</p> */}
+              {props.loading ? (
+                <div style={{ textAlign: "center" }}>
+                  <CircularProgress />
+                </div>
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className={classes.loiginButton}
+                >
+                  LOG IN
+                </Button>
+              )}
+            </form>
+          </Grid>
+          <Grid item className={classes.rightGrid}>
+            <p
+              className={
+                classes.welcomeBack +
+                " " +
+                "animate__animated animate__slideInLeft "
+              }
+            >
+              Welcome Back
+            </p>
+            <p
+              className={
+                classes.welcomeBackNote +
+                " " +
+                "animate__animated animate__slideInRight"
+              }
+            >
+              To keep connected login with your personal info
+            </p>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
-  </>
+    </>
   );
 };
 

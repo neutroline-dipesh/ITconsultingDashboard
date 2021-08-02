@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
-import axios from 'axios';
+import axios from "axios";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
@@ -295,10 +295,10 @@ const Addjobs = () => {
     },
   });
 
-    const headers = {
-      Authorization: localStorage.getItem('token'),
-    }
-  const handleSubmit = (values) =>{
+  const headers = {
+    Authorization: localStorage.getItem("token"),
+  };
+  const handleSubmit = (values) => {
     const job = {
       jobTitle: values.jobTitle,
       jobSubTitle: values.jobSubTitle,
@@ -308,19 +308,21 @@ const Addjobs = () => {
       state: values.state,
       city: values.city,
       publishBy: values.publishBy,
-    }
+    };
     console.log(job);
     console.log(headers);
 
-    axios.post("http://localhost:4000/allJobs/", job, {headers}).then(res=>{
-      console.log('success');
-      console.log(res);
-    }).catch(err=>{
-      console.log(err);
-      console.log('unsuccessful');
-    })
-
-  }
+    axios
+      .post("http://localhost:4000/allJobs/", job, { headers })
+      .then((res) => {
+        console.log("success");
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("unsuccessful");
+      });
+  };
 
   //alert message
   const saveFunction = () => {
