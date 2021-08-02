@@ -122,7 +122,7 @@ function App(props) {
       />
       <GuardedRoute
         exact
-        path="/viewApplicatnDetail"
+        path="/applicant-detail/:id"
         component={viewApplicantDetail}
         auth={props.isAuthenticated}
       />

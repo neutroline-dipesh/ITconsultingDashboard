@@ -354,10 +354,6 @@ const Internal = (props) => {
                                 variant="contained"
                                 color="primary"
                                 href="#contained-buttons"
-                                onClick={() => {
-                                  // window.location.pathname = "/viewApplicatnDetail";
-                                  window.open("/viewApplicatnDetail", "_blank");
-                                }}
                               >
                                 View
                               </Button>
@@ -376,7 +372,7 @@ const Internal = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to="/viewApplicatnDetail">
+                                <Link to={`/applicant-detail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />
