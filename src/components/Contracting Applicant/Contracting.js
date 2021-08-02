@@ -64,10 +64,9 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    [theme.breakpoints.down('md')]: {
-      overflowX:"scroll",
-     
-     },
+    [theme.breakpoints.down("md")]: {
+      overflowX: "scroll",
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -132,7 +131,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contracting = (props) => {
-   const [data1, setData1] = useState([]);
+  const [data1, setData1] = useState([]);
   //getting data from database
   useEffect(() => {
     setTimeout(() => {
@@ -152,18 +151,16 @@ const Contracting = (props) => {
     });
   });
 
-
-
   //alert message
 
-  const fetchData = () =>{
-          axios.get("http://localhost:4000/contract/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-  }
+  const fetchData = () => {
+    axios.get("http://localhost:4000/contract/").then((response) => {
+      if (response.data) {
+        // value = response.data.data;
+        setData1(response.data.data);
+      }
+    });
+  };
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -192,31 +189,30 @@ const Contracting = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/contract/"+ id, 
-          {
-            headers: {'Authorization': localStorage.getItem('token')} ,
-            data:{
-              id:id,
-            }
-          }
-          ).then(
-            res =>{
-              console.log('deleted id'+id);
-               swalWithBootstrapButtons.fire(
+          axios
+            .delete("http://localhost:4000/contract/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Your file has been deleted.",
                 "success"
               );
               fetchData();
-            }
-          ).catch(err =>{
-            console.log(err);
-            swalWithBootstrapButtons.fire(
-              "Something Went Wrong!",
-              "Job not deleted!",
-              "fail"
-            )
-          })
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Job not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -262,10 +258,14 @@ const Contracting = (props) => {
                     </tr>
                   </thead>
                   <tbody>
+<<<<<<< HEAD
                     {contractData.map((item, key) => {
                       {
                         /* {data1.map((item, key) => { */
                       }
+=======
+                    {data1.map((item, key) => {
+>>>>>>> a91075dedd5f0e9bf7bdf78595b49a4ac3522abb
                       return (
                         <tr key="key">
                           <td

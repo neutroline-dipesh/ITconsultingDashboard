@@ -175,14 +175,14 @@ const Alljobs = (props) => {
   });
 
   //alert message
-  const fetchAllData = () =>{
-        axios.get("http://localhost:4000/allJobs/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-  }
+  const fetchAllData = () => {
+    axios.get("http://localhost:4000/allJobs/").then((response) => {
+      if (response.data) {
+        // value = response.data.data;
+        setData1(response.data.data);
+      }
+    });
+  };
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -205,32 +205,30 @@ const Alljobs = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/allJobs/"+ id, 
-          {
-            headers: {'Authorization': localStorage.getItem('token')} ,
-            data:{
-              id:id,
-            }
-          }
-          ).then(
-            res => {
-              console.log('deleted id'+id);
-               swalWithBootstrapButtons.fire(
+          axios
+            .delete("http://localhost:4000/allJobs/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Your file has been deleted.",
                 "success"
               );
               fetchAllData();
-            }
-            
-          ).catch(err =>{
-            console.log(err);
-            swalWithBootstrapButtons.fire(
-              "Something Went Wrong!",
-              "Job not deleted!",
-              "fail"
-            )
-          })
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Job not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -287,9 +285,8 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {data1.map((item, key) => { */}
-
-                    {allJobsData.map((item, key) => {
+                    {data1.map((item, key) => {
+                      // {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}
