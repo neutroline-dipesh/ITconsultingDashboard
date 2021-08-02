@@ -118,6 +118,7 @@ const Contact = (props) => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
       fetchContactData();
+      console.log(data);
     }, 100);
   }, []);
 
@@ -135,7 +136,6 @@ const Contact = (props) => {
   //alert message
   const fetchContactData = () => {
     axios.get("http://localhost:4000/allQueries").then((response) => {
-      console.log(response.data);
       setData(response.data.data);
     });
   };
@@ -218,11 +218,12 @@ const Contact = (props) => {
               <div className={classes.ContentDateDiv}>
                 <table
                   id="example"
-                  //   class="table table-striped table-bordered"
+                  data-ordering="false"
                   className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
+                      {/* <th className={classes.tableHead}>ID</th> */}
                       <th className={classes.tableHead}>First Name</th>
                       <th className={classes.tableHead}>Last Name</th>
                       <th className={classes.tableHead}>Email</th>
@@ -236,6 +237,16 @@ const Contact = (props) => {
                     {data.map((item, key) => {
                       return (
                         <tr key={key}>
+                          {console.log(item, key)}
+                          {/* <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.Id}
+                          </td> */}
                           <td
                             className={
                               item.status == "seen"
