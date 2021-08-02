@@ -63,10 +63,7 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    [theme.breakpoints.down('md')]: {
-     overflowX:"scroll",
     
-    },
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -75,6 +72,8 @@ const useStyle = makeStyles((theme) => ({
    
   },
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
@@ -253,7 +252,8 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {internalData.map((item, key) => {
+                      // {data1.map((item, key) => {
                       return (
                         <tr>
                           <td

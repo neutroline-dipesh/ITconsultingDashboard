@@ -103,6 +103,13 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1.5rem",
     color: "#303f9f",
   },
+  formDiv: {
+    maxHeight: "65vh",
+    overflow: "scroll",
+
+    overflowX: "hidden",
+    paddingRight: "1rem",
+  },
   form: {
     margin: "1rem",
     // paddingTop: "1rem",
@@ -376,7 +383,7 @@ const EditJobs = () => {
                   </span>
                 </div>{" "}
                 <form className={classes.form}>
-                  <div>
+                  <div className={classes.formDiv}>
                     <input
                       type="text"
                       className="form-control"

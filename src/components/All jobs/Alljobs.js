@@ -90,6 +90,8 @@ const useStyle = makeStyles((theme) => ({
   },
 
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
@@ -279,10 +281,9 @@ const Alljobs = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
-                      {
-                        /* {allJobsData.map((item, key) => { */
-                      }
+                    {/* {data1.map((item, key) => { */}
+
+                    {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}

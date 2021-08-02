@@ -100,9 +100,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  logout: {
+    color: "#4E73DF",
+  },
   logoutIcon: {
     fontSize: "1.5rem",
-    color: "#858796",
+    color: "#4E73DF",
     marginRight: "0.5rem",
     // marginTop: "1rem",
   },
@@ -222,7 +225,7 @@ export default function SignOut() {
                       </div>
                     </MenuItem>
                     <MenuItem className={classes.logoutDiv}>
-                      <span>
+                      <span className={classes.logout}>
                         <CgLogOut className={classes.logoutIcon} />
                         Log Out
                       </span>

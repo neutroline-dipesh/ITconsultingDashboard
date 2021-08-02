@@ -74,6 +74,8 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
@@ -260,7 +262,10 @@ const Contracting = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {contractData.map((item, key) => {
+                      {
+                        /* {data1.map((item, key) => { */
+                      }
                       return (
                         <tr key="key">
                           <td
