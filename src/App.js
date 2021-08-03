@@ -54,73 +54,73 @@ function App(props) {
     // </Switch>
     <Switch>
       <Route exact path="/" component={Login} />
-      <GuardedRoute
+      <Route
         exact
         path="/dashboard"
         component={Dashboard}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/alljobs"
         component={Alljobs}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/alljobs/editJobs"
         component={EditJobs}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/contracting"
         component={Contracting}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/internal"
         component={Internal}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/addjobs"
         component={AddJobs}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/contact"
         component={Contact}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewContact"
         component={viewDetail}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/allApplicant"
         component={allApplicant}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewJobDetail"
         component={viewJobDetail}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/logout"
         component={Logout}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewApplicatnDetail"
         component={viewApplicantDetail}
