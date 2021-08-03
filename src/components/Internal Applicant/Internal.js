@@ -64,8 +64,7 @@ const useStyle = makeStyles((theme) => ({
     paddingBottom: "2rem",
     overflowX: "hidden",
     [theme.breakpoints.down('md')]: {
-     overflowX:"scroll",
-    
+      overflowX: "scroll",
     },
   },
   dataTable: {
@@ -256,7 +255,8 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {internalData.map((item, key) => {
+                      // {data1.map((item, key) => {
                       return (
                         <tr>
                           <td

@@ -83,6 +83,10 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
+
+    [theme.breakpoints.down('md')]: {
+      overflowX: "scroll",
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -98,6 +102,8 @@ const useStyle = makeStyles((theme) => ({
     // height: "3vh !important",
     textAlign: "center",
     whiteSpace: "nowrap",
+
+    
   },
   tableBody: {
     textAlign: "center",
@@ -262,7 +268,7 @@ const Alljobs = (props) => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={classes.dataTable + " " + "table"}
+                  className={classes.dataTable + " " + "table "}
                 >
                   <thead>
                     <tr>
