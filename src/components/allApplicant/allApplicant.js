@@ -37,9 +37,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     height: "82vh",
@@ -61,6 +61,9 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
+    [theme.breakpoints.down('md')]: {
+      overflowX: "scroll",
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -194,12 +197,13 @@ const Contracting = () => {
             </span>
           </div>
           <div className={classes.MainContentDiv}>
-            <div className={classes.ContentDiv}>
-              <div className={classes.ContentDateDiv}>
+            <div className={classes.ContentDiv} >
+              <div className={classes.ContentDateDiv} >
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
                   className={classes.dataTable + " " + "table "}
+
                 >
                   <thead>
                     <tr>

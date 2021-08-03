@@ -33,11 +33,10 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
   },
   pageTabName: {
-    // fontFamily: "Roboto",
-    fontSize: "2rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontSize: "1.75rem",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     height: "82vh",

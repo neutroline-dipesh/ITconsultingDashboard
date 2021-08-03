@@ -47,10 +47,10 @@ const useStyle = makeStyles((theme) => ({
   },
 
   pageTabName: {
-    fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+   fontSize: "1.75rem",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   jobListButton: {
     textDecoration: "none",
@@ -418,8 +418,8 @@ const Addjobs = () => {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form} onSubmit={formik.handleSubmit}>
-                  <div>
+                <form className={classes.form}>
+                  <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
                       style={{ borderColor: "#0066ff" }}

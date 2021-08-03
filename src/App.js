@@ -22,12 +22,12 @@ import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 function App(props) {
- // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     props.setPath(window.location.pathname);
-  //   }
-  //   props.onTryAutoSignup();
-  // }, []);
+  useEffect(() => {
+    // if (localStorage.getItem("token")) {
+    //   props.setPath(window.location.pathname);
+    // }
+    props.onTryAutoSignup();
+  }, []);
   return (
     // <Switch>
     //   <Route exact path="/login" component={Login} />

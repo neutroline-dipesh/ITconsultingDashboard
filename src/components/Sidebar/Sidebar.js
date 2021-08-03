@@ -16,7 +16,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
-
+import neutrolinelogo from "../../assets/images/glass.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { RiDashboard3Fill } from "react-icons/ri";
@@ -41,6 +41,13 @@ const useStyle = makeStyles((theme) => ({
     // display: "flex",
     // justifyContent: "center",
     paddingTop: "0.4rem",
+  },
+  footerSidebar: {
+    color: "#EEE",
+    textAlign:"center",
+    fontSize:"0.8em",
+    marginTop:"11%",
+    marginBottom:"0px",
   },
   linktext: {
     textDecoration: "none",
@@ -109,7 +116,7 @@ const useStyle = makeStyles((theme) => ({
 
   messgaeIcon: {
     fontSize: "1.2rem",
-    color: "#4E73DF",
+    color: "#F7A000",
   },
   messageNumber: {
     marginRight: "1rem",
@@ -156,6 +163,7 @@ const useStyle = makeStyles((theme) => ({
       boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
       transform: "scale(1.04)",
       transition: "ease 0.3s",
+      borderRight:"3px solid #4E73DF",
     },
   },
   nastedList: {
@@ -170,6 +178,7 @@ const useStyle = makeStyles((theme) => ({
       color: "#161D6F",
     },
   },
+
   // nastedListtext: {
   //   backgroundColor: "#fff",
   //   color: "#161D6F",
@@ -336,6 +345,11 @@ const Sidebar = () => {
             </ListItem>
           </Link>
         </List>
+        <div className={classes.footerSidebar}>
+          <img src={neutrolinelogo} alt="neutroline-logo" height="190px"></img>
+          <br /> <hr />
+          ©2021 Neutrosys Inc. All Rights Reserved.
+        </div>
       </div>
       {/* )} */}
       <div
