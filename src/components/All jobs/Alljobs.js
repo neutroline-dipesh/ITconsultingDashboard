@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -84,7 +84,7 @@ const useStyle = makeStyles((theme) => ({
     paddingBottom: "2rem",
     overflowX: "hidden",
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       overflowX: "scroll",
     },
   },
@@ -102,8 +102,6 @@ const useStyle = makeStyles((theme) => ({
     // height: "3vh !important",
     textAlign: "center",
     whiteSpace: "nowrap",
-
-    
   },
   tableBody: {
     textAlign: "center",
@@ -183,10 +181,10 @@ const Alljobs = (props) => {
       }
     });
   };
-const editDataFunction =(id)=>{
-  console.log(id,'esma id aaux edit dabauda')
-  props.history.push("./EditJobs/" + id)
- };
+  const editDataFunction = (id) => {
+    console.log(id, "esma id aaux edit dabauda");
+    props.history.push("./EditJobs/" + id);
+  };
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -270,8 +268,8 @@ const editDataFunction =(id)=>{
               <div className={classes.ContentDateDiv}>
                 <table
                   id="example"
-                  //   class="table table-striped table-bordered"
-                  className={classes.dataTable + " " + "table "}
+                  data-ordering="false"
+                  className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
@@ -335,8 +333,12 @@ const editDataFunction =(id)=>{
                                 arrow
                               >
                                 <Link to="/alljobs/editJobs">
-                                  <FaEdit className={classes.editButton} 
-                                  onClick={()=>{editDataFunction(item.id)}}/>
+                                  <FaEdit
+                                    className={classes.editButton}
+                                    onClick={() => {
+                                      editDataFunction(item.id);
+                                    }}
+                                  />
                                 </Link>
                               </Tooltip>
 

@@ -201,7 +201,7 @@ const Contracting = () => {
               <div className={classes.ContentDateDiv} >
                 <table
                   id="example"
-                  //   class="table table-striped table-bordered"
+                  data-ordering="false"
                   className={classes.dataTable + " " + "table "}
 
                 >
