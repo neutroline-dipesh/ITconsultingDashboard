@@ -272,7 +272,7 @@ const [data, setData] = useState("")
 
     axios.get("http://localhost:4000/allJobs/"+id).then((response) => {
 
-      console.log(response.data,'edit jobs ko data');
+      console.log(response.data,'data');
     if (response.data) {
         // value = response.data.data;
         setData(response.data.data);
