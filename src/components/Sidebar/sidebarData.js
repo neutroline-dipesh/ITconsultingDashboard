@@ -6,6 +6,7 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 export const SidebarData = [
   {
@@ -58,8 +59,15 @@ export const SidebarData = [
   },
   {
     id: 5,
+    title: "Employers",
+    icon: <PeopleAltIcon/>,
+    links: "/employers"
+  }
+  {
+    id: 6,
     title: "Sign Out",
     icon: <ExitToAppIcon />,
     links: "/notice",
   },
+  
 ];

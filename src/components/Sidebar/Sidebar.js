@@ -12,6 +12,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import HomeIcon from "@material-ui/icons/Home";
 import WorkIcon from "@material-ui/icons/Work";
 import ContactsIcon from "@material-ui/icons/Contacts";
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
@@ -336,6 +337,17 @@ const Sidebar = () => {
               <ListItemText
                 style={{ marginLeft: "1.5rem" }}
                 primary="All Query"
+              />
+            </ListItem>
+          </Link>
+
+          <Link to="/employers" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
+              <PeopleAltIcon className={classes.sidebarIcon} />
+
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Employers"
               />
             </ListItem>
           </Link>

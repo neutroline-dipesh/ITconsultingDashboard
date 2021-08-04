@@ -297,7 +297,7 @@ const Addjobs = () => {
     onSubmit: (values) => {
       handleSubmit(values);
       formik.resetForm();
-      history.push("/Alljobs")
+      // history.push("/Alljobs")
     },
   });
 
@@ -418,7 +418,7 @@ const Addjobs = () => {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
