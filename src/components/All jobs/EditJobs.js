@@ -43,9 +43,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   jobListButton: {
     textDecoration: "none",
@@ -102,6 +102,13 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
     color: "#303f9f",
+  },
+  formDiv: {
+    maxHeight: "65vh",
+    overflow: "scroll",
+
+    overflowX: "hidden",
+    paddingRight: "1rem",
   },
   form: {
     margin: "1rem",
@@ -376,7 +383,7 @@ const EditJobs = () => {
                   </span>
                 </div>{" "}
                 <form className={classes.form}>
-                  <div>
+                  <div className={classes.formDiv}>
                     <input
                       type="text"
                       className="form-control"

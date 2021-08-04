@@ -23,7 +23,7 @@ import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 function App(props) {
   useEffect(() => {
-    // if(localStorage.getItem('token')){
+    // if (localStorage.getItem("token")) {
     //   props.setPath(window.location.pathname);
     // }
     props.onTryAutoSignup();
@@ -45,7 +45,7 @@ function App(props) {
 
     //   <Route
     //     exact
-    //     path="/viewApplicatnDetail"
+    //     path="/applicant-detail/:id"
     //     component={viewApplicantDetail}
     //   />
     //   <Route exact path="/signout" component={signout} />
@@ -54,75 +54,75 @@ function App(props) {
     // </Switch>
     <Switch>
       <Route exact path="/" component={Login} />
-      <GuardedRoute
+      <Route
         exact
         path="/dashboard"
         component={Dashboard}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/alljobs"
         component={Alljobs}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/alljobs/editJobs"
         component={EditJobs}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/contracting"
         component={Contracting}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/internal"
         component={Internal}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/addjobs"
         component={AddJobs}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/contact"
         component={Contact}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewContact"
         component={viewDetail}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/allApplicant"
         component={allApplicant}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/viewJobDetail"
         component={viewJobDetail}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
         path="/logout"
         component={Logout}
         auth={props.isAuthenticated}
       />
-      <GuardedRoute
+      <Route
         exact
-        path="/applicant-detail/:id"
+        path="/viewApplicatnDetail"
         component={viewApplicantDetail}
         auth={props.isAuthenticated}
       />
@@ -139,7 +139,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
-    setPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+    setPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
   };
 };
 

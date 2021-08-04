@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
-import axios from 'axios';
+import axios from "axios";
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -33,11 +33,10 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
   },
   pageTabName: {
-    // fontFamily: "Roboto",
-    fontSize: "2rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontSize: "1.75rem",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     height: "82vh",
@@ -65,6 +64,8 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
@@ -111,18 +112,17 @@ const Contact = (props) => {
   const [data, setData] = useState([]);
 
   //getting data from database start
-  
+
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
       fetchContactData();
     }, 100);
-  }, []);   
+  }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     $("#example").DataTable();
   }, [data]);
-
 
   const classes = useStyle();
   useEffect(() => {
@@ -132,12 +132,12 @@ const Contact = (props) => {
   });
 
   //alert message
-  const fetchContactData = () =>{
-    axios.get('http://localhost:4000/allQueries').then(response =>{
+  const fetchContactData = () => {
+    axios.get("http://localhost:4000/allQueries").then((response) => {
       console.log(response.data);
       setData(response.data.data);
-    })
-  }
+    });
+  };
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -160,31 +160,30 @@ const Contact = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/allQueries/"+ id, 
-          {
-            headers: {'Authorization': localStorage.getItem('token')} ,
-            data:{
-              id:id,
-            }
-          }
-          ).then(
-            res =>{
-              console.log('deleted id'+id);
-               swalWithBootstrapButtons.fire(
+          axios
+            .delete("http://localhost:4000/allQueries/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Selected item has been deleted",
                 "success"
               );
               fetchContactData();
-            }
-          ).catch(err =>{
-            console.log(err);
-            swalWithBootstrapButtons.fire(
-              "Something Went Wrong!",
-              "Not deleted!",
-              "fail"
-            )
-          })
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel

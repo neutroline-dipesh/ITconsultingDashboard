@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
   },
   notificationIcon: {
-    color: "#858796",
+    color: "#4E73DF",
     fontSize: "1.3rem",
     marginTop: "0.3rem",
   },

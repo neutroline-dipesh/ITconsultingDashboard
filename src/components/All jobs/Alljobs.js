@@ -43,9 +43,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#fffff",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   addJobButton: {
     textDecoration: "none",
@@ -83,6 +83,10 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
+
+    [theme.breakpoints.down('md')]: {
+      overflowX: "scroll",
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -90,12 +94,16 @@ const useStyle = makeStyles((theme) => ({
   },
 
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
     // height: "3vh !important",
     textAlign: "center",
     whiteSpace: "nowrap",
+
+    
   },
   tableBody: {
     textAlign: "center",
@@ -167,14 +175,14 @@ const Alljobs = (props) => {
   });
 
   //alert message
-  const fetchAllData = () =>{
-        axios.get("http://localhost:4000/allJobs/").then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-  }
+  const fetchAllData = () => {
+    axios.get("http://localhost:4000/allJobs/").then((response) => {
+      if (response.data) {
+        // value = response.data.data;
+        setData1(response.data.data);
+      }
+    });
+  };
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -197,32 +205,30 @@ const Alljobs = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/allJobs/"+ id, 
-          {
-            headers: {'Authorization': localStorage.getItem('token')} ,
-            data:{
-              id:id,
-            }
-          }
-          ).then(
-            res => {
-              console.log('deleted id'+id);
-               swalWithBootstrapButtons.fire(
+          axios
+            .delete("http://localhost:4000/allJobs/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Your file has been deleted.",
                 "success"
               );
               fetchAllData();
-            }
-            
-          ).catch(err =>{
-            console.log(err);
-            swalWithBootstrapButtons.fire(
-              "Something Went Wrong!",
-              "Job not deleted!",
-              "fail"
-            )
-          })
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Job not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -262,7 +268,7 @@ const Alljobs = (props) => {
                 <table
                   id="example"
                   //   class="table table-striped table-bordered"
-                  className={classes.dataTable + " " + "table"}
+                  className={classes.dataTable + " " + "table "}
                 >
                   <thead>
                     <tr>
@@ -280,9 +286,7 @@ const Alljobs = (props) => {
                   </thead>
                   <tbody>
                     {data1.map((item, key) => {
-                      {
-                        /* {allJobsData.map((item, key) => { */
-                      }
+                      // {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
                           {/* <td>1</td> */}

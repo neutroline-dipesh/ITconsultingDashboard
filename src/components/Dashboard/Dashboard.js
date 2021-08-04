@@ -32,18 +32,36 @@ const useStyle = makeStyles((theme) => ({
     // backgroundColor: "red",
     paddingTop: "8vh",
   },
+  PageTabDiv: {
+    backgroundColor: "#f8f9fc",
+
+    height: "10vh",
+    // border: "solid 1px",
+    display: "flex",
+    justifyContent: "space-between",
+
+    alignItems: "center",
+    // paddingTop: "0.5rem",
+  },
+
+  pageTabName: {
+    fontSize: "1.75rem",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
+  },
+
   smallBoxMainDiv: {
     // color: "red",
     backgroundColor: "#f8f9fc",
+    // backgroundColor: "blue",
     display: "flex",
     justifyContent: "space-evenly",
     width: "83.5%",
-
-    height: "25vh",
-    // border: "solid 1px",
-    paddingTop: "3rem",
-    marginRight: "2rem",
-    marginLeft: "2rem",
+    // paddingLeft: "1rem",
+    // paddingRight: "1rem",
+    // paddingTop: "1.5rem",
+    paddingBottom: "1.5rem",
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
@@ -97,10 +115,11 @@ const useStyle = makeStyles((theme) => ({
   tableCalenderDivMain: {
     // border: "solid 1px",
     backgroundColor: "#f8f9fc",
+    // backgroundColor: "red",
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     // alignItems: "center",
-    height: "67vh",
+    height: "61.8vh",
     // margin: "1.5rem",
   },
   tableContainer: {
@@ -111,8 +130,10 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    width: "60%",
+    width: "68%",
     marginBottom: "1.5rem",
+    marginLeft: "0.5rem",
+    // marginRight: "1rem",
     // maxHeight: "50vh",
   },
   tableTitleBottonDiv: {
@@ -135,9 +156,10 @@ const useStyle = makeStyles((theme) => ({
   tableHead: {
     fontSize: "1rem",
     // fontWeight: "00",
+    whiteSpace: "nowrap",
   },
   tableDataDiv: {
-    height: "51vh",
+    height: "47vh",
     // backgroundColor: "blue",
     paddingTop: "1rem",
     marginLeft: "1rem",
@@ -162,36 +184,11 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   calenderDiv: {
-    width: "25%",
-    // marginTop: "",
-
-    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    // backgroundColor: "red",
+    marginRight: "1.rem",
   },
-  // viewDate: {
-  //   height: "10vh",
-  //   backgroundColor: "#4e73df",
-  //   display: "flex",
-  //   alignItems: "center",
-  // },
-  // day: {
-  //   fontSize: "3rem",
-  //   fontWeight: "200",
-  //   color: "#fff",
-  //   marginLeft: "1rem",
-
-  //   // marginTop: "0rem",
-  // },
-  // month: {
-  //   fontSize: "2rem",
-  //   fontWeight: "200",
-  //   color: "#fff",
-  //   marginTop: "1rem",
-  // },
 
   calender: {
-    // height: "30vh",
-    // width: "10%",
-    // marginRight: "-1rem",
     borderRadius: "5px",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
   },
@@ -231,6 +228,9 @@ const Dashboard = () => {
 
       <div className={classes.root}>
         <div className={classes.maindiv}>
+          <div className={classes.PageTabDiv}>
+            <span className={classes.pageTabName}>Dashboard</span>
+          </div>
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
               <div className={classes.jobs}>
@@ -337,16 +337,29 @@ const Dashboard = () => {
                     <TableBody>
                       {allApplicantData.map((item) => (
                         <TableRow>
-                          <TableCell component="th" scope="row">
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.jobTitle}
                           </TableCell>
-                          <TableCell align="center">
+                          <TableCell
+                            align="center"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.firstName + " " + item.lastName}
                           </TableCell>
-                          <TableCell align="center">
+                          <TableCell
+                            align="center"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.senioritylevel}
                           </TableCell>
-                          <TableCell align="center">
+                          <TableCell
+                            align="center"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
                             {item.postedDate}
                           </TableCell>
                           {/* <TableCell align="right">{row.fat}</TableCell>

@@ -37,9 +37,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     height: "82vh",
@@ -64,8 +64,7 @@ const useStyle = makeStyles((theme) => ({
     paddingBottom: "2rem",
     overflowX: "hidden",
     [theme.breakpoints.down('md')]: {
-     overflowX:"scroll",
-    
+      overflowX: "scroll",
     },
   },
   dataTable: {
@@ -75,6 +74,8 @@ const useStyle = makeStyles((theme) => ({
    
   },
   tableHead: {
+    position: "sticky",
+    top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
@@ -235,6 +236,7 @@ const Internal = (props) => {
                   id="example"
                   //   class="table table-striped table-bordered"
                   className={classes.dataTable + " " + "table "}
+                  
                 >
                   <thead>
                     <tr>
@@ -253,7 +255,8 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {internalData.map((item, key) => {
+                      // {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
