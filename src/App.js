@@ -16,7 +16,8 @@ import EditJobs from "./components/All jobs/EditJobs";
 import viewDetail from "./components/Contact/ViewDetail";
 import allApplicant from "./components/allApplicant/allApplicant";
 import Logout from "./components/Logout/Logout";
-import viewApplicantDetail from "./components/viewApplicantDetail/viewApplicantDetail";
+import viewInternalApplicantDetail from "./components/viewApplicantDetail/viewApplicantDetail";
+import viewContractApplicantDetail from "./components/viewApplicantDetail/viewContractApplicantDetail";
 import viewJobDetail from "./components/All jobs/viewJobDetail";
 import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
@@ -54,78 +55,84 @@ function App(props) {
     // </Switch>
     <Switch>
       <Route exact path="/" component={Login} />
-      <Route
+      <GuardedRoute
         exact
         path="/dashboard"
         component={Dashboard}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/alljobs"
         component={Alljobs}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/alljobs/editJobs"
         component={EditJobs}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/contracting"
         component={Contracting}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/internal"
         component={Internal}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/addjobs"
         component={AddJobs}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/contact"
         component={Contact}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/viewContact"
         component={viewDetail}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/allApplicant"
         component={allApplicant}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
-        path="/viewJobDetail"
+        path="/job-detail/:id"
         component={viewJobDetail}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
         path="/logout"
         component={Logout}
         auth={props.isAuthenticated}
       />
-      <Route
+      <GuardedRoute
         exact
-        path="/viewApplicatnDetail"
-        component={viewApplicantDetail}
+        path="/internal-applicant-detail/:id"
+        component={viewInternalApplicantDetail}
         auth={props.isAuthenticated}
-      />
+      /> 
+      <GuardedRoute
+        exact
+        path="/contract-applicant-detail/:id"
+        component={viewContractApplicantDetail}
+        auth={props.isAuthenticated}
+      /> 
 
       <Route component={pageNotFound} />
     </Switch>

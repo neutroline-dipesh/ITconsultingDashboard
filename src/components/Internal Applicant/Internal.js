@@ -151,7 +151,7 @@ const Internal = (props) => {
   //alert message
 
   const fetchData = () =>{
-          axios.get("http://localhost:4000/internal/").then((response) => {
+          axios.get("http://localhost:4000/internal").then((response) => {
         if (response.data) {
           // value = response.data.data;
           setData1(response.data.data);
@@ -255,8 +255,8 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {internalData.map((item, key) => {
-                      // {data1.map((item, key) => {
+                  
+                       {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -384,7 +384,7 @@ const Internal = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to={`/applicant-detail/${item.id}`}>
+                                <Link to={`/internal-applicant-detail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />

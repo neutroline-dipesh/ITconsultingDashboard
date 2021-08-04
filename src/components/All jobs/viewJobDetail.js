@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import ContactsIcon from "@material-ui/icons/Contacts";
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import file from "../../assets/files/cv.pdf";
-
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
-import { CgArrowLeftR } from "react-icons/cg";
+import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
 
@@ -166,6 +158,54 @@ const useStyle = makeStyles((theme) => ({
 
 const JobsDetail = () => {
   const classes = useStyle();
+  const [job, setJob] = useState({
+    city:null,
+    country: null,
+    department:null,
+    description:null,
+    jobId:null,
+    jobSubtitle:null,
+    jobType:null,
+    jubTitle:null,
+    postedDate:null,
+    publishedBy:null,
+    state:null,
+    visiblity:null,
+    loading: false,
+    error:false
+
+  })
+  const {id} = useParams();
+    useEffect(() => {
+      getJobDetails();
+      console.log(job);
+  }, []);
+
+  const getJobDetails = () =>{
+    axios.get("http://localhost:4000/allJobs/" + id).then( res =>{
+      console.log(res.data);
+      setJob({
+    city:res.data.data[0].city,
+    country: res.data.data[0].country,
+    department:res.data.data[0].department,
+    description:res.data.data[0].description,
+    jobId:res.data.data[0].jobId,
+    jobSubtitle:res.data.data[0].jobSubtitle,
+    jobType:res.data.data[0].jobType,
+    jobTitle:res.data.data[0].jobTitle,
+    postedDate:res.data.data[0].postedDate,
+    publishedBy:res.data.data[0].publishedBy,
+    state:res.data.data[0].state,
+    visiblity:res.data.data[0].visiblity,
+    loading: false,
+    error:false
+      })
+  }
+    ).catch(err=>{
+      console.log(err);
+    }
+    );
+  }
 
   return (
     <>
@@ -202,7 +242,7 @@ const JobsDetail = () => {
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Id:</span>
                         <span className={classes.listBody}>
-                          React Developer
+                          {job.jobId}
                         </span>
                       </ListItem>
                       <ListItem>
@@ -211,7 +251,7 @@ const JobsDetail = () => {
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Title:</span>
                         <span className={classes.listBody}>
-                          React Developer
+                          {job.jobTitle}
                         </span>
                       </ListItem>
                       <ListItem>
@@ -220,8 +260,7 @@ const JobsDetail = () => {
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job SubTitle:</span>
                         <span className={classes.listBody}>
-                          Subtitle is here Subtitle is here Subtitle is here
-                          Subtitle is here
+                          {job.jobSubtitle}
                         </span>
                       </ListItem>
                       <ListItem>
@@ -229,14 +268,14 @@ const JobsDetail = () => {
                           <img src="https://img.icons8.com/color/40/000000/org-unit.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Department:</span>
-                        <span className={classes.listBody}>Technology</span>
+                        <span className={classes.listBody}>{job.jobTitle}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/40/000000/find-matching-job.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Type:</span>
-                        <span className={classes.listBody}>Full Time</span>
+                        <span className={classes.listBody}>{job.jobType}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -244,7 +283,7 @@ const JobsDetail = () => {
                         </ListItemAvatar>
                         <span className={classes.listHead}>Address:</span>
                         <span className={classes.listBody}>
-                          Nepal ,Provience 1, Damak-6
+                          {job.country + " , " + job.state + " , " + job.city}
                         </span>
                       </ListItem>
                       <ListItem>
@@ -252,7 +291,7 @@ const JobsDetail = () => {
                           <img src="https://img.icons8.com/color/40/000000/calendar--v1.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
+                        <span className={classes.listBody}>{job.postedDate}</span>
                       </ListItem>
                     </List>
                   </div>
@@ -270,39 +309,38 @@ const JobsDetail = () => {
                       <ListItem>
                         <span className={classes.listHead}>Job Id:</span>
                         <span className={classes.listBody}>
-                          React Developer
+                          {job.jobId}
                         </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Job Title:</span>
                         <span className={classes.listBody}>
-                          React Developer
+                         {job.jobTitle}
                         </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Job SubTitle:</span>
                         <span className={classes.listBody}>
-                          Subtitle is here Subtitle is here Subtitle is here
-                          Subtitle is here
+                          {job.jobSubtitle}
                         </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Department:</span>
-                        <span className={classes.listBody}>Technology</span>
+                        <span className={classes.listBody}>{job.department}</span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Job Type:</span>
-                        <span className={classes.listBody}>Full Time</span>
+                        <span className={classes.listBody}>{job.jobType}</span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Address:</span>
                         <span className={classes.listBody}>
-                          Nepal ,Provience 1, Damak-6
+                          {job.country + " , " + job.state + " , " + job.city}
                         </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
+                        <span className={classes.listBody}>{job.postedDate}</span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Publish Date:</span>

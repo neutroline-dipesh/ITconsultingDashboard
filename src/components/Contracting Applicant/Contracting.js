@@ -152,7 +152,7 @@ const Contracting = (props) => {
   });
 
   //alert message
-
+ 
   const fetchData = () => {
     axios.get("http://localhost:4000/contract/").then((response) => {
       if (response.data) {
@@ -369,7 +369,7 @@ const Contracting = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to={`/applicant-detail/${item.id}`}>
+                                <Link to={`/contract-applicant-detail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />

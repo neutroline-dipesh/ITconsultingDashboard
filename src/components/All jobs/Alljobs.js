@@ -319,7 +319,7 @@ const Alljobs = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to="/viewJobDetail">
+                                <Link to={`/job-detail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />

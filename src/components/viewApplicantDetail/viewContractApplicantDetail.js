@@ -17,8 +17,6 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import WcIcon from "@material-ui/icons/Wc";
 import ViewMessage from "./viewResume";
 import CoverLetter from "./viewCoverLetter";
-
-import file from "../../assets/files/cv.pdf";
 import { useParams } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -188,7 +186,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const  Contracting = () => {
+const  ViewContractApplicantDetail = () => {
   let {id} = useParams();
   console.log(id);
   const [applicant, setApplicant] = useState({
@@ -218,7 +216,7 @@ const  Contracting = () => {
   }, []);
 
   const getApplicantDetails = () =>{
-    axios.get("http://localhost:4000/internal/" + id).then( response =>{
+    axios.get("http://localhost:4000/contract/" + id).then( response =>{
       console.log(response.data.data[0]);
       setApplicant({
             firstName: response.data.data[0].firstName,
@@ -392,4 +390,4 @@ const  Contracting = () => {
   );
 };
 
-export default Contracting;
+export default ViewContractApplicantDetail;

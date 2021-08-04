@@ -188,7 +188,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const  Contracting = () => {
+const  viewInternalApplicantDetail = () => {
   let {id} = useParams();
   console.log(id);
   const [applicant, setApplicant] = useState({
@@ -392,4 +392,4 @@ const  Contracting = () => {
   );
 };
 
-export default Contracting;
+export default viewInternalApplicantDetail;
