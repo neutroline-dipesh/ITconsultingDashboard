@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
@@ -17,6 +17,8 @@ import { Link } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
+
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -261,9 +263,23 @@ const IOSSwitch = withStyles((theme) => ({
   );
 });
 
-const EditJobs = () => {
+function  EditJobs (props) {
   const classes = useStyle();
+const [data, setData] = useState("")
+  useEffect(()=>{
+    const id =props.id
+    console.log(id,'edit jobs ko id');
 
+    axios.get("http://localhost:4000/allJobs/"+id).then((response) => {
+
+      console.log(response.data,'edit jobs ko data');
+    if (response.data) {
+        // value = response.data.data;
+        setData(response.data.data);
+      }})
+
+  },[])
+  
   //for validation
   const formik = useFormik({
     initialValues: {
@@ -568,7 +584,7 @@ const EditJobs = () => {
                           className={"btn btn-primary" + " " + classes.save}
                           onClick={() => saveFunction()}
                         >
-                          Save
+                          Update
                         </button>
                       </div>
                     </div>

@@ -28,9 +28,10 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     width: "16.5%",
     height: "100vh",
+    //boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
 
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-    backgroundColor: "#4e73df",
+    backgroundColor: "#fff",
     textAlign: "center",
     // position: "fixed",
     //position: "absolute",
@@ -43,7 +44,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "0.4rem",
   },
   footerSidebar: {
-    color: "#EEE",
+    color: "#5d6169",
     textAlign:"center",
     fontSize:"0.8em",
     marginTop:"11%",
@@ -51,7 +52,7 @@ const useStyle = makeStyles((theme) => ({
   },
   linktext: {
     textDecoration: "none",
-    color: "#fff",
+    color: "#000",
     "&:hover": {
       textDecoration: "none",
       color: "#fff",
@@ -59,12 +60,13 @@ const useStyle = makeStyles((theme) => ({
   },
   sidenav: {},
   smileIcon: {
-    color: "#fff",
+    color: "#5d6169",
     fontSize: "2rem",
     marginTop: "-1rem",
+    
   },
   companyName: {
-    color: "#FFFFFF",
+    color: "#5d6169",
     fontSize: "25px",
     width: "100%",
 
@@ -87,7 +89,7 @@ const useStyle = makeStyles((theme) => ({
     height: "8vh",
     width: "83.5%",
     float: "right",
-    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
+    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.2)",
     display: "flex",
 
     alignItems: "center",
@@ -153,29 +155,35 @@ const useStyle = makeStyles((theme) => ({
   },
   sidebarList: {
     textDecoration: "none",
-    color: "#fff",
+    color: "#5d6169",
     zIndex: "1000",
+    borderLeft:"8px solid #fff",
+
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#F6F6F6",
-      color: "#161D6F",
+     // backgroundColor: "#F6F6F6",
+      color: "#548FFF",
       textDecoration: "none",
-      boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
+     // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
       transform: "scale(1.04)",
       transition: "ease 0.3s",
-      borderRight:"3px solid #4E73DF",
+      borderLeft:"8px solid #4E73DF",
     },
   },
   nastedList: {
     // textAlign: "center",
     paddingLeft: "3.5rem",
-    backgroundColor: "#2854d7",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#161D6F",
     textDecoration: "none",
+    borderLeft:"2px solid #fff",
+
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#fff",
-      color: "#161D6F",
+      color: "#548FFF",
+      borderLeft:"2px solid #4E73DF",
+
     },
   },
 
