@@ -422,7 +422,7 @@ const Addjobs = () => {
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#45ffe6" }}
                       type="text"
                       className="form-control"
                       aria-describedby="emailHelp"
@@ -436,7 +436,7 @@ const Addjobs = () => {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#45ffe6" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
@@ -449,7 +449,7 @@ const Addjobs = () => {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#45ffe6" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
@@ -463,7 +463,7 @@ const Addjobs = () => {
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
                         >
@@ -481,7 +481,7 @@ const Addjobs = () => {
                       </div>
                       <div className={classes.jobTypeDiv}>
                         <select
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45f6ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
@@ -505,7 +505,7 @@ const Addjobs = () => {
                     <div className={classes.CountryStateCityDiv}>
                       <div className={classes.countryDiv}>
                         <input
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           type="text"
                           className={"form-control" + " " + classes.Country}
                           aria-describedby="emailHelp"
@@ -538,7 +538,7 @@ const Addjobs = () => {
 
                       <div className={classes.stateDiv}>
                         <input
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
@@ -571,7 +571,7 @@ const Addjobs = () => {
                       <div className={classes.cityDiv}>
                         <input
                           type="text"
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           className={"form-control" + " " + classes.city}
                           aria-describedby="emailHelp"
                           placeholder="Enter City"

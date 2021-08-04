@@ -16,7 +16,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
-import neutrolinelogo from "../../assets/images/glass.png";
+import SidebarImage from "../../assets/images/glass.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { RiDashboard3Fill } from "react-icons/ri";
@@ -28,9 +28,18 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     width: "16.5%",
     height: "100vh",
+    backgroundImage: `url(${SidebarImage}) `,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "left bottom 10%",
+    backgroundSize:"200px 270px",
+    
+   // backgroundSize: "cover",
+    backgroundAttachment: "fixed",
     //boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-
-    // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
+    borderRight: "2px solid",
+    borderImageSlice: 1,
+    borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",  
+      // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
     backgroundColor: "#fff",
     textAlign: "center",
     // position: "fixed",
@@ -43,12 +52,13 @@ const useStyle = makeStyles((theme) => ({
     // justifyContent: "center",
     paddingTop: "0.4rem",
   },
+  
   footerSidebar: {
     color: "#5d6169",
     textAlign:"center",
     fontSize:"0.8em",
-    marginTop:"11%",
-    marginBottom:"0px",
+    marginTop:"100%",
+    marginBottom:"2px",
   },
   linktext: {
     textDecoration: "none",
@@ -169,6 +179,7 @@ const useStyle = makeStyles((theme) => ({
       transition: "ease 0.3s",
       borderLeft:"8px solid #4E73DF",
     },
+  
   },
   nastedList: {
     // textAlign: "center",
@@ -222,8 +233,10 @@ const Sidebar = () => {
 
   return (
     <>
+    
       {/* {showNav && ( */}
       <div className={classes.root}>
+        
         <FaSmileWink className={classes.smileIcon} />
         <span className={classes.companyName}>
           Neutrosys <hr className={classes.hr} />
@@ -233,9 +246,12 @@ const Sidebar = () => {
           component="nav"
           aria-labelledby="nested-list-subheader"
           className={classes.sidebarMenuItem}
+          
         >
-          <Link to="/" className={classes.linktext}>
-            <ListItem button className={classes.sidebarList}>
+          
+          <Link to="/" className={classes.linktext} 
+          >
+            <ListItem button className={classes.sidebarList} >
               <RiDashboard3Fill
                 style={{ fontSize: "1.56rem" }}
                 className={classes.sidebarIcon}
@@ -354,8 +370,8 @@ const Sidebar = () => {
           </Link>
         </List>
         <div className={classes.footerSidebar}>
-          <img src={neutrolinelogo} alt="neutroline-logo" height="190px"></img>
-          <br /> <hr />
+         
+           <hr />
           ©2021 Neutrosys Inc. All Rights Reserved.
         </div>
       </div>
