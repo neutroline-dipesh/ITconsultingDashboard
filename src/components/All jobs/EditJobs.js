@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
@@ -47,9 +47,9 @@ const useStyle = makeStyles((theme) => ({
 
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   jobListButton: {
     textDecoration: "none",
@@ -263,8 +263,21 @@ const IOSSwitch = withStyles((theme) => ({
   );
 });
 
-const EditJobs = () => {
+function EditJobs(props) {
   const classes = useStyle();
+  const [data, setData] = useState("");
+  useEffect(() => {
+    const id = props.id;
+    console.log(id, "edit jobs ko id");
+
+    axios.get("http://localhost:4000/allJobs/" + id).then((response) => {
+      console.log(response.data, "edit jobs ko data");
+      if (response.data) {
+        // value = response.data.data;
+        setData(response.data.data);
+      }
+    });
+  }, []);
 
   //for validation
   const formik = useFormik({
@@ -635,7 +648,7 @@ const EditJobs = () => {
                           type="submit"
                           className={"btn btn-primary" + " " + classes.save}
                         >
-                          Save
+                          Update
                         </button>
                       </div>
                     </div>
@@ -648,6 +661,6 @@ const EditJobs = () => {
       </div>
     </>
   );
-};
+}
 
 export default EditJobs;

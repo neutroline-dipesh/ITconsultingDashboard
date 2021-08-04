@@ -37,9 +37,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     height: "82vh",
@@ -61,7 +61,7 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down('md')]: {
       overflowX: "scroll",
     },
   },
@@ -229,6 +229,7 @@ const Internal = (props) => {
                   id="example"
                   data-ordering="false"
                   className={classes.dataTable + " " + "table "}
+                  
                 >
                   <thead>
                     <tr>
@@ -247,7 +248,8 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data1.map((item, key) => {
+                    {internalData.map((item, key) => {
+                      // {data1.map((item, key) => {
                       return (
                         <tr>
                           <td

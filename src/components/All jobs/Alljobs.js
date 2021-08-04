@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-
+import { withRouter } from "react-router-dom";
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -13,7 +13,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import * as actions from "../../store/actions";
 import axios from "axios";
-
+import EditJobs from "./EditJobs";
 import { connect } from "react-redux";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -43,9 +43,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#fffff",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   addJobButton: {
     textDecoration: "none",
@@ -83,6 +83,10 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
+
+    [theme.breakpoints.down("md")]: {
+      overflowX: "scroll",
+    },
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -177,7 +181,10 @@ const Alljobs = (props) => {
       }
     });
   };
-
+  const editDataFunction = (id) => {
+    console.log(id, "esma id aaux edit dabauda");
+    props.history.push("./EditJobs/" + id);
+  };
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -326,7 +333,12 @@ const Alljobs = (props) => {
                                 arrow
                               >
                                 <Link to="/alljobs/editJobs">
-                                  <FaEdit className={classes.editButton} />
+                                  <FaEdit
+                                    className={classes.editButton}
+                                    onClick={() => {
+                                      editDataFunction(item.id);
+                                    }}
+                                  />
                                 </Link>
                               </Tooltip>
 
