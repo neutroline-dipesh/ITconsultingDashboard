@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#F8F9FC",
     borderBottom: "solid 1px #e3e6f0",
     color: "#303f9f",
-    fontWeight:"700",
+    fontWeight: "700",
   },
   phoneAddressDiv: {
     display: "flex",
@@ -132,7 +132,7 @@ export default function AlertDialogSlide(props) {
               className={classes.iconBodyDiv}
               style={{ minWidth: "50%" }}
             >
-              <img src="https://img.icons8.com/color/40/000000/phone.png"/>
+              <img src="https://img.icons8.com/color/40/000000/phone.png" />
               <span className={classes.dialogBody}>+977 9816940668</span>
             </DialogContentText>
             <DialogContentText className={classes.iconBodyDiv}>

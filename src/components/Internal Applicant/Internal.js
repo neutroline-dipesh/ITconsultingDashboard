@@ -61,7 +61,7 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       overflowX: "scroll",
     },
   },
@@ -146,12 +146,14 @@ const Internal = (props) => {
   //alert message
 
   const fetchData = () => {
-    axios.get("http://localhost:4000/internal/").then((response) => {
-      if (response.data) {
-        // value = response.data.data;
-        setData1(response.data.data);
-      }
-    });
+    axios
+      .get("http://localhost:4000/allApplicant/internal/")
+      .then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
   };
 
   const deletFunction = (id) => {
@@ -177,14 +179,14 @@ const Internal = (props) => {
       .then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete("http://localhost:4000/internal/" + id, {
+            .delete("http://localhost:4000/allApplicant/" + id, {
               headers: { Authorization: localStorage.getItem("token") },
               data: {
                 id: id,
               },
             })
             .then((res) => {
-              console.log("deleted id" + id);
+              // console.log("deleted id" + id);
               swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Your file has been deleted.",
@@ -229,7 +231,6 @@ const Internal = (props) => {
                   id="example"
                   data-ordering="false"
                   className={classes.dataTable + " " + "table "}
-                  
                 >
                   <thead>
                     <tr>
@@ -248,8 +249,7 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {internalData.map((item, key) => {
-                      // {data1.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -285,15 +285,6 @@ const Internal = (props) => {
                             {item.gmail}
                           </td>
 
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.phone}
-                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -303,28 +294,7 @@ const Internal = (props) => {
                           >
                             {item.postedDate}
                           </td>
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <select>
-                              <option
-                                value="notSeen"
-                                selected={item.status == "notSeen"}
-                              >
-                                Not Seen
-                              </option>
-                              <option
-                                value="seen"
-                                selected={item.status == "seen"}
-                              >
-                                Seen
-                              </option>
-                            </select>
-                          </td> */}
+
                           <td
                             className={
                               item.status == "seen"

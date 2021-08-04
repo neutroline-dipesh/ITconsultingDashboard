@@ -223,12 +223,13 @@ const Contact = (props) => {
                   <thead>
                     <tr>
                       {/* <th className={classes.tableHead}>ID</th> */}
-                      <th className={classes.tableHead}>First Name</th>
-                      <th className={classes.tableHead}>Last Name</th>
+                      <th className={classes.tableHead}>Name</th>
+
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone</th>
-                      {/* <th className={classes.tableHead}>Address</th> */}
-                      <th className={classes.tableHead}>Subject</th>
+                      <th className={classes.tableHead}>Address</th>
+                      <th className={classes.tableHead}>Date</th>
+
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
@@ -236,7 +237,6 @@ const Contact = (props) => {
                     {data.map((item, key) => {
                       return (
                         <tr key={key}>
-                          {console.log(item, key)}
                           {/* <td
                             className={
                               item.status == "seen"
@@ -253,17 +253,9 @@ const Contact = (props) => {
                                 : classes.noColor
                             }
                           >
-                            {item.firstName}
+                            {item.fullName}
                           </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.lastName}
-                          </td>
+
                           <td
                             className={
                               item.status == "seen"
@@ -282,15 +274,6 @@ const Contact = (props) => {
                           >
                             {item.phone}
                           </td>
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.notColor
-                            }
-                          >
-                            {item.address}
-                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -298,7 +281,17 @@ const Contact = (props) => {
                                 : classes.noColor
                             }
                           >
-                            {item.subject}
+                            {item.city + " , " + item.country}
+                          </td>
+
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.postedDate}
                           </td>
 
                           <td
@@ -311,18 +304,9 @@ const Contact = (props) => {
                             <div className={classes.buttomDiv}>
                               <ViewDetail value={item.Id} />
 
-                              {/* <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={deletFunction}
-                              >
-                                delete
-                              </Button> */}
                               <RiDeleteBin6Fill
                                 className={classes.deleteButton}
-                                onClick={() => deletFunction(item.Id)}
+                                onClick={() => deletFunction(item.id)}
                               />
                             </div>
                           </td>

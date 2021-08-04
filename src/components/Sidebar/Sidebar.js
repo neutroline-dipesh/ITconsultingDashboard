@@ -28,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     width: "16.5%",
     height: "100vh",
-    //boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
 
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
     backgroundColor: "#fff",
@@ -45,10 +45,10 @@ const useStyle = makeStyles((theme) => ({
   },
   footerSidebar: {
     color: "#5d6169",
-    textAlign:"center",
-    fontSize:"0.8em",
-    marginTop:"11%",
-    marginBottom:"0px",
+    textAlign: "center",
+    fontSize: "0.8em",
+    marginTop: "11%",
+    marginBottom: "0px",
   },
   linktext: {
     textDecoration: "none",
@@ -63,7 +63,6 @@ const useStyle = makeStyles((theme) => ({
     color: "#5d6169",
     fontSize: "2rem",
     marginTop: "-1rem",
-    
   },
   companyName: {
     color: "#5d6169",
@@ -80,7 +79,7 @@ const useStyle = makeStyles((theme) => ({
     height: "8vh",
     width: "100%",
     float: "left",
-    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
+    // boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -157,17 +156,17 @@ const useStyle = makeStyles((theme) => ({
     textDecoration: "none",
     color: "#5d6169",
     zIndex: "1000",
-    borderLeft:"8px solid #fff",
+    borderLeft: "8px solid #fff",
 
     "&:hover": {
       cursor: "pointer",
-     // backgroundColor: "#F6F6F6",
+      // backgroundColor: "#F6F6F6",
       color: "#548FFF",
       textDecoration: "none",
-     // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
+      // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
       transform: "scale(1.04)",
       transition: "ease 0.3s",
-      borderLeft:"8px solid #4E73DF",
+      borderLeft: "8px solid #4E73DF",
     },
   },
   nastedList: {
@@ -176,14 +175,13 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#fff",
     color: "#161D6F",
     textDecoration: "none",
-    borderLeft:"2px solid #fff",
+    borderLeft: "2px solid #fff",
 
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#fff",
       color: "#548FFF",
-      borderLeft:"2px solid #4E73DF",
-
+      borderLeft: "2px solid #4E73DF",
     },
   },
 
@@ -377,7 +375,7 @@ const Sidebar = () => {
         <span className={classes.notificationNumber}>20</span> */}
         <Notification />
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
-          <Link to="/viewContact">
+          <Link to="/contact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>
