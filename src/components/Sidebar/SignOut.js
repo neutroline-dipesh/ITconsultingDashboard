@@ -116,6 +116,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#fff",
     },
   },
+  logoutLink: {
+    textDecoration: "none",
+  },
 }));
 
 export default function SignOut() {
@@ -224,12 +227,14 @@ export default function SignOut() {
                         </span>
                       </div>
                     </MenuItem>
-                    <MenuItem className={classes.logoutDiv}>
-                      <span className={classes.logout}>
-                        <CgLogOut className={classes.logoutIcon} />
-                        Log Out
-                      </span>
-                    </MenuItem>
+                    <Link to="/logout" className={classes.logoutLink}>
+                      <MenuItem className={classes.logoutDiv}>
+                        <span className={classes.logout}>
+                          <CgLogOut className={classes.logoutIcon} />
+                          Log Out
+                        </span>
+                      </MenuItem>
+                    </Link>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

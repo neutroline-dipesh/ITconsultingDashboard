@@ -21,6 +21,7 @@ import viewJobDetail from "./components/All jobs/viewJobDetail";
 import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
+import Employers from "./components/Employers/Employers";
 function App(props) {
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -58,7 +59,7 @@ function App(props) {
         exact
         path="/dashboard"
         component={Dashboard}
-     //   auth={props.isAuthenticated}
+        //   auth={props.isAuthenticated}
       />
       <Route
         exact
@@ -70,61 +71,67 @@ function App(props) {
         exact
         path="/alljobs/editJobs"
         component={EditJobs}
-       // auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/contracting"
         component={Contracting}
-//auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/internal"
         component={Internal}
-       // auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/addjobs"
         component={AddJobs}
-       // auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/contact"
         component={Contact}
-       //auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/viewContact"
         component={viewDetail}
-       //auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/allApplicant"
         component={allApplicant}
-       //auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/viewJobDetail"
         component={viewJobDetail}
+        //auth={props.isAuthenticated}
+      />
+      <Route
+        exact
+        path="/employers"
+        component={Employers}
        //auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/logout"
         component={Logout}
-       //auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <Route
         exact
         path="/applicant-detail/:id"
         component={viewApplicantDetail}
-       //auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
 
       <Route component={pageNotFound} />
