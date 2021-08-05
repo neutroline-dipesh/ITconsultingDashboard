@@ -23,6 +23,7 @@ import { RiDashboard3Fill } from "react-icons/ri";
 import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
+import logo from '../../assets/images/logo.png'
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
@@ -32,16 +33,16 @@ const useStyle = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left bottom 10%",
     backgroundSize:"200px 270px",
-    
+
    // backgroundSize: "cover",
     backgroundAttachment: "fixed",
     //boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRight: "2px solid",
     borderImageSlice: 1,
-    borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",  
+    borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
       // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-    backgroundColor: "#fff",
-    textAlign: "center",
+      background:  "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
+          textAlign: "center",
     // position: "fixed",
     //position: "absolute",
     // top: 0,
@@ -52,7 +53,7 @@ const useStyle = makeStyles((theme) => ({
     // justifyContent: "center",
     paddingTop: "0.4rem",
   },
-  
+
   footerSidebar: {
     color: "#5d6169",
     textAlign:"center",
@@ -73,14 +74,14 @@ const useStyle = makeStyles((theme) => ({
     color: "#5d6169",
     fontSize: "2rem",
     marginTop: "-1rem",
-    
+
   },
   companyName: {
-    color: "#5d6169",
-    fontSize: "25px",
-    width: "100%",
+    "&:hover": {
+      transform:"scale(1.1)",
+      transition:"ease 0.5s"
+    },
 
-    marginLeft: "1rem",
   },
   hr: {
     marginTop: "0.8rem",
@@ -179,7 +180,7 @@ const useStyle = makeStyles((theme) => ({
       transition: "ease 0.3s",
       borderLeft:"8px solid #4E73DF",
     },
-  
+
   },
   nastedList: {
     // textAlign: "center",
@@ -233,23 +234,23 @@ const Sidebar = () => {
 
   return (
     <>
-    
+
       {/* {showNav && ( */}
       <div className={classes.root}>
-        
-        <FaSmileWink className={classes.smileIcon} />
-        <span className={classes.companyName}>
-          Neutrosys <hr className={classes.hr} />
-        </span>
-
+      <img src ={logo} className={classes.companyName}  width="170px" alt="a"></img>
+        {/* <FaSmileWink className={classes.smileIcon} /> */}
+        {/* <span className={classes.companyName}>
+          Neutrosys 
+        </span> */}
+<hr className={classes.hr} />
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
           className={classes.sidebarMenuItem}
-          
+
         >
-          
-          <Link to="/" className={classes.linktext} 
+
+          <Link to="/" className={classes.linktext}
           >
             <ListItem button className={classes.sidebarList} >
               <RiDashboard3Fill
@@ -370,7 +371,7 @@ const Sidebar = () => {
           </Link>
         </List>
         <div className={classes.footerSidebar}>
-         
+
            <hr />
           ©2021 Neutrosys Inc. All Rights Reserved.
         </div>

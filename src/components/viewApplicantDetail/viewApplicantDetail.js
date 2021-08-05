@@ -301,7 +301,8 @@ const Contracting = () => {
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png"/>                                          </ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
+                        </ListItemAvatar>
                         <ListItemText
                           primary={
                             applicant.firstName +
@@ -314,12 +315,14 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/apple-phone.png"/>                        </ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/apple-phone.png" />{" "}
+                        </ListItemAvatar>
                         <ListItemText primary={applicant.phone} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/order-delivered.png"/>                        </ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/order-delivered.png" />{" "}
+                        </ListItemAvatar>
                         <ListItemText
                           primary={
                             applicant.currentAddress + " " + applicant.country
@@ -328,21 +331,20 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/gmail--v1.png"/>
-
+                          <img src="https://img.icons8.com/color/40/000000/gmail--v1.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gmail} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/gender.png"/>                      
+                          <img src="https://img.icons8.com/color/48/000000/gender.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gender} />
                       </ListItem>
 
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/calendar.png"/>
+                          <img src="https://img.icons8.com/color/40/000000/calendar.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.postedDate} />
                       </ListItem>

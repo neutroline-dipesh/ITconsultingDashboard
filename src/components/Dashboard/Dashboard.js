@@ -34,7 +34,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#f8f9fc",
+    backgroundColor: "#F5F6FA",
 
     height: "10vh",
     // border: "solid 1px",
@@ -344,7 +344,7 @@ const Dashboard = () => {
                     </TableHead>
                     <TableBody >
                       {allApplicantData.map((item,index) => (
-                        <TableRow style ={ index % 2? { background : "#FFF" }:{ background : "#EBF0FA" }} >
+                        <TableRow style ={ index % 2? { background : "#FFF" }:{ background : "#f5f9ff" }} >
                           <TableCell
                             component="th"
                             scope="row"
