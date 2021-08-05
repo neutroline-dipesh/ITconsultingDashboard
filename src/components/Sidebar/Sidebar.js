@@ -23,6 +23,8 @@ import { RiDashboard3Fill } from "react-icons/ri";
 import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
@@ -354,6 +356,17 @@ const Sidebar = () => {
               <ListItemText
                 style={{ marginLeft: "1.5rem" }}
                 primary="All Query"
+              />
+            </ListItem>
+          </Link>
+
+          <Link to="/employers" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
+              <PeopleAltIcon className={classes.sidebarIcon} />
+
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Employers"
               />
             </ListItem>
           </Link>

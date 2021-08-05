@@ -22,7 +22,7 @@ import { FaEdit } from "react-icons/fa";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
-import ViewDetail from "./ViewDetail"
+import ViewDetail from "./ViewDetail";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -178,7 +178,7 @@ const Employers = (props) => {
       }
     });
   };
- 
+
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -273,43 +273,39 @@ const Employers = (props) => {
                     {data1.map((item, key) => {
                       return (
                         <tr key={key}>
-                          <td className={classes.tableBody}>
-                          {item.id}
-                          </td>
+                          <td className={classes.tableBody}>{item.id}</td>
                           <td className={classes.tableBody}>
                             {item.firstName} {item.lastName}
                           </td>
-                          <td className={classes.tableBody}>
-                            {item.email}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.phone}
-                          </td>
+                          <td className={classes.tableBody}>{item.email}</td>
+                          <td className={classes.tableBody}>{item.phone}</td>
                           <td className={classes.tableBody}>
                             {item.country},{item.city}
                           </td>
                           <td className={classes.tableBody}>
                             {item.companyName}
                           </td>
-                          <td className={classes.tableBody}>
-                            {item.jobTitle}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.message}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.status}
-                          </td>
+                          <td className={classes.tableBody}>{item.jobTitle}</td>
+                          <td className={classes.tableBody}>{item.message}</td>
+                          <td className={classes.tableBody}>{item.status}</td>
                           <td className={classes.tableBody}>
                             {item.postedDate}
                           </td>
-                        
+
                           <td>
                             <div className={classes.buttomDiv}>
-                             <ViewDetail firstName={item.firstName} lastName={item.lastName}
-                             email={item.email} phone={item.phone} country={item.country} city={item.city}
-                             companyName={item.companyName} jobTitle={item.jobTitle} message= {item.message}
-                             status={item.status} postedDate={item.postedDate}
+                              <ViewDetail
+                                firstName={item.firstName}
+                                lastName={item.lastName}
+                                email={item.email}
+                                phone={item.phone}
+                                country={item.country}
+                                city={item.city}
+                                companyName={item.companyName}
+                                jobTitle={item.jobTitle}
+                                message={item.message}
+                                status={item.status}
+                                postedDate={item.postedDate}
                               />
 
                               <Tooltip
