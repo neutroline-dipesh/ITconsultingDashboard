@@ -223,8 +223,8 @@ const Contact = (props) => {
                   <thead>
                     <tr>
                       {/* <th className={classes.tableHead}>ID</th> */}
-                      <th className={classes.tableHead}>First Name</th>
-                      <th className={classes.tableHead}>Last Name</th>
+                      <th className={classes.tableHead}>Full Name</th>
+                      {/* <th className={classes.tableHead}>Last Name</th> */}
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone</th>
                       {/* <th className={classes.tableHead}>Address</th> */}
