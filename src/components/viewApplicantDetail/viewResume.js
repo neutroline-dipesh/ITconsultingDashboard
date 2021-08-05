@@ -12,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
-import file from "../../assets/files/cv.pdf";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -46,7 +45,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
+export default function FullScreenDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -94,7 +93,7 @@ export default function FullScreenDialog() {
             </Button>
           </Toolbar>
         </AppBar>
-        <embed className={classes.cv} src={file}></embed>
+        <embed className={classes.cv} src={props.resume}></embed>
       </Dialog>
     </div>
   );
