@@ -343,8 +343,8 @@ const Dashboard = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody >
-                      {allApplicantData.map((item) => (
-                        <TableRow  style={{borderBottom:'none'}}>
+                      {allApplicantData.map((item,index) => (
+                        <TableRow style ={ index % 2? { background : "#FFF" }:{ background : "#EBF0FA" }} >
                           <TableCell
                             component="th"
                             scope="row"
