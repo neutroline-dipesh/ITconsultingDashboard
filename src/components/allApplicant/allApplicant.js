@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -19,6 +19,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -61,7 +62,7 @@ const useStyle = makeStyles((theme) => ({
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       overflowX: "scroll",
     },
   },
@@ -130,6 +131,27 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contracting = () => {
+  const [data1, setData1] = useState([]);
+
+  //getting data from database
+  const fetchData = () => {
+    axios.get("http://localhost:4000/allApplicant/").then((response) => {
+      if (response.data) {
+        setData1(response.data.data);
+      }
+    });
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      $("#example").DataTable().destroy();
+      fetchData();
+    }, 100);
+  }, []);
+  console.log(data1);
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
+
   const classes = useStyle();
 
   useEffect(() => {
@@ -140,8 +162,7 @@ const Contracting = () => {
 
   //alert message
 
-  const deletFunction = () => {
-    console.log(allApplicantData);
+  const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -168,11 +189,30 @@ const Contracting = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-          );
+          axios
+            .delete("http://localhost:4000/allApplicant/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              // console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              );
+              fetchData();
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Job not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -197,13 +237,12 @@ const Contracting = () => {
             </span>
           </div>
           <div className={classes.MainContentDiv}>
-            <div className={classes.ContentDiv} >
-              <div className={classes.ContentDateDiv} >
+            <div className={classes.ContentDiv}>
+              <div className={classes.ContentDateDiv}>
                 <table
                   id="example"
                   data-ordering="false"
                   className={classes.dataTable + " " + "table "}
-
                 >
                   <thead>
                     <tr>
@@ -220,8 +259,7 @@ const Contracting = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {allApplicantData.map((item, key) => { */}
-                    {allApplicantData.map((item, key) => {
+                    {data1.map((item, key) => {
                       return (
                         <tr>
                           <td
@@ -253,15 +291,6 @@ const Contracting = () => {
                             {item.gmail}
                           </td>
 
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.phone}
-                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -300,28 +329,6 @@ const Contracting = () => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              {/* <Button
-                                className={classes.viewButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => {
-                                  window.open("/viewApplicatnDetail", "_blank");
-                                }}
-                              >
-                                View
-                              </Button> */}
-                              {/* <span
-                                style={{
-                                  fontSize: "1rem",
-                                  color: "#4e73df",
-                                  marginTop: "0.2rem",
-                                  marginBottom: "0.2rem",
-                                  fontWeight: "400",
-                                }}
-                              >
-                                <u>View</u>
-                              </span> */}
                               <Tooltip
                                 title="View"
                                 TransitionComponent={Zoom}
@@ -342,7 +349,7 @@ const Contracting = () => {
                                 <Link>
                                   <RiDeleteBin6Fill
                                     className={classes.deleteButton}
-                                    onClick={() => deletFunction()}
+                                    onClick={() => deletFunction(item.id)}
                                   />
                                 </Link>
                               </Tooltip>

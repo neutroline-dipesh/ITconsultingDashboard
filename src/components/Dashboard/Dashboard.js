@@ -24,6 +24,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     // height: "100vh",
     width: "100%",
+    
     // top: "30",
     // position: "absolute",
     // top: "8vh",
@@ -137,7 +138,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    width: "68%",
+    width: "65.1%",
     marginBottom: "1.5rem",
     marginLeft: "0.5rem",
     // marginRight: "1rem",
@@ -324,7 +325,7 @@ const Dashboard = () => {
                   </Link>
                 </div>
                 <div className={classes.tableDataDiv}>
-                  <Table className={classes.table} aria-label="simple table">
+                  <Table className={classes.table}  aria-label="simple table" >
                     <TableHead>
                       <TableRow>
                         <TableCell className={classes.tableHead}>
@@ -341,13 +342,14 @@ const Dashboard = () => {
                         </TableCell>
                       </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody >
                       {allApplicantData.map((item) => (
-                        <TableRow>
+                        <TableRow  style={{borderBottom:'none'}}>
                           <TableCell
                             component="th"
                             scope="row"
                             style={{ whiteSpace: "nowrap" }}
+                            
                           >
                             {item.jobTitle}
                           </TableCell>

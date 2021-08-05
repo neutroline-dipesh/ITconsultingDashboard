@@ -267,7 +267,7 @@ function EditJobs(props) {
   const classes = useStyle();
   const [data, setData] = useState("");
   useEffect(() => {
-    const id = props.id;
+    const id = props.match.params.id;
     console.log(id, "edit jobs ko id");
 
     axios.get("http://localhost:4000/allJobs/" + id).then((response) => {

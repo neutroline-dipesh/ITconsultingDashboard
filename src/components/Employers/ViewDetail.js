@@ -7,19 +7,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
-import CloseIcon from "@material-ui/icons/Close";
-import { ColorLensOutlined } from "@material-ui/icons";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import IconButton from "@material-ui/core/IconButton";
-import adimImage from "../../assets/images/admin2.png";
-
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import { FaPhoneAlt } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { FaAddressCard } from "react-icons/fa";
+import styled from "styled-components";
+
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
@@ -29,7 +22,8 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "700",
   },
   phoneAddressDiv: {
-    display: "flex",
+    display: "grid",
+    gridTemplateCoumns: "1fr 1fr",
   },
   message: {
     marginTop: "1rem",
@@ -87,11 +81,16 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
+const Dialogcontainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide(props) {
+export default function ViewDetail(props) {
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
 
@@ -123,49 +122,56 @@ export default function AlertDialogSlide(props) {
         className={classes.dialog}
       >
         <DialogTitle className={classes.DialogTitle}>
-          <span>{"Dipesh Shrestha "}</span>
+          <span>
+            {props.firstName} {props.lastName}
+          </span>
         </DialogTitle>
 
         <DialogContent>
-          <div className={classes.phoneAddressDiv}>
-            <DialogContentText
-              className={classes.iconBodyDiv}
-              style={{ minWidth: "50%" }}
-            >
-              <img src="https://img.icons8.com/color/40/000000/phone.png" />
-              <span className={classes.dialogBody}>+977 9816940668</span>
+          <Dialogcontainer>
+            <DialogContentText className={classes.iconBodyDiv}>
+              <img src="https://img.icons8.com/color/40/000000/company.png" />
+              <span className={classes.dialogBody}>{props.companyName}</span>
             </DialogContentText>
+
             <DialogContentText className={classes.iconBodyDiv}>
               <img src="https://img.icons8.com/color/40/000000/order-delivered.png" />
-              <span className={classes.dialogBody}> Damak-11, Jhapa</span>
-            </DialogContentText>
-          </div>
-          <div className={classes.phoneAddressDiv}>
-            <DialogContentText
-              className={classes.iconBodyDiv}
-              style={{ minWidth: "50%" }}
-            >
-              <img src="https://img.icons8.com/color/40/000000/gmail-new.png" />
               <span className={classes.dialogBody}>
-                {" "}
-                dipeshxtha129@gmail.com
+                {props.country}, {props.city}
               </span>
             </DialogContentText>
+
+            <DialogContentText className={classes.iconBodyDiv}>
+              <img src="https://img.icons8.com/color/40/000000/phone.png" />
+              <span className={classes.dialogBody}>{props.phone}</span>
+            </DialogContentText>
+
+            <DialogContentText className={classes.iconBodyDiv}>
+              <img src="https://img.icons8.com/color/40/000000/gmail-new.png" />
+              <span className={classes.dialogBody}>{props.email}</span>
+            </DialogContentText>
+
             <DialogContentText className={classes.iconBodyDiv}>
               <img src="https://img.icons8.com/color/40/000000/pay-date.png" />
-              <span className={classes.dialogBody}> 1/12/2021</span>
+              <span className={classes.dialogBody}>{props.postedDate}</span>
             </DialogContentText>
-          </div>
-          {/* <DialogContentText>Phone : 9816940668</DialogContentText>
-          <DialogContentText>Address : Damak-11, Jhapa</DialogContentText> */}
-          {/* <DialogContentText>Subject : Subject is here</DialogContentText> */}
+
+            <DialogContentText className={classes.iconBodyDiv}>
+              <img src="https://img.icons8.com/color/40/000000/computer.png" />
+              <span className={classes.dialogBody}>{props.jobTitle}</span>
+            </DialogContentText>
+
+            <DialogContentText className={classes.iconBodyDiv}>
+              <span>Status:</span>
+              <span className={classes.dialogBody}>{props.status}</span>
+            </DialogContentText>
+          </Dialogcontainer>
+
           <DialogContentText className={classes.message}>
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-            below for those interested. Sections 1.10.32 and 1.10.33 from "de
-            Finibus Bonorum et Malorum" by Cicero are also reproduced in their
-            exact original form,
+            {props.message}
           </DialogContentText>
         </DialogContent>
+
         <DialogActions>
           <Button
             onClick={handleClose}
