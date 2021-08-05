@@ -24,6 +24,8 @@ import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
 import logo from '../../assets/images/logo.png'
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
@@ -40,9 +42,9 @@ const useStyle = makeStyles((theme) => ({
     borderRight: "2px solid",
     borderImageSlice: 1,
     borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
-      // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-      background:  "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
-          textAlign: "center",
+    // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
+    backgroundColor: "#fff",
+    textAlign: "center",
     // position: "fixed",
     //position: "absolute",
     // top: 0,
@@ -56,10 +58,10 @@ const useStyle = makeStyles((theme) => ({
 
   footerSidebar: {
     color: "#5d6169",
-    textAlign:"center",
-    fontSize:"0.8em",
-    marginTop:"100%",
-    marginBottom:"2px",
+    textAlign: "center",
+    fontSize: "0.8em",
+    marginTop: "100%",
+    marginBottom: "2px",
   },
   linktext: {
     textDecoration: "none",
@@ -74,7 +76,6 @@ const useStyle = makeStyles((theme) => ({
     color: "#5d6169",
     fontSize: "2rem",
     marginTop: "-1rem",
-
   },
   companyName: {
     "&:hover": {
@@ -168,19 +169,18 @@ const useStyle = makeStyles((theme) => ({
     textDecoration: "none",
     color: "#5d6169",
     zIndex: "1000",
-    borderLeft:"8px solid #fff",
+    borderLeft: "8px solid #fff",
 
     "&:hover": {
       cursor: "pointer",
-     // backgroundColor: "#F6F6F6",
+      // backgroundColor: "#F6F6F6",
       color: "#548FFF",
       textDecoration: "none",
-     // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
+      // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
       transform: "scale(1.04)",
       transition: "ease 0.3s",
-      borderLeft:"8px solid #4E73DF",
+      borderLeft: "8px solid #4E73DF",
     },
-
   },
   nastedList: {
     // textAlign: "center",
@@ -188,14 +188,13 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#fff",
     color: "#161D6F",
     textDecoration: "none",
-    borderLeft:"2px solid #fff",
+    borderLeft: "2px solid #fff",
 
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#fff",
       color: "#548FFF",
-      borderLeft:"2px solid #4E73DF",
-
+      borderLeft: "2px solid #4E73DF",
     },
   },
 
@@ -247,12 +246,9 @@ const Sidebar = () => {
           component="nav"
           aria-labelledby="nested-list-subheader"
           className={classes.sidebarMenuItem}
-
         >
-
-          <Link to="/" className={classes.linktext}
-          >
-            <ListItem button className={classes.sidebarList} >
+          <Link to="/" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
               <RiDashboard3Fill
                 style={{ fontSize: "1.56rem" }}
                 className={classes.sidebarIcon}
@@ -359,6 +355,17 @@ const Sidebar = () => {
             </ListItem>
           </Link>
 
+          <Link to="/employers" className={classes.linktext}>
+            <ListItem button className={classes.sidebarList}>
+              <PeopleAltIcon className={classes.sidebarIcon} />
+
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Employers"
+              />
+            </ListItem>
+          </Link>
+
           <Link to="/logout" className={classes.linktext}>
             <ListItem button className={classes.sidebarList}>
               <ExitToAppIcon className={classes.sidebarIcon} />
@@ -371,8 +378,7 @@ const Sidebar = () => {
           </Link>
         </List>
         <div className={classes.footerSidebar}>
-
-           <hr />
+          <hr />
           ©2021 Neutrosys Inc. All Rights Reserved.
         </div>
       </div>

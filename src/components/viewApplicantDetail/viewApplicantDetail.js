@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import adimImage from "../../assets/images/admin2.jpeg";
 import axios from "axios";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -18,7 +17,6 @@ import WcIcon from "@material-ui/icons/Wc";
 import ViewMessage from "./viewResume";
 import CoverLetter from "./viewCoverLetter";
 
-import file from "../../assets/files/cv.pdf";
 import { useParams } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -190,7 +188,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Contracting = () => {
   let { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [applicant, setApplicant] = useState({
     firstName: null,
     middleName: null,
@@ -202,6 +200,7 @@ const Contracting = () => {
     gender: null,
     postedDate: null,
     senioritylevel: null,
+    expectedSalary: null,
     jobTitle: null,
     message: null,
     error: false,
@@ -233,8 +232,11 @@ const Contracting = () => {
           gender: response.data.data[0].gender,
           postedDate: response.data.data[0].postedDate,
           senioritylevel: response.data.data[0].senioritylevel,
+          expectedSalary: response.data.data[0].expectedSalary,
           jobTitle: response.data.data[0].jobTitle,
           message: response.data.data[0].message,
+          resume: response.data.data[0].resume,
+          coverletter: response.data.data[0].coverletter,
           error: false,
           loading: false,
         });
@@ -364,7 +366,9 @@ const Contracting = () => {
                         <span className={classes.listHead}>
                           Expected Salary($):
                         </span>
-                        <span className={classes.listBody}>15000</span>
+                        <span className={classes.listBody}>
+                          {applicant.expectedSalary}
+                        </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Applied Job:</span>
@@ -379,8 +383,8 @@ const Contracting = () => {
                         </span>
                       </ListItem>
                     </List>
-                    <ViewMessage />
-                    <CoverLetter />
+                    <ViewMessage resume={applicant.resume} />
+                    <CoverLetter letter={applicant.coverletter} />
 
                     {/* <span className={classes.resumeTitle}>Resume:</span> */}
                     {/* <embed className={classes.cv} src={file}></embed> */}

@@ -22,7 +22,7 @@ import { FaEdit } from "react-icons/fa";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
-import ViewDetail from "./ViewDetail"
+import ViewDetail from "./ViewDetail";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -151,12 +151,21 @@ const Employers = (props) => {
   // console.log(props.jobs);
   //getting data from database
   const [data1, setData1] = useState([]);
+  const fetchAllData = () => {
+    axios.get("http://localhost:4000/requestTalent/").then((response) => {
+      if (response.data) {
+        setData1(response.data.data);
+      }
+    });
+  };
+
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
       fetchAllData();
     }, 100);
   }, []);
+
   console.log(data1);
   useEffect(() => {
     $("#example").DataTable();
@@ -170,15 +179,7 @@ const Employers = (props) => {
   });
 
   //alert message
-  const fetchAllData = () => {
-    axios.get("http://localhost:4000/requestTalent/").then((response) => {
-      if (response.data) {
-        // value = response.data.data;
-        setData1(response.data.data);
-      }
-    });
-  };
- 
+
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -255,16 +256,12 @@ const Employers = (props) => {
                 >
                   <thead>
                     <tr>
-                      {/* <th className={classes.tableHead}>SN</th> */}
-                      <th className={classes.tableHead}>ID</th>
                       <th className={classes.tableHead}>Full Name</th>
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone Number</th>
                       <th className={classes.tableHead}>Address</th>
                       <th className={classes.tableHead}>Company Name</th>
                       <th className={classes.tableHead}>Job Title</th>
-                      <th className={classes.tableHead}>Message</th>
-                      <th className={classes.tableHead}>Status</th>
                       <th className={classes.tableHead}>Posted Date</th>
                       <th className={classes.tableHead}>Action</th>
                     </tr>
@@ -274,17 +271,10 @@ const Employers = (props) => {
                       return (
                         <tr key={key}>
                           <td className={classes.tableBody}>
-                          {item.id}
-                          </td>
-                          <td className={classes.tableBody}>
                             {item.firstName} {item.lastName}
                           </td>
-                          <td className={classes.tableBody}>
-                            {item.email}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.phone}
-                          </td>
+                          <td className={classes.tableBody}>{item.email}</td>
+                          <td className={classes.tableBody}>{item.phone}</td>
                           <td className={classes.tableBody}>
                             {item.country},{item.city}
                           </td>
@@ -292,24 +282,26 @@ const Employers = (props) => {
                             {item.companyName}
                           </td>
                           <td className={classes.tableBody}>
-                            {item.jobTitle}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.message}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.status}
+                            {item.jobTitile}
                           </td>
                           <td className={classes.tableBody}>
                             {item.postedDate}
                           </td>
-                        
+
                           <td>
                             <div className={classes.buttomDiv}>
-                             <ViewDetail firstName={item.firstName} lastName={item.lastName}
-                             email={item.email} phone={item.phone} country={item.country} city={item.city}
-                             companyName={item.companyName} jobTitle={item.jobTitle} message= {item.message}
-                             status={item.status} postedDate={item.postedDate}
+                              <ViewDetail
+                                firstName={item.firstName}
+                                lastName={item.lastName}
+                                email={item.email}
+                                phone={item.phone}
+                                country={item.country}
+                                city={item.city}
+                                companyName={item.companyName}
+                                jobTitle={item.jobTitle}
+                                message={item.message}
+                                status={item.status}
+                                postedDate={item.postedDate}
                               />
 
                               <Tooltip

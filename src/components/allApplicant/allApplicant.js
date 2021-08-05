@@ -51,11 +51,9 @@ const useStyle = makeStyles((theme) => ({
   ContentDiv: {
     backgroundColor: "#FFFFFF",
     float: "left",
-    // height: "80vh",
     marginLeft: "1rem",
     width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    // borderRadius: "5px",
   },
   ContentDateDiv: {
     overflow: "scroll",
@@ -67,7 +65,6 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   dataTable: {
-    // maxHeight: "70vh",
     paddingTop: "1rem",
   },
   tableHead: {
@@ -76,13 +73,11 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
-    // height: "3vh !important",
     textAlign: "center",
     whiteSpace: "nowrap",
   },
 
   buttomDiv: {
-    // backgroundColor: "red",
     display: "flex",
     justifyContent: "center",
   },
@@ -122,7 +117,6 @@ const useStyle = makeStyles((theme) => ({
     whiteSpace: "nowrap",
   },
   noColor: {
-    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
@@ -160,8 +154,7 @@ const Contracting = () => {
     });
   });
 
-  //alert message
-
+  //delete confirmation message
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -177,15 +170,10 @@ const Contracting = () => {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        // confirmButtonText: `<div style="background-color : red">hello</div>`,
         confirmButtonText: "Yes, delete it!",
 
         cancelButtonText: "No, cancel!",
         reverseButtons: true,
-        // buttons: {
-        //   confirm: { style: "margin-left:1rem" },
-        //   // cancel: "Batalkan",
-        // },
       })
       .then((result) => {
         if (result.isConfirmed) {
@@ -334,7 +322,7 @@ const Contracting = () => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to="viewApplicatnDetail">
+                                <Link to={`/applicant-detail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />
@@ -353,15 +341,6 @@ const Contracting = () => {
                                   />
                                 </Link>
                               </Tooltip>
-                              {/* <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => deletFunction()}
-                              >
-                                delete
-                              </Button> */}
                             </div>
                           </td>
                         </tr>
