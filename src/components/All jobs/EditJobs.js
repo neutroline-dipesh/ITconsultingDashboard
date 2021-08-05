@@ -215,10 +215,10 @@ const IOSSwitch = withStyles((theme) => ({
     width: 42,
     height: 26,
     padding: 0,
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
   },
   switchBase: {
-    padding: 1,
+    padding: 2,
     "&$checked": {
       transform: "translateX(16px)",
       color: theme.palette.common.white,
@@ -267,7 +267,7 @@ function EditJobs(props) {
   const classes = useStyle();
   const [data, setData] = useState("");
   useEffect(() => {
-    const id = props.id;
+    const id = props.match.params.id;
     console.log(id, "edit jobs ko id");
 
     axios.get("http://localhost:4000/allJobs/" + id).then((response) => {
@@ -431,7 +431,7 @@ function EditJobs(props) {
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#7df4ff" }}
                       type="text"
                       className="form-control"
                       aria-describedby="emailHelp"
@@ -445,7 +445,7 @@ function EditJobs(props) {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#7df4ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
@@ -458,7 +458,7 @@ function EditJobs(props) {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#7df4ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
@@ -472,7 +472,7 @@ function EditJobs(props) {
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#7df4ff" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
                         >
@@ -490,7 +490,7 @@ function EditJobs(props) {
                       </div>
                       <div className={classes.jobTypeDiv}>
                         <select
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#7df4ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
@@ -514,7 +514,7 @@ function EditJobs(props) {
                     <div className={classes.CountryStateCityDiv}>
                       <div className={classes.countryDiv}>
                         <input
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#7df4ff" }}
                           type="text"
                           className={"form-control" + " " + classes.Country}
                           aria-describedby="emailHelp"
@@ -547,7 +547,7 @@ function EditJobs(props) {
 
                       <div className={classes.stateDiv}>
                         <input
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#7df4ff" }}
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
@@ -580,7 +580,7 @@ function EditJobs(props) {
                       <div className={classes.cityDiv}>
                         <input
                           type="text"
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#7df4ff" }}
                           className={"form-control" + " " + classes.city}
                           aria-describedby="emailHelp"
                           placeholder="Enter City"

@@ -21,6 +21,7 @@ import viewJobDetail from "./components/All jobs/viewJobDetail";
 import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
+import Employers from "./components/Employers/Employers";
 function App(props) {
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -113,6 +114,12 @@ function App(props) {
         path="/viewJobDetail"
         component={viewJobDetail}
         //auth={props.isAuthenticated}
+      />
+      <Route
+        exact
+        path="/employers"
+        component={Employers}
+       //auth={props.isAuthenticated}
       />
       <Route
         exact
