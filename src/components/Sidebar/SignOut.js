@@ -53,10 +53,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#E74A3B",
   },
   notificationTitle: {
-    backgroundColor: "#4e73df",
+    backgroundColor: "#F8F9FC",
     borderRadius: "4px 4px 0px 0px",
     // border: "2px solid #4e73df",
-    color: "#fff",
+    color: "#303f9f",
     display: "flex",
     alignItems: "center",
     paddingTop: "0.75rem",
@@ -115,6 +115,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#fff",
     },
+  },
+  logoutLink: {
+    textDecoration: "none",
   },
 }));
 
@@ -224,12 +227,14 @@ export default function SignOut() {
                         </span>
                       </div>
                     </MenuItem>
-                    <MenuItem className={classes.logoutDiv}>
-                      <span className={classes.logout}>
-                        <CgLogOut className={classes.logoutIcon} />
-                        Log Out
-                      </span>
-                    </MenuItem>
+                    <Link to="/logout" className={classes.logoutLink}>
+                      <MenuItem className={classes.logoutDiv}>
+                        <span className={classes.logout}>
+                          <CgLogOut className={classes.logoutIcon} />
+                          Log Out
+                        </span>
+                      </MenuItem>
+                    </Link>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

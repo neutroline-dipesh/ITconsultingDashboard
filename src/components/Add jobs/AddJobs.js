@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
-import axios from 'axios';
+import axios from "axios";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -46,7 +48,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   pageTabName: {
-   fontSize: "1.75rem",
+    fontSize: "1.75rem",
     fontWeight: "700",
     marginLeft: "2.5rem",
     color: "#3F51B5",
@@ -208,6 +210,11 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  publishCheckBox: {
+    width: "3.5rem !important",
+    height: "3.5vh",
+    // backgroundColor: "#52D869",
+  },
 }));
 
 const IOSSwitch = withStyles((theme) => ({
@@ -265,6 +272,7 @@ const IOSSwitch = withStyles((theme) => ({
 
 const Addjobs = () => {
   const classes = useStyle();
+  let history = useHistory();
 
   //for validation
   const formik = useFormik({
@@ -295,35 +303,44 @@ const Addjobs = () => {
     onSubmit: (values) => {
       handleSubmit(values);
       formik.resetForm();
+      // history.push("/Alljobs")
     },
   });
 
-    const headers = {
-      Authorization: localStorage.getItem('token'),
-    }
-  const handleSubmit = (values) =>{
+  const headers = {
+    Authorization: localStorage.getItem("token"),
+  };
+  const [ckeditorContent, setCkeditorContent] = useState("");
+  const [publish, setPublish] = useState("Not Publish");
+  // console.log(ckeditorContent);
+  const handleSubmit = (values) => {
     const job = {
       jobTitle: values.jobTitle,
-      jobSubTitle: values.jobSubTitle,
+      jobSubtitle: values.jobSubTitle,
       department: values.department,
       jobType: values.jobType,
       country: values.country,
       state: values.state,
       city: values.city,
       publishBy: values.publishBy,
-    }
+      description: ckeditorContent,
+      visibility: publish,
+    };
     console.log(job);
-    console.log(headers);
+    // console.log(headers);
 
-    axios.post("http://localhost:4000/allJobs/", job, {headers}).then(res=>{
-      console.log('success');
-      console.log(res);
-    }).catch(err=>{
-      console.log(err);
-      console.log('unsuccessful');
-    })
-
-  }
+    axios
+      .post("http://localhost:4000/allJobs/", job, { headers })
+      .then((res) => {
+        saveFunction();
+        console.log("success");
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("unsuccessful");
+      });
+  };
 
   //alert message
   const saveFunction = () => {
@@ -376,13 +393,16 @@ const Addjobs = () => {
       });
   };
   //for switch button (publish)
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true,
-  });
+  const [state, setState] = React.useState();
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState(event.target.checked);
+    setPublish("Not Publish");
+    console.log(state);
+    if (state == true) {
+      setPublish("Not Publish");
+    } else {
+      setPublish("Publish");
+    }
   };
   return (
     <>
@@ -412,11 +432,11 @@ const Addjobs = () => {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#45ffe6" }}
                       type="text"
                       className="form-control"
                       aria-describedby="emailHelp"
@@ -430,7 +450,7 @@ const Addjobs = () => {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#45ffe6" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
@@ -443,7 +463,7 @@ const Addjobs = () => {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#0066ff" }}
+                      style={{ borderColor: "#45ffe6" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
@@ -457,7 +477,7 @@ const Addjobs = () => {
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
                         >
@@ -475,7 +495,7 @@ const Addjobs = () => {
                       </div>
                       <div className={classes.jobTypeDiv}>
                         <select
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45f6ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
@@ -499,7 +519,7 @@ const Addjobs = () => {
                     <div className={classes.CountryStateCityDiv}>
                       <div className={classes.countryDiv}>
                         <input
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           type="text"
                           className={"form-control" + " " + classes.Country}
                           aria-describedby="emailHelp"
@@ -532,7 +552,7 @@ const Addjobs = () => {
 
                       <div className={classes.stateDiv}>
                         <input
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
@@ -541,19 +561,6 @@ const Addjobs = () => {
                           {...formik.getFieldProps("state")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.State}
-                          {...formik.getFieldProps("state")}
-                        >
-                          <option value="" selected disabled>
-                            State/Province
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
                         <div
                           className={
                             classes.errorMessage + " " + classes.stateErrorMsg
@@ -565,7 +572,7 @@ const Addjobs = () => {
                       <div className={classes.cityDiv}>
                         <input
                           type="text"
-                          style={{ borderColor: "#0066ff" }}
+                          style={{ borderColor: "#45ffe6" }}
                           className={"form-control" + " " + classes.city}
                           aria-describedby="emailHelp"
                           placeholder="Enter City"
@@ -573,19 +580,7 @@ const Addjobs = () => {
                           {...formik.getFieldProps("city")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.city}
-                          {...formik.getFieldProps("city")}
-                        >
-                          <option value="" selected disabled>
-                            City
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
+
                         <div
                           className={
                             classes.errorMessage + " " + classes.cityErrorMsg
@@ -611,14 +606,36 @@ const Addjobs = () => {
                         }}
                         onChange={(event, editor) => {
                           const data = editor.getData();
-                          console.log({ event, editor, data });
+                          setCkeditorContent(editor.getData());
+                          // console.log({ event, editor, data });
                         }}
                       />
                     </div>
                     <div className={classes.publishSaveDiv}>
                       <div className={classes.PublishDiv}>
                         <span>Publish</span>
-                        <FormControlLabel
+                        <div class="form-check form-switch">
+                          <input
+                            className={"form-check-input"}
+                            type="checkbox"
+                            id="flexSwitchCheckChecked"
+                            name="publish"
+                            style={{
+                              width: "3.5rem",
+                              height: "3.5vh",
+                            }}
+                            onChange={handleChange}
+                            value="true"
+                          />
+                          {/* <label
+                            class="form-check-label"
+                            for="flexSwitchCheckChecked"
+                          >
+                            Publish
+                          </label> */}
+                        </div>
+
+                        {/* <FormControlLabel
                           control={
                             <IOSSwitch
                               checked={state.checkedB}
@@ -626,7 +643,7 @@ const Addjobs = () => {
                               name="checkedB"
                             />
                           }
-                        />
+                        /> */}
                       </div>
                       <div className={classes.saveButtonDiv}>
                         <button

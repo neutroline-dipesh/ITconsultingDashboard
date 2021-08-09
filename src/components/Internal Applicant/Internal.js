@@ -12,7 +12,7 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -55,23 +55,19 @@ const useStyle = makeStyles((theme) => ({
     width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
-
-   
   },
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
     paddingBottom: "2rem",
     overflowX: "hidden",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       overflowX: "scroll",
     },
   },
   dataTable: {
     // maxHeight: "70vh",
     paddingTop: "1rem",
-
-   
   },
   tableHead: {
     position: "sticky",
@@ -81,7 +77,6 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 !important",
     textAlign: "center",
     whiteSpace: "nowrap",
-    
   },
   buttomDiv: {
     // backgroundColor: "red",
@@ -150,14 +145,21 @@ const Internal = (props) => {
 
   //alert message
 
+<<<<<<< HEAD
   const fetchData = () =>{
           axios.get("http://localhost:4000/internal").then((response) => {
+=======
+  const fetchData = () => {
+    axios
+      .get("http://localhost:4000/allApplicant/internal/")
+      .then((response) => {
+>>>>>>> final
         if (response.data) {
           // value = response.data.data;
           setData1(response.data.data);
         }
       });
-  }
+  };
 
   const deletFunction = (id) => {
     console.log(id);
@@ -181,32 +183,30 @@ const Internal = (props) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/internal/"+ id, 
-          {
-            headers: {'Authorization': localStorage.getItem('token')} ,
-            data:{
-              id:id,
-            }
-          }
-          ).then(
-            res =>{
-              console.log('deleted id'+id);
-               swalWithBootstrapButtons.fire(
+          axios
+            .delete("http://localhost:4000/allApplicant/" + id, {
+              headers: { Authorization: localStorage.getItem("token") },
+              data: {
+                id: id,
+              },
+            })
+            .then((res) => {
+              // console.log("deleted id" + id);
+              swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Your file has been deleted.",
                 "success"
               );
               fetchData();
-            }
-          ).catch(err =>{
-            console.log(err);
-            swalWithBootstrapButtons.fire(
-              "Something Went Wrong!",
-              "Job not deleted!",
-              "fail"
-            )
-          })
-
+            })
+            .catch((err) => {
+              console.log(err);
+              swalWithBootstrapButtons.fire(
+                "Something Went Wrong!",
+                "Job not deleted!",
+                "fail"
+              );
+            });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -218,7 +218,7 @@ const Internal = (props) => {
           );
         }
       });
-      $("#example").DataTable();
+    $("#example").DataTable();
   };
 
   return (
@@ -234,9 +234,8 @@ const Internal = (props) => {
               <div className={classes.ContentDateDiv}>
                 <table
                   id="example"
-                  //   class="table table-striped table-bordered"
+                  data-ordering="false"
                   className={classes.dataTable + " " + "table "}
-                  
                 >
                   <thead>
                     <tr>
@@ -255,14 +254,18 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
+<<<<<<< HEAD
                   
                        {data1.map((item, key) => {
+=======
+                    {data1.map((item, key) => {
+>>>>>>> final
                       return (
                         <tr>
                           <td
                             className={
                               item.status == "seen"
-                                ? classes.seenColor 
+                                ? classes.seenColor
                                 : classes.noColor
                             }
                           >
@@ -292,15 +295,6 @@ const Internal = (props) => {
                             {item.gmail}
                           </td>
 
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.phone}
-                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -310,28 +304,7 @@ const Internal = (props) => {
                           >
                             {item.postedDate}
                           </td>
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <select>
-                              <option
-                                value="notSeen"
-                                selected={item.status == "notSeen"}
-                              >
-                                Not Seen
-                              </option>
-                              <option
-                                value="seen"
-                                selected={item.status == "seen"}
-                              >
-                                Seen
-                              </option>
-                            </select>
-                          </td> */}
+
                           <td
                             className={
                               item.status == "seen"
@@ -418,10 +391,10 @@ const Internal = (props) => {
   );
 };
 
-const mapStateToProps = (state) =>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     token: state.auth.token,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(Internal);

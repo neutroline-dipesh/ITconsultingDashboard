@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import adimImage from "../../assets/images/admin2.jpeg";
-import axios from 'axios';
+import axios from "axios";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -15,10 +14,9 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import WcIcon from "@material-ui/icons/Wc";
-import ViewMessage from "./viewResume";
+import Resume from "./viewResume";
 import CoverLetter from "./viewCoverLetter";
 
-import file from "../../assets/files/cv.pdf";
 import { useParams } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -37,9 +35,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     // height: "82vh",
@@ -193,19 +191,23 @@ const  Contracting = () => {
   console.log(id);
   const [applicant, setApplicant] = useState({
     firstName: null,
-    middleName:null,
-    lastName:null,
+    middleName: null,
+    lastName: null,
     phone: null,
     currentAddress: null,
     country: null,
-    gmail:null,
+    gmail: null,
     gender: null,
     postedDate: null,
-    senioritylevel:null,
+    senioritylevel: null,
+    expectedSalary: null,
     jobTitle: null,
     message: null,
+    resume: null,
+    resumeFileType: null,
+    coverletter: null,
     error: false,
-    loading: false
+    loading: false,
   });
   const classes = useStyle();
   const [alignment, setAlignment] = React.useState("left");
@@ -217,35 +219,40 @@ const  Contracting = () => {
     console.log(applicant);
   }, []);
 
-  const getApplicantDetails = () =>{
-    axios.get("http://localhost:4000/internal/" + id).then( response =>{
-      console.log(response.data.data[0]);
-      setApplicant({
-            firstName: response.data.data[0].firstName,
-            middleName:response.data.data[0].middleName,
-            lastName:response.data.data[0].lastName,
-            phone: response.data.data[0].phone,
-            currentAddress: response.data.data[0].currentAddress,
-            country: response.data.data[0].country,
-            gmail:response.data.data[0].gmail,
-            gender: response.data.data[0].gender,
-            postedDate: response.data.data[0].postedDate,
-            senioritylevel:response.data.data[0].senioritylevel,
-            jobTitle: response.data.data[0].jobTitle,
-            message: response.data.data[0].message,
-            error: false,
-            loading: false
+  const getApplicantDetails = () => {
+    axios
+      .get("http://localhost:4000/allApplicant/" + id)
+      .then((response) => {
+        // console.log(response.data.data[0]);
+        setApplicant({
+          firstName: response.data.data[0].firstName,
+          middleName: response.data.data[0].middleName,
+          lastName: response.data.data[0].lastName,
+          phone: response.data.data[0].phone,
+          currentAddress: response.data.data[0].currentAddress,
+          country: response.data.data[0].country,
+          gmail: response.data.data[0].gmail,
+          gender: response.data.data[0].gender,
+          postedDate: response.data.data[0].postedDate,
+          senioritylevel: response.data.data[0].senioritylevel,
+          expectedSalary: response.data.data[0].expectedSalary,
+          jobTitle: response.data.data[0].jobTitle,
+          message: response.data.data[0].message,
+          resume: response.data.data[0].resume,
+          resumeFileType: response.data.data[0].resume.split(".").pop(),
+          coverletter: response.data.data[0].coverletter,
+          error: false,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setApplicant({
+          ...applicant,
+          error: true,
+          loading: false,
+        });
       });
-     }).catch(err=>{
-       console.log('error',err);
-       setApplicant(
-         {
-         ...applicant,
-         error:true,
-         loading: false,
-         }
-       )
-     })
   };
 
   return (
@@ -300,50 +307,50 @@ const  Contracting = () => {
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
                         </ListItemAvatar>
-                        <ListItemText primary={applicant.firstName + " " + applicant.middleName + " " + applicant.lastName} />
+                        <ListItemText
+                          primary={
+                            applicant.firstName +
+                            " " +
+                            applicant.middleName +
+                            " " +
+                            applicant.lastName
+                          }
+                        />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactPhoneIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/apple-phone.png" />{" "}
                         </ListItemAvatar>
                         <ListItemText primary={applicant.phone} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactMailIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/order-delivered.png" />{" "}
                         </ListItemAvatar>
-                        <ListItemText primary={applicant.currentAddress + " " + applicant.country} />
+                        <ListItemText
+                          primary={
+                            applicant.currentAddress + " " + applicant.country
+                          }
+                        />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactMailIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/gmail--v1.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gmail} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <WcIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/gender.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gender} />
                       </ListItem>
 
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <CalendarTodayIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/calendar.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.postedDate} />
                       </ListItem>
@@ -355,13 +362,17 @@ const  Contracting = () => {
                         <span className={classes.listHead}>
                           Seniority Level:
                         </span>
-                        <span className={classes.listBody}>{applicant.senioritylevel}</span>
+                        <span className={classes.listBody}>
+                          {applicant.senioritylevel}
+                        </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>
                           Expected Salary($):
                         </span>
-                        <span className={classes.listBody}>15000</span>
+                        <span className={classes.listBody}>
+                          {applicant.expectedSalary}
+                        </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Applied Job:</span>
@@ -376,8 +387,11 @@ const  Contracting = () => {
                         </span>
                       </ListItem>
                     </List>
-                    <ViewMessage />
-                    <CoverLetter />
+                    <Resume
+                      resume={applicant.resume}
+                      fileType={applicant.resumeFileType}
+                    />
+                    <CoverLetter letter={applicant.coverletter} />
 
                     {/* <span className={classes.resumeTitle}>Resume:</span> */}
                     {/* <embed className={classes.cv} src={file}></embed> */}

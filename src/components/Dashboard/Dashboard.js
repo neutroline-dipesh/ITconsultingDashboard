@@ -24,6 +24,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     // height: "100vh",
     width: "100%",
+
     // top: "30",
     // position: "absolute",
     // top: "8vh",
@@ -33,7 +34,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "8vh",
   },
   PageTabDiv: {
-    backgroundColor: "#f8f9fc",
+    backgroundColor: "#F5F6FA",
 
     height: "10vh",
     // border: "solid 1px",
@@ -70,15 +71,16 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "space-around",
     height: "13vh",
     width: "20%",
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
   },
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",
+    boxShadow: "0px 0px 30px 0px rgba(144, 178, 232,0.4)",
   },
 
   totcalContractingJob: {
     borderLeft: "4px solid red",
+    boxShadow: "0px 0px 30px 0px rgba(232, 144, 144,0.4)",
   },
   totalConstractingNumber: {
     // backgroundColor: "red",
@@ -98,9 +100,11 @@ const useStyle = makeStyles((theme) => ({
   },
   totcalInernalJob: {
     borderLeft: "4px solid #1cc88a",
+    boxShadow: "0px 0px 30px 0px rgba(144, 232, 144,0.4)",
   },
   totalAllJob: {
     borderLeft: "4px solid #f6c23e",
+    boxShadow: "0px 0px 30px 0px rgba(226, 232, 144,0.4)",
   },
   messageNumber: {
     marginLeft: "-2.5rem",
@@ -130,7 +134,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    width: "68%",
+    width: "65.1%",
     marginBottom: "1.5rem",
     marginLeft: "0.5rem",
     // marginRight: "1rem",
@@ -163,9 +167,8 @@ const useStyle = makeStyles((theme) => ({
     // backgroundColor: "blue",
     paddingTop: "1rem",
     marginLeft: "1rem",
-    marginRight: "1rem",
-    overflow: "scroll",
-    overflowX: "hidden",
+    marginRight: "0.1rem",
+    overflowY: "scroll",
   },
   table: {
     // minWidth: 700,
@@ -233,7 +236,7 @@ const Dashboard = () => {
           </div>
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
-              <div className={classes.jobs}>
+              <div className={classes.jobs} style={{ color: "#4e73df" }}>
                 <span className={classes.totalConstractingNumber}>1,400</span>
                 <span
                   style={{ color: "#4e73df" }}
@@ -251,7 +254,7 @@ const Dashboard = () => {
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
               <div className={classes.jobs}>
-                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span className={classes.totalConstractingNumber}>1,200</span>
                 <span
                   style={{ color: "#1cc88a" }}
                   className={classes.totalText}
@@ -335,8 +338,14 @@ const Dashboard = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {allApplicantData.map((item) => (
-                        <TableRow>
+                      {allApplicantData.map((item, index) => (
+                        <TableRow
+                          style={
+                            index % 2
+                              ? { background: "#FFF" }
+                              : { background: "#f5f9ff" }
+                          }
+                        >
                           <TableCell
                             component="th"
                             scope="row"

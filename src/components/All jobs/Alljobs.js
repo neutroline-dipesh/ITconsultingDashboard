@@ -3,7 +3,6 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -13,7 +12,6 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import * as actions from "../../store/actions";
 import axios from "axios";
-
 import { connect } from "react-redux";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -25,6 +23,12 @@ import { Link } from "react-router-dom";
 import { CgAddR } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
 import { allJobsData } from "./alljobsData";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2,
+} from "react-html-parser";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -56,12 +60,9 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    "&:hover": {
-      // backgroundColor: "#98DED9",
-    },
+    "&:hover": {},
   },
   addIcon: {
-    // color: "black !important",
     fontSize: "1rem",
     marginRight: "1rem",
   },
@@ -84,12 +85,11 @@ const useStyle = makeStyles((theme) => ({
     paddingBottom: "2rem",
     overflowX: "hidden",
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       overflowX: "scroll",
     },
   },
   dataTable: {
-    // maxHeight: "70vh",
     paddingTop: "1rem",
   },
 
@@ -99,11 +99,8 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
-    // height: "3vh !important",
     textAlign: "center",
     whiteSpace: "nowrap",
-
-    
   },
   tableBody: {
     textAlign: "center",
@@ -153,7 +150,6 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 const Alljobs = (props) => {
-  // console.log(props.jobs);
   //getting data from database
   const [data1, setData1] = useState([]);
   useEffect(() => {
@@ -178,12 +174,14 @@ const Alljobs = (props) => {
   const fetchAllData = () => {
     axios.get("http://localhost:4000/allJobs/").then((response) => {
       if (response.data) {
-        // value = response.data.data;
         setData1(response.data.data);
       }
     });
   };
-
+  const editDataFunction = (id) => {
+    console.log(id, "esma id aaux edit dabauda");
+    props.history.push("/EditJobs" + id);
+  };
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -267,8 +265,8 @@ const Alljobs = (props) => {
               <div className={classes.ContentDateDiv}>
                 <table
                   id="example"
-                  //   class="table table-striped table-bordered"
-                  className={classes.dataTable + " " + "table "}
+                  data-ordering="false"
+                  className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
@@ -282,21 +280,19 @@ const Alljobs = (props) => {
                       <th className={classes.tableHead}>Published By</th>
                       <th className={classes.tableHead}>Visibility</th>
                       <th className={classes.tableHead}>Action</th>
+                      {/* <th className={classes.tableHead}>Description</th> */}
                     </tr>
                   </thead>
                   <tbody>
                     {data1.map((item, key) => {
-                      // {allJobsData.map((item, key) => {
                       return (
                         <tr key={key}>
-                          {/* <td>1</td> */}
                           <td className={classes.tableBody}>{item.jobId}</td>
                           <td className={classes.tableBody}>{item.jobTitle}</td>
                           <td className={classes.tableBody}>
                             {item.department}
                           </td>
                           <td className={classes.tableBody}>{item.jobType}</td>
-                          {/* <td>{item.country}</td> */}
                           <td className={classes.tableBody}>
                             {item.state} , {item.city}
                           </td>
@@ -331,8 +327,18 @@ const Alljobs = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
+<<<<<<< HEAD
                                 <Link to={`/alljobs/edit/${item.id}`}>
                                   <FaEdit className={classes.editButton} />
+=======
+                                <Link to="/alljobs/editJobs">
+                                  <FaEdit
+                                    className={classes.editButton}
+                                    onClick={() => {
+                                      editDataFunction(item.id);
+                                    }}
+                                  />
+>>>>>>> final
                                 </Link>
                               </Tooltip>
 
@@ -348,40 +354,16 @@ const Alljobs = (props) => {
                                   />
                                 </Link>
                               </Tooltip>
-                              {/* <Button
-                                className={classes.viewButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => {
-                                  // window.location.pathname = "/viewApplicatnDetail";
-                                  window.open("/viewJobDetail", "_blank");
-                                }}
-                              >
-                                View
-                              </Button>
-                              <Button
-                                className={classes.editButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => {
-                                  window.location.pathname =
-                                    "/alljobs/editJobs";
-                                }}
-                              >
-                                Edit
-                              </Button>
-                              <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => deletFunction()}
-                              >
-                                delete
-                              </Button> */}
                             </div>
+                          </td>
+                          <td>
+                            {" "}
+                            {/* <div
+                              dangerouslySetInnerHTML={{
+                                __html: item.description,
+                              }}
+                            ></div> */}
+                            {/* <div>{ReactHtmlParser(item.description)}</div> */}
                           </td>
                         </tr>
                       );

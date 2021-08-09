@@ -22,6 +22,7 @@ import viewJobDetail from "./components/All jobs/viewJobDetail";
 import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
+import Employers from "./components/Employers/Employers";
 function App(props) {
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -46,7 +47,7 @@ function App(props) {
 
     //   <Route
     //     exact
-    //     path="/applicant-detail/:id"
+    //     path="/viewApplicatnDetail"
     //     component={viewApplicantDetail}
     //   />
     //   <Route exact path="/signout" component={signout} />
@@ -59,70 +60,77 @@ function App(props) {
         exact
         path="/dashboard"
         component={Dashboard}
-        auth={props.isAuthenticated}
+        //   auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/alljobs"
         component={Alljobs}
-        auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/alljobs/edit/:id"
         component={EditJobs}
-        auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/contracting"
         component={Contracting}
-        auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/internal"
         component={Internal}
-        auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/addjobs"
         component={AddJobs}
-        auth={props.isAuthenticated}
+        // auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/contact"
         component={Contact}
-        auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/viewContact"
         component={viewDetail}
-        auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/allApplicant"
         component={allApplicant}
-        auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/job-detail/:id"
         component={viewJobDetail}
-        auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
+      />
+      <Route
+        exact
+        path="/employers"
+        component={Employers}
+        //auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
         path="/logout"
         component={Logout}
-        auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <GuardedRoute
         exact
+<<<<<<< HEAD
         path="/internal-applicant-detail/:id"
         component={viewInternalApplicantDetail}
         auth={props.isAuthenticated}
@@ -133,11 +141,18 @@ function App(props) {
         component={viewContractApplicantDetail}
         auth={props.isAuthenticated}
       /> 
+=======
+        path="/applicant-detail/:id"
+        component={viewApplicantDetail}
+        //auth={props.isAuthenticated}
+      />
+>>>>>>> final
 
       <Route component={pageNotFound} />
     </Switch>
   );
 }
+// export default App;
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,

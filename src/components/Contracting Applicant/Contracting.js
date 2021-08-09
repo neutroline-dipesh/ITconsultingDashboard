@@ -154,12 +154,14 @@ const Contracting = (props) => {
   //alert message
  
   const fetchData = () => {
-    axios.get("http://localhost:4000/contract/").then((response) => {
-      if (response.data) {
-        // value = response.data.data;
-        setData1(response.data.data);
-      }
-    });
+    axios
+      .get("http://localhost:4000/allApplicant/contract/")
+      .then((response) => {
+        if (response.data) {
+          // value = response.data.data;
+          setData1(response.data.data);
+        }
+      });
   };
 
   const deletFunction = (id) => {
@@ -190,14 +192,14 @@ const Contracting = (props) => {
       .then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete("http://localhost:4000/contract/" + id, {
+            .delete("http://localhost:4000/allApplicant/" + id, {
               headers: { Authorization: localStorage.getItem("token") },
               data: {
                 id: id,
               },
             })
             .then((res) => {
-              console.log("deleted id" + id);
+              // console.log("deleted id" + id);
               swalWithBootstrapButtons.fire(
                 "Deleted!",
                 "Your file has been deleted.",
@@ -239,7 +241,7 @@ const Contracting = (props) => {
               <div className={classes.ContentDateDiv}>
                 <table
                   id="example"
-                  //   class="table table-striped table-bordered"
+                  data-ordering="false"
                   className={classes.dataTable + " " + "table"}
                 >
                   <thead>
@@ -369,7 +371,11 @@ const Contracting = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
+<<<<<<< HEAD
                                 <Link to={`/contract-applicant-detail/${item.id}`}>
+=======
+                                <Link to={`/applicant-detail/${item.id}`}>
+>>>>>>> final
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />

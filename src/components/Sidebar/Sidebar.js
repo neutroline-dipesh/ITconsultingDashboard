@@ -16,21 +16,34 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
-import neutrolinelogo from "../../assets/images/glass.png";
+import SidebarImage from "../../assets/images/glass.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { RiDashboard3Fill } from "react-icons/ri";
 import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
+import logo from "../../assets/images/logo.png";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     float: "left",
     width: "16.5%",
     height: "100vh",
+    backgroundImage: `url(${SidebarImage}) `,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "left bottom 10%",
+    backgroundSize: "200px 270px",
 
+    // backgroundSize: "cover",
+    backgroundAttachment: "fixed",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    borderRight: "2px solid",
+    borderImageSlice: 1,
+    borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
-    backgroundColor: "#4e73df",
+    backgroundColor: "#fff",
     textAlign: "center",
     // position: "fixed",
     //position: "absolute",
@@ -42,16 +55,17 @@ const useStyle = makeStyles((theme) => ({
     // justifyContent: "center",
     paddingTop: "0.4rem",
   },
+
   footerSidebar: {
-    color: "#EEE",
-    textAlign:"center",
-    fontSize:"0.8em",
-    marginTop:"11%",
-    marginBottom:"0px",
+    color: "#5d6169",
+    textAlign: "center",
+    fontSize: "0.8em",
+    marginTop: "100%",
+    marginBottom: "2px",
   },
   linktext: {
     textDecoration: "none",
-    color: "#fff",
+    color: "#000",
     "&:hover": {
       textDecoration: "none",
       color: "#fff",
@@ -59,16 +73,15 @@ const useStyle = makeStyles((theme) => ({
   },
   sidenav: {},
   smileIcon: {
-    color: "#fff",
+    color: "#5d6169",
     fontSize: "2rem",
     marginTop: "-1rem",
   },
   companyName: {
-    color: "#FFFFFF",
-    fontSize: "25px",
-    width: "100%",
-
-    marginLeft: "1rem",
+    "&:hover": {
+      transform: "scale(1.1)",
+      transition: "ease 0.5s",
+    },
   },
   hr: {
     marginTop: "0.8rem",
@@ -87,7 +100,7 @@ const useStyle = makeStyles((theme) => ({
     height: "8vh",
     width: "83.5%",
     float: "right",
-    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
+    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.2)",
     display: "flex",
 
     alignItems: "center",
@@ -153,29 +166,34 @@ const useStyle = makeStyles((theme) => ({
   },
   sidebarList: {
     textDecoration: "none",
-    color: "#fff",
+    color: "#5d6169",
     zIndex: "1000",
+    borderLeft: "8px solid #fff",
+
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "#F6F6F6",
-      color: "#161D6F",
+      // backgroundColor: "#F6F6F6",
+      color: "#548FFF",
       textDecoration: "none",
-      boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
+      // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.50)",
       transform: "scale(1.04)",
       transition: "ease 0.3s",
-      borderRight:"3px solid #4E73DF",
+      borderLeft: "8px solid #4E73DF",
     },
   },
   nastedList: {
     // textAlign: "center",
     paddingLeft: "3.5rem",
-    backgroundColor: "#2854d7",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#161D6F",
     textDecoration: "none",
+    borderLeft: "2px solid #fff",
+
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "#fff",
-      color: "#161D6F",
+      color: "#548FFF",
+      borderLeft: "2px solid #4E73DF",
     },
   },
 
@@ -216,11 +234,17 @@ const Sidebar = () => {
     <>
       {/* {showNav && ( */}
       <div className={classes.root}>
-        <FaSmileWink className={classes.smileIcon} />
-        <span className={classes.companyName}>
-          Neutrosys <hr className={classes.hr} />
-        </span>
-
+        <img
+          src={logo}
+          className={classes.companyName}
+          width="170px"
+          alt="a"
+        ></img>
+        {/* <FaSmileWink className={classes.smileIcon} /> */}
+        {/* <span className={classes.companyName}>
+          Neutrosys 
+        </span> */}
+        <hr className={classes.hr} />
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
@@ -334,20 +358,19 @@ const Sidebar = () => {
             </ListItem>
           </Link>
 
-          <Link to="/logout" className={classes.linktext}>
+          <Link to="/employers" className={classes.linktext}>
             <ListItem button className={classes.sidebarList}>
-              <ExitToAppIcon className={classes.sidebarIcon} />
+              <PeopleAltIcon className={classes.sidebarIcon} />
 
               <ListItemText
                 style={{ marginLeft: "1.5rem" }}
-                primary="Sign Out"
+                primary="Employers"
               />
             </ListItem>
           </Link>
         </List>
         <div className={classes.footerSidebar}>
-          <img src={neutrolinelogo} alt="neutroline-logo" height="190px"></img>
-          <br /> <hr />
+          <hr />
           ©2021 Neutrosys Inc. All Rights Reserved.
         </div>
       </div>
@@ -369,7 +392,7 @@ const Sidebar = () => {
         <span className={classes.notificationNumber}>20</span> */}
         <Notification />
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
-          <Link to="/viewContact">
+          <Link to="/contact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>
