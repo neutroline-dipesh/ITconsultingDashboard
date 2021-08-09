@@ -24,7 +24,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     // height: "100vh",
     width: "100%",
-    
+
     // top: "30",
     // position: "absolute",
     // top: "8vh",
@@ -76,13 +76,11 @@ const useStyle = makeStyles((theme) => ({
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",
     boxShadow: "0px 0px 30px 0px rgba(144, 178, 232,0.4)",
-
   },
 
   totcalContractingJob: {
     borderLeft: "4px solid red",
     boxShadow: "0px 0px 30px 0px rgba(232, 144, 144,0.4)",
-
   },
   totalConstractingNumber: {
     // backgroundColor: "red",
@@ -103,12 +101,10 @@ const useStyle = makeStyles((theme) => ({
   totcalInernalJob: {
     borderLeft: "4px solid #1cc88a",
     boxShadow: "0px 0px 30px 0px rgba(144, 232, 144,0.4)",
-
   },
   totalAllJob: {
     borderLeft: "4px solid #f6c23e",
     boxShadow: "0px 0px 30px 0px rgba(226, 232, 144,0.4)",
-
   },
   messageNumber: {
     marginLeft: "-2.5rem",
@@ -240,8 +236,7 @@ const Dashboard = () => {
           </div>
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
-              <div className={classes.jobs}    style={{ color: "#4e73df" }}
->
+              <div className={classes.jobs} style={{ color: "#4e73df" }}>
                 <span className={classes.totalConstractingNumber}>1,400</span>
                 <span
                   style={{ color: "#4e73df" }}
@@ -325,7 +320,7 @@ const Dashboard = () => {
                   </Link>
                 </div>
                 <div className={classes.tableDataDiv}>
-                  <Table className={classes.table}  aria-label="simple table" >
+                  <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
                         <TableCell className={classes.tableHead}>
@@ -342,14 +337,19 @@ const Dashboard = () => {
                         </TableCell>
                       </TableRow>
                     </TableHead>
-                    <TableBody >
-                      {allApplicantData.map((item,index) => (
-                        <TableRow style ={ index % 2? { background : "#FFF" }:{ background : "#f5f9ff" }} >
+                    <TableBody>
+                      {allApplicantData.map((item, index) => (
+                        <TableRow
+                          style={
+                            index % 2
+                              ? { background: "#FFF" }
+                              : { background: "#f5f9ff" }
+                          }
+                        >
                           <TableCell
                             component="th"
                             scope="row"
                             style={{ whiteSpace: "nowrap" }}
-                            
                           >
                             {item.jobTitle}
                           </TableCell>

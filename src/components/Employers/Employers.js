@@ -281,9 +281,7 @@ const Employers = (props) => {
                           <td className={classes.tableBody}>
                             {item.companyName}
                           </td>
-                          <td className={classes.tableBody}>
-                            {item.jobTitile}
-                          </td>
+                          <td className={classes.tableBody}>{item.jobTitle}</td>
                           <td className={classes.tableBody}>
                             {item.postedDate}
                           </td>

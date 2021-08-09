@@ -23,8 +23,8 @@ import { RiDashboard3Fill } from "react-icons/ri";
 import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
-import logo from '../../assets/images/logo.png'
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import logo from "../../assets/images/logo.png";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -34,11 +34,11 @@ const useStyle = makeStyles((theme) => ({
     backgroundImage: `url(${SidebarImage}) `,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left bottom 10%",
-    backgroundSize:"200px 270px",
+    backgroundSize: "200px 270px",
 
-   // backgroundSize: "cover",
+    // backgroundSize: "cover",
     backgroundAttachment: "fixed",
-    //boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRight: "2px solid",
     borderImageSlice: 1,
     borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
@@ -79,10 +79,9 @@ const useStyle = makeStyles((theme) => ({
   },
   companyName: {
     "&:hover": {
-      transform:"scale(1.1)",
-      transition:"ease 0.5s"
+      transform: "scale(1.1)",
+      transition: "ease 0.5s",
     },
-
   },
   hr: {
     marginTop: "0.8rem",
@@ -233,15 +232,19 @@ const Sidebar = () => {
 
   return (
     <>
-
       {/* {showNav && ( */}
       <div className={classes.root}>
-      <img src ={logo} className={classes.companyName}  width="170px" alt="a"></img>
+        <img
+          src={logo}
+          className={classes.companyName}
+          width="170px"
+          alt="a"
+        ></img>
         {/* <FaSmileWink className={classes.smileIcon} /> */}
         {/* <span className={classes.companyName}>
           Neutrosys 
         </span> */}
-<hr className={classes.hr} />
+        <hr className={classes.hr} />
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
@@ -365,17 +368,6 @@ const Sidebar = () => {
               />
             </ListItem>
           </Link>
-
-          <Link to="/logout" className={classes.linktext}>
-            <ListItem button className={classes.sidebarList}>
-              <ExitToAppIcon className={classes.sidebarIcon} />
-
-              <ListItemText
-                style={{ marginLeft: "1.5rem" }}
-                primary="Sign Out"
-              />
-            </ListItem>
-          </Link>
         </List>
         <div className={classes.footerSidebar}>
           <hr />
@@ -400,7 +392,7 @@ const Sidebar = () => {
         <span className={classes.notificationNumber}>20</span> */}
         <Notification />
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
-          <Link to="/viewContact">
+          <Link to="/contact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>

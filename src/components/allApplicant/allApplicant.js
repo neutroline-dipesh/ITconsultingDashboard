@@ -141,7 +141,7 @@ const Contracting = () => {
       fetchData();
     }, 100);
   }, []);
-  console.log(data1);
+  // console.log(data1);
   useEffect(() => {
     $("#example").DataTable();
   }, [data1]);

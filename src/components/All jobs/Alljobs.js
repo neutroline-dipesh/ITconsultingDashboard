@@ -23,6 +23,12 @@ import { Link } from "react-router-dom";
 import { CgAddR } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
 import { allJobsData } from "./alljobsData";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2,
+} from "react-html-parser";
+
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -273,6 +279,7 @@ const Alljobs = (props) => {
                       <th className={classes.tableHead}>Published By</th>
                       <th className={classes.tableHead}>Visibility</th>
                       <th className={classes.tableHead}>Action</th>
+                      {/* <th className={classes.tableHead}>Description</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -342,6 +349,15 @@ const Alljobs = (props) => {
                                 </Link>
                               </Tooltip>
                             </div>
+                          </td>
+                          <td>
+                            {" "}
+                            {/* <div
+                              dangerouslySetInnerHTML={{
+                                __html: item.description,
+                              }}
+                            ></div> */}
+                            {/* <div>{ReactHtmlParser(item.description)}</div> */}
                           </td>
                         </tr>
                       );

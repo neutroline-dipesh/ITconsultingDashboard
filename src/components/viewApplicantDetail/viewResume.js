@@ -2,16 +2,15 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+import res from "../../assets/files/test.docx";
+import FileViewer from "react-file-viewer";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -56,7 +55,17 @@ export default function FullScreenDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  // var str = "examp.le";
+  // const str = props.resume;
+  // console.log("check:" + str);
+  // const slug = str.split(".").pop();
+  // console.log(slug);
 
+  const docs = [
+    { uri: props.resume },
+    // { uri: require("../../assets/files/test.docx") }, // Local File
+  ];
+  console.log("fileType:" + props.fileType);
   return (
     <div>
       <Button
@@ -93,7 +102,36 @@ export default function FullScreenDialog(props) {
             </Button>
           </Toolbar>
         </AppBar>
-        <embed className={classes.cv} src={props.resume}></embed>
+        {/* <FileViewer fileType={props.fileType} filePath={props.resume} /> */}
+        {/* <DocViewer
+          className={classes.cv}
+          pluginRenderers={DocViewerRenderers}
+          documents={docs}
+        /> */}
+        {/* <iframe
+          src="https://view.officeapps.live.com/op/embed.aspx?src=http://remote.url.tld/path/to/document.doc"
+          width="80%"
+          height="565px"
+          frameborder="0"
+        >
+          {" "}
+        </iframe> */}
+
+        {/* <iframe
+          src={"https://view.officeapps.live.com/op/embed.aspx?src=" + res}
+          width="80%"
+          height="565px"
+          frameborder="0"
+        >
+          {" "}
+        </iframe> */}
+
+        <iframe
+          src={
+            "https://docs.google.com/gview?url=" + props.cv + "&embedded=true"
+          }
+          className={classes.cv}
+        ></iframe>
       </Dialog>
     </div>
   );
