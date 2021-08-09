@@ -337,7 +337,7 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/gmail--v1.png" />
+                          <img src="https://img.icons8.com/color/40/000000/gmail--v1.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gmail} />
                       </ListItem>
@@ -350,7 +350,7 @@ const Contracting = () => {
 
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/calendar.png" />
+                          <img src="https://img.icons8.com/color/40/000000/calendar.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.postedDate} />
                       </ListItem>

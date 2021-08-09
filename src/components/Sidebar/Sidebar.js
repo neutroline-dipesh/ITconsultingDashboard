@@ -23,6 +23,7 @@ import { RiDashboard3Fill } from "react-icons/ri";
 import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
+import logo from "../../assets/images/logo.png";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const useStyle = makeStyles((theme) => ({
@@ -34,9 +35,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left bottom 10%",
     backgroundSize: "200px 270px",
-    overflow: "scroll",
-    overflowX: "hidden",
-    overflowY: "hidden",
+
     // backgroundSize: "cover",
     backgroundAttachment: "fixed",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
@@ -79,11 +78,10 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "-1rem",
   },
   companyName: {
-    color: "#5d6169",
-    fontSize: "25px",
-    width: "100%",
-
-    marginLeft: "1rem",
+    "&:hover": {
+      transform: "scale(1.1)",
+      transition: "ease 0.5s",
+    },
   },
   hr: {
     marginTop: "0.8rem",
@@ -236,11 +234,17 @@ const Sidebar = () => {
     <>
       {/* {showNav && ( */}
       <div className={classes.root}>
-        <FaSmileWink className={classes.smileIcon} />
-        <span className={classes.companyName}>
-          Neutrosys <hr className={classes.hr} />
-        </span>
-
+        <img
+          src={logo}
+          className={classes.companyName}
+          width="170px"
+          alt="a"
+        ></img>
+        {/* <FaSmileWink className={classes.smileIcon} /> */}
+        {/* <span className={classes.companyName}>
+          Neutrosys 
+        </span> */}
+        <hr className={classes.hr} />
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"

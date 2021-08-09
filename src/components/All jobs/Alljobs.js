@@ -180,7 +180,7 @@ const Alljobs = (props) => {
   };
   const editDataFunction = (id) => {
     console.log(id, "esma id aaux edit dabauda");
-    props.history.push("./EditJobs/" + id);
+    props.history.push("/EditJobs" + id);
   };
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
