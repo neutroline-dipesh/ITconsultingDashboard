@@ -14,7 +14,7 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import WcIcon from "@material-ui/icons/Wc";
-import ViewMessage from "./viewResume";
+import Resume from "./viewResume";
 import CoverLetter from "./viewCoverLetter";
 
 import { useParams } from "react-router-dom";
@@ -35,9 +35,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     // height: "82vh",
@@ -203,6 +203,9 @@ const Contracting = () => {
     expectedSalary: null,
     jobTitle: null,
     message: null,
+    resume: null,
+    resumeFileType: null,
+    coverletter: null,
     error: false,
     loading: false,
   });
@@ -220,7 +223,7 @@ const Contracting = () => {
     axios
       .get("http://localhost:4000/allApplicant/" + id)
       .then((response) => {
-        console.log(response.data.data[0]);
+        // console.log(response.data.data[0]);
         setApplicant({
           firstName: response.data.data[0].firstName,
           middleName: response.data.data[0].middleName,
@@ -236,6 +239,7 @@ const Contracting = () => {
           jobTitle: response.data.data[0].jobTitle,
           message: response.data.data[0].message,
           resume: response.data.data[0].resume,
+          resumeFileType: response.data.data[0].resume.split(".").pop(),
           coverletter: response.data.data[0].coverletter,
           error: false,
           loading: false,
@@ -303,7 +307,8 @@ const Contracting = () => {
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png"/>                                          </ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
+                        </ListItemAvatar>
                         <ListItemText
                           primary={
                             applicant.firstName +
@@ -316,12 +321,14 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/apple-phone.png"/>                        </ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/apple-phone.png" />{" "}
+                        </ListItemAvatar>
                         <ListItemText primary={applicant.phone} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/order-delivered.png"/>                        </ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/order-delivered.png" />{" "}
+                        </ListItemAvatar>
                         <ListItemText
                           primary={
                             applicant.currentAddress + " " + applicant.country
@@ -330,21 +337,20 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/gmail--v1.png"/>
-
+                          <img src="https://img.icons8.com/color/48/000000/gmail--v1.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gmail} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/gender.png"/>                      
+                          <img src="https://img.icons8.com/color/48/000000/gender.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gender} />
                       </ListItem>
 
                       <ListItem>
                         <ListItemAvatar>
-                        <img src="https://img.icons8.com/color/48/000000/calendar.png"/>
+                          <img src="https://img.icons8.com/color/48/000000/calendar.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.postedDate} />
                       </ListItem>
@@ -381,7 +387,10 @@ const Contracting = () => {
                         </span>
                       </ListItem>
                     </List>
-                    <ViewMessage resume={applicant.resume} />
+                    <Resume
+                      resume={applicant.resume}
+                      fileType={applicant.resumeFileType}
+                    />
                     <CoverLetter letter={applicant.coverletter} />
 
                     {/* <span className={classes.resumeTitle}>Resume:</span> */}

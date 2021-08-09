@@ -23,7 +23,7 @@ import { RiDashboard3Fill } from "react-icons/ri";
 import Notification from "./Notification";
 import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -34,10 +34,12 @@ const useStyle = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left bottom 10%",
     backgroundSize: "200px 270px",
-
+    overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
     // backgroundSize: "cover",
     backgroundAttachment: "fixed",
-    //boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRight: "2px solid",
     borderImageSlice: 1,
     borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
@@ -362,17 +364,6 @@ const Sidebar = () => {
               />
             </ListItem>
           </Link>
-
-          <Link to="/logout" className={classes.linktext}>
-            <ListItem button className={classes.sidebarList}>
-              <ExitToAppIcon className={classes.sidebarIcon} />
-
-              <ListItemText
-                style={{ marginLeft: "1.5rem" }}
-                primary="Sign Out"
-              />
-            </ListItem>
-          </Link>
         </List>
         <div className={classes.footerSidebar}>
           <hr />
@@ -397,7 +388,7 @@ const Sidebar = () => {
         <span className={classes.notificationNumber}>20</span> */}
         <Notification />
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
-          <Link to="/viewContact">
+          <Link to="/contact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>

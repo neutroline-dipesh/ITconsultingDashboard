@@ -47,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#E74A3B",
   },
   notificationTitle: {
-    backgroundColor: "#4e73df",
+    backgroundColor: "#F8F9FC",
     borderRadius: "4px 4px 0px 0px",
     // border: "2px solid #4e73df",
-    color: "#fff",
+    color: "#303f9f",
     display: "flex",
     alignItems: "center",
     paddingTop: "0.75rem",
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: "1rem",
-    color: "#4e73df",
+    color: "#fff",
   },
   notificationBodydiv: {
     display: "flex",
@@ -78,8 +78,9 @@ const useStyles = makeStyles((theme) => ({
     color: "#858796",
   },
   notificationBody: {
-    fontSize: "0.8rem",
+    fontSize: "0.7rem",
     fontWeight: "500",
+    color: "#858796",
   },
 }));
 
