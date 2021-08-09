@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
-
+import {useParams} from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from 'axios';
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
@@ -262,11 +263,9 @@ const IOSSwitch = withStyles((theme) => ({
 });
 
 const EditJobs = () => {
-  const classes = useStyle();
-
-  //for validation
-  const formik = useFormik({
-    initialValues: {
+  let {id} = useParams();
+  console.log(id);
+  const [initialData, setInitialData] = useState({
       jobTitle: "",
       jobSubTitle: "",
       department: "",
@@ -275,6 +274,40 @@ const EditJobs = () => {
       state: "",
       city: "",
       publishBy: "",
+  });
+  const classes = useStyle();
+      useEffect(() => {
+        fetchData();
+        console.log(initialData);
+  }, []);
+
+  const fetchData = () =>{
+   axios.get("http://localhost:4000/allJobs/" + id).then( res =>{
+     console.log(res.data.data[0]);
+     setInitialData({
+      jobTitle: res.data.data[0].jobTitle,
+      jobSubTitle: res.data.data[0].jobSubtitle,
+      department: res.data.data[0].department,
+      jobType: res.data.data[0].jobType,
+      country: res.data.data[0].country,
+      state: res.data.data[0].state,
+      city: res.data.data[0].city,
+      publishBy: res.data.data[0].publishedBy,
+     });
+  });
+  };
+
+  //for validation
+  const formik = useFormik({
+    initialValues: {
+      jobTitle: initialData.jobTitle,
+      jobSubTitle: initialData.jobSubTitle,
+      department: initialData.department,
+      jobType: initialData.jobType,
+      country: initialData.country,
+      state: initialData.state,
+      city: initialData.city,
+      publishBy: initialData.publishBy,
     },
     validationSchema: Yup.object({
       jobTitle: Yup.string().required("Required!"),

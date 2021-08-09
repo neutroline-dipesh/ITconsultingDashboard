@@ -69,7 +69,7 @@ function App(props) {
       />
       <GuardedRoute
         exact
-        path="/alljobs/editJobs"
+        path="/alljobs/edit/:id"
         component={EditJobs}
         auth={props.isAuthenticated}
       />
