@@ -121,7 +121,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "12px",
     fontFamily: "Verdana",
   },
-}));
+})); 
 
 //Main funcation
 const Login = (props) => {
