@@ -371,11 +371,7 @@ const Contracting = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-<<<<<<< HEAD
                                 <Link to={`/contract-applicant-detail/${item.id}`}>
-=======
-                                <Link to={`/applicant-detail/${item.id}`}>
->>>>>>> final
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />

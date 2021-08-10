@@ -186,7 +186,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const  Contracting = () => {
+const  Contracting = () => { 
   let {id} = useParams();
   console.log(id);
   const [applicant, setApplicant] = useState({

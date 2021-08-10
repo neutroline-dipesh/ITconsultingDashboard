@@ -266,66 +266,52 @@ const IOSSwitch = withStyles((theme) => ({
 function EditJobs(props) {
   const classes = useStyle();
   const [data, setData] = useState("");
-  useEffect(() => {
-    const id = props.match.params.id;
-    console.log(id, "edit jobs ko id");
+  // useEffect(() => {
+  //   const id = props.match.params.id;
+  //   console.log(id, "edit jobs ko id");
 
-    axios.get("http://localhost:4000/allJobs/" + id).then((response) => {
-      console.log(response.data, "edit jobs ko data");
-      if (response.data) {
-        // value = response.data.data;
-        setData(response.data.data);
-      }
-    });
-  }, []);
+  //   axios.get("http://localhost:4000/allJobs/" + id).then((response) => {
+  //     console.log(response.data, "edit jobs ko data");
+  //     if (response.data) {
+  //       // value = response.data.data;
+  //       setData(response.data.data);
+  //     }
+  //   });
+  // }, []);
 
-  //for validation
-  const formik = useFormik({
-    initialValues: {
-      jobTitle: "",
-      jobSubTitle: "",
-      department: "",
-      jobType: "",
-      country: "",
-      state: "",
-      city: "",
-      publishBy: "",
-    }
-  });
-  const classes = useStyle();
-      useEffect(() => {
-        fetchData();
-        console.log(initialData);
-  }, []);
+  //     useEffect(() => {
+  //       fetchData();
+  //       console.log(data);
+  // }, []);
 
-  const fetchData = () =>{
-   axios.get("http://localhost:4000/allJobs/" + id).then( res =>{
-     console.log(res.data.data[0]);
-     setInitialData({
-      jobTitle: res.data.data[0].jobTitle,
-      jobSubTitle: res.data.data[0].jobSubtitle,
-      department: res.data.data[0].department,
-      jobType: res.data.data[0].jobType,
-      country: res.data.data[0].country,
-      state: res.data.data[0].state,
-      city: res.data.data[0].city,
-      publishBy: res.data.data[0].publishedBy,
-     });
-  });
-  };
+  // const fetchData = () =>{
+  //  axios.get("http://localhost:4000/allJobs/" + id).then( res =>{
+  //    console.log(res.data.data[0]);
+  //    setInitialData({
+  //     jobTitle: res.data.data[0].jobTitle,
+  //     jobSubTitle: res.data.data[0].jobSubtitle,
+  //     department: res.data.data[0].department,
+  //     jobType: res.data.data[0].jobType,
+  //     country: res.data.data[0].country,
+  //     state: res.data.data[0].state,
+  //     city: res.data.data[0].city,
+  //     publishBy: res.data.data[0].publishedBy,
+  //    });
+  // });
+  // };
 
   //for validation
   const formik = useFormik({
-    initialValues: {
-      jobTitle: initialData.jobTitle,
-      jobSubTitle: initialData.jobSubTitle,
-      department: initialData.department,
-      jobType: initialData.jobType,
-      country: initialData.country,
-      state: initialData.state,
-      city: initialData.city,
-      publishBy: initialData.publishBy,
-    },
+    // initialValues: {
+    //   jobTitle: initialData.jobTitle,
+    //   jobSubTitle: initialData.jobSubTitle,
+    //   department: initialData.department,
+    //   jobType: initialData.jobType,
+    //   country: initialData.country,
+    //   state: initialData.state,
+    //   city: initialData.city,
+    //   publishBy: initialData.publishBy,
+    // },
     validationSchema: Yup.object({
       jobTitle: Yup.string().required("Required!"),
       jobSubTitle: Yup.string().required("Required!"),

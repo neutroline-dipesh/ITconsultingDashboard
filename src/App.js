@@ -130,23 +130,16 @@ function App(props) {
       />
       <GuardedRoute
         exact
-<<<<<<< HEAD
         path="/internal-applicant-detail/:id"
         component={viewInternalApplicantDetail}
         auth={props.isAuthenticated}
-      /> 
+      />  
       <GuardedRoute
         exact
         path="/contract-applicant-detail/:id"
         component={viewContractApplicantDetail}
         auth={props.isAuthenticated}
       /> 
-=======
-        path="/applicant-detail/:id"
-        component={viewApplicantDetail}
-        //auth={props.isAuthenticated}
-      />
->>>>>>> final
 
       <Route component={pageNotFound} />
     </Switch>

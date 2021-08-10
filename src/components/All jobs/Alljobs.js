@@ -327,18 +327,8 @@ const Alljobs = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-<<<<<<< HEAD
                                 <Link to={`/alljobs/edit/${item.id}`}>
                                   <FaEdit className={classes.editButton} />
-=======
-                                <Link to="/alljobs/editJobs">
-                                  <FaEdit
-                                    className={classes.editButton}
-                                    onClick={() => {
-                                      editDataFunction(item.id);
-                                    }}
-                                  />
->>>>>>> final
                                 </Link>
                               </Tooltip>
 

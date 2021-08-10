@@ -145,15 +145,8 @@ const Internal = (props) => {
 
   //alert message
 
-<<<<<<< HEAD
   const fetchData = () =>{
           axios.get("http://localhost:4000/internal").then((response) => {
-=======
-  const fetchData = () => {
-    axios
-      .get("http://localhost:4000/allApplicant/internal/")
-      .then((response) => {
->>>>>>> final
         if (response.data) {
           // value = response.data.data;
           setData1(response.data.data);
@@ -254,12 +247,8 @@ const Internal = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-<<<<<<< HEAD
                   
                        {data1.map((item, key) => {
-=======
-                    {data1.map((item, key) => {
->>>>>>> final
                       return (
                         <tr>
                           <td
