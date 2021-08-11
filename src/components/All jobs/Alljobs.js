@@ -159,16 +159,9 @@ const Alljobs = (props) => {
     }, 100);
   }, []);
   console.log(data1);
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data1]);
 
   const classes = useStyle();
-  useEffect(() => {
-    $(document).ready(function () {
-      $("#example").DataTable();
-    });
-  });
+
 
   //alert message
   const fetchAllData = () => {
