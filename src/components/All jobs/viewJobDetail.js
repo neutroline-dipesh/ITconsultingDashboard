@@ -3,19 +3,11 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import ContactsIcon from "@material-ui/icons/Contacts";
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import file from "../../assets/files/cv.pdf";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
-import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
 
@@ -37,9 +29,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#fffff",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   jobListButton: {
     textDecoration: "none",
@@ -50,18 +42,13 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    "&:hover": {
-      // backgroundColor: "#98DED9",
-    },
+    "&:hover": {},
   },
   jobListIcon: {
-    // color: "black !important",
     fontSize: "1rem",
     marginRight: "1rem",
   },
   backIcon: {
-    // color: "black !important",
-
     fontSize: "1.9rem",
     marginRight: "1rem",
   },
@@ -86,14 +73,11 @@ const useStyle = makeStyles((theme) => ({
     width: "40%",
     display: "flex",
     flexDirection: "column",
-    // marginTop: "1rem",
     marginBottom: "1rem",
     backgroundColor: "#ffffff",
     boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
-  listMain: {
-    // marginTop: "1rem",
-  },
+  listMain: {},
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
@@ -114,23 +98,18 @@ const useStyle = makeStyles((theme) => ({
   listHead: {
     fontSize: "0.875rem",
     fontWeight: "bold",
-    // color: "#858796",
     width: "30%",
-    // marginLeft: "1rem",
   },
   listBody: {
-    // color: "#858796",
     marginLeft: "1rem",
     width: "60%",
   },
   rightDiv: {
     borderRadius: "5px",
     width: "65%",
-    // paddingTop: "1rem",
     display: "flex",
     flexDirection: "column",
     marginLeft: "1rem",
-    // marginTop: "1rem",
     marginBottom: "1rem",
     marginRight: "0.5rem",
     backgroundColor: "#ffffff",

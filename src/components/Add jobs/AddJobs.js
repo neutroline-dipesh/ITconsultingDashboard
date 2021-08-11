@@ -20,6 +20,7 @@ import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -47,7 +48,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   pageTabName: {
-   fontSize: "1.75rem",
+    fontSize: "1.75rem",
     fontWeight: "700",
     marginLeft: "2.5rem",
     color: "#3F51B5",
@@ -209,6 +210,11 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  publishCheckBox: {
+    width: "3.5rem !important",
+    height: "3.5vh",
+    // backgroundColor: "#52D869",
+  },
 }));
 
 const IOSSwitch = withStyles((theme) => ({
@@ -304,20 +310,25 @@ const Addjobs = () => {
   const headers = {
     Authorization: localStorage.getItem("token"),
   };
+  const [ckeditorContent, setCkeditorContent] = useState("");
+  const [publish, setPublish] = useState("Not Publish");
+  // console.log(ckeditorContent);
   const handleSubmit = (values) => {
     const job = {
       jobTitle: values.jobTitle,
-      jobSubTitle: values.jobSubTitle,
+      jobSubtitle: values.jobSubTitle,
       department: values.department,
       jobType: values.jobType,
       country: values.country,
       state: values.state,
       city: values.city,
       publishBy: values.publishBy,
+      description: ckeditorContent,
+      visibility: publish,
     };
     console.log(job);
-    console.log(headers);
-      
+    // console.log(headers);
+
     axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
@@ -382,13 +393,16 @@ const Addjobs = () => {
       });
   };
   //for switch button (publish)
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true,
-  });
+  const [state, setState] = React.useState();
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState(event.target.checked);
+    setPublish("Not Publish");
+    console.log(state);
+    if (state == true) {
+      setPublish("Not Publish");
+    } else {
+      setPublish("Publish");
+    }
   };
   return (
     <>
@@ -547,19 +561,6 @@ const Addjobs = () => {
                           {...formik.getFieldProps("state")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.State}
-                          {...formik.getFieldProps("state")}
-                        >
-                          <option value="" selected disabled>
-                            State/Province
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
                         <div
                           className={
                             classes.errorMessage + " " + classes.stateErrorMsg
@@ -579,19 +580,7 @@ const Addjobs = () => {
                           {...formik.getFieldProps("city")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.city}
-                          {...formik.getFieldProps("city")}
-                        >
-                          <option value="" selected disabled>
-                            City
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
+
                         <div
                           className={
                             classes.errorMessage + " " + classes.cityErrorMsg
@@ -617,14 +606,36 @@ const Addjobs = () => {
                         }}
                         onChange={(event, editor) => {
                           const data = editor.getData();
-                          console.log({ event, editor, data });
+                          setCkeditorContent(editor.getData());
+                          // console.log({ event, editor, data });
                         }}
                       />
                     </div>
                     <div className={classes.publishSaveDiv}>
                       <div className={classes.PublishDiv}>
                         <span>Publish</span>
-                        <FormControlLabel
+                        <div class="form-check form-switch">
+                          <input
+                            className={"form-check-input"}
+                            type="checkbox"
+                            id="flexSwitchCheckChecked"
+                            name="publish"
+                            style={{
+                              width: "3.5rem",
+                              height: "3.5vh",
+                            }}
+                            onChange={handleChange}
+                            value="true"
+                          />
+                          {/* <label
+                            class="form-check-label"
+                            for="flexSwitchCheckChecked"
+                          >
+                            Publish
+                          </label> */}
+                        </div>
+
+                        {/* <FormControlLabel
                           control={
                             <IOSSwitch
                               checked={state.checkedB}
@@ -632,7 +643,7 @@ const Addjobs = () => {
                               name="checkedB"
                             />
                           }
-                        />
+                        /> */}
                       </div>
                       <div className={classes.saveButtonDiv}>
                         <button

@@ -119,7 +119,7 @@ function App(props) {
         exact
         path="/employers"
         component={Employers}
-       //auth={props.isAuthenticated}
+        //auth={props.isAuthenticated}
       />
       <Route
         exact

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import adimImage from "../../assets/images/admin2.jpeg";
 import axios from "axios";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -15,10 +14,9 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import WcIcon from "@material-ui/icons/Wc";
-import ViewMessage from "./viewResume";
+import Resume from "./viewResume";
 import CoverLetter from "./viewCoverLetter";
 
-import file from "../../assets/files/cv.pdf";
 import { useParams } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -37,9 +35,9 @@ const useStyle = makeStyles((theme) => ({
   },
   pageTabName: {
     fontSize: "1.75rem",
-    fontWeight: "400",
-    marginLeft: "1rem",
-    color: "#062837",
+    fontWeight: "700",
+    marginLeft: "2.5rem",
+    color: "#3F51B5",
   },
   MainContentDiv: {
     // height: "82vh",
@@ -190,7 +188,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Contracting = () => {
   let { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [applicant, setApplicant] = useState({
     firstName: null,
     middleName: null,
@@ -202,8 +200,12 @@ const Contracting = () => {
     gender: null,
     postedDate: null,
     senioritylevel: null,
+    expectedSalary: null,
     jobTitle: null,
     message: null,
+    resume: null,
+    resumeFileType: null,
+    coverletter: null,
     error: false,
     loading: false,
   });
@@ -221,7 +223,7 @@ const Contracting = () => {
     axios
       .get("http://localhost:4000/allApplicant/" + id)
       .then((response) => {
-        console.log(response.data.data[0]);
+        // console.log(response.data.data[0]);
         setApplicant({
           firstName: response.data.data[0].firstName,
           middleName: response.data.data[0].middleName,
@@ -233,8 +235,12 @@ const Contracting = () => {
           gender: response.data.data[0].gender,
           postedDate: response.data.data[0].postedDate,
           senioritylevel: response.data.data[0].senioritylevel,
+          expectedSalary: response.data.data[0].expectedSalary,
           jobTitle: response.data.data[0].jobTitle,
           message: response.data.data[0].message,
+          resume: response.data.data[0].resume,
+          resumeFileType: response.data.data[0].resume.split(".").pop(),
+          coverletter: response.data.data[0].coverletter,
           error: false,
           loading: false,
         });
@@ -301,9 +307,7 @@ const Contracting = () => {
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactsIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
                         </ListItemAvatar>
                         <ListItemText
                           primary={
@@ -317,17 +321,13 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactPhoneIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/apple-phone.png" />{" "}
                         </ListItemAvatar>
                         <ListItemText primary={applicant.phone} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactMailIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/order-delivered.png" />{" "}
                         </ListItemAvatar>
                         <ListItemText
                           primary={
@@ -337,26 +337,20 @@ const Contracting = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ContactMailIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/gmail--v1.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gmail} />
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <WcIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/48/000000/gender.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.gender} />
                       </ListItem>
 
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>
-                            <CalendarTodayIcon />
-                          </Avatar>
+                          <img src="https://img.icons8.com/color/40/000000/calendar.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.postedDate} />
                       </ListItem>
@@ -376,7 +370,9 @@ const Contracting = () => {
                         <span className={classes.listHead}>
                           Expected Salary($):
                         </span>
-                        <span className={classes.listBody}>15000</span>
+                        <span className={classes.listBody}>
+                          {applicant.expectedSalary}
+                        </span>
                       </ListItem>
                       <ListItem>
                         <span className={classes.listHead}>Applied Job:</span>
@@ -391,8 +387,11 @@ const Contracting = () => {
                         </span>
                       </ListItem>
                     </List>
-                    <ViewMessage />
-                    <CoverLetter />
+                    <Resume
+                      resume={applicant.resume}
+                      fileType={applicant.resumeFileType}
+                    />
+                    <CoverLetter letter={applicant.coverletter} />
 
                     {/* <span className={classes.resumeTitle}>Resume:</span> */}
                     {/* <embed className={classes.cv} src={file}></embed> */}
