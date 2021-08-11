@@ -63,6 +63,9 @@ const useStyle = makeStyles((theme) => ({
     // paddingRight: "1rem",
     // paddingTop: "1.5rem",
     paddingBottom: "1.5rem",
+    [theme.breakpoints.down('md')]: {
+      width:"74.5%",
+    },
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
@@ -72,6 +75,10 @@ const useStyle = makeStyles((theme) => ({
     height: "13vh",
     width: "20%",
     borderRadius: "5px",
+    [theme.breakpoints.down('md')]: {
+      width:"24%",
+      margin:"0.5rem",
+    },
   },
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",

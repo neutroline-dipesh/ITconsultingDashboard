@@ -52,6 +52,11 @@ const useStyle = makeStyles((theme) => ({
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
+    [theme.breakpoints.down('md')]: {
+      width:"72.5%",
+    },
+
+
   },
   ContentDateDiv: {
     overflow: "scroll",
@@ -64,7 +69,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-    position: "sticky",
+   // position: "sticky",
     top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
