@@ -35,6 +35,9 @@ const useStyle = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left bottom 10%",
     backgroundSize: "200px 270px",
+    overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
 
     // backgroundSize: "cover",
     backgroundAttachment: "fixed",
@@ -60,8 +63,8 @@ const useStyle = makeStyles((theme) => ({
     color: "#5d6169",
     textAlign: "center",
     fontSize: "0.8em",
-    marginTop: "100%",
-    marginBottom: "2px",
+    marginTop: "110%",
+    // marginBottom: "2px",
   },
   linktext: {
     textDecoration: "none",

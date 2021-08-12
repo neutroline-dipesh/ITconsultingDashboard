@@ -13,64 +13,118 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import IconButton from "@material-ui/core/IconButton";
-import adimImage from "../../assets/images/admin2.png";
+import adimImage from "../../assets/images/profile.png";
 
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa";
+import styled from "styled-components";
+import { AiOutlineFileText } from "react-icons/ai";
+import PersonIcon from "@material-ui/icons/Person";
+import { FaRegAddressCard } from "react-icons/fa";
+import { BiPhone } from "react-icons/bi";
+import axios from "axios";
+
+const StyledDialog = styled(Dialog)`
+  .MuiBackdrop-root {
+    background-color: transparent;
+    backdrop-filter: blur(1px);
+  }
+`;
+
 const useStyle = makeStyles((theme) => ({
   DialogTitle: {
     display: "flex",
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
     borderBottom: "solid 1px #e3e6f0",
-    color: "#303f9f",
-    fontWeight: "700",
   },
   phoneAddressDiv: {
     display: "flex",
+    flexDirection: "row",
+    paddingLeft: "8rem",
   },
   message: {
-    marginTop: "1rem",
+    marginTop: "1.5rem",
+    fontSize: "0.9rem",
     textAlign: "justify",
     border: "1px solid #e3e6f0",
     borderRadius: "5px",
     padding: "1rem",
     color: "black",
-    backgroundColor: "#F8F9FC",
+    // backgroundCoslor: "#F8F9FC",
     width: "32rem",
-  },
-
-  viewButton: {
-    marginTop: "0.3rem",
-    marginBottom: "0.3rem",
-    height: "1.3rem",
-    width: "1.3rem",
-    color: "#04A8F6",
-    "&:hover": {
-      color: "#4e73df",
-    },
   },
 
   iconBodyDiv: {
     display: "flex",
     alignItems: "center",
+    fontSize: "0.8rem",
   },
   avatar: {
     backgroundColor: "#fff",
+    // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
+
     color: "#4e73df",
     border: "1px solid #4e73df",
-    height: "2rem",
-    width: "2rem",
+    height: "1.9rem",
+    width: "1.9rem",
+    marginRight: "0.5rem",
   },
   icon: {
-    fontSize: "1rem",
+    fontSize: "1.3rem",
   },
   dialogBody: {
-    marginLeft: "1rem",
-    marginRight: ".8rem",
     color: "black",
+    display: "flex",
+    alignItems: "center",
+  },
+  image: {
+    width: "18%",
+    position: "absolute",
+    top: "3.5rem",
+  },
+
+  topDiv: {
+    height: "10vh",
+    backgroundColor: "#e6e6ff",
+    deisplay: "flex",
+  },
+  nameMailDiv: {
+    // width: "45vw",
+    // backgroundColor: "red",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    // alignItems: "center",
+    height: "5rem",
+    paddingTop: "3rem",
+    paddingLeft: "8rem",
+  },
+  Name: {
+    color: "black",
+    fontSize: "1rem",
+  },
+  mail: {
+    color: "#3385ff",
+    fontSize: "0.8rem",
+  },
+  messageTitle: {
+    position: "absolute",
+    marginTop: "9px",
+    marginLeft: "10px",
+    color: "#fffff",
+    backgroundColor: "#b3c6ff",
+    borderRadius: "10px",
+    padding: "2px 10px",
+  },
+  attectmentBtn: {
+    fontSize: "0.7rem",
+  },
+  attechmentIcon: {
+    fontSize: "1rem",
+    marginRight: "0.4rem",
   },
   doneButton: {
     color: "#fff",
@@ -80,7 +134,7 @@ const useStyle = makeStyles((theme) => ({
     height: "3.9vh",
     fontSize: "0.7rem",
     marginRight: "1.5rem",
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     "&:hover": {
       backgroundColor: "#2929a3",
     },
@@ -102,7 +156,27 @@ export default function AlertDialogSlide(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  // console.log(props);
+
+  const seenFunction = (id) => {
+    console.log(id);
+    if (id) {
+      axios
+        .patch("http://localhost:4000/allQueries/status/" + id, id, {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          // props.fetchData.fetchContactData();
+
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <div>
       <Tooltip title="View" TransitionComponent={Zoom} arrow>
@@ -113,17 +187,18 @@ export default function AlertDialogSlide(props) {
           />
         </Link>
       </Tooltip>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
+      <StyledDialog
         onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
+        aria-labelledby="simple-dialog-title"
+        open={open}
         className={classes.dialog}
       >
         <DialogTitle className={classes.DialogTitle}>
-          <span>{"Dipesh Shrestha "}</span>
+          <img src={adimImage} className={classes.image} />
+          <div className={classes.nameMailDiv}>
+            <span className={classes.Name}> {props.data.fullName}</span>
+            <span className={classes.mail}> {props.data.email}</span>
+          </div>
         </DialogTitle>
 
         <DialogContent>
@@ -132,50 +207,60 @@ export default function AlertDialogSlide(props) {
               className={classes.iconBodyDiv}
               style={{ minWidth: "50%" }}
             >
-              <img src="https://img.icons8.com/color/40/000000/phone.png" />
-              <span className={classes.dialogBody}>+977 9816940668</span>
-            </DialogContentText>
-            <DialogContentText className={classes.iconBodyDiv}>
-              <img src="https://img.icons8.com/color/40/000000/order-delivered.png" />
-              <span className={classes.dialogBody}> Damak-11, Jhapa</span>
-            </DialogContentText>
-          </div>
-          <div className={classes.phoneAddressDiv}>
-            <DialogContentText
-              className={classes.iconBodyDiv}
-              style={{ minWidth: "50%" }}
-            >
-              <img src="https://img.icons8.com/color/40/000000/gmail-new.png" />
               <span className={classes.dialogBody}>
-                {" "}
-                dipeshxtha129@gmail.com
+                <Avatar className={classes.avatar}>
+                  <BiPhone className={classes.icon} />
+                </Avatar>
+                {props.data.phone}
               </span>
             </DialogContentText>
-            <DialogContentText className={classes.iconBodyDiv}>
-              <img src="https://img.icons8.com/color/40/000000/pay-date.png" />
-              <span className={classes.dialogBody}> 1/12/2021</span>
+            <DialogContentText
+              className={classes.iconBodyDiv}
+              style={{ marginLeft: "-2.5rem" }}
+            >
+              <span className={classes.dialogBody}>
+                <Avatar className={classes.avatar}>
+                  <FaRegAddressCard className={classes.icon} />
+                </Avatar>{" "}
+                {props.data.city + " , " + props.data.country}
+              </span>
             </DialogContentText>
           </div>
-          {/* <DialogContentText>Phone : 9816940668</DialogContentText>
-          <DialogContentText>Address : Damak-11, Jhapa</DialogContentText> */}
-          {/* <DialogContentText>Subject : Subject is here</DialogContentText> */}
+
+          <div className={classes.messageTitle}>Message</div>
           <DialogContentText className={classes.message}>
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-            below for those interested. Sections 1.10.32 and 1.10.33 from "de
-            Finibus Bonorum et Malorum" by Cicero are also reproduced in their
-            exact original form,
+            {props.data.message}
           </DialogContentText>
+
+          {props.data.attachment ? (
+            <Button
+              variant="outlined"
+              color="primary"
+              href="#outlined-buttons"
+              size="small"
+              className={classes.attectmentBtn}
+            >
+              <AiOutlineFileText className={classes.attechmentIcon} />
+              Attechment
+            </Button>
+          ) : (
+            ""
+          )}
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={handleClose}
+            onClick={() => {
+              seenFunction(props.data.id);
+              // props.fetchData.fetchContactData();
+              handleClose();
+            }}
             color="primary"
             className={classes.doneButton}
           >
             Done
           </Button>
         </DialogActions>
-      </Dialog>
+      </StyledDialog>
     </div>
   );
 }

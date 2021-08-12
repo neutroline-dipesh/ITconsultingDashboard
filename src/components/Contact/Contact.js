@@ -16,7 +16,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { contactData } from "./contactDate";
-
+import Test from "./test";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -117,7 +117,7 @@ const Contact = (props) => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
       fetchContactData();
-      console.log(data);
+      // console.log(data);
     }, 100);
   }, []);
 
@@ -237,15 +237,6 @@ const Contact = (props) => {
                     {data.map((item, key) => {
                       return (
                         <tr key={key}>
-                          {/* <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.Id}
-                          </td> */}
                           <td
                             className={
                               item.status == "seen"
@@ -302,7 +293,11 @@ const Contact = (props) => {
                             }
                           >
                             <div className={classes.buttomDiv}>
-                              <ViewDetail value={item.Id} />
+                              <ViewDetail
+                                data={item}
+                                // fetchData={fetchContactData}
+                              />
+                              {/* <Test data={item} /> */}
 
                               <RiDeleteBin6Fill
                                 className={classes.deleteButton}

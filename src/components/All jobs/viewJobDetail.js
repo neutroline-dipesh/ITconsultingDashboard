@@ -10,6 +10,7 @@ import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -85,7 +86,7 @@ const useStyle = makeStyles((theme) => ({
 
     paddingTop: "1rem",
     paddingBottom: "1rem",
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
 
     borderBottom: "solid 1px #e3e6f0",
   },
@@ -93,7 +94,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
-    color: "#303f9f",
+    color: "#fffff",
   },
   listHead: {
     fontSize: "0.875rem",
@@ -122,7 +123,7 @@ const useStyle = makeStyles((theme) => ({
 
     paddingTop: "1rem",
     paddingBottom: "1rem",
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
 
     borderBottom: "solid 1px #e3e6f0",
   },
@@ -130,7 +131,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
-    color: "#303f9f",
+    color: "#fffff",
   },
   leftTableContectDiv: {
     overflow: "scroll",

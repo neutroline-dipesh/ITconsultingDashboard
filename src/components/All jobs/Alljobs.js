@@ -180,7 +180,7 @@ const Alljobs = (props) => {
   };
   const editDataFunction = (id) => {
     console.log(id, "esma id aaux edit dabauda");
-    props.history.push("/EditJobs" + id);
+    props.history.push("./EditJobs/" + id);
   };
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -351,15 +351,15 @@ const Alljobs = (props) => {
                               </Tooltip>
                             </div>
                           </td>
-                          <td>
+                          {/* <td>
                             {" "}
-                            {/* <div
+                            <div
                               dangerouslySetInnerHTML={{
                                 __html: item.description,
                               }}
-                            ></div> */}
-                            {/* <div>{ReactHtmlParser(item.description)}</div> */}
-                          </td>
+                            ></div>
+                            <div>{ReactHtmlParser(item.description)}</div>
+                          </td> */}
                         </tr>
                       );
                     })}
