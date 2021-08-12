@@ -63,6 +63,9 @@ const useStyle = makeStyles((theme) => ({
     // paddingRight: "1rem",
     // paddingTop: "1.5rem",
     paddingBottom: "1.5rem",
+    [theme.breakpoints.down('md')]: {
+      width:"74.5%",
+    },
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
@@ -72,15 +75,23 @@ const useStyle = makeStyles((theme) => ({
     height: "13vh",
     width: "20%",
     borderRadius: "5px",
+    [theme.breakpoints.down('md')]: {
+      width:"24%",
+      margin:"0.5rem",
+    },
   },
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",
-    boxShadow: "0px 0px 30px 0px rgba(144, 178, 232,0.4)",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+
+    // boxShadow: "0px 0px 30px 0px rgba(144, 178, 232,0.4)",
   },
 
   totcalContractingJob: {
     borderLeft: "4px solid red",
-    boxShadow: "0px 0px 30px 0px rgba(232, 144, 144,0.4)",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+
+    // boxShadow: "0px 0px 30px 0px rgba(232, 144, 144,0.4)",
   },
   totalConstractingNumber: {
     // backgroundColor: "red",
@@ -100,11 +111,15 @@ const useStyle = makeStyles((theme) => ({
   },
   totcalInernalJob: {
     borderLeft: "4px solid #1cc88a",
-    boxShadow: "0px 0px 30px 0px rgba(144, 232, 144,0.4)",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+
+    // boxShadow: "0px 0px 30px 0px rgba(144, 232, 144,0.4)",
   },
   totalAllJob: {
     borderLeft: "4px solid #f6c23e",
-    boxShadow: "0px 0px 30px 0px rgba(226, 232, 144,0.4)",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+
+    // boxShadow: "0px 0px 30px 0px rgba(226, 232, 144,0.4)",
   },
   messageNumber: {
     marginLeft: "-2.5rem",
@@ -136,7 +151,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "5px",
     width: "65.1%",
     marginBottom: "1.5rem",
-    marginLeft: "0.5rem",
+    // marginLeft: "0.5rem",
     // marginRight: "1rem",
     // maxHeight: "50vh",
   },
@@ -148,14 +163,14 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
     paddingBottom: "1rem",
     alignItems: "center",
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
     borderBottom: "solid 1px #e3e6f0",
   },
   tableTitle: {
     fontWeight: "600",
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
-    color: "#303f9f",
+    color: "#fffff",
   },
   tableHead: {
     fontSize: "1rem",
@@ -254,7 +269,12 @@ const Dashboard = () => {
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
               <div className={classes.jobs}>
-                <span className={classes.totalConstractingNumber}>1,200</span>
+                <span
+                  className={classes.totalConstractingNumber}
+                  style={{ color: "#1cc88a" }}
+                >
+                  1,200
+                </span>
                 <span
                   style={{ color: "#1cc88a" }}
                   className={classes.totalText}
@@ -273,7 +293,12 @@ const Dashboard = () => {
               className={classes.totalJobs + " " + classes.totcalContractingJob}
             >
               <div className={classes.jobs}>
-                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  className={classes.totalConstractingNumber}
+                  style={{ color: "red" }}
+                >
+                  1,400
+                </span>
                 <span style={{ color: "red" }} className={classes.totalText}>
                   Total Client Query
                 </span>
@@ -287,7 +312,12 @@ const Dashboard = () => {
             </div>
             <div className={classes.totalJobs + " " + classes.totalAllJob}>
               <div className={classes.jobs}>
-                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span
+                  className={classes.totalConstractingNumber}
+                  style={{ color: "#f6c23e" }}
+                >
+                  1,400
+                </span>
                 <span
                   style={{ color: "#f6c23e" }}
                   className={classes.totalText}

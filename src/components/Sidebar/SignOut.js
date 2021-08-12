@@ -13,7 +13,7 @@ import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import ContactsIcon from "@material-ui/icons/Contacts";
-import adimImage from "../../assets/images/admin2.png";
+import adimImage from "../../assets/images/profile.png";
 import { CgLogOut } from "react-icons/cg";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,8 +53,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#E74A3B",
   },
   notificationTitle: {
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
     borderRadius: "4px 4px 0px 0px",
+
+    borderBottom: "solid 1px #e3e6f0",
+
     // border: "2px solid #4e73df",
     color: "#303f9f",
     display: "flex",

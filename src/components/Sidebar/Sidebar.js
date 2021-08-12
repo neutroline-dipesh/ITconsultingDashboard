@@ -28,13 +28,16 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    float: "left",
-    width: "16.5%",
+   float: "left",
+  width:"16.5%",
     height: "100vh",
     backgroundImage: `url(${SidebarImage}) `,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left bottom 10%",
     backgroundSize: "200px 270px",
+    overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "hidden",
 
     // backgroundSize: "cover",
     backgroundAttachment: "fixed",
@@ -54,14 +57,18 @@ const useStyle = makeStyles((theme) => ({
     // display: "flex",
     // justifyContent: "center",
     paddingTop: "0.4rem",
+    [theme.breakpoints.down('md')]: {
+      width:"23.5%",
+    },
+
   },
 
   footerSidebar: {
     color: "#5d6169",
     textAlign: "center",
     fontSize: "0.8em",
-    marginTop: "100%",
-    marginBottom: "2px",
+    marginTop: "110%",
+    // marginBottom: "2px",
   },
   linktext: {
     textDecoration: "none",
@@ -106,6 +113,9 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
 
     justifyContent: "flex-end",
+    [theme.breakpoints.down('md')]: {
+      width:"76.5%",
+    },
   },
   // hamburgurIcon: {
   //   marginLeft: "1rem",
@@ -157,8 +167,8 @@ const useStyle = makeStyles((theme) => ({
     marginRight: "2.5rem",
   },
   sidebarMenuItem: {
-    width: "100%",
-    maxWidth: 360,
+    //width: "100%",
+    // maxWidth: 360,
     color: "#fff",
     marginTop: "2rem",
 
@@ -375,6 +385,8 @@ const Sidebar = () => {
         </div>
       </div>
       {/* )} */}
+
+      
       <div
         className={
           showNav ? classes.NavbarMianDivOnClick : classes.NavbarMainDiv

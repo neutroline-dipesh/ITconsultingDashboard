@@ -47,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#E74A3B",
   },
   notificationTitle: {
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
     borderRadius: "4px 4px 0px 0px",
+    borderBottom: "solid 1px #e3e6f0",
+
     // border: "2px solid #4e73df",
     color: "#303f9f",
     display: "flex",
