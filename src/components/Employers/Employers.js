@@ -50,7 +50,9 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    // borderRadius: "5px",
+    [theme.breakpoints.down("md")]: {
+      width: "74.5%",
+    },
   },
   ContentDateDiv: {
     overflow: "scroll",
