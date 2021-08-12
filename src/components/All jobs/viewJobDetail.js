@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import axios from 'axios';
+import axios from "axios";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link, useParams } from "react-router-dom";
@@ -142,59 +142,62 @@ const useStyle = makeStyles((theme) => ({
     overflow: "scroll",
     overflowX: "hidden",
   },
+  description: {
+    padding: "1rem",
+  },
 }));
 
 const JobsDetail = () => {
   const classes = useStyle();
 
-    const [job, setJob] = useState({
-    city:null,
+  const [job, setJob] = useState({
+    city: null,
     country: null,
-    department:null,
-    description:null,
-    jobId:null,
-    jobSubtitle:null,
-    jobType:null,
-    jubTitle:null,
-    postedDate:null,
-    publishedBy:null,
-    state:null,
-    visiblity:null,
+    department: null,
+    description: null,
+    jobId: null,
+    jobSubtitle: null,
+    jobType: null,
+    jubTitle: null,
+    postedDate: null,
+    publishedBy: null,
+    state: null,
+    visiblity: null,
     loading: false,
-    error:false
-
-  })
-  const {id} = useParams();
-    useEffect(() => {
-      getJobDetails();
-      console.log(job);
+    error: false,
+  });
+  const { id } = useParams();
+  useEffect(() => {
+    getJobDetails();
+    console.log(job);
   }, []);
 
-  const getJobDetails = () =>{
-    axios.get("http://localhost:4000/allJobs/" + id).then( res =>{
-      console.log(res.data);
-      setJob({
-    city:res.data.data[0].city,
-    country: res.data.data[0].country,
-    department:res.data.data[0].department,
-    description:res.data.data[0].description,
-    jobId:res.data.data[0].jobId,
-    jobSubtitle:res.data.data[0].jobSubtitle,
-    jobType:res.data.data[0].jobType,
-    jobTitle:res.data.data[0].jobTitle,
-    postedDate:res.data.data[0].postedDate,
-    publishedBy:res.data.data[0].publishedBy,
-    state:res.data.data[0].state,
-    visiblity:res.data.data[0].visiblity,
-    loading: false,
-    error:false
+  const getJobDetails = () => {
+    axios
+      .get("http://localhost:4000/allJobs/" + id)
+      .then((res) => {
+        console.log(res.data);
+        setJob({
+          city: res.data.data[0].city,
+          country: res.data.data[0].country,
+          department: res.data.data[0].department,
+          description: res.data.data[0].description,
+          jobId: res.data.data[0].jobId,
+          jobSubtitle: res.data.data[0].jobSubtitle,
+          jobType: res.data.data[0].jobType,
+          jobTitle: res.data.data[0].jobTitle,
+          postedDate: res.data.data[0].postedDate,
+          publishedBy: res.data.data[0].publishedBy,
+          state: res.data.data[0].state,
+          visiblity: res.data.data[0].visiblity,
+          loading: false,
+          error: false,
+        });
       })
-  }
-    ).catch(err=>{
-      console.log(err);
-    }
-    );
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -230,18 +233,14 @@ const JobsDetail = () => {
                           <img src="https://img.icons8.com/color/40/000000/id-verified.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Id:</span>
-                        <span className={classes.listBody}>
-                          {job.jobId}
-                        </span>
+                        <span className={classes.listBody}>{job.jobId}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/40/000000/show-permit-card.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Title:</span>
-                        <span className={classes.listBody}>
-                          {job.jobTitle}
-                        </span>
+                        <span className={classes.listBody}>{job.jobTitle}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -280,7 +279,9 @@ const JobsDetail = () => {
                           <img src="https://img.icons8.com/color/40/000000/calendar--v1.png" />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>{job.postedDate}</span>
+                        <span className={classes.listBody}>
+                          {job.postedDate}
+                        </span>
                       </ListItem>
                     </List>
                   </div>
@@ -295,12 +296,13 @@ const JobsDetail = () => {
                   </div>
                   <div className={classes.rightTableContectDiv}>
                     <div
-                              dangerouslySetInnerHTML={{
-                                __html: job.description,
-                              }}
-                            ></div>
-                    </div>
-              </div>
+                      className={classes.description}
+                      dangerouslySetInnerHTML={{
+                        __html: job.description,
+                      }}
+                    ></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

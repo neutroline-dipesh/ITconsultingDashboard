@@ -167,9 +167,11 @@ export default function AlertDialogSlide(props) {
           },
         })
         .then((response) => {
-          // props.fetchData.fetchContactData();
+          if (response.data) {
+            props.handleState();
+          }
 
-          console.log(response);
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);

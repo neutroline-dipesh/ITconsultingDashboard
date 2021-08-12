@@ -27,6 +27,8 @@ import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 import { FiPhoneCall } from "react-icons/fi";
 import { FaRegAddressCard } from "react-icons/fa";
+import axios from "axios";
+
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
     background-color: transparent;
@@ -155,6 +157,28 @@ export default function AlertDialogSlide(props) {
     setOpen(false);
   };
   // console.log(props);
+  const seenFunction = (id) => {
+    console.log(id);
+    if (id) {
+      axios
+        .patch("http://localhost:4000/requestTalent/status/" + id, id, {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          if (response.data) {
+            props.handleState();
+          }
+
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <div>
       <Tooltip title="View" TransitionComponent={Zoom} arrow>
@@ -253,7 +277,10 @@ export default function AlertDialogSlide(props) {
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={handleClose}
+            onClick={() => {
+              seenFunction(props.data.id);
+              handleClose();
+            }}
             color="primary"
             className={classes.doneButton}
           >

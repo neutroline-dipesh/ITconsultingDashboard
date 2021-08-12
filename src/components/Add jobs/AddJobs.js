@@ -85,9 +85,6 @@ const useStyle = makeStyles((theme) => ({
     width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
-    [theme.breakpoints.down('md')]: {
-      width:"74.5%",
-    },
   },
   ContentDateDiv: {},
   lefttableTitleDiv: {
@@ -127,7 +124,6 @@ const useStyle = makeStyles((theme) => ({
   },
   DepartmentJobTypeDiv: {
     display: "flex",
-    justifyContent: "space-between",
   },
   departmentDiv: {
     // display: "flex",
@@ -135,22 +131,22 @@ const useStyle = makeStyles((theme) => ({
   },
   DepartmentDiv: {
     // backgroundColor: "red",
-    width: "30%",
+    width: "48%",
   },
   Department: {
     marginTop: "1.5rem",
     // width: "250%",
   },
   jobTypeDiv: {
-    width: "30%",
+    width: "48%",
   },
   JobType: {
     marginTop: "1.5rem",
-    // marginLeft: "2.5rem",
+    marginLeft: "2.5rem",
     // width: "100%",
   },
   jobTypeErrorMsg: {
-    // marginLeft: "2.5rem",
+    marginLeft: "2.5rem",
   },
 
   CountryStateCityDiv: {
@@ -169,19 +165,19 @@ const useStyle = makeStyles((theme) => ({
   },
   State: {
     // width: "30%",
-    marginLeft: "3.3rem",
+    marginLeft: "3.2rem",
   },
   stateErrorMsg: {
-    marginLeft: "2.5rem",
+    marginLeft: "3.2rem",
   },
   cityDiv: {
     width: "30%",
   },
   city: {
-    marginLeft: "6.6rem",
+    marginLeft: "6.5rem",
   },
   cityErrorMsg: {
-    marginLeft: "6.6rem",
+    marginLeft: "6.5rem",
   },
   DescriptionDiv: {
     marginTop: "1rem",
@@ -307,7 +303,7 @@ const Addjobs = () => {
     onSubmit: (values) => {
       handleSubmit(values);
       formik.resetForm();
-      history.push("/Alljobs")
+      // history.push("/Alljobs")
     },
   });
 
@@ -425,7 +421,7 @@ const Addjobs = () => {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
@@ -489,27 +485,6 @@ const Addjobs = () => {
                       <div className={classes.jobTypeDiv}>
                         <select
                           style={{ borderColor: "#0066ff" }}
-                          className={"form-select" + " " + classes.JobType}
-                          {...formik.getFieldProps("jobType")}
-                        >
-                          <option value="" selected disabled>
-                            Job type
-                          </option>
-                          <option>Full Time</option>
-                          <option>Part Time</option>
-                          <option>Contract</option>
-                        </select>
-                        <div
-                          className={
-                            classes.errorMessage + " " + classes.jobTypeErrorMsg
-                          }
-                        >
-                          {formik.errors.jobType}
-                        </div>
-                      </div>
-                      <div className={classes.jobTypeDiv}>
-                        <select
-                          style={{ borderColor: "#45f6ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
