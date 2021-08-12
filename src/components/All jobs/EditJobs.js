@@ -11,19 +11,12 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
-import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
-
-// import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
-
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -60,12 +53,9 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    "&:hover": {
-      // backgroundColor: "#98DED9",
-    },
+    "&:hover": {},
   },
   jobListIcon: {
-    // color: "black !important",
     fontSize: "1rem",
     marginRight: "1rem",
   },
@@ -163,33 +153,33 @@ const useStyle = makeStyles((theme) => ({
   },
   State: {
     // width: "30%",
-    marginLeft: "2.5rem",
+    marginLeft: "3.2rem",
   },
   stateErrorMsg: {
-    marginLeft: "2.5rem",
+    marginLeft: "3.2rem",
   },
   cityDiv: {
     width: "30%",
   },
   city: {
-    marginLeft: "5rem",
+    marginLeft: "6.5rem",
   },
   cityErrorMsg: {
-    marginLeft: "5rem",
+    marginLeft: "6.5rem",
   },
   DescriptionDiv: {
     marginTop: "1rem",
   },
   ckeditor: {},
   save: {
-    backgroundColor: "#04A8F6",
+    backgroundColor: "#2653d4",
     borderRadius: "20px",
     fontSize: "0.9rem",
-    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     width: "7rem",
     marginTop: "2rem",
-    // float: "right",
-    // marginBottom: "1rem",
+    "&:hover": {
+      backgroundColor: "#000099",
+    },
   },
   errorMessage: {
     // marginLeft: "5rem",
@@ -209,59 +199,6 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
 }));
-
-const IOSSwitch = withStyles((theme) => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(2),
-  },
-  switchBase: {
-    padding: 2,
-    "&$checked": {
-      transform: "translateX(16px)",
-      color: theme.palette.common.white,
-      "& + $track": {
-        backgroundColor: "#52d869",
-        opacity: 1,
-        border: "none",
-      },
-    },
-    "&$focusVisible $thumb": {
-      color: "#52d869",
-      border: "6px solid #fff",
-    },
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-  },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: theme.palette.grey[50],
-    opacity: 1,
-    transition: theme.transitions.create(["background-color", "border"]),
-  },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }) => {
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
 
 function EditJobs(props) {
   const classes = useStyle();
@@ -407,7 +344,7 @@ function EditJobs(props) {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Edit Jobs</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs">
+              <Link to="/alljobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -431,7 +368,7 @@ function EditJobs(props) {
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
-                      style={{ borderColor: "#7df4ff" }}
+                      style={{ borderColor: "#0066ff" }}
                       type="text"
                       className="form-control"
                       aria-describedby="emailHelp"
@@ -445,7 +382,7 @@ function EditJobs(props) {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#7df4ff" }}
+                      style={{ borderColor: "#0066ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
@@ -458,7 +395,7 @@ function EditJobs(props) {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#7df4ff" }}
+                      style={{ borderColor: "#0066ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
@@ -472,7 +409,7 @@ function EditJobs(props) {
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
                         >
@@ -490,7 +427,7 @@ function EditJobs(props) {
                       </div>
                       <div className={classes.jobTypeDiv}>
                         <select
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
@@ -514,7 +451,7 @@ function EditJobs(props) {
                     <div className={classes.CountryStateCityDiv}>
                       <div className={classes.countryDiv}>
                         <input
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           type="text"
                           className={"form-control" + " " + classes.Country}
                           aria-describedby="emailHelp"
@@ -547,7 +484,7 @@ function EditJobs(props) {
 
                       <div className={classes.stateDiv}>
                         <input
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
@@ -580,7 +517,7 @@ function EditJobs(props) {
                       <div className={classes.cityDiv}>
                         <input
                           type="text"
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-control" + " " + classes.city}
                           aria-describedby="emailHelp"
                           placeholder="Enter City"
@@ -633,15 +570,20 @@ function EditJobs(props) {
                     <div className={classes.publishSaveDiv}>
                       <div className={classes.PublishDiv}>
                         <span>Publish</span>
-                        <FormControlLabel
-                          control={
-                            <IOSSwitch
-                              checked={state.checkedB}
-                              onChange={handleChange}
-                              name="checkedB"
-                            />
-                          }
-                        />
+                        <div class="form-check form-switch">
+                          <input
+                            className={"form-check-input"}
+                            type="checkbox"
+                            id="flexSwitchCheckChecked"
+                            name="publish"
+                            style={{
+                              width: "3.5rem",
+                              height: "3.5vh",
+                            }}
+                            onChange={handleChange}
+                            value="true"
+                          />
+                        </div>
                       </div>
                       <div className={classes.saveButtonDiv}>
                         <button

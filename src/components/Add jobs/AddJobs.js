@@ -62,12 +62,9 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    "&:hover": {
-      // backgroundColor: "#98DED9",
-    },
+    "&:hover": {},
   },
   jobListIcon: {
-    // color: "black !important",
     fontSize: "1rem",
     marginRight: "1rem",
   },
@@ -102,7 +99,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
-    color: "#303f9f",
+    color: "#fffff",
   },
   formDiv: {
     maxHeight: "65vh",
@@ -184,14 +181,14 @@ const useStyle = makeStyles((theme) => ({
   },
   ckeditor: {},
   save: {
-    backgroundColor: "#04A8F6",
+    backgroundColor: "#2653d4",
     borderRadius: "20px",
     fontSize: "0.9rem",
-    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     width: "7rem",
     marginTop: "2rem",
-    // float: "right",
-    // marginBottom: "1rem",
+    "&:hover": {
+      backgroundColor: "#000099",
+    },
   },
   errorMessage: {
     // marginLeft: "5rem",
@@ -216,59 +213,6 @@ const useStyle = makeStyles((theme) => ({
     // backgroundColor: "#52D869",
   },
 }));
-
-const IOSSwitch = withStyles((theme) => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(1),
-  },
-  switchBase: {
-    padding: 1,
-    "&$checked": {
-      transform: "translateX(16px)",
-      color: theme.palette.common.white,
-      "& + $track": {
-        backgroundColor: "#52d869",
-        opacity: 1,
-        border: "none",
-      },
-    },
-    "&$focusVisible $thumb": {
-      color: "#52d869",
-      border: "6px solid #fff",
-    },
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-  },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: theme.palette.grey[50],
-    opacity: 1,
-    transition: theme.transitions.create(["background-color", "border"]),
-  },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }) => {
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
 
 const Addjobs = () => {
   const classes = useStyle();
@@ -401,7 +345,7 @@ const Addjobs = () => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Add Jobs</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs">
+              <Link to="/alljobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -604,12 +548,6 @@ const Addjobs = () => {
                             onChange={handleChange}
                             value="true"
                           />
-                          {/* <label
-                            class="form-check-label"
-                            for="flexSwitchCheckChecked"
-                          >
-                            Publish
-                          </label> */}
                         </div>
 
                         {/* <FormControlLabel

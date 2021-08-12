@@ -16,7 +16,6 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { contactData } from "./contactDate";
-import Test from "./test";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -319,7 +318,6 @@ const Contact = (props) => {
                                 handleState={handState}
                                 // fetchData={fetchContactData}
                               />
-                              {/* <Test data={item} /> */}
 
                               <RiDeleteBin6Fill
                                 className={classes.deleteButton}
