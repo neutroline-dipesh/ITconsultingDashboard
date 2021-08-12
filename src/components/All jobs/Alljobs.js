@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,7 +18,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { FaEdit } from "react-icons/fa";
 
-import Tooltip from "@material-ui/core/Tooltip";
+import Tooltip from "@material-ui/core/Tooltip"; 
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { CgAddR } from "react-icons/cg";
@@ -159,9 +160,16 @@ const Alljobs = (props) => {
     }, 100);
   }, []);
   console.log(data1);
+  useEffect(() => {
+    $("#example").DataTable();
+  }, [data1]);
 
   const classes = useStyle();
-
+  useEffect(() => {
+    $(document).ready(function () {
+      $("#example").DataTable();
+    });
+  });
 
   //alert message
   const fetchAllData = () => {
@@ -308,7 +316,7 @@ const Alljobs = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to="/viewJobDetail">
+                                <Link to={`/job-detail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />
@@ -320,13 +328,8 @@ const Alljobs = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to="/alljobs/editJobs">
-                                  <FaEdit
-                                    className={classes.editButton}
-                                    onClick={() => {
-                                      editDataFunction(item.id);
-                                    }}
-                                  />
+                                <Link to={`/alljobs/edit/${item.id}`}>
+                                  <FaEdit className={classes.editButton} />
                                 </Link>
                               </Tooltip>
 

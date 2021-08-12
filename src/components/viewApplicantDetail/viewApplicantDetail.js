@@ -194,7 +194,7 @@ const Contracting = () => {
     middleName: null,
     lastName: null,
     phone: null,
-    currentAddress: null,
+    currentAddress: null, 
     country: null,
     gmail: null,
     gender: null,

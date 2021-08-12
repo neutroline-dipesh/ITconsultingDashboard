@@ -111,7 +111,7 @@ function App(props) {
       />
       <Route
         exact
-        path="/viewJobDetail"
+        path="/job-detail/:id"
         component={viewJobDetail}
         //auth={props.isAuthenticated}
       />
