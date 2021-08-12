@@ -294,66 +294,13 @@ const JobsDetail = () => {
                     </span>
                   </div>
                   <div className={classes.rightTableContectDiv}>
-                    <List className={classes.listMain}>
-                      <ListItem>
-                        <span className={classes.listHead}>Job Id:</span>
-                        <span className={classes.listBody}>
-                          {job.jobId}
-                        </span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Job Title:</span>
-                        <span className={classes.listBody}>
-                         {job.jobTitle}
-                        </span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Job SubTitle:</span>
-                        <span className={classes.listBody}>
-                          {job.jobSubtitle}
-                        </span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Department:</span>
-                        <span className={classes.listBody}>{job.department}</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Job Type:</span>
-                        <span className={classes.listBody}>{job.jobType}</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Address:</span>
-                        <span className={classes.listBody}>
-                          {job.country + " , " + job.state + " , " + job.city}
-                        </span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>{job.postedDate}</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
-                      </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>7/7/2021</span>
-                      </ListItem>
-                    </List>
-                    </div>               
+                    <div
+                              dangerouslySetInnerHTML={{
+                                __html: job.description,
+                              }}
+                            ></div>
                     </div>
+              </div>
               </div>
             </div>
           </div>
