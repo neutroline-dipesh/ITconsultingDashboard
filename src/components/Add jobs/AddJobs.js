@@ -425,7 +425,7 @@ const Addjobs = () => {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form}>
+                <form className={classes.form} >
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
