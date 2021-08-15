@@ -26,6 +26,11 @@ import { useState } from "react";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import Box from "@material-ui/core/Box";
+
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -87,6 +92,7 @@ const useStyle = makeStyles((theme) => ({
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
 
     paddingTop: "1rem",
@@ -212,6 +218,10 @@ const useStyle = makeStyles((theme) => ({
     height: "3.5vh",
     // backgroundColor: "#52D869",
   },
+  jobTypeRadio: {
+    marginRight: "2rem",
+    color: "#fffff",
+  },
 }));
 
 const Addjobs = () => {
@@ -229,6 +239,7 @@ const Addjobs = () => {
       state: "",
       city: "",
       publishBy: "",
+      workType: "",
     },
     validationSchema: Yup.object({
       jobTitle: Yup.string().required("Required!"),
@@ -256,6 +267,8 @@ const Addjobs = () => {
   };
   const [ckeditorContent, setCkeditorContent] = useState("");
   const [publish, setPublish] = useState("Not Publish");
+  const [workType, setWorkType] = useState("Internal");
+
   // console.log(ckeditorContent);
   const handleSubmit = (values) => {
     const job = {
@@ -269,6 +282,7 @@ const Addjobs = () => {
       publishBy: values.publishBy,
       description: ckeditorContent,
       visibility: publish,
+      workType: workType,
     };
     console.log(job);
     // console.log(headers);
@@ -337,6 +351,10 @@ const Addjobs = () => {
       setPublish("Publish");
     }
   };
+  const handleRadio = (event) => {
+    setWorkType(event.target.value);
+    console.log(workType);
+  };
   return (
     <>
       <Sidebar />
@@ -364,6 +382,34 @@ const Addjobs = () => {
                   <span className={classes.lefttableTitle}>
                     Job Information
                   </span>
+                  <div className={classes.jobTypeRadio}>
+                    <RadioGroup
+                      row
+                      aria-label="position"
+                      name="position"
+                      defaultValue="Internal"
+                      onChange={handleRadio}
+                    >
+                      <FormControlLabel
+                        value="Internal"
+                        control={<Radio color="primary" />}
+                        label={
+                          <Box component="div" fontSize={20} fontWeight="500">
+                            Internal
+                          </Box>
+                        }
+                      />
+                      <FormControlLabel
+                        value="Contract"
+                        control={<Radio color="primary" />}
+                        label={
+                          <Box component="div" fontSize={20} fontWeight="500">
+                            Contract
+                          </Box>
+                        }
+                      />
+                    </RadioGroup>
+                  </div>
                 </div>{" "}
                 <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>

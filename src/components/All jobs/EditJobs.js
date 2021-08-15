@@ -17,6 +17,8 @@ import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -78,6 +80,7 @@ const useStyle = makeStyles((theme) => ({
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
 
     paddingTop: "1rem",
@@ -197,6 +200,10 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  jobTypeRadio: {
+    marginRight: "2rem",
+    color: "#fffff",
   },
 }));
 
@@ -363,6 +370,25 @@ function EditJobs(props) {
                   <span className={classes.lefttableTitle}>
                     Job Information
                   </span>
+                  <div className={classes.jobTypeRadio}>
+                    <RadioGroup
+                      row
+                      aria-label="position"
+                      name="position"
+                      defaultValue="Internal"
+                    >
+                      <FormControlLabel
+                        value="Internal"
+                        control={<Radio color="primary" />}
+                        label="Internal"
+                      />
+                      <FormControlLabel
+                        value="Contract"
+                        control={<Radio color="primary" />}
+                        label="Contract"
+                      />
+                    </RadioGroup>
+                  </div>
                 </div>{" "}
                 <form className={classes.form}>
                   <div className={classes.formDiv}>

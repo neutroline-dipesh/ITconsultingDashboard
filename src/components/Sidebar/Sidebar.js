@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import adimImage from "../../assets/images/admin2.png";
@@ -25,11 +25,12 @@ import { MdNotificationsActive } from "react-icons/md";
 import SignOut from "./SignOut";
 import logo from "../../assets/images/logo.png";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import axios from "axios";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-   float: "left",
-  width:"16.5%",
+    float: "left",
+    width: "16.5%",
     height: "100vh",
     backgroundImage: `url(${SidebarImage}) `,
     backgroundRepeat: "no-repeat",
@@ -42,7 +43,7 @@ const useStyle = makeStyles((theme) => ({
     // backgroundSize: "cover",
     backgroundAttachment: "fixed",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    borderRight: "2px solid",
+    // borderRight: "2px solid",
     borderImageSlice: 1,
     borderImageSource: "linear-gradient(to bottom,  #EEB9EB ,#FEEBCE)",
     // background: "linear-gradient(to bottom,  #4487A9 ,#B0C3BF )",
@@ -57,10 +58,9 @@ const useStyle = makeStyles((theme) => ({
     // display: "flex",
     // justifyContent: "center",
     paddingTop: "0.4rem",
-    [theme.breakpoints.down('md')]: {
-      width:"23.5%",
+    [theme.breakpoints.down("md")]: {
+      width: "23.5%",
     },
-
   },
 
   footerSidebar: {
@@ -98,7 +98,7 @@ const useStyle = makeStyles((theme) => ({
     height: "8vh",
     width: "100%",
     float: "left",
-    boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
+    // boxShadow: "0 8px 16px  rgba(0, 0, 0, 0.3)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -113,8 +113,8 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
 
     justifyContent: "flex-end",
-    [theme.breakpoints.down('md')]: {
-      width:"76.5%",
+    [theme.breakpoints.down("md")]: {
+      width: "76.5%",
     },
   },
   // hamburgurIcon: {
@@ -239,6 +239,22 @@ const Sidebar = () => {
   const handleClickJob = () => {
     setOpenJobs(!openJobs);
   };
+  const [notSeenAllQueriesNumber, setNotSeenAllQueriesNumber] = useState("");
+
+  useEffect(() => {
+    fetchAllqueriesNumber();
+    // console.log(notSeenAllQueriesNumber);
+  }, []);
+  const fetchAllqueriesNumber = () => {
+    axios
+      .get("http://localhost:4000/allQueries/notSeenQueries/")
+      .then((response) => {
+        if (response.data) {
+          setNotSeenAllQueriesNumber(response.data.data[0].notSeenMessage);
+          // console.log(notSeenAllQueriesNumber);
+        }
+      });
+  };
 
   return (
     <>
@@ -309,19 +325,22 @@ const Sidebar = () => {
               </Link>
             </List>
           </Collapse>
-          <ListItem
-            button
-            onClick={handleClickApplicant}
-            className={classes.sidebarList}
-          >
-            <WorkIcon className={classes.sidebarIcon} />
+          <Link to="/allApplicant" style={{ textDecoration: "none" }}>
+            <ListItem button className={classes.sidebarList}>
+              <WorkIcon className={classes.sidebarIcon} />
 
-            <ListItemText
-              style={{ marginLeft: "1.5rem" }}
-              primary="Applicant"
-            />
-            {openApplicant ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
+              <ListItemText
+                style={{ marginLeft: "1.5rem" }}
+                primary="Applicant"
+              />
+
+              {openApplicant ? (
+                <ExpandLess onClick={handleClickApplicant} />
+              ) : (
+                <ExpandMore onClick={handleClickApplicant} />
+              )}
+            </ListItem>
+          </Link>
           <Collapse in={openApplicant} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <Link to="/internal" className={classes.linktext}>
@@ -344,14 +363,14 @@ const Sidebar = () => {
                 </ListItem>
               </Link>
 
-              <Link to="/allApplicant" className={classes.linktext}>
+              <Link to="/externalApplicant" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.nested}
                   className={classes.sidebarList}
                   className={classes.nastedList}
                 >
-                  <ListItemText primary="All Applicant" />
+                  <ListItemText primary="External" />
                 </ListItem>
               </Link>
             </List>
@@ -386,7 +405,6 @@ const Sidebar = () => {
       </div>
       {/* )} */}
 
-      
       <div
         className={
           showNav ? classes.NavbarMianDivOnClick : classes.NavbarMainDiv
@@ -408,7 +426,7 @@ const Sidebar = () => {
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>
-        <span className={classes.messageNumber}>20</span>
+        <span className={classes.messageNumber}>{notSeenAllQueriesNumber}</span>
 
         <span className={classes.verticalLine}>l</span>
         <span className={classes.adminName}>Dipesh Shrestha</span>
