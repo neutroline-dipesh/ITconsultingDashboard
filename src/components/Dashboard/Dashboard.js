@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import { Icon, InlineIcon } from "@iconify/react";
@@ -19,6 +19,7 @@ import { allApplicantData } from "../allApplicant/allApplicantData";
 import { Link } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
+import axios from "axios";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -196,13 +197,10 @@ const useStyle = makeStyles((theme) => ({
     height: "3.9vh",
     fontSize: "0.7rem",
     marginRight: "1.5rem",
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    "&:hover": {
-      // backgroundColor: "#98DED9",
-    },
+    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {},
   },
   calenderDiv: {
-    // backgroundColor: "red",
     marginRight: "1.rem",
   },
 
@@ -219,27 +217,114 @@ const useStyle = makeStyles((theme) => ({
 }));
 const Dashboard = () => {
   const classes = useStyle();
-  const [date, setDate] = useState(new Date());
+  // const [date, setDate] = useState(new Date());
 
-  const calenderOnChange = (date) => {
-    setDate(date);
+  // const calenderOnChange = (date) => {
+  //   setDate(date);
+  // };
+  // let d = new Date();
+  // let day = d.getDate();
+  // let month = d.toLocaleString("en-us", { month: "long" });
+  const [notSeenInternalNumber, setNotSeenInternalNumber] = useState("");
+  const [notSeenContractNumber, setNotSeenContractNumber] = useState("");
+  const [notSeenExternalNumber, setNotSeenExternalNumber] = useState("");
+  const [notSeenEmproyersNumber, setNotSeenEmproyersNumber] = useState("");
+  const [totalInternalJobs, setTotalInternalJobs] = useState("");
+  const [totalContractJobs, setTotalContractJobs] = useState("");
+  const [totalExternalApplicant, setTotalExternalApplicant] = useState("");
+  const [totalEmployers, setTotalEmployers] = useState("");
+
+  useEffect(() => {
+    fetchInternalNumber();
+    fetchContractNumber();
+    fetchExternalNumber();
+    fetchEmployersNumber();
+    totalInternalJobsFunction();
+    totalContractJobsFunction();
+    totalExternalFunction();
+    totalEmployersFunction();
+    // console.log(notSeenEmproyersNumber);
+  }, []);
+  const fetchInternalNumber = () => {
+    axios
+      .get("http://localhost:4000/allApplicant/internal/notSeen/")
+      .then((response) => {
+        if (response.data) {
+          setNotSeenInternalNumber(response.data.data[0].notSeenMessage);
+          // console.log(notSeenAllQueriesNumber);
+        }
+      });
   };
-  let d = new Date();
-  let day = d.getDate();
-  let month = d.toLocaleString("en-us", { month: "long" });
-
-  //for table
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+  const fetchContractNumber = () => {
+    axios
+      .get("http://localhost:4000/allApplicant/contract/notSeen/")
+      .then((response) => {
+        if (response.data) {
+          setNotSeenContractNumber(response.data.data[0].notSeenMessage);
+          // console.log(notSeenAllQueriesNumber);
+        }
+      });
+  };
+  const fetchExternalNumber = () => {
+    axios
+      .get("http://localhost:4000/externalApplicant/status/notSeen")
+      .then((response) => {
+        if (response.data) {
+          setNotSeenExternalNumber(response.data.data[0].notSeenMessage);
+          // console.log(notSeenAllQueriesNumber);
+        }
+      });
+  };
+  const fetchEmployersNumber = () => {
+    axios
+      .get("http://localhost:4000/requestTalent/status/notSeen")
+      .then((response) => {
+        if (response.data) {
+          setNotSeenEmproyersNumber(response.data.data[0].notSeenMessage);
+          // console.log(response.data.data[0].requesttalent);
+        }
+      });
+  };
+  const totalInternalJobsFunction = () => {
+    axios
+      .get("http://localhost:4000/allJobs/internal/totalJobs")
+      .then((response) => {
+        if (response.data) {
+          setTotalInternalJobs(response.data.data[0].totalNumber);
+          // console.log(response.data.data[0].requesttalent);
+        }
+      });
+  };
+  const totalContractJobsFunction = () => {
+    axios
+      .get("http://localhost:4000/allJobs/contract/totalJobs")
+      .then((response) => {
+        if (response.data) {
+          setTotalContractJobs(response.data.data[0].totalNumber);
+          // console.log(response.data.data[0].requesttalent);
+        }
+      });
+  };
+  const totalExternalFunction = () => {
+    axios
+      .get("http://localhost:4000/externalApplicant/totalExternal/totalNumber")
+      .then((response) => {
+        if (response.data) {
+          setTotalExternalApplicant(response.data.data[0].totalNumber);
+          // console.log(response.data.data[0].requesttalent);
+        }
+      });
+  };
+  const totalEmployersFunction = () => {
+    axios
+      .get("http://localhost:4000/requestTalent/totalEmployers/totalNumber")
+      .then((response) => {
+        if (response.data) {
+          setTotalEmployers(response.data.data[0].totalNumber);
+        }
+      });
+  };
+  // console.log(notSeenEmproyersNumber);
   return (
     <>
       <Sidebar />
@@ -252,7 +337,9 @@ const Dashboard = () => {
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
               <div className={classes.jobs} style={{ color: "#4e73df" }}>
-                <span className={classes.totalConstractingNumber}>1,400</span>
+                <span className={classes.totalConstractingNumber}>
+                  {totalContractJobs}
+                </span>
                 <span
                   style={{ color: "#4e73df" }}
                   className={classes.totalText}
@@ -265,7 +352,9 @@ const Dashboard = () => {
                 style={{ color: "#4e73df" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>20</span>
+              <span className={classes.messageNumber}>
+                {notSeenContractNumber}
+              </span>
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
               <div className={classes.jobs}>
@@ -273,7 +362,7 @@ const Dashboard = () => {
                   className={classes.totalConstractingNumber}
                   style={{ color: "#1cc88a" }}
                 >
-                  1,200
+                  {totalInternalJobs}
                 </span>
                 <span
                   style={{ color: "#1cc88a" }}
@@ -287,7 +376,9 @@ const Dashboard = () => {
                 style={{ color: "#1cc88a" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>20</span>
+              <span className={classes.messageNumber}>
+                {notSeenInternalNumber}
+              </span>
             </div>
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
@@ -297,10 +388,10 @@ const Dashboard = () => {
                   className={classes.totalConstractingNumber}
                   style={{ color: "red" }}
                 >
-                  1,400
+                  {totalExternalApplicant}
                 </span>
                 <span style={{ color: "red" }} className={classes.totalText}>
-                  Total Client Query
+                  Total External
                 </span>
               </div>
               <Icon
@@ -308,7 +399,9 @@ const Dashboard = () => {
                 style={{ color: "red" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>20</span>
+              <span className={classes.messageNumber}>
+                {notSeenExternalNumber}
+              </span>
             </div>
             <div className={classes.totalJobs + " " + classes.totalAllJob}>
               <div className={classes.jobs}>
@@ -316,13 +409,13 @@ const Dashboard = () => {
                   className={classes.totalConstractingNumber}
                   style={{ color: "#f6c23e" }}
                 >
-                  1,400
+                  {totalEmployers}
                 </span>
                 <span
                   style={{ color: "#f6c23e" }}
                   className={classes.totalText}
                 >
-                  Total Internal Jobs
+                  Total Employers
                 </span>
               </div>
               <Icon
@@ -330,7 +423,9 @@ const Dashboard = () => {
                 style={{ color: "#f6c23e" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>20</span>
+              <span className={classes.messageNumber}>
+                {notSeenEmproyersNumber}
+              </span>
             </div>
           </div>
           <div className={classes.tableContainer}>
@@ -401,9 +496,6 @@ const Dashboard = () => {
                           >
                             {item.postedDate}
                           </TableCell>
-                          {/* <TableCell align="right">{row.fat}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell> */}
                         </TableRow>
                       ))}
                     </TableBody>
@@ -412,15 +504,6 @@ const Dashboard = () => {
               </div>
 
               <div className={classes.calenderDiv}>
-                {/* <div className={classes.viewDate}>
-                  <span className={classes.day}>{day}</span>
-                  <span className={classes.month}>{month}</span>
-                </div> */}
-                {/* <Calendar
-                  className={classes.calender}
-                  onChange={calenderOnChange}
-                  value={date}
-                /> */}
                 <CalendarComponent
                   className={classes.calender}
                 ></CalendarComponent>

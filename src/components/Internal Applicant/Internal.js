@@ -55,8 +55,8 @@ const useStyle = makeStyles((theme) => ({
     width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
-    [theme.breakpoints.down('md')]: {
-      width:"74.5%",
+    [theme.breakpoints.down("md")]: {
+      width: "74.5%",
     },
   },
   ContentDateDiv: {
@@ -125,7 +125,8 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Internal = (props) => {
-  console.log(props.token);
+  // console.log(props.token);
+
   // getting data from database
   const [data1, setData1] = useState([]);
   useEffect(() => {
@@ -137,6 +138,7 @@ const Internal = (props) => {
   console.log(data1);
   useEffect(() => {
     $("#example").DataTable();
+    console.log(data1);
   }, [data1]);
 
   const classes = useStyle();
@@ -153,7 +155,6 @@ const Internal = (props) => {
       .get("http://localhost:4000/allApplicant/internal/")
       .then((response) => {
         if (response.data) {
-          // value = response.data.data;
           setData1(response.data.data);
         }
       });
@@ -271,11 +272,7 @@ const Internal = (props) => {
                                 : classes.noColor
                             }
                           >
-                            {item.firstName +
-                              " " +
-                              item.middleName +
-                              " " +
-                              item.lastName}
+                            {item.firstName + " " + item.lastName}
                           </td>
 
                           <td

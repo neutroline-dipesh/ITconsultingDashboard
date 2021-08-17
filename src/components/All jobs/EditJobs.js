@@ -87,6 +87,7 @@ const useStyle = makeStyles((theme) => ({
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
 
     paddingTop: "1rem",
@@ -402,6 +403,25 @@ console.log(id);
                   <span className={classes.lefttableTitle}>
                     Job Information
                   </span>
+                  <div className={classes.jobTypeRadio}>
+                    <RadioGroup
+                      row
+                      aria-label="position"
+                      name="position"
+                      defaultValue="Internal"
+                    >
+                      <FormControlLabel
+                        value="Internal"
+                        control={<Radio color="primary" />}
+                        label="Internal"
+                      />
+                      <FormControlLabel
+                        value="Contract"
+                        control={<Radio color="primary" />}
+                        label="Contract"
+                      />
+                    </RadioGroup>
+                  </div>
                 </div>{" "}
                 <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>

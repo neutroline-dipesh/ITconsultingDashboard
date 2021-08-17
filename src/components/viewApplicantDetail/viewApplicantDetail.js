@@ -191,16 +191,16 @@ const Contracting = () => {
   // console.log(id);
   const [applicant, setApplicant] = useState({
     firstName: null,
-    middleName: null,
     lastName: null,
     phone: null,
-    currentAddress: null, 
+    city: null,
+    state: null,
     country: null,
     gmail: null,
-    gender: null,
     postedDate: null,
     senioritylevel: null,
     expectedSalary: null,
+    salaryType: null,
     jobTitle: null,
     message: null,
     resume: null,
@@ -226,16 +226,16 @@ const Contracting = () => {
         // console.log(response.data.data[0]);
         setApplicant({
           firstName: response.data.data[0].firstName,
-          middleName: response.data.data[0].middleName,
           lastName: response.data.data[0].lastName,
           phone: response.data.data[0].phone,
-          currentAddress: response.data.data[0].currentAddress,
+          city: response.data.data[0].city,
+          state: response.data.data[0].state,
           country: response.data.data[0].country,
           gmail: response.data.data[0].gmail,
-          gender: response.data.data[0].gender,
           postedDate: response.data.data[0].postedDate,
           senioritylevel: response.data.data[0].senioritylevel,
           expectedSalary: response.data.data[0].expectedSalary,
+          salaryType: response.data.data[0].salaryType,
           jobTitle: response.data.data[0].jobTitle,
           message: response.data.data[0].message,
           resume: response.data.data[0].resume,
@@ -311,11 +311,7 @@ const Contracting = () => {
                         </ListItemAvatar>
                         <ListItemText
                           primary={
-                            applicant.firstName +
-                            " " +
-                            applicant.middleName +
-                            " " +
-                            applicant.lastName
+                            applicant.firstName + " " + applicant.lastName
                           }
                         />
                       </ListItem>
@@ -331,7 +327,11 @@ const Contracting = () => {
                         </ListItemAvatar>
                         <ListItemText
                           primary={
-                            applicant.currentAddress + " " + applicant.country
+                            applicant.city +
+                            " , " +
+                            applicant.state +
+                            " , " +
+                            applicant.country
                           }
                         />
                       </ListItem>
@@ -345,7 +345,7 @@ const Contracting = () => {
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/48/000000/gender.png" />
                         </ListItemAvatar>
-                        <ListItemText primary={applicant.gender} />
+                        <ListItemText primary={applicant.salaryType} />
                       </ListItem>
 
                       <ListItem>

@@ -22,6 +22,7 @@ import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 import Employers from "./components/Employers/Employers";
+import External from "./components/ExternalApplicant/External";
 function App(props) {
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -131,6 +132,12 @@ function App(props) {
         exact
         path="/applicant-detail/:id"
         component={viewApplicantDetail}
+        //auth={props.isAuthenticated}
+      />
+      <Route
+        exact
+        path="/externalApplicant"
+        component={External}
         //auth={props.isAuthenticated}
       />
 
