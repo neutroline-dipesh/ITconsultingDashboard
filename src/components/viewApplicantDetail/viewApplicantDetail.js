@@ -55,28 +55,29 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "5px",
   },
   ContentDateDiv: {
-    // overflow: "scroll",
-    // maxHeight: "80vh",
+    overflow: "scroll",
+    maxHeight: "80vh",
+    height: "80vh",
     // display: "flex",
   },
   leftRightDiv: {
     display: "flex",
     // backgroundColor: "red",
+    // alignItems: "center",
+    justifyContent: "center",
     maxHeight: "70vh",
     overflow: "scroll",
     overflowX: "hidden",
     overflowY: "hidden",
   },
   leftDiv: {
-    // backgroundColor: "red",
-    // border: "solid 1px",
+    border: "solid 1px #858796",
     borderRadius: "10px",
-    width: "30%",
-
+    width: "50%",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    marginLeft: "1rem",
+    // alignItems: "center",
+    marginLeft: "2rem",
     marginTop: "1rem",
     marginBottom: "1rem",
     // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
@@ -87,6 +88,7 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
 
     paddingTop: "1rem",
+    // paddingLeft: "1rem",
     paddingBottom: "1rem",
     backgroundColor: "#F8F9FC",
 
@@ -111,11 +113,16 @@ const useStyle = makeStyles((theme) => ({
   },
   rightDiv: {
     borderRadius: "10px",
-    width: "65%",
+    width: "50%",
+    border: "solid 1px #858796",
+
     // paddingTop: "1rem",
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     marginLeft: "1rem",
+    marginRight: "2rem",
     marginTop: "1rem",
     marginBottom: "1rem",
     // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
@@ -131,14 +138,12 @@ const useStyle = makeStyles((theme) => ({
     borderBottomColor: "#d1d1cf",
   },
   listHead: {
-    // backgroundColor: "red",
     fontSize: "1rem",
     width: "25%",
     fontWeight: "bold",
   },
   listBody: {
     marginLeft: "1rem",
-    // backgroundColor: "blue",
     maxWidth: "508px",
     textAlign: "justify",
   },
@@ -151,8 +156,7 @@ const useStyle = makeStyles((theme) => ({
     height: "80vh",
   },
   toogleButton: {
-    // marginTop: "2rem",
-    marginRight: "1rem",
+    marginRight: "2rem",
     height: "5vh",
   },
   acceptToggleBtn: {
@@ -183,6 +187,37 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: "#b38f00",
       color: "#fff",
     },
+  },
+  ListItem: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // backgroundColor: "red",
+    // paddingLeft: "2rem",
+    // paddingRight: "2rem",
+  },
+  ListItemLeft: {
+    width: "50%",
+  },
+  ListItemRight: {
+    width: "50%",
+  },
+  listItemTitle: {
+    fontWeight: "500",
+  },
+  listItemBody: {
+    color: "#858796",
+    fontSize: "0.5rem",
+  },
+  cv: {
+    marginLeft: "2rem",
+    width: "94%",
+    height: "100vh",
+    marginTop: "1rem",
+  },
+  resumeTitle: {
+    marginLeft: "2rem",
+    fontWeight: "500",
   },
 }));
 
@@ -216,8 +251,8 @@ const Contracting = () => {
   };
   useEffect(() => {
     getApplicantDetails();
-    console.log(applicant);
   }, []);
+  console.log(applicant);
 
   const getApplicantDetails = () => {
     axios
@@ -305,37 +340,53 @@ const Contracting = () => {
                 <div className={classes.leftRightDiv}>
                   <div className={classes.leftDiv}>
                     <List className={classes.listMain}>
-                      <ListItem>
-                        <ListItemAvatar>
+                      <ListItem className={classes.ListItem}>
+                        {/* <ListItemAvatar>
                           <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={
-                            applicant.firstName + " " + applicant.lastName
-                          }
-                        />
+                        </ListItemAvatar> */}
+                        <div className={classes.ListItemLeft}>
+                          <span className={classes.listItemTitle}>
+                            {" "}
+                            Full Name:
+                          </span>
+                          <ListItemText
+                            primary={
+                              applicant.firstName + " " + applicant.lastName
+                            }
+                          />
+                        </div>
+                        <div className={classes.ListItemRight}>
+                          <span className={classes.listItemTitle}> Email:</span>
+                          <ListItemText primary={applicant.gmail} />
+                        </div>
                       </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/apple-phone.png" />{" "}
-                        </ListItemAvatar>
-                        <ListItemText primary={applicant.phone} />
+                      <ListItem className={classes.ListItem}>
+                        {/* <ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
+                        </ListItemAvatar> */}
+                        <div className={classes.ListItemLeft}>
+                          <span className={classes.listItemTitle}>
+                            {" "}
+                            Address:
+                          </span>
+                          <ListItemText
+                            // style={{ width: "30%" }}
+                            primary={
+                              applicant.city +
+                              //  +
+                              " , " +
+                              applicant.state
+                            }
+                          />
+                          <span>{applicant.country}</span>
+                        </div>
+                        <div className={classes.ListItemRight}>
+                          <span className={classes.listItemTitle}> Phone:</span>
+                          <ListItemText primary={applicant.phone} />
+                        </div>
                       </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/order-delivered.png" />{" "}
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={
-                            applicant.city +
-                            " , " +
-                            applicant.state +
-                            " , " +
-                            applicant.country
-                          }
-                        />
-                      </ListItem>
-                      <ListItem>
+
+                      {/* <ListItem>
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/40/000000/gmail--v1.png" />
                         </ListItemAvatar>
@@ -353,11 +404,55 @@ const Contracting = () => {
                           <img src="https://img.icons8.com/color/40/000000/calendar.png" />
                         </ListItemAvatar>
                         <ListItemText primary={applicant.postedDate} />
-                      </ListItem>
+                      </ListItem> */}
                     </List>
                   </div>
                   <div className={classes.rightDiv}>
-                    <List>
+                    <ListItem className={classes.ListItem}>
+                      {/* <ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
+                        </ListItemAvatar> */}
+                      <div className={classes.ListItemLeft}>
+                        <span className={classes.listItemTitle}>
+                          {" "}
+                          Seniority Level:
+                        </span>
+                        <ListItemText
+                          // style={{ width: "30%" }}
+                          primary={applicant.senioritylevel}
+                        />
+                      </div>
+                      <div className={classes.ListItemRight}>
+                        <span className={classes.listItemTitle}>
+                          {" "}
+                          Expected Salary($):
+                        </span>
+                        <ListItemText primary={applicant.expectedSalary} />
+                      </div>
+                    </ListItem>
+                    <ListItem className={classes.ListItem}>
+                      {/* <ListItemAvatar>
+                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
+                        </ListItemAvatar> */}
+                      <div className={classes.ListItemLeft}>
+                        <span className={classes.listItemTitle}>
+                          {" "}
+                          Applied Job:
+                        </span>
+                        <ListItemText
+                          // style={{ width: "30%" }}
+                          primary={applicant.jobTitle}
+                        />
+                      </div>
+                      <div className={classes.ListItemRight}>
+                        <span className={classes.listItemTitle}>
+                          {" "}
+                          Salary Type:
+                        </span>
+                        <ListItemText primary={applicant.salaryType} />
+                      </div>
+                    </ListItem>
+                    {/* <List>
                       <ListItem>
                         <span className={classes.listHead}>
                           Seniority Level:
@@ -391,12 +486,13 @@ const Contracting = () => {
                       resume={applicant.resume}
                       fileType={applicant.resumeFileType}
                     />
-                    <CoverLetter letter={applicant.coverletter} />
-
+                    <CoverLetter letter={applicant.coverletter} /> */}
                     {/* <span className={classes.resumeTitle}>Resume:</span> */}
                     {/* <embed className={classes.cv} src={file}></embed> */}
                   </div>
                 </div>
+                <span className={classes.resumeTitle}>Resume :</span>
+                <embed className={classes.cv} src={applicant.resume}></embed>
               </div>
             </div>
           </div>
