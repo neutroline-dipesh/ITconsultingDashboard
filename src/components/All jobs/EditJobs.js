@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
@@ -15,10 +15,12 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -28,7 +30,7 @@ import Button from "@material-ui/core/Button";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
-    width: "100%",
+    width: "100%", 
   },
   maindiv: {
     paddingTop: "8vh",
@@ -60,12 +62,9 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.7rem",
     marginRight: "1.5rem",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    "&:hover": {
-      // backgroundColor: "#98DED9",
-    },
+    "&:hover": {},
   },
   jobListIcon: {
-    // color: "black !important",
     fontSize: "1rem",
     marginRight: "1rem",
   },
@@ -100,7 +99,7 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "1.3rem",
     marginLeft: "1.5rem",
-    color: "#303f9f",
+    color: "#fffff",
   },
   formDiv: {
     maxHeight: "65vh",
@@ -163,33 +162,33 @@ const useStyle = makeStyles((theme) => ({
   },
   State: {
     // width: "30%",
-    marginLeft: "2.5rem",
+    marginLeft: "3.2rem",
   },
   stateErrorMsg: {
-    marginLeft: "2.5rem",
+    marginLeft: "3.2rem",
   },
   cityDiv: {
     width: "30%",
   },
   city: {
-    marginLeft: "5rem",
+    marginLeft: "6.5rem",
   },
   cityErrorMsg: {
-    marginLeft: "5rem",
+    marginLeft: "6.5rem",
   },
   DescriptionDiv: {
     marginTop: "1rem",
   },
   ckeditor: {},
   save: {
-    backgroundColor: "#04A8F6",
+    backgroundColor: "#2653d4",
     borderRadius: "20px",
     fontSize: "0.9rem",
-    // boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     width: "7rem",
     marginTop: "2rem",
-    // float: "right",
-    // marginBottom: "1rem",
+    "&:hover": {
+      backgroundColor: "#000099",
+    },
   },
   errorMessage: {
     // marginLeft: "5rem",
@@ -208,88 +207,66 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  publishCheckBox: {
+    width: "3.5rem !important",
+    height: "3.5vh",
+    // backgroundColor: "#52D869",
+  },
 }));
 
-const IOSSwitch = withStyles((theme) => ({
-  root: {
-    width: 42,
-    height: 26,
-    padding: 0,
-    margin: theme.spacing(2),
-  },
-  switchBase: {
-    padding: 2,
-    "&$checked": {
-      transform: "translateX(16px)",
-      color: theme.palette.common.white,
-      "& + $track": {
-        backgroundColor: "#52d869",
-        opacity: 1,
-        border: "none",
-      },
-    },
-    "&$focusVisible $thumb": {
-      color: "#52d869",
-      border: "6px solid #fff",
-    },
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-  },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: theme.palette.grey[50],
-    opacity: 1,
-    transition: theme.transitions.create(["background-color", "border"]),
-  },
-  checked: {},
-  focusVisible: {},
-}))(({ classes, ...props }) => {
-  return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-});
-
-function EditJobs(props) {
+const Editjobs = () => {
   const classes = useStyle();
-  const [data, setData] = useState("");
-  useEffect(() => {
-    const id = props.match.params.id;
-    console.log(id, "edit jobs ko id");
-
-    axios.get("http://localhost:4000/allJobs/" + id).then((response) => {
-      console.log(response.data, "edit jobs ko data");
-      if (response.data) {
-        // value = response.data.data;
-        setData(response.data.data);
-      }
-    });
-  }, []);
+  let {id} = useParams();
 
   //for validation
-  const formik = useFormik({
+
+  const [ckeditorContent, setCkeditorContent] = useState("");
+  const [job, setJob] = useState({
+    jobTitle:'',
+    jobSubtitle: '',
+    publishBy: '',
+    department: '',
+    jobType: '',
+    country: '',
+    state: '',
+    city:'',
+    description: '',
+  });
+  // console.log(ckeditorContent);
+console.log(id);
+  useEffect(() => {
+    getJob();
+  }, []);
+  const [publish, setPublish] = useState(job.publish);
+  const getJob = () =>{
+    axios.get("http://localhost:4000/allJobs/" + id).then(res =>{
+      setJob({
+        jobTitle: res.data.data[0].jobTitle,
+        jobSubtitle: res.data.data[0].jobSubtitle,
+        publishBy: res.data.data[0].publishBy,
+        department: res.data.data[0].department,
+        jobType: res.data.data[0].jobType,
+        country: res.data.data[0].country,
+        state: res.data.data[0].state,
+        city: res.data.data[0].city,
+        description: res.data.data[0].description,
+        publish: res.data.data[0].publish
+      });
+     }).catch(err =>{
+       console.log(err);
+     })
+  }
+
+    const formik = useFormik({
     initialValues: {
-      jobTitle: "",
-      jobSubTitle: "",
-      department: "",
-      jobType: "",
-      country: "",
-      state: "",
-      city: "",
-      publishBy: "",
+      jobTitle: job.jobTitle,
+      jobSubTitle: job.jobSubtitle,
+      department: job.department,
+      jobType: job.jobType,
+      country: job.country,
+      state: job.state,
+      city: job.city,
+      publishBy: job.publishBy,
     },
     validationSchema: Yup.object({
       jobTitle: Yup.string().required("Required!"),
@@ -308,7 +285,9 @@ function EditJobs(props) {
     onSubmit: (values) => {
       handleSubmit(values);
       formik.resetForm();
+      // history.push("/Alljobs")
     },
+    enableReinitialize:true,
   });
 
   const headers = {
@@ -317,20 +296,23 @@ function EditJobs(props) {
   const handleSubmit = (values) => {
     const job = {
       jobTitle: values.jobTitle,
-      jobSubTitle: values.jobSubTitle,
+      jobSubtitle: values.jobSubTitle,
       department: values.department,
       jobType: values.jobType,
       country: values.country,
       state: values.state,
       city: values.city,
       publishBy: values.publishBy,
+      description: ckeditorContent,
+      visibility: publish,
     };
     console.log(job);
-    console.log(headers);
+    // console.log(headers);
 
     axios
-      .post("http://localhost:4000/allJobs/", job, { headers })
+      .patch("http://localhost:4000/allJobs/" + id, job, { headers })
       .then((res) => {
+        saveFunction();
         console.log("success");
         console.log(res);
       })
@@ -340,7 +322,9 @@ function EditJobs(props) {
       });
   };
 
-  //alert message
+  console.log(job);
+
+  // alert message
   const saveFunction = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -349,17 +333,6 @@ function EditJobs(props) {
       },
       buttonsStyling: false,
     });
-    // if (
-    //   formik.initialValues.jobTitle != "" &&
-    //   formik.initialValues.jobSubTitle != "" &&
-    //   formik.initialValues.department != "" &&
-    //   formik.initialValues.jobType != "" &&
-    //   formik.initialValues.country != "" &&
-    //   formik.initialValues.state != "" &&
-    //   formik.initialValues.city != ""
-    // ) {
-    //   console.log("hello");
-    // }
 
     swalWithBootstrapButtons
       .fire({
@@ -390,14 +363,17 @@ function EditJobs(props) {
         }
       });
   };
-  //for switch button (publish)
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true,
-  });
+  // for switch button (publish)
+  const [state, setState] = React.useState();
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState(event.target.checked);
+    setPublish("Not Publish");
+    console.log(state);
+    if (state == true) {
+      setPublish("Not Publish");
+    } else {
+      setPublish("Publish");
+    }
   };
   return (
     <>
@@ -405,9 +381,9 @@ function EditJobs(props) {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Job / Edit Jobs</span>
+            <span className={classes.pageTabName}>Job / Edit Job</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs">
+              <Link to="/alljobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -427,11 +403,11 @@ function EditJobs(props) {
                     Job Information
                   </span>
                 </div>{" "}
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>
                     <input
                       className={classes.inputBoderColor}
-                      style={{ borderColor: "#7df4ff" }}
+                      style={{ borderColor: "#0066ff" }}
                       type="text"
                       className="form-control"
                       aria-describedby="emailHelp"
@@ -445,7 +421,7 @@ function EditJobs(props) {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#7df4ff" }}
+                      style={{ borderColor: "#0066ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       placeholder="Enter Job title"
@@ -458,7 +434,7 @@ function EditJobs(props) {
                     </div>
                     <input
                       type="text"
-                      style={{ borderColor: "#7df4ff" }}
+                      style={{ borderColor: "#0066ff" }}
                       className={"form-control" + " " + classes.JobSubtitle}
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
@@ -472,7 +448,7 @@ function EditJobs(props) {
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
                         >
@@ -490,7 +466,7 @@ function EditJobs(props) {
                       </div>
                       <div className={classes.jobTypeDiv}>
                         <select
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
                         >
@@ -514,7 +490,7 @@ function EditJobs(props) {
                     <div className={classes.CountryStateCityDiv}>
                       <div className={classes.countryDiv}>
                         <input
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           type="text"
                           className={"form-control" + " " + classes.Country}
                           aria-describedby="emailHelp"
@@ -523,19 +499,7 @@ function EditJobs(props) {
                           {...formik.getFieldProps("country")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.Country}
-                          {...formik.getFieldProps("country")}
-                        >
-                          <option value="" selected disabled>
-                            Country
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
+
                         <div
                           className={
                             classes.errorMessage + " " + classes.countryErrorMsg
@@ -547,7 +511,7 @@ function EditJobs(props) {
 
                       <div className={classes.stateDiv}>
                         <input
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
@@ -556,19 +520,6 @@ function EditJobs(props) {
                           {...formik.getFieldProps("state")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.State}
-                          {...formik.getFieldProps("state")}
-                        >
-                          <option value="" selected disabled>
-                            State/Province
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
                         <div
                           className={
                             classes.errorMessage + " " + classes.stateErrorMsg
@@ -580,7 +531,7 @@ function EditJobs(props) {
                       <div className={classes.cityDiv}>
                         <input
                           type="text"
-                          style={{ borderColor: "#7df4ff" }}
+                          style={{ borderColor: "#0066ff" }}
                           className={"form-control" + " " + classes.city}
                           aria-describedby="emailHelp"
                           placeholder="Enter City"
@@ -588,19 +539,7 @@ function EditJobs(props) {
                           {...formik.getFieldProps("city")}
                           required
                         />
-                        {/* <select
-                          className={"form-select" + " " + classes.city}
-                          {...formik.getFieldProps("city")}
-                        >
-                          <option value="" selected disabled>
-                            City
-                          </option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select> */}
+
                         <div
                           className={
                             classes.errorMessage + " " + classes.cityErrorMsg
@@ -616,6 +555,7 @@ function EditJobs(props) {
                         className={classes.ckeditor}
                         id="editor1"
                         editor={FullEditor}
+                        data={job.description}
                         config={{
                           ckfinder: {
                             // Upload the images to the server using the CKFinder QuickUpload command
@@ -626,14 +566,31 @@ function EditJobs(props) {
                         }}
                         onChange={(event, editor) => {
                           const data = editor.getData();
-                          console.log({ event, editor, data });
+                          setCkeditorContent(editor.getData());
+                          // console.log({ event, editor, data });
                         }}
                       />
                     </div>
                     <div className={classes.publishSaveDiv}>
                       <div className={classes.PublishDiv}>
                         <span>Publish</span>
-                        <FormControlLabel
+                        <div class="form-check form-switch">
+                          <input
+                            className={"form-check-input"}
+                            type="checkbox"
+                            id="flexSwitchCheckChecked"
+                            name="publish"
+                            style={{
+                              width: "3.5rem",
+                              height: "3.5vh",
+                            }}
+                            onChange={handleChange}
+                            value="true"
+                            checked={job.publish}
+                          />
+                        </div>
+
+                        {/* <FormControlLabel
                           control={
                             <IOSSwitch
                               checked={state.checkedB}
@@ -641,12 +598,12 @@ function EditJobs(props) {
                               name="checkedB"
                             />
                           }
-                        />
+                        /> */}
                       </div>
                       <div className={classes.saveButtonDiv}>
                         <button
                           type="submit"
-                          className={"btn btn-primary" + " " + classes.save}
+                          className={"btn btn-success" + " " + classes.save}
                         >
                           Update
                         </button>
@@ -661,6 +618,6 @@ function EditJobs(props) {
       </div>
     </>
   );
-}
+};
 
-export default EditJobs;
+export default Editjobs;

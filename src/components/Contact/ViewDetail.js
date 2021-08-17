@@ -26,7 +26,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import { FaRegAddressCard } from "react-icons/fa";
 import { BiPhone } from "react-icons/bi";
 import axios from "axios";
-
+import ViewAttectment from "./viewAttectment";
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
     background-color: transparent;
@@ -119,13 +119,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "10px",
     padding: "2px 10px",
   },
-  attectmentBtn: {
-    fontSize: "0.7rem",
-  },
-  attechmentIcon: {
-    fontSize: "1rem",
-    marginRight: "0.4rem",
-  },
+
   doneButton: {
     color: "#fff",
     backgroundColor: "#2653d4",
@@ -167,9 +161,11 @@ export default function AlertDialogSlide(props) {
           },
         })
         .then((response) => {
-          // props.fetchData.fetchContactData();
+          if (response.data) {
+            props.handleState();
+          }
 
-          console.log(response);
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -233,16 +229,7 @@ export default function AlertDialogSlide(props) {
           </DialogContentText>
 
           {props.data.attachment ? (
-            <Button
-              variant="outlined"
-              color="primary"
-              href="#outlined-buttons"
-              size="small"
-              className={classes.attectmentBtn}
-            >
-              <AiOutlineFileText className={classes.attechmentIcon} />
-              Attechment
-            </Button>
+            <ViewAttectment attechmnet={props.data.attachment} />
           ) : (
             ""
           )}

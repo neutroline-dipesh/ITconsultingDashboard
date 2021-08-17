@@ -63,8 +63,8 @@ const useStyle = makeStyles((theme) => ({
     // paddingRight: "1rem",
     // paddingTop: "1.5rem",
     paddingBottom: "1.5rem",
-    [theme.breakpoints.down('md')]: {
-      width:"74.5%",
+    [theme.breakpoints.down("md")]: {
+      width: "74.5%",
     },
   },
   totalJobs: {
@@ -75,9 +75,9 @@ const useStyle = makeStyles((theme) => ({
     height: "13vh",
     width: "20%",
     borderRadius: "5px",
-    [theme.breakpoints.down('md')]: {
-      width:"24%",
-      margin:"0.5rem",
+    [theme.breakpoints.down("md")]: {
+      width: "24%",
+      margin: "0.5rem",
     },
   },
   totcalContactJob: {
@@ -338,7 +338,7 @@ const Dashboard = () => {
               <div className={classes.tableDiv}>
                 <div className={classes.tableTitleBottonDiv}>
                   <span className={classes.tableTitle}>Recent Applicant</span>
-                  <Link to="/allApplicant">
+                  <Link to="/allApplicant" style={{ textDecoration: "none" }}>
                     <Button
                       variant="contained"
                       size="small"

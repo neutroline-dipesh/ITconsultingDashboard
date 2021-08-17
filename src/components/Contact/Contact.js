@@ -16,7 +16,6 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { contactData } from "./contactDate";
-import Test from "./test";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -52,11 +51,9 @@ const useStyle = makeStyles((theme) => ({
     width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     // borderRadius: "5px",
-    [theme.breakpoints.down('md')]: {
-      width:"72.5%",
+    [theme.breakpoints.down("md")]: {
+      width: "72.5%",
     },
-
-
   },
   ContentDateDiv: {
     overflow: "scroll",
@@ -69,7 +66,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "1rem",
   },
   tableHead: {
-   // position: "sticky",
+    // position: "sticky",
     top: "0",
     backgroundColor: "#4e73df !important",
     color: "#fff",
@@ -114,7 +111,25 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
+  // const [data, setData] = useState({
+  //   id: "",
+  //   fullName: "",
+  //   email: "",
+  //   phone: "",
+  //   city: "",
+  //   country: "",
+  //   postedDate: "",
+  // });
   const [data, setData] = useState([]);
+  const [seen, setSeen] = useState(false);
+  const handState = () => {
+    setSeen(!seen);
+    fetchContactData();
+    // console.log(seen);
+  };
+  // useEffect(() => {
+  //   fetchContactData();
+  // }, [seen]);
 
   //getting data from database start
 
@@ -122,7 +137,7 @@ const Contact = (props) => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
       fetchContactData();
-      // console.log(data);
+      console.log(data);
     }, 100);
   }, []);
 
@@ -300,9 +315,9 @@ const Contact = (props) => {
                             <div className={classes.buttomDiv}>
                               <ViewDetail
                                 data={item}
+                                handleState={handState}
                                 // fetchData={fetchContactData}
                               />
-                              {/* <Test data={item} /> */}
 
                               <RiDeleteBin6Fill
                                 className={classes.deleteButton}

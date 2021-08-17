@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,7 +17,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { FaEdit } from "react-icons/fa";
 
-import Tooltip from "@material-ui/core/Tooltip"; 
+import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { CgAddR } from "react-icons/cg";
@@ -249,7 +248,7 @@ const Alljobs = (props) => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
-              <Link to="/addjobs">
+              <Link to="/addjobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -328,7 +327,7 @@ const Alljobs = (props) => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to={`/alljobs/edit/${item.id}`}>
+                                <Link to={`/alljobs/edit-job/${item.id}`}>
                                   <FaEdit className={classes.editButton} />
                                 </Link>
                               </Tooltip>
