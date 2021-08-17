@@ -21,6 +21,9 @@ import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import Box from "@material-ui/core/Box";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -30,7 +33,7 @@ import { useState } from "react";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
-    width: "100%", 
+    width: "100%",
   },
   maindiv: {
     paddingTop: "8vh",
@@ -217,48 +220,51 @@ const useStyle = makeStyles((theme) => ({
 
 const Editjobs = () => {
   const classes = useStyle();
-  let {id} = useParams();
+  let { id } = useParams();
 
   //for validation
 
   const [ckeditorContent, setCkeditorContent] = useState("");
   const [job, setJob] = useState({
-    jobTitle:'',
-    jobSubtitle: '',
-    publishBy: '',
-    department: '',
-    jobType: '',
-    country: '',
-    state: '',
-    city:'',
-    description: '',
+    jobTitle: "",
+    jobSubtitle: "",
+    publishBy: "",
+    department: "",
+    jobType: "",
+    country: "",
+    state: "",
+    city: "",
+    description: "",
   });
   // console.log(ckeditorContent);
-console.log(id);
+  console.log(id);
   useEffect(() => {
     getJob();
   }, []);
   const [publish, setPublish] = useState(job.publish);
-  const getJob = () =>{
-    axios.get("http://localhost:4000/allJobs/" + id).then(res =>{
-      setJob({
-        jobTitle: res.data.data[0].jobTitle,
-        jobSubtitle: res.data.data[0].jobSubtitle,
-        publishBy: res.data.data[0].publishBy,
-        department: res.data.data[0].department,
-        jobType: res.data.data[0].jobType,
-        country: res.data.data[0].country,
-        state: res.data.data[0].state,
-        city: res.data.data[0].city,
-        description: res.data.data[0].description,
-        publish: res.data.data[0].publish
+  const getJob = () => {
+    axios
+      .get("http://localhost:4000/allJobs/" + id)
+      .then((res) => {
+        setJob({
+          jobTitle: res.data.data[0].jobTitle,
+          jobSubtitle: res.data.data[0].jobSubtitle,
+          publishBy: res.data.data[0].publishBy,
+          department: res.data.data[0].department,
+          jobType: res.data.data[0].jobType,
+          country: res.data.data[0].country,
+          state: res.data.data[0].state,
+          city: res.data.data[0].city,
+          description: res.data.data[0].description,
+          publish: res.data.data[0].publish,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-     }).catch(err =>{
-       console.log(err);
-     })
-  }
+  };
 
-    const formik = useFormik({
+  const formik = useFormik({
     initialValues: {
       jobTitle: job.jobTitle,
       jobSubTitle: job.jobSubtitle,
@@ -288,7 +294,7 @@ console.log(id);
       formik.resetForm();
       // history.push("/Alljobs")
     },
-    enableReinitialize:true,
+    enableReinitialize: true,
   });
 
   const headers = {
