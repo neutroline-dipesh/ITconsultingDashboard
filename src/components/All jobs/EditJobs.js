@@ -403,7 +403,7 @@ console.log(id);
                   <span className={classes.lefttableTitle}>
                     Job Information
                   </span>
-                  <div className={classes.jobTypeRadio}>
+                  {/* <div className={classes.jobTypeRadio}>
                     <RadioGroup
                       row
                       aria-label="position"
@@ -421,7 +421,7 @@ console.log(id);
                         label="Contract"
                       />
                     </RadioGroup>
-                  </div>
+                  </div> */}
                 </div>{" "}
                 <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>

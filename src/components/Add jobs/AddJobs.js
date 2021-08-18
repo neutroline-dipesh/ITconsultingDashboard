@@ -271,37 +271,6 @@ const Addjobs = () => {
 
   // console.log(ckeditorContent);
   const handleSubmit = (values) => {
-    const job = {
-      jobTitle: values.jobTitle,
-      jobSubtitle: values.jobSubTitle,
-      department: values.department,
-      jobType: values.jobType,
-      country: values.country,
-      state: values.state,
-      city: values.city,
-      publishBy: values.publishBy,
-      description: ckeditorContent,
-      visibility: publish,
-      workType: workType,
-    };
-    console.log(job);
-    // console.log(headers);
-
-    axios
-      .post("http://localhost:4000/allJobs/", job, { headers })
-      .then((res) => {
-        saveFunction();
-        console.log("success");
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("unsuccessful");
-      });
-  };
-
-  //alert message
-  const saveFunction = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -322,6 +291,7 @@ const Addjobs = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
+          saveJob(values);
           swalWithBootstrapButtons.fire(
             "Save!",
             "Your file has been Save.",
@@ -339,6 +309,34 @@ const Addjobs = () => {
         }
       });
   };
+
+  const saveJob = (values) =>{
+        const job = {
+      jobTitle: values.jobTitle,
+      jobSubtitle: values.jobSubTitle,
+      department: values.department,
+      jobType: values.jobType,
+      country: values.country,
+      state: values.state,
+      city: values.city,
+      publishBy: values.publishBy,
+      description: ckeditorContent,
+      visibility: publish,
+      workType: workType,
+    };
+    axios
+      .post("http://localhost:4000/allJobs/", job, { headers })
+      .then((res) => {
+        console.log("success");
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("unsuccessful");
+      });
+  }
+
+  //alert message
   //for switch button (publish)
   const [state, setState] = React.useState();
   const handleChange = (event) => {
