@@ -311,7 +311,7 @@ const External = () => {
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to={`/applicant-detail/${item.id}`}>
+                                <Link to={`/external-viewDetail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />

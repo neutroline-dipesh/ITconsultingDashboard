@@ -72,7 +72,7 @@ const useStyle = makeStyles((theme) => ({
   },
   leftDiv: {
     border: "solid 1px #858796",
-    borderRadius: "10px",
+    borderRadius: "5px",
     width: "50%",
     display: "flex",
     flexDirection: "column",
@@ -112,7 +112,7 @@ const useStyle = makeStyles((theme) => ({
     width: "100%",
   },
   rightDiv: {
-    borderRadius: "10px",
+    borderRadius: "5px",
     width: "50%",
     border: "solid 1px #858796",
 
