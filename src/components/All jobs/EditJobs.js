@@ -216,6 +216,10 @@ const useStyle = makeStyles((theme) => ({
     height: "3.5vh",
     // backgroundColor: "#52D869",
   },
+  jobTypeRadio: {
+    marginRight: "2rem",
+    color: "#fffff",
+  },
 }));
 
 const Editjobs = () => {
@@ -226,6 +230,7 @@ const Editjobs = () => {
 
   const [ckeditorContent, setCkeditorContent] = useState("");
   const [job, setJob] = useState({
+    jobid: "",
     jobTitle: "",
     jobSubtitle: "",
     publishBy: "",
@@ -235,9 +240,10 @@ const Editjobs = () => {
     state: "",
     city: "",
     description: "",
+    visibility: "",
   });
   // console.log(ckeditorContent);
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
     getJob();
   }, []);
@@ -247,6 +253,7 @@ const Editjobs = () => {
       .get("http://localhost:4000/allJobs/" + id)
       .then((res) => {
         setJob({
+          jobid: res.data.data[0].jobId,
           jobTitle: res.data.data[0].jobTitle,
           jobSubtitle: res.data.data[0].jobSubtitle,
           publishBy: res.data.data[0].publishBy,
@@ -257,7 +264,9 @@ const Editjobs = () => {
           city: res.data.data[0].city,
           description: res.data.data[0].description,
           publish: res.data.data[0].publish,
+          visibility: res.data.data[0].visibility,
         });
+        // console.log(res.data.data[0].publish);
       })
       .catch((err) => {
         console.log(err);
@@ -301,7 +310,8 @@ const Editjobs = () => {
     Authorization: localStorage.getItem("token"),
   };
   const handleSubmit = (values) => {
-    const job = {
+    const jobData = {
+      jobId: job.jobid,
       jobTitle: values.jobTitle,
       jobSubtitle: values.jobSubTitle,
       department: values.department,
@@ -313,11 +323,11 @@ const Editjobs = () => {
       description: ckeditorContent,
       visibility: publish,
     };
-    console.log(job);
+    console.log(jobData);
     // console.log(headers);
 
     axios
-      .patch("http://localhost:4000/allJobs/" + id, job, { headers })
+      .patch("http://localhost:4000/allJobs/" + id, jobData, { headers })
       .then((res) => {
         saveFunction();
         console.log("success");
@@ -329,7 +339,7 @@ const Editjobs = () => {
       });
   };
 
-  console.log(job);
+  console.log(job.visibility);
 
   // alert message
   const saveFunction = () => {
@@ -372,6 +382,7 @@ const Editjobs = () => {
   };
   // for switch button (publish)
   const [state, setState] = React.useState();
+
   const handleChange = (event) => {
     setState(event.target.checked);
     setPublish("Not Publish");
@@ -611,8 +622,14 @@ const Editjobs = () => {
                               height: "3.5vh",
                             }}
                             onChange={handleChange}
-                            value="true"
-                            checked={job.publish}
+                            values="true"
+                            // checked="true"
+                            // checked="false"
+                            // defaultChecked="true"
+                            // defaultChecked={
+                            //   job.visibility == "Publish" ? "true" : "false"
+                            // }
+                            // checked={job.publish == "Publish" ? true : false}
                           />
                         </div>
 
