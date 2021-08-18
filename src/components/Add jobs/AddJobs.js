@@ -396,20 +396,12 @@ const Addjobs = () => {
                       <FormControlLabel
                         value="Internal"
                         control={<Radio color="primary" />}
-                        label={
-                          <Box component="div" fontSize={20} fontWeight="500">
-                            Internal
-                          </Box>
-                        }
+                        label={<Box component="div">Internal</Box>}
                       />
                       <FormControlLabel
                         value="Contract"
                         control={<Radio color="primary" />}
-                        label={
-                          <Box component="div" fontSize={20} fontWeight="500">
-                            Contract
-                          </Box>
-                        }
+                        label={<Box component="div">Contract</Box>}
                       />
                     </RadioGroup>
                   </div>
