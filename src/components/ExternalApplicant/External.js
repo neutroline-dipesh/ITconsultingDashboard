@@ -3,8 +3,6 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-import { connect } from "react-redux";
-import * as actions from "../../store/actions";
 
 //Bootstrap and jQuery libraries
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,15 +11,14 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-import axios from "axios";
-import { contractData } from "./contractData";
+
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { AiOutlineFundView } from "react-icons/ai";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -53,11 +50,9 @@ const useStyle = makeStyles((theme) => ({
   ContentDiv: {
     backgroundColor: "#FFFFFF",
     float: "left",
-    // height: "80vh",
     marginLeft: "1rem",
     width: "81%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-    // borderRadius: "5px",
     [theme.breakpoints.down("md")]: {
       width: "74.5%",
     },
@@ -72,7 +67,6 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   dataTable: {
-    // maxHeight: "70vh",
     paddingTop: "1rem",
   },
   tableHead: {
@@ -84,8 +78,8 @@ const useStyle = makeStyles((theme) => ({
     textAlign: "center",
     whiteSpace: "nowrap",
   },
+
   buttomDiv: {
-    // backgroundColor: "red",
     display: "flex",
     justifyContent: "center",
   },
@@ -125,7 +119,6 @@ const useStyle = makeStyles((theme) => ({
     whiteSpace: "nowrap",
   },
   noColor: {
-    // fontWeight: "500",
     color: "#000",
     fontSize: "15px",
     textAlign: "center",
@@ -133,40 +126,37 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Contracting = (props) => {
+const External = () => {
   const [data1, setData1] = useState([]);
+
   //getting data from database
+  const fetchData = () => {
+    axios.get("http://localhost:4000/externalApplicant/").then((response) => {
+      if (response.data) {
+        setData1(response.data.data);
+      }
+    });
+  };
   useEffect(() => {
     setTimeout(() => {
       $("#example").DataTable().destroy();
       fetchData();
     }, 100);
   }, []);
-  console.log(data1);
+  // console.log(data1);
   useEffect(() => {
     $("#example").DataTable();
   }, [data1]);
 
   const classes = useStyle();
+
   useEffect(() => {
     $(document).ready(function () {
       $("#example").DataTable();
     });
   });
 
-  //alert message
-
-  const fetchData = () => {
-    axios
-      .get("http://localhost:4000/allApplicant/contract/")
-      .then((response) => {
-        if (response.data) {
-          // value = response.data.data;
-          setData1(response.data.data);
-        }
-      });
-  };
-
+  //delete confirmation message
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -182,20 +172,15 @@ const Contracting = (props) => {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        // confirmButtonText: `<div style="background-color : red">hello</div>`,
         confirmButtonText: "Yes, delete it!",
 
         cancelButtonText: "No, cancel!",
         reverseButtons: true,
-        // buttons: {
-        //   confirm: { style: "margin-left:1rem" },
-        //   // cancel: "Batalkan",
-        // },
       })
       .then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete("http://localhost:4000/allApplicant/" + id, {
+            .delete("http://localhost:4000/externalApplicant/" + id, {
               headers: { Authorization: localStorage.getItem("token") },
               data: {
                 id: id,
@@ -237,7 +222,7 @@ const Contracting = (props) => {
       <div className={classes.root}>
         <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
-            <span className={classes.pageTabName}>Applicant / Contract</span>
+            <span className={classes.pageTabName}>Applicant / External</span>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
@@ -245,19 +230,18 @@ const Contracting = (props) => {
                 <table
                   id="example"
                   data-ordering="false"
-                  className={classes.dataTable + " " + "table"}
+                  className={classes.dataTable + " " + "table "}
                 >
                   <thead>
                     <tr>
-                      <th className={classes.tableHead}>Job Title</th>
-
                       <th className={classes.tableHead}>Name</th>
 
                       <th className={classes.tableHead}>Email</th>
                       {/* <th className={classes.tableHead}>Phone</th> */}
-                      <th className={classes.tableHead}>Applied Date</th>
+                      <th className={classes.tableHead}>Phone</th>
+                      <th className={classes.tableHead}>Job Type</th>
 
-                      <th className={classes.tableHead}>Approvel Status</th>
+                      <th className={classes.tableHead}>Applied Date</th>
 
                       <th className={classes.tableHead}>Action</th>
                     </tr>
@@ -265,7 +249,7 @@ const Contracting = (props) => {
                   <tbody>
                     {data1.map((item, key) => {
                       return (
-                        <tr key="key">
+                        <tr>
                           <td
                             className={
                               item.status == "seen"
@@ -273,17 +257,7 @@ const Contracting = (props) => {
                                 : classes.noColor
                             }
                           >
-                            {item.jobTitle}
-                          </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {" "}
-                            {item.firstName + " " + item.lastName}
+                            {item.fullName}
                           </td>
 
                           <td
@@ -295,8 +269,7 @@ const Contracting = (props) => {
                           >
                             {item.gmail}
                           </td>
-
-                          {/* <td
+                          <td
                             className={
                               item.status == "seen"
                                 ? classes.seenColor
@@ -304,7 +277,17 @@ const Contracting = (props) => {
                             }
                           >
                             {item.phone}
-                          </td> */}
+                          </td>
+                          <td
+                            className={
+                              item.status == "seen"
+                                ? classes.seenColor
+                                : classes.noColor
+                            }
+                          >
+                            {item.jobType}
+                          </td>
+
                           <td
                             className={
                               item.status == "seen"
@@ -321,61 +304,20 @@ const Contracting = (props) => {
                                 ? classes.seenColor
                                 : classes.noColor
                             }
-                            style={{
-                              color:
-                                item.approvelStatus === "Accept"
-                                  ? "#24803c"
-                                  : item.approvelStatus === "Reject"
-                                  ? "#e60000"
-                                  : item.approvelStatus === "Hold"
-                                  ? "#FFC107"
-                                  : "black",
-                              fontWeight: "500",
-                            }}
-                          >
-                            {item.approvelStatus}
-                          </td>
-
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
                           >
                             <div className={classes.buttomDiv}>
-                              {/* <Button
-                                className={classes.viewButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => {
-                                  window.open("/viewApplicatnDetail", "_blank");
-                                }}
-                              >
-                                View
-                              </Button>
-
-                              <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => deletFunction()}
-                              >
-                                delete
-                              </Button> */}
                               <Tooltip
                                 title="View"
                                 TransitionComponent={Zoom}
                                 arrow
                               >
-                                <Link to={`/applicant-detail/${item.id}`}>
+                                <Link to={`/external-viewDetail/${item.id}`}>
                                   <VisibilityIcon
                                     className={classes.viewButton}
                                   />
                                 </Link>
                               </Tooltip>
+
                               <Tooltip
                                 title="Detete"
                                 TransitionComponent={Zoom}
@@ -404,15 +346,4 @@ const Contracting = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.contract.data,
-    loading: state.contract.loading,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoad: () => dispatch(actions.getContractApplicant()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Contracting);
+export default External;

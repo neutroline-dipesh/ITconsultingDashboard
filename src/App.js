@@ -22,6 +22,8 @@ import Notification from "./components/Sidebar/Notification";
 import signout from "./components/Sidebar/SignOut";
 import * as actions from "./store/actions/index";
 import Employers from "./components/Employers/Employers";
+import External from "./components/ExternalApplicant/External";
+import ExternalViewDetail from "./components/ExternalApplicant/ExternalViewDetail";
 function App(props) {
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -69,7 +71,7 @@ function App(props) {
       />
       <Route
         exact
-        path="/alljobs/editJobs/:id"
+        path="/alljobs/edit-job/:id"
         component={EditJobs}
         // auth={props.isAuthenticated}
       />
@@ -131,6 +133,18 @@ function App(props) {
         exact
         path="/applicant-detail/:id"
         component={viewApplicantDetail}
+        //auth={props.isAuthenticated}
+      />
+      <Route
+        exact
+        path="/externalApplicant"
+        component={External}
+        //auth={props.isAuthenticated}
+      />
+      <Route
+        exact
+        path="/external-viewDetail/:id"
+        component={ExternalViewDetail}
         //auth={props.isAuthenticated}
       />
 

@@ -28,7 +28,7 @@ import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 import { FiPhoneCall } from "react-icons/fi";
 import { FaRegAddressCard } from "react-icons/fa";
 import axios from "axios";
-
+import ViewAttectment from "./viewAttechment";
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
     background-color: transparent;
@@ -261,16 +261,7 @@ export default function AlertDialogSlide(props) {
           </DialogContentText>
 
           {props.data.attachment ? (
-            <Button
-              variant="outlined"
-              color="primary"
-              href="#outlined-buttons"
-              size="small"
-              className={classes.attectmentBtn}
-            >
-              <AiOutlineFileText className={classes.attechmentIcon} />
-              Attechment
-            </Button>
+            <ViewAttectment attechmnet={props.data.attachment} />
           ) : (
             ""
           )}
