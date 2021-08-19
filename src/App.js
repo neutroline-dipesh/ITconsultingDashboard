@@ -28,7 +28,7 @@ function App(props) {
     //   props.setPath(window.location.pathname);
     // }
     props.onTryAutoSignup();
-  }, []);
+  }, []);                       
   return (
     // <Switch>
     //   <Route exact path="/login" component={Login} />
