@@ -92,9 +92,10 @@ const useStyle = makeStyles((theme) => ({
   },
   lefttableTitle: {
     fontWeight: "600",
-    fontSize: "1.3rem",
+    fontSize: "1.1rem",
     marginLeft: "1.5rem",
     color: "#fffff",
+    height: "3vh",
   },
   listHead: {
     fontSize: "0.875rem",
@@ -129,9 +130,10 @@ const useStyle = makeStyles((theme) => ({
   },
   rightTableTitle: {
     fontWeight: "600",
-    fontSize: "1.3rem",
+    fontSize: "1.1rem",
     marginLeft: "1.5rem",
     color: "#fffff",
+    height: "3vh",
   },
   leftTableContectDiv: {
     overflow: "scroll",
