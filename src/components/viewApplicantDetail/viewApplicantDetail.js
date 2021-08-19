@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import axios from "axios";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import axios from "axios";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+import { Link, useParams } from "react-router-dom";
+import { IoMdArrowBack } from "react-icons/io";
+import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
+
+import ListItemText from "@material-ui/core/ListItemText";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import WcIcon from "@material-ui/icons/Wc";
-import Resume from "./viewResume";
-import CoverLetter from "./viewCoverLetter";
+import pdf from "../../assets/files/cv.pdf";
+import adimImage from "../../assets/images/profile.png";
+import TabViewApplicant from "./TabViewApplicant";
 
-import { useParams } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -31,6 +36,7 @@ const useStyle = makeStyles((theme) => ({
 
     height: "10vh",
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   pageTabName: {
@@ -39,168 +45,150 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "2.5rem",
     color: "#3F51B5",
   },
+  jobListButton: {
+    textDecoration: "none",
+    backgroundColor: "#2653d4",
+    borderRadius: "20px",
+    width: "7rem",
+    height: "3.9vh",
+    fontSize: "0.7rem",
+    marginRight: "1.5rem",
+    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    "&:hover": {},
+  },
+  jobListIcon: {
+    fontSize: "1rem",
+    marginRight: "1rem",
+  },
+  backIcon: {
+    fontSize: "1.9rem",
+    marginRight: "1rem",
+  },
   MainContentDiv: {
-    // height: "82vh",
+    height: "82vh",
 
     backgroundColor: "#f8f9fc",
   },
 
   ContentDiv: {
-    backgroundColor: "#FFFFFF",
     float: "left",
-    // height: "80vh",
     marginLeft: "1rem",
-    width: "81%",
-    boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
+    width: "82%",
     borderRadius: "5px",
   },
   ContentDateDiv: {
-    overflow: "scroll",
     maxHeight: "80vh",
-    height: "80vh",
-    // display: "flex",
-  },
-  leftRightDiv: {
     display: "flex",
-    // backgroundColor: "red",
-    // alignItems: "center",
-    justifyContent: "center",
-    maxHeight: "70vh",
-    overflow: "scroll",
-    overflowX: "hidden",
-    overflowY: "hidden",
   },
   leftDiv: {
-    border: "solid 1px #858796",
     borderRadius: "5px",
-    width: "50%",
+    width: "25%",
     display: "flex",
     flexDirection: "column",
-    // alignItems: "center",
-    marginLeft: "2rem",
-    marginTop: "1rem",
     marginBottom: "1rem",
-    // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
+    backgroundColor: "#ffffff",
+    boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
+  },
+  listMain: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
     alignItems: "center",
-
+    justifyContent: "center",
     paddingTop: "1rem",
-    // paddingLeft: "1rem",
     paddingBottom: "1rem",
-    backgroundColor: "#F8F9FC",
+    backgroundColor: "#e6e6ff",
 
     borderBottom: "solid 1px #e3e6f0",
-    display: "flex",
-    justifyContent: "space-between",
   },
   lefttableTitle: {
     fontWeight: "600",
-    fontSize: "1.3rem",
-    marginLeft: "1.5rem",
-    color: "#303f9f",
-  },
-  image: {
-    marginTop: "1rem",
-    width: "90%",
-    height: "20vh",
-  },
-  listMain: {
-    // backgroundColor: "red",
-    width: "100%",
-  },
-  rightDiv: {
-    borderRadius: "5px",
-    width: "50%",
-    border: "solid 1px #858796",
+    fontSize: "1.1rem",
 
-    // paddingTop: "1rem",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: "1rem",
-    marginRight: "2rem",
-    marginTop: "1rem",
-    marginBottom: "1rem",
-    // boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
-  },
-  SecondlistMain: {
-    border: "solid 1px ",
-    borderColor: "#d1d1cf",
-    marginTop: "1rem",
-    width: "90%",
-  },
-  listItem: {
-    borderBottom: "solid 1px",
-    borderBottomColor: "#d1d1cf",
+    color: "#fffff",
+    height: "3vh",
   },
   listHead: {
-    fontSize: "1rem",
-    width: "25%",
+    fontSize: "0.875rem",
     fontWeight: "bold",
+    width: "30%",
   },
   listBody: {
     marginLeft: "1rem",
-    maxWidth: "508px",
-    textAlign: "justify",
+    width: "60%",
   },
-  resumeTitle: {
+  rightDiv: {
+    // borderRadius: "5px",
+    width: "71.5%",
+    display: "flex",
+    flexDirection: "column",
     marginLeft: "1rem",
+    marginBottom: "1rem",
+    marginRight: "0.5rem",
+    backgroundColor: "#ffffff",
+    boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
-  cv: {
-    marginLeft: "1rem",
-    width: "95%",
-    height: "80vh",
+  rightTableTitleDiv: {
+    borderRadius: "5px 5px 1px 1px",
+    display: "flex",
+    alignItems: "center",
+
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    backgroundColor: "#e6e6ff",
+
+    borderBottom: "solid 1px #e3e6f0",
   },
-  toogleButton: {
-    marginRight: "2rem",
-    height: "5vh",
+  rightTableTitle: {
+    fontWeight: "600",
+    fontSize: "1.3rem",
+    marginLeft: "1.5rem",
+    color: "#fffff",
   },
-  acceptToggleBtn: {
-    backgroundColor: "#28A745",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#1f7a1f",
-      color: "#fff",
-    },
-    "&:active": {
-      backgroundColor: "#fff",
-      color: "#ffff",
-    },
+  leftTableContectDiv: {
+    // overflow: "scroll",
+    // overflowX: "hidden",
+    // overflowY: "hidden",
   },
-  rejectToggleBtn: {
-    marginLeft: "15px",
-    backgroundColor: "#DC3545",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#b30000",
-      color: "#fff",
-    },
+  rightTableContectDiv: {
+    height: "85vh",
+    // overflow: "scroll",
+    // overflowX: "hidden",
   },
-  blacklistToggleBtn: {
-    backgroundColor: "#FFC107",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#b38f00",
-      color: "#fff",
-    },
+  description: {
+    padding: "1rem",
   },
   ListItem: {
     display: "flex",
     flexDirection: "row",
+
+    alignItems: "center",
     justifyContent: "space-between",
+    // border: "solid 1px",
+    width: "80%",
+    fontWeight: "500",
+    fontSize: "0.9rem",
+    // justifyContent: "space-between",
     // backgroundColor: "red",
     // paddingLeft: "2rem",
     // paddingRight: "2rem",
   },
   ListItemLeft: {
     width: "50%",
+    textAlign: "justify",
+    // backgroundColor: "red",
+    // marginRight: "1rem",
   },
   ListItemRight: {
     width: "50%",
+    // backgroundColor: "blue",
+
+    marginLeft: "1.5rem",
   },
   listItemTitle: {
     fontWeight: "500",
@@ -210,20 +198,25 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.5rem",
   },
   cv: {
-    marginLeft: "2rem",
-    width: "94%",
+    // marginLeft: "1rem",
+    width: "100%",
     height: "100vh",
-    marginTop: "1rem",
   },
-  resumeTitle: {
-    marginLeft: "2rem",
-    fontWeight: "500",
+  image: {
+    width: "50%",
+    marginBottom: "1rem",
+    marginTop: "1rem",
+    // position: "absolute",
+    // top: "3.5rem",
+  },
+  icon: {
+    width: "2rem",
   },
 }));
 
-const Contracting = () => {
+const ViewApplicantDetail = () => {
+  const classes = useStyle();
   let { id } = useParams();
-  // console.log(id);
   const [applicant, setApplicant] = useState({
     firstName: null,
     lastName: null,
@@ -244,7 +237,6 @@ const Contracting = () => {
     error: false,
     loading: false,
   });
-  const classes = useStyle();
   const [alignment, setAlignment] = React.useState("left");
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
@@ -299,200 +291,127 @@ const Contracting = () => {
             <span className={classes.pageTabName}>
               Applicant / Applicant Detail
             </span>
+            <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
+              <Link to="/alljobs">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className={classes.jobListButton}
+                >
+                  <IoMdArrowBack className={classes.jobListIcon} /> Job List
+                </Button>
+              </Link>
+            </Tooltip>
           </div>
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <div className={classes.lefttableTitleDiv}>
-                  <span className={classes.lefttableTitle}>
-                    Personal Information
-                  </span>
-                  <ToggleButtonGroup
-                    className={classes.toogleButton}
-                    value={alignment}
-                    exclusive
-                    onChange={handleAlignment}
-                    aria-label="text alignment"
-                  >
-                    <ToggleButton
-                      className={classes.acceptToggleBtn}
-                      value="Accept"
-                      aria-label="left aligned"
-                    >
-                      Accept
-                    </ToggleButton>
-                    <ToggleButton
-                      className={classes.rejectToggleBtn}
-                      value="Reject"
-                      aria-label="centered"
-                    >
-                      Reject
-                    </ToggleButton>
-                    <ToggleButton
-                      className={classes.blacklistToggleBtn}
-                      value="Hold"
-                      aria-label="right aligned"
-                    >
-                      Hold
-                    </ToggleButton>
-                  </ToggleButtonGroup>
-                </div>{" "}
-                <div className={classes.leftRightDiv}>
-                  <div className={classes.leftDiv}>
-                    <List className={classes.listMain}>
-                      <ListItem className={classes.ListItem}>
-                        {/* <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
-                        </ListItemAvatar> */}
-                        <div className={classes.ListItemLeft}>
-                          <span className={classes.listItemTitle}>
-                            {" "}
-                            Full Name:
-                          </span>
-                          <ListItemText
-                            primary={
-                              applicant.firstName + " " + applicant.lastName
-                            }
-                          />
-                        </div>
-                        <div className={classes.ListItemRight}>
-                          <span className={classes.listItemTitle}> Email:</span>
-                          <ListItemText primary={applicant.gmail} />
-                        </div>
-                      </ListItem>
-                      <ListItem className={classes.ListItem}>
-                        {/* <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
-                        </ListItemAvatar> */}
-                        <div className={classes.ListItemLeft}>
-                          <span className={classes.listItemTitle}>
-                            {" "}
-                            Address:
-                          </span>
-                          <ListItemText
-                            // style={{ width: "30%" }}
-                            primary={
-                              applicant.city +
-                              //  +
-                              " , " +
-                              applicant.state
-                            }
-                          />
-                          <span>{applicant.country}</span>
-                        </div>
-                        <div className={classes.ListItemRight}>
-                          <span className={classes.listItemTitle}> Phone:</span>
-                          <ListItemText primary={applicant.phone} />
-                        </div>
-                      </ListItem>
-
-                      {/* <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/gmail--v1.png" />
-                        </ListItemAvatar>
-                        <ListItemText primary={applicant.gmail} />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/gender.png" />
-                        </ListItemAvatar>
-                        <ListItemText primary={applicant.salaryType} />
-                      </ListItem>
-
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/calendar.png" />
-                        </ListItemAvatar>
-                        <ListItemText primary={applicant.postedDate} />
-                      </ListItem> */}
-                    </List>
+                <div className={classes.leftDiv}>
+                  <div className={classes.lefttableTitleDiv}>
+                    <span className={classes.lefttableTitle}>
+                      Personal Information
+                    </span>
                   </div>
-                  <div className={classes.rightDiv}>
-                    <ListItem className={classes.ListItem}>
-                      {/* <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
-                        </ListItemAvatar> */}
-                      <div className={classes.ListItemLeft}>
-                        <span className={classes.listItemTitle}>
+                  <div className={classes.leftTableContectDiv}>
+                    <List className={classes.listMain}>
+                      <img src={adimImage} className={classes.image} />
+
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
                           {" "}
-                          Seniority Level:
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/id-verified.png"
+                          />
                         </span>
-                        <ListItemText
-                          // style={{ width: "30%" }}
-                          primary={applicant.senioritylevel}
-                        />
-                      </div>
-                      <div className={classes.ListItemRight}>
-                        <span className={classes.listItemTitle}>
-                          {" "}
-                          Expected Salary($):
-                        </span>
-                        <ListItemText primary={applicant.expectedSalary} />
-                      </div>
-                    </ListItem>
-                    <ListItem className={classes.ListItem}>
-                      {/* <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/48/000000/customer-skin-type-7.png" />{" "}
-                        </ListItemAvatar> */}
-                      <div className={classes.ListItemLeft}>
-                        <span className={classes.listItemTitle}>
-                          {" "}
-                          Applied Job:
-                        </span>
-                        <ListItemText
-                          // style={{ width: "30%" }}
-                          primary={applicant.jobTitle}
-                        />
-                      </div>
-                      <div className={classes.ListItemRight}>
-                        <span className={classes.listItemTitle}>
-                          {" "}
-                          Salary Type:
-                        </span>
-                        <ListItemText primary={applicant.salaryType} />
-                      </div>
-                    </ListItem>
-                    {/* <List>
-                      <ListItem>
-                        <span className={classes.listHead}>
-                          Seniority Level:
-                        </span>
-                        <span className={classes.listBody}>
-                          {applicant.senioritylevel}
+                        <span>
+                          {applicant.firstName + " " + applicant.lastName}
                         </span>
                       </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>
-                          Expected Salary($):
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/address--v1.png"
+                          />
                         </span>
-                        <span className={classes.listBody}>
-                          {applicant.expectedSalary}
-                        </span>
+                        <span>{applicant.phone}</span>
                       </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Applied Job:</span>
-                        <span className={classes.listBody}>
-                          {applicant.jobTitle}
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/address--v1.png"
+                          />
                         </span>
+                        <span>{applicant.gmail}</span>
                       </ListItem>
-                      <ListItem>
-                        <span className={classes.listHead}>Message:</span>
-                        <span className={classes.listBody}>
-                          {applicant.message}
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/address--v1.png"
+                          />
                         </span>
+                        <span>{applicant.city + " , " + applicant.state}</span>
+                      </ListItem>
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/calendar--v1.png"
+                          />
+                        </span>
+                        <span>{applicant.postedDate}</span>
                       </ListItem>
                     </List>
-                    <Resume
-                      resume={applicant.resume}
-                      fileType={applicant.resumeFileType}
-                    />
-                    <CoverLetter letter={applicant.coverletter} /> */}
-                    {/* <span className={classes.resumeTitle}>Resume:</span> */}
-                    {/* <embed className={classes.cv} src={file}></embed> */}
                   </div>
                 </div>
-                <span className={classes.resumeTitle}>Resume :</span>
-                <embed className={classes.cv} src={applicant.resume}></embed>
+                <div className={classes.rightDiv}>
+                  <div className={classes.rightTableContectDiv}>
+                    <TabViewApplicant data={applicant} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -502,4 +421,4 @@ const Contracting = () => {
   );
 };
 
-export default Contracting;
+export default ViewApplicantDetail;
