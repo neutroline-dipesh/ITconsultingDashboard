@@ -145,24 +145,25 @@ const useStyle = makeStyles((theme) => ({
   description: {
     padding: "1rem",
   },
+  cv: {
+    width: "100%",
+    height: "100vh",
+  }
 }));
 
 const ExternalViewDetail = () => {
   const classes = useStyle();
 
   const [job, setJob] = useState({
-    city: null,
-    country: null,
-    department: null,
-    description: null,
-    jobId: null,
-    jobSubtitle: null,
+    fullName: null,
+    gmail: null,
+    phone: null,
+    message: null,
+    resume: null,
+    coverletter: null,
     jobType: null,
-    jubTitle: null,
+    status: null,
     postedDate: null,
-    publishedBy: null,
-    state: null,
-    visiblity: null,
     loading: false,
     error: false,
   });
@@ -178,18 +179,15 @@ const ExternalViewDetail = () => {
       .then((res) => {
         console.log(res.data);
         setJob({
-          city: res.data.data[0].city,
-          country: res.data.data[0].country,
-          department: res.data.data[0].department,
-          description: res.data.data[0].description,
-          jobId: res.data.data[0].jobId,
-          jobSubtitle: res.data.data[0].jobSubtitle,
+          fullName: res.data.data[0].fullName,
+          gmail: res.data.data[0].gmail,
+          phone: res.data.data[0].phone,
+          message: res.data.data[0].message,
+          resume: res.data.data[0].resume,
+          coverletter: res.data.data[0].coverletter,
           jobType: res.data.data[0].jobType,
-          jobTitle: res.data.data[0].jobTitle,
+          status: res.data.data[0].status,
           postedDate: res.data.data[0].postedDate,
-          publishedBy: res.data.data[0].publishedBy,
-          state: res.data.data[0].state,
-          visiblity: res.data.data[0].visiblity,
           loading: false,
           error: false,
         });
@@ -226,7 +224,7 @@ const ExternalViewDetail = () => {
               <div className={classes.ContentDateDiv}>
                 <div className={classes.leftDiv}>
                   <div className={classes.lefttableTitleDiv}>
-                    <span className={classes.lefttableTitle}>Job Overview</span>
+                    <span className={classes.lefttableTitle}>Personal Information</span>
                   </div>
                   <div className={classes.leftTableContectDiv}>
                     <List className={classes.listMain}>
@@ -234,31 +232,31 @@ const ExternalViewDetail = () => {
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/40/000000/id-verified.png" />
                         </ListItemAvatar>
-                        <span className={classes.listHead}>Job Id:</span>
-                        <span className={classes.listBody}>{job.jobId}</span>
+                        <span className={classes.listHead}>Full Name:</span>
+                        <span className={classes.listBody}>{job.fullName}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/show-permit-card.png" />
+                          <img src="https://img.icons8.com/color/40/000000/gmail" />
                         </ListItemAvatar>
-                        <span className={classes.listHead}>Job Title:</span>
-                        <span className={classes.listBody}>{job.jobTitle}</span>
+                        <span className={classes.listHead}>Gmail:</span>
+                        <span className={classes.listBody}>{job.gmail}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/worker-id-card.png" />
+                          <img src="https://img.icons8.com/color/40/000000/phone" />
                         </ListItemAvatar>
-                        <span className={classes.listHead}>Job SubTitle:</span>
+                        <span className={classes.listHead}>Phone:</span>
                         <span className={classes.listBody}>
-                          {job.jobSubtitle}
+                          {job.phone}
                         </span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/org-unit.png" />
+                          <img src="https://img.icons8.com/color/40/000000/chat" />
                         </ListItemAvatar>
-                        <span className={classes.listHead}>Department:</span>
-                        <span className={classes.listBody}>{job.jobTitle}</span>
+                        <span className={classes.listHead}>Message:</span>
+                        <span className={classes.listBody}>{job.message}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
@@ -267,7 +265,7 @@ const ExternalViewDetail = () => {
                         <span className={classes.listHead}>Job Type:</span>
                         <span className={classes.listBody}>{job.jobType}</span>
                       </ListItem>
-                      <ListItem>
+                      {/* <ListItem>
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/40/000000/address--v1.png" />
                         </ListItemAvatar>
@@ -275,7 +273,7 @@ const ExternalViewDetail = () => {
                         <span className={classes.listBody}>
                           {job.country + " , " + job.state + " , " + job.city}
                         </span>
-                      </ListItem>
+                      </ListItem> */}
                       <ListItem>
                         <ListItemAvatar>
                           <img src="https://img.icons8.com/color/40/000000/calendar--v1.png" />
@@ -289,20 +287,21 @@ const ExternalViewDetail = () => {
                   </div>
                 </div>
                 <div className={classes.rightDiv}>
-                  {/* <span className={classes.resumeTitle}>Resume:</span> */}
-                  {/* <embed className={classes.cv} src={file}></embed> */}
+                  {/* <span className={classes.resumeTitle}>Resume:</span>
+                  <embed className={classes.cv} src={job.resume}></embed> */}
                   <div className={classes.rightTableTitleDiv}>
                     <span className={classes.rightTableTitle}>
-                      Job Description
+                      Resume
                     </span>
                   </div>
                   <div className={classes.rightTableContectDiv}>
-                    <div
+                  <iframe className={classes.cv} src={job.resume}></iframe>
+                    {/* <div
                       className={classes.description}
                       dangerouslySetInnerHTML={{
                         __html: job.description,
                       }}
-                    ></div>
+                    ></div> */}
                   </div>
                 </div>
               </div>
