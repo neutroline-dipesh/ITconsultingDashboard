@@ -452,6 +452,7 @@ const Contracting = () => {
                         <ListItemText primary={applicant.salaryType} />
                       </div>
                     </ListItem>
+                    
                     {/* <List>
                       <ListItem>
                         <span className={classes.listHead}>
@@ -492,7 +493,8 @@ const Contracting = () => {
                   </div>
                 </div>
                 <span className={classes.resumeTitle}>Resume :</span>
-                <embed className={classes.cv} src={applicant.resume}></embed>
+                <embed className={classes.cv} src= {applicant.resume} ></embed>
+                
               </div>
             </div>
           </div>

@@ -9,7 +9,7 @@ import axios from "axios";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 
@@ -24,6 +24,7 @@ import { useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Box from "@material-ui/core/Box";
+import { data } from "jquery";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -300,7 +301,7 @@ const Editjobs = () => {
 
     onSubmit: (values) => {
       handleSubmit(values);
-      formik.resetForm();
+      formik.resetForm('');
       // history.push("/Alljobs")
     },
     enableReinitialize: true,
@@ -332,6 +333,7 @@ const Editjobs = () => {
         saveFunction();
         console.log("success");
         console.log(res);
+       
       })
       .catch((err) => {
         console.log(err);
@@ -368,6 +370,19 @@ const Editjobs = () => {
             "Your file has been Save.",
             "success"
           );
+          setJob({
+            jobid: '',
+            jobTitle:'',
+            jobSubtitle:'',
+            publishBy: '',
+            department:'',
+            jobType: '',
+            country: '',
+            state: '',
+            city:    '',
+            publish: '',
+            visibility:'',
+          });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
