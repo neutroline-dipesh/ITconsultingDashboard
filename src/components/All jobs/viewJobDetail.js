@@ -71,7 +71,7 @@ const useStyle = makeStyles((theme) => ({
   },
   leftDiv: {
     borderRadius: "5px",
-    width: "40%",
+    width: "30%",
     display: "flex",
     flexDirection: "column",
     marginBottom: "1rem",
@@ -98,17 +98,18 @@ const useStyle = makeStyles((theme) => ({
     height: "3vh",
   },
   listHead: {
-    fontSize: "0.875rem",
+    fontSize: "0.9rem",
     fontWeight: "bold",
     width: "30%",
   },
   listBody: {
     marginLeft: "1rem",
+    fontSize: "0.9rem",
     width: "60%",
   },
   rightDiv: {
     borderRadius: "5px",
-    width: "65%",
+    width: "66.5%",
     display: "flex",
     flexDirection: "column",
     marginLeft: "1rem",
@@ -146,6 +147,9 @@ const useStyle = makeStyles((theme) => ({
   },
   description: {
     padding: "1rem",
+  },
+  icon: {
+    width: "2rem",
   },
 }));
 
@@ -232,21 +236,30 @@ const JobsDetail = () => {
                     <List className={classes.listMain}>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/id-verified.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/id-verified.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Id:</span>
                         <span className={classes.listBody}>{job.jobId}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/show-permit-card.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/show-permit-card.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Title:</span>
                         <span className={classes.listBody}>{job.jobTitle}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/worker-id-card.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/worker-id-card.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job SubTitle:</span>
                         <span className={classes.listBody}>
@@ -255,21 +268,30 @@ const JobsDetail = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/org-unit.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/org-unit.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Department:</span>
                         <span className={classes.listBody}>{job.jobTitle}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/find-matching-job.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/find-matching-job.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Job Type:</span>
                         <span className={classes.listBody}>{job.jobType}</span>
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/address--v1.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/address--v1.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Address:</span>
                         <span className={classes.listBody}>
@@ -278,7 +300,10 @@ const JobsDetail = () => {
                       </ListItem>
                       <ListItem>
                         <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/calendar--v1.png" />
+                          <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/calendar--v1.png"
+                          />
                         </ListItemAvatar>
                         <span className={classes.listHead}>Publish Date:</span>
                         <span className={classes.listBody}>
