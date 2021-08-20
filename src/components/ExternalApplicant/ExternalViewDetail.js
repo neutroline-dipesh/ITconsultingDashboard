@@ -295,7 +295,7 @@ const ExternalViewDetail = () => {
                     </span>
                   </div>
                   <div className={classes.rightTableContectDiv}>
-                  <embed className={classes.cv} src={job.resume}></embed>
+                  <iframe className={classes.cv} src={job.resume}></iframe>
                     {/* <div
                       className={classes.description}
                       dangerouslySetInnerHTML={{

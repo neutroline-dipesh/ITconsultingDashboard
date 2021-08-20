@@ -249,6 +249,7 @@ const Editjobs = () => {
     getJob();
   }, []);
   const [publish, setPublish] = useState(job.publish);
+  
   const getJob = () => {
     axios
       .get("http://localhost:4000/allJobs/" + id)
@@ -370,19 +371,7 @@ const Editjobs = () => {
             "Your file has been Save.",
             "success"
           );
-          setJob({
-            jobid: '',
-            jobTitle:'',
-            jobSubtitle:'',
-            publishBy: '',
-            department:'',
-            jobType: '',
-            country: '',
-            state: '',
-            city:    '',
-            publish: '',
-            visibility:'',
-          });
+         
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel

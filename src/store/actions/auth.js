@@ -90,8 +90,11 @@ export const authCheckState = () => {
         dispatch(logout());
       } else {
         dispatch(authSuccess(token, user));
+        const expirationMilliSec = Math.abs(expirationDate - new Date());
+        const expirationHour = (expirationMilliSec / 36e5);
+        console.log(expirationHour); 
         dispatch(
-          checkAuthTimeout(expirationDate.getHours() - new Date().getHours())
+          checkAuthTimeout(expirationHour)
         );
       }
     }

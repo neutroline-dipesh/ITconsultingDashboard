@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // import { useStyle } from "./LoginElement";
 import { Grid, Button } from "@material-ui/core";
 // import TextField from "@material-ui/core/TextField";
@@ -125,6 +125,10 @@ const useStyle = makeStyles((theme) => ({
 
 //Main funcation
 const Login = (props) => {
+    useEffect(() => {
+      console.log("Test")
+    props.onTryAutoSignup();
+  }, []);
   console.log(props.error);
   const classes = useStyle();
   //for validation
@@ -151,7 +155,7 @@ const Login = (props) => {
 
   let authRedirect = null;
   if (props.isAuthenticated) {
-    authRedirect = <Redirect to={props.redirectPath} />;
+    authRedirect = <Redirect to="dashboard" />;
   }
   return (
     <>
@@ -250,6 +254,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password) => dispatch(actions.auth(email, password)),
+    onTryAutoSignup: () => dispatch(actions.authCheckState()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
