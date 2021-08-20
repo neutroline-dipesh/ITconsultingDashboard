@@ -200,6 +200,7 @@ export default function SimpleTabs(props) {
           <Table
             className={classes.table}
             aria-label="simple table"
+
             // style={{ borderCollapse: "separate", borderSpacing: "0px 10px" }}
           >
             {/* <TableHead>
@@ -213,46 +214,101 @@ export default function SimpleTabs(props) {
             </TableHead> */}
             <TableBody>
               <TableRow
-                style={{
-                  borderBottom: "20px solid #fff",
-
-                  marginBottom: "20px",
-                }}
+                style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row"  style={{textAlign:"center"}}>
                   Applied Job:
                 </TableCell>
-                <TableCell align="left">{props.data.jobTitle}</TableCell>
+                <TableCell  align="left">{props.data.jobTitle}</TableCell>
               </TableRow>
-              <TableRow
-                style={{
-                  marginBottom: "10px",
-                  marginTop: "10px",
-                }}
-              >
-                <TableCell component="th" scope="row" style={{ width: "40%" }}>
-                  Seniority Level:
-                </TableCell>
-                <TableCell align="left">{props.data.senioritylevel}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  Expected Salary($):
-                </TableCell>
-                <TableCell align="left">{props.data.expectedSalary}</TableCell>
+              <TableRow style={{ background: "#F6F7FA" }}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
               </TableRow>
 
-              <TableRow>
-                <TableCell component="th" scope="row">
+              <TableRow
+                style={{ background: "#FFF", borderLeft: "3px solid blue" }}
+              >
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ width: "40%", marginBlockEnd: "20px" , marginTop:"-10px", textAlign:"center"}}
+                >
+                  Seniority Level:
+                </TableCell>
+                <TableCell  align="left">{props.data.senioritylevel}</TableCell>
+              </TableRow>
+              <TableRow style={{ background: "#F6F7FA",  }}>
+                <TableCell
+                                  height="1px"
+
+                  component="th"
+                  scope="row"
+                  style={{ border: "none", height:"2px" }}
+                ></TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  height="1px"
+                  style={{ border: "none", height:"2px" }}
+                ></TableCell>
+              </TableRow>
+              <TableRow
+                style={{ background: "#FFF", borderLeft: "3px solid blue",  }}
+              >
+                <TableCell component="th" scope="row" style={{textAlign:"center"}}>
+                  Expected Salary($):
+                </TableCell>
+                <TableCell align="left" >{props.data.expectedSalary} </TableCell>
+              </TableRow>
+              <TableRow style={{ background: "#F6F7FA" }}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+              </TableRow>
+              <TableRow
+                style={{ background: "#FFF", borderLeft: "3px solid blue" }}
+              >
+                <TableCell  style={{textAlign:"center"}} component="th" scope="row">
                   Salary Type:
                 </TableCell>
-                <TableCell align="left">{props.data.salaryType}</TableCell>
+                <TableCell  align="left">{props.data.salaryType}</TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
+              
+              <TableRow style={{ background: "#F6F7FA" }}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+              </TableRow>
+              <TableRow
+                style={{ background: "#FFF", borderLeft: "3px solid blue" }}
+              >
+                <TableCell  style={{textAlign:"center"}}component="th" scope="row">
                   Message:
                 </TableCell>
-                <TableCell align="left">{props.data.message}</TableCell>
+                <TableCell  align="left">{props.data.message}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -268,9 +324,7 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-        >
-          {" "}
-        </iframe>
+        ></iframe>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <iframe
