@@ -20,14 +20,8 @@ import { FaEdit } from "react-icons/fa";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
-import { CgAddR } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
-import { allJobsData } from "./alljobsData";
-import ReactHtmlParser, {
-  processNodes,
-  convertNodeToElement,
-  htmlparser2,
-} from "react-html-parser";
+
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -165,9 +159,7 @@ const Alljobs = (props) => {
 
   const classes = useStyle();
   useEffect(() => {
-    $(document).ready(function () {
       $("#example").DataTable();
-    });
   });
 
   //alert message
@@ -178,10 +170,7 @@ const Alljobs = (props) => {
       }
     });
   };
-  const editDataFunction = (id) => {
-    console.log(id, "esma id aaux edit dabauda");
-    props.history.push("./EditJobs/" + id);
-  };
+
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {

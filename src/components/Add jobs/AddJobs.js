@@ -257,7 +257,7 @@ const Addjobs = () => {
 
     onSubmit: (values) => {
       handleSubmit(values);
-      formik.resetForm();
+      // formik.resetForm();
       // history.push("/Alljobs")
     },
   });
@@ -271,7 +271,8 @@ const Addjobs = () => {
 
   // console.log(ckeditorContent);
   const handleSubmit = (values) => {
-    const job = {
+
+            const job = {
       jobTitle: values.jobTitle,
       jobSubtitle: values.jobSubTitle,
       department: values.department,
@@ -284,24 +285,6 @@ const Addjobs = () => {
       visibility: publish,
       workType: workType,
     };
-    console.log(job);
-    // console.log(headers);
-
-    axios
-      .post("http://localhost:4000/allJobs/", job, { headers })
-      .then((res) => {
-        saveFunction();
-        console.log("success");
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("unsuccessful");
-      });
-  };
-
-  //alert message
-  const saveFunction = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success mx-2",
@@ -322,11 +305,27 @@ const Addjobs = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
+              axios
+      .post("http://localhost:4000/allJobs/", job, { headers })
+      .then((res) => {
+        console.log("success");
+        console.log(res);
           swalWithBootstrapButtons.fire(
             "Save!",
             "Your file has been Save.",
             "success"
           );
+      })
+      .catch((err) => {
+        console.log(err);
+                  swalWithBootstrapButtons.fire(
+            "Error!",
+            "Something went wrong.",
+            "Failed"
+          );
+        console.log("unsuccessful");
+      });
+
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -339,6 +338,10 @@ const Addjobs = () => {
         }
       });
   };
+
+
+
+  //alert message
   //for switch button (publish)
   const [state, setState] = React.useState();
   const handleChange = (event) => {
