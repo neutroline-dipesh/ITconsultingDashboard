@@ -65,13 +65,15 @@ const useStyles = makeStyles((theme) => ({
   },
   toogleButton: {
     // marginRight: "2rem",
-    height: "5vh",
+    height: "4vh",
     // border: "solid 1px ",
-    marginTop: "0.5rem",
+    marginTop: "0.7rem",
     marginLeft: "5rem",
   },
   acceptToggleBtn: {
     backgroundColor: "#28A745",
+    fontSize: "0.7rem",
+
     color: "#fff",
     "&:hover": {
       backgroundColor: "#1f7a1f",
@@ -84,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
   rejectToggleBtn: {
     marginLeft: "15px",
+    fontSize: "0.7rem",
     backgroundColor: "#DC3545",
     color: "#fff",
     "&:hover": {
@@ -93,6 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
   blacklistToggleBtn: {
     backgroundColor: "#FFC107",
+    fontSize: "0.7rem",
     color: "#fff",
     "&:hover": {
       backgroundColor: "#b38f00",
@@ -115,8 +119,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// const theme = createMuiTheme({
+//   overrides: {
+//     MuiTable: {
+//       root: {
+//         borderCollapse: "separate",
+//         borderSpacing: "0 10px",
+//         marginTop: "-10px",
+//       },
+//     },
+//     MuiTableRow: {
+//       root: {
+//         borderRadius: 40,
+//         border: "2px solid",
+//         backgroundColor: "green",
+//       },
+//     },
+//   },
+// });
+
 export default function SimpleTabs(props) {
   const classes = useStyles();
+  // const theme = createMuiTheme();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -173,7 +197,11 @@ export default function SimpleTabs(props) {
 
       <TabPanel value={value} index={0}>
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
+          <Table
+            className={classes.table}
+            aria-label="simple table"
+            // style={{ borderCollapse: "separate", borderSpacing: "0px 10px" }}
+          >
             {/* <TableHead>
               <TableRow>
                 <TableCell>Dessert (100g serving)</TableCell>
@@ -184,14 +212,25 @@ export default function SimpleTabs(props) {
               </TableRow>
             </TableHead> */}
             <TableBody>
-              <TableRow>
+              <TableRow
+                style={{
+                  borderBottom: "20px solid #fff",
+
+                  marginBottom: "20px",
+                }}
+              >
                 <TableCell component="th" scope="row">
                   Applied Job:
                 </TableCell>
                 <TableCell align="left">{props.data.jobTitle}</TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row" style={{ width: "30%" }}>
+              <TableRow
+                style={{
+                  marginBottom: "10px",
+                  marginTop: "10px",
+                }}
+              >
+                <TableCell component="th" scope="row" style={{ width: "40%" }}>
                   Seniority Level:
                 </TableCell>
                 <TableCell align="left">{props.data.senioritylevel}</TableCell>
