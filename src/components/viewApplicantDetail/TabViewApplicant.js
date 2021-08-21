@@ -213,11 +213,12 @@ export default function SimpleTabs(props) {
             </TableHead> */}
             <TableBody>
               <TableRow
-                style={{
-                  borderBottom: "20px solid #fff",
-
-                  marginBottom: "20px",
-                }}
+                style={
+                  {
+                    // borderBottom: "20px solid #fff",
+                    // marginBottom: "20px",
+                  }
+                }
               >
                 <TableCell component="th" scope="row">
                   Applied Job:
