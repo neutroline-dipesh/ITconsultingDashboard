@@ -58,9 +58,9 @@ const useStyle = makeStyles((theme) => ({
     // display: "flex",
     // justifyContent: "center",
     paddingTop: "0.4rem",
-    [theme.breakpoints.down("md")]: {
-      width: "23.5%",
-    },
+    //  [theme.breakpoints.down("md")]: {
+    //    width: "23.5%",
+    //  },
   },
 
   footerSidebar: {

@@ -9,7 +9,7 @@ import axios from "axios";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 
@@ -24,6 +24,7 @@ import { useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Box from "@material-ui/core/Box";
+import { data } from "jquery";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -248,6 +249,7 @@ const Editjobs = () => {
     getJob();
   }, []);
   const [publish, setPublish] = useState(job.publish);
+  
   const getJob = () => {
     axios
       .get("http://localhost:4000/allJobs/" + id)
@@ -300,7 +302,7 @@ const Editjobs = () => {
 
     onSubmit: (values) => {
       handleSubmit(values);
-      formik.resetForm();
+      formik.resetForm('');
       // history.push("/Alljobs")
     },
     enableReinitialize: true,
@@ -332,6 +334,7 @@ const Editjobs = () => {
         saveFunction();
         console.log("success");
         console.log(res);
+       
       })
       .catch((err) => {
         console.log(err);
@@ -368,6 +371,7 @@ const Editjobs = () => {
             "Your file has been Save.",
             "success"
           );
+         
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -420,7 +424,7 @@ const Editjobs = () => {
                   <span className={classes.lefttableTitle}>
                     Job Information
                   </span>
-                  {/* <div className={classes.jobTypeRadio}>
+                  <div className={classes.jobTypeRadio}>
                     <RadioGroup
                       row
                       aria-label="position"
@@ -438,7 +442,7 @@ const Editjobs = () => {
                         label="Contract"
                       />
                     </RadioGroup>
-                  </div> */}
+                  </div>
                 </div>{" "}
                 <form className={classes.form} onSubmit={formik.handleSubmit}>
                   <div className={classes.formDiv}>
