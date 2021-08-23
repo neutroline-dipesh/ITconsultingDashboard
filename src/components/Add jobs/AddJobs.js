@@ -21,7 +21,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -268,11 +269,9 @@ const Addjobs = () => {
   const [ckeditorContent, setCkeditorContent] = useState("");
   const [publish, setPublish] = useState("Not Publish");
   const [workType, setWorkType] = useState("Internal");
-
   // console.log(ckeditorContent);
   const handleSubmit = (values) => {
-
-            const job = {
+    const job = {
       jobTitle: values.jobTitle,
       jobSubtitle: values.jobSubTitle,
       department: values.department,
@@ -285,61 +284,24 @@ const Addjobs = () => {
       visibility: publish,
       workType: workType,
     };
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
-      },
-      buttonsStyling: false,
-    });
+    const notify = () => {
+      toast.success("Job posted successfully");
+      Array.from(document.querySelectorAll("input")).forEach(
+        input => (input.value = "")
+      );
+    
+    };
 
-    swalWithBootstrapButtons
-      .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, Save it!",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-              axios
+    axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
         console.log("success");
-        console.log(res);
-          swalWithBootstrapButtons.fire(
-            "Save!",
-            "Your file has been Save.",
-            "success"
-          );
-      })
-      .catch((err) => {
-        console.log(err);
-                  swalWithBootstrapButtons.fire(
-            "Error!",
-            "Something went wrong.",
-            "Failed"
-          );
-        console.log("unsuccessful");
-      });
-
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            "Cancelled",
-            "Your imaginary file is safe :)",
-            "error"
-          );
+       
+        {
+          notify();
         }
       });
   };
-
-
 
   //alert message
   //for switch button (publish)
@@ -608,6 +570,17 @@ const Addjobs = () => {
                         >
                           Save
                         </button>
+                        <ToastContainer
+                          position="bottom-right"
+                          autoClose={2000}
+                          hideProgressBar={false}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                        />
                       </div>
                     </div>
                   </div>
