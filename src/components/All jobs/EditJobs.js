@@ -334,6 +334,12 @@ const Editjobs = () => {
         saveFunction();
         console.log("success");
         console.log(res);
+        Array.from(document.querySelectorAll("input")).forEach(
+          input => (input.value = "")
+        );
+        this.setJob({
+          itemvalues: [{}]
+        });
        
       })
       .catch((err) => {
