@@ -23,7 +23,7 @@ import External from "./components/ExternalApplicant/External";
 import ExternalViewDetail from "./components/ExternalApplicant/ExternalViewDetail";
 function App(props) {
   const token = localStorage.getItem("token");
-  const isAuthenticated = token !== null;
+  const isAuthenticated = token !== null; 
 
   return (
     <Switch>
