@@ -214,23 +214,14 @@ export default function SimpleTabs(props) {
             </TableHead> */}
             <TableBody>
               <TableRow
-<<<<<<< HEAD
-                style={
-                  {
-                    // borderBottom: "20px solid #fff",
-                    // marginBottom: "20px",
-                  }
-                }
-=======
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
->>>>>>> b96f6229b1c52e1393b687ee251b6db9eb3a320b
               >
                 <TableCell component="th" scope="row"  style={{textAlign:"center"}}>
                   Applied Job:
                 </TableCell>
                 <TableCell  align="left">{props.data.jobTitle}</TableCell>
               </TableRow>
-              <TableRow style={{ background: "#F6F7FA" }}>
+              <TableRow style={{ background: "#F6F7FA", }}>
                 <TableCell
                   component="th"
                   scope="row"
