@@ -226,6 +226,7 @@ const ViewApplicantDetail = () => {
   const classes = useStyle();
   let { id } = useParams();
   const [applicant, setApplicant] = useState({
+    id: null,
     firstName: null,
     lastName: null,
     phone: null,
@@ -260,6 +261,7 @@ const ViewApplicantDetail = () => {
       .then((response) => {
         // console.log(response.data.data[0]);
         setApplicant({
+          id: response.data.data[0].id,
           firstName: response.data.data[0].firstName,
           lastName: response.data.data[0].lastName,
           phone: response.data.data[0].phone,
