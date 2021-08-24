@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 import * as actions from "../../store/actions";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -13,12 +13,11 @@ import Zoom from "@material-ui/core/Zoom";
 import { Link, useHistory } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 
-
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
     width: "100%",
-  }, 
+  },
   maindiv: {
     paddingTop: "8vh",
   },
@@ -141,26 +140,28 @@ const Alljobs = (props) => {
   const [loading, setLoading] = useState(false);
   const [tableData, setTableData] = useState();
   useEffect(() => {
-      fetchAllData();
-      console.log(data1);
+    fetchAllData();
+    console.log(data1);
   }, []);
   console.log(data1);
-
 
   const classes = useStyle();
   //alert message
   const fetchAllData = () => {
     setLoading(true);
-    axios.get("http://localhost:4000/allJobs/").then((response) => {
-      if (response.data) {
-        setData1(response.data.data);
+    axios
+      .get("http://localhost:4000/allJobs/")
+      .then((response) => {
+        if (response.data) {
+          setData1(response.data.data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
         setLoading(false);
-      }
-    }).catch((error)=>{
-      console.log(error);
-      setLoading(false);
-  });
-}
+      });
+  };
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -224,7 +225,7 @@ const Alljobs = (props) => {
     <>
       <Sidebar />
       <div className={classes.root}>
-    <div className={classes.maindiv}>
+        <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
@@ -243,54 +244,55 @@ const Alljobs = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-    <MaterialTable
-    title="Job Lists"
-      columns={[
-            { title: 'Job Id', field: 'jobId' },
-            { title: 'Job Title', field: 'jobTitle' },
-            { title: 'Department', field: 'department' },
-            { title: 'Job Type', field: 'jobType' },
-            { title: 'Address', field: 'country' },
-            { title: 'Published By', field: 'publishBy' },
-            { title: 'Visibility', field: 'visibility' },
-            { title:'id', field: 'id',hidden:true}
-            // { title: 'Action', field: 'action' }
-      ]}
-      data={data1} 
-      options={{
-        headerStyle: {
-              backgroundColor: "#4e73df",
-              color: "#fff",
-              fontWeight: "400",
-              whiteSpace: "nowrap",
-              position: "sticky",
-        },
-        actionsColumnIndex: -1
-      }} 
-      isLoading={loading}    
-      actions={[
-        {
-          icon:() => <VisibilityIcon/>,
-          tooltip: 'View Job',
-          onClick: (event, rowData) => history.push(`/job-detail/${rowData.id}`)
-        },
-        {
-          icon: 'edit',
-          tooltip: 'Edit Job',
-          onClick: (event, rowData) => history.push(`/alljobs/edit-job/${rowData.id}`)
-        },
-        {
-          icon: 'delete',
-          tooltip: 'Delete Job',
-          onClick: (event, rowData) => deletFunction(rowData.id)
-        }
-      ]}
-    />
+                <MaterialTable
+                  title="Job Lists"
+                  columns={[
+                    { title: "Job Id", field: "jobId" },
+                    { title: "Job Title", field: "jobTitle" },
+                    { title: "Department", field: "department" },
+                    { title: "Job Type", field: "jobType" },
+                    { title: "Address", field: "country" },
+                    { title: "Published By", field: "publishBy" },
+                    { title: "Visibility", field: "visibility" },
+                    { title: "id", field: "id", hidden: true },
+                    // { title: 'Action', field: 'action' }
+                  ]}
+                  data={data1}
+                  options={{
+                    headerStyle: {
+                      backgroundColor: "#4e73df",
+                      color: "#fff",
+                      fontWeight: "400",
+                      whiteSpace: "nowrap",
+                      position: "sticky",
+                    },
+                    actionsColumnIndex: -1,
+                  }}
+                  isLoading={loading}
+                  actions={[
+                    {
+                      icon: () => <VisibilityIcon />,
+                      tooltip: "View Job",
+                      onClick: (event, rowData) =>
+                        history.push(`/job-detail/${rowData.id}`),
+                    },
+                    {
+                      icon: "edit",
+                      tooltip: "Edit Job",
+                      onClick: (event, rowData) =>
+                        history.push(`/alljobs/edit-job/${rowData.id}`),
+                    },
+                    {
+                      icon: "delete",
+                      tooltip: "Delete Job",
+                      onClick: (event, rowData) => deletFunction(rowData.id),
+                    },
+                  ]}
+                />
               </div>
             </div>
           </div>
-        </div> 
-      
+        </div>
       </div>
     </>
   );
