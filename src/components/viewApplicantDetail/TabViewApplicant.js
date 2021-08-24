@@ -246,7 +246,7 @@ export default function SimpleTabs(props) {
                 </TableCell>
                 <TableCell align="left">{props.data.jobTitle}</TableCell>
               </TableRow>
-              <TableRow style={{ background: "#F6F7FA" }}>
+              <TableRow style={{ background: "#F6F7FA", }}>
                 <TableCell
                   component="th"
                   scope="row"

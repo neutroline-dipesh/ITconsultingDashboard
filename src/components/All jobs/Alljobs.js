@@ -3,23 +3,14 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-//Bootstrap and jQuery libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables";
-import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+import MaterialTable from 'material-table';
 import * as actions from "../../store/actions";
 import axios from "axios";
 import { connect } from "react-redux";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { FaEdit } from "react-icons/fa";
-
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 
 
@@ -27,7 +18,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
     width: "100%",
-  },
+  }, 
   maindiv: {
     paddingTop: "8vh",
   },
@@ -145,23 +136,15 @@ const useStyle = makeStyles((theme) => ({
 }));
 const Alljobs = (props) => {
   //getting data from database
+  const history = useHistory();
   const [data1, setData1] = useState([]);
   useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
       fetchAllData();
-    }, 100);
   }, []);
   console.log(data1);
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data1]);
+
 
   const classes = useStyle();
-  useEffect(() => {
-      $("#example").DataTable();
-  });
-
   //alert message
   const fetchAllData = () => {
     axios.get("http://localhost:4000/allJobs/").then((response) => {
@@ -233,7 +216,7 @@ const Alljobs = (props) => {
     <>
       <Sidebar />
       <div className={classes.root}>
-        <div className={classes.maindiv}>
+    <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
@@ -252,107 +235,54 @@ const Alljobs = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <table
-                  id="example"
-                  data-ordering="false"
-                  className={classes.dataTable + " " + "table"}
-                >
-                  <thead>
-                    <tr>
-                      {/* <th className={classes.tableHead}>SN</th> */}
-                      <th className={classes.tableHead}>Job ID</th>
-                      <th className={classes.tableHead}>Job Title</th>
-                      <th className={classes.tableHead}>Department</th>
-                      <th className={classes.tableHead}>Job Type</th>
-                      {/* <th className={classes.tableHead}>Country</th> */}
-                      <th className={classes.tableHead}>Address</th>
-                      <th className={classes.tableHead}>Published By</th>
-                      <th className={classes.tableHead}>Visibility</th>
-                      <th className={classes.tableHead}>Action</th>
-                      {/* <th className={classes.tableHead}>Description</th> */}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data1.map((item, key) => {
-                      return (
-                        <tr key={key}>
-                          <td className={classes.tableBody}>{item.jobId}</td>
-                          <td className={classes.tableBody}>{item.jobTitle}</td>
-                          <td className={classes.tableBody}>
-                            {item.department}
-                          </td>
-                          <td className={classes.tableBody}>{item.jobType}</td>
-                          <td className={classes.tableBody}>
-                            {item.state} , {item.city}
-                          </td>
-                          <td className={classes.tableBody}>
-                            {item.publishBy}
-                          </td>
-                          <td
-                            className={
-                              item.visibility == "Publish"
-                                ? classes.seenColor
-                                : classes.notColor + " " + classes.tableBody
-                            }
-                          >
-                            {item.visibility}
-                          </td>
-                          <td>
-                            <div className={classes.buttomDiv}>
-                              <Tooltip
-                                title="View"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link to={`/job-detail/${item.id}`}>
-                                  <VisibilityIcon
-                                    className={classes.viewButton}
-                                  />
-                                </Link>
-                              </Tooltip>
-
-                              <Tooltip
-                                title="Edit"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link to={`/alljobs/edit-job/${item.id}`}>
-                                  <FaEdit className={classes.editButton} />
-                                </Link>
-                              </Tooltip>
-
-                              <Tooltip
-                                title="Delete"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link>
-                                  <RiDeleteBin6Fill
-                                    className={classes.deleteButton}
-                                    onClick={() => deletFunction(item.id)}
-                                  />
-                                </Link>
-                              </Tooltip>
-                            </div>
-                          </td>
-                          {/* <td>
-                            {" "}
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: item.description,
-                              }}
-                            ></div>
-                            <div>{ReactHtmlParser(item.description)}</div>
-                          </td> */}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+    <MaterialTable
+    title="Job Lists"
+      columns={[
+            { title: 'Job Id', field: 'jobId' },
+            { title: 'Job Title', field: 'jobTitle' },
+            { title: 'Department', field: 'department' },
+            { title: 'Job Type', field: 'jobType' },
+            { title: 'Address', field: 'country' },
+            { title: 'Published By', field: 'publishBy' },
+            { title: 'Visibility', field: 'visibility' },
+            { title:'id', field: 'id',hidden:true}
+            // { title: 'Action', field: 'action' }
+      ]}
+      data={data1}
+      options={{
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      // isLoading={true}    
+      actions={[
+        {
+          icon:() => <VisibilityIcon/>,
+          tooltip: 'View Job',
+          onClick: (event, rowData) => history.push(`/job-detail/${rowData.id}`)
+        },
+        {
+          icon: 'edit',
+          tooltip: 'Edit Job',
+          onClick: (event, rowData) => history.push(`/alljobs/edit-job/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Job',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
               </div>
             </div>
           </div>
-        </div>
+        </div> 
+      
       </div>
     </>
   );
