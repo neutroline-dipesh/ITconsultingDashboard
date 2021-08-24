@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import axios from "axios";
-
-//Bootstrap and jQuery libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables";
-import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { internalData } from "./internalData";
 
 const useStyle = makeStyles((theme) => ({
@@ -125,30 +117,16 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Internal = (props) => {
-  // console.log(props.token);
+  const history = useHistory();
+    const classes = useStyle();
 
   // getting data from database
   const [data1, setData1] = useState([]);
   useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
       fetchData();
-    }, 100);
   }, []);
   console.log(data1);
-  useEffect(() => {
-    $("#example").DataTable();
-    console.log(data1);
-  }, [data1]);
 
-  const classes = useStyle();
-  useEffect(() => {
-    $(document).ready(function () {
-      $("#example").DataTable();
-    });
-  });
-
-  //alert message
 
   const fetchData = () => {
     axios
@@ -217,7 +195,6 @@ const Internal = (props) => {
           );
         }
       });
-    $("#example").DataTable();
   };
 
   return (
@@ -231,147 +208,41 @@ const Internal = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <table
-                  id="example"
-                  data-ordering="false"
-                  className={classes.dataTable + " " + "table "}
-                >
-                  <thead>
-                    <tr>
-                      <th className={classes.tableHead}>Job Title</th>
-
-                      <th className={classes.tableHead}>Name</th>
-
-                      <th className={classes.tableHead}>Email</th>
-                      {/* <th className={classes.tableHead}>Phone</th> */}
-                      <th className={classes.tableHead}>Applied Date</th>
-
-                      {/* <th className={classes.tableHead}>Status</th> */}
-                      <th className={classes.tableHead}>Approvel Status</th>
-
-                      <th className={classes.tableHead}>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data1.map((item, key) => {
-                      return (
-                        <tr>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.jobTitle}
-                          </td>
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.firstName + " " + item.lastName}
-                          </td>
-
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.gmail}
-                          </td>
-
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            {item.postedDate}
-                          </td>
-
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                            style={{
-                              color:
-                                item.approvelStatus === "Accept"
-                                  ? "#24803c"
-                                  : item.approvelStatus === "Reject"
-                                  ? "#e60000"
-                                  : item.approvelStatus === "Hold"
-                                  ? "#FFC107"
-                                  : "black",
-                              fontWeight: "500",
-                            }}
-                          >
-                            {item.approvelStatus}
-                          </td>
-
-                          <td
-                            className={
-                              item.status == "seen"
-                                ? classes.seenColor
-                                : classes.noColor
-                            }
-                          >
-                            <div className={classes.buttomDiv}>
-                              {/* <Button
-                                className={classes.viewButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                              >
-                                View
-                              </Button>
-
-                              <Button
-                                className={classes.deleteButton}
-                                variant="contained"
-                                color="primary"
-                                href="#contained-buttons"
-                                onClick={() => deletFunction()}
-                              >
-                                delete
-                              </Button> */}
-                              <Tooltip
-                                title="View"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link to={`/applicant-detail/${item.id}`}>
-                                  <VisibilityIcon
-                                    className={classes.viewButton}
-                                  />
-                                </Link>
-                              </Tooltip>
-                              <Tooltip
-                                title="Detete"
-                                TransitionComponent={Zoom}
-                                arrow
-                              >
-                                <Link>
-                                  <RiDeleteBin6Fill
-                                    className={classes.deleteButton}
-                                    onClick={() => deletFunction(item.id)}
-                                  />
-                                </Link>
-                              </Tooltip>
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                <MaterialTable
+                    title="Internal Applicants"
+                      columns={[
+                            { title: 'Job Title', field: 'jobTitle' },
+                            { title: 'Name', field: 'firstName'},
+                            { title: 'Email', field: 'gmail' },
+                            { title: 'Applied Date', field: 'postedDate' },
+                            { title: 'Approval Status', field: 'approvelStatus' },
+                            // { title: 'Action', field: 'action' }
+                      ]}
+                  data={data1}
+      options={{
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      // isLoading={true}    
+      actions={[
+        {
+          icon:() => <VisibilityIcon/>,
+          tooltip: 'View Applicant',
+          onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Applicant',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
               </div>
             </div>
           </div>

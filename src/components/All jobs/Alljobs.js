@@ -138,8 +138,11 @@ const Alljobs = (props) => {
   //getting data from database
   const history = useHistory();
   const [data1, setData1] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [tableData, setTableData] = useState();
   useEffect(() => {
       fetchAllData();
+      console.log(data1);
   }, []);
   console.log(data1);
 
@@ -147,12 +150,17 @@ const Alljobs = (props) => {
   const classes = useStyle();
   //alert message
   const fetchAllData = () => {
+    setLoading(true);
     axios.get("http://localhost:4000/allJobs/").then((response) => {
       if (response.data) {
         setData1(response.data.data);
+        setLoading(false);
       }
-    });
-  };
+    }).catch((error)=>{
+      console.log(error);
+      setLoading(false);
+  });
+}
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -248,7 +256,7 @@ const Alljobs = (props) => {
             { title:'id', field: 'id',hidden:true}
             // { title: 'Action', field: 'action' }
       ]}
-      data={data1}
+      data={data1} 
       options={{
         headerStyle: {
               backgroundColor: "#4e73df",
@@ -259,7 +267,7 @@ const Alljobs = (props) => {
         },
         actionsColumnIndex: -1
       }} 
-      // isLoading={true}    
+      isLoading={loading}    
       actions={[
         {
           icon:() => <VisibilityIcon/>,
