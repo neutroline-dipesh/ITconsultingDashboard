@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
 import axios from "axios";
-//Bootstrap and jQuery libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables";
-import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
+import MaterialTable from "material-table";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const useStyle = makeStyles((theme) => ({
@@ -110,6 +103,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Employers = (props) => {
+  const classes = useStyle();
   const [data, setData] = useState([]);
   const [seen, setSeen] = useState(false);
   const handState = () => {
@@ -121,23 +115,8 @@ const Employers = (props) => {
   //getting data from database start
 
   useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
       fetchContactData();
-      console.log(data);
-    }, 100);
-  }, []);
-
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data]);
-
-  const classes = useStyle();
-  useEffect(() => {
-    $(document).ready(function () {
-      $("#example").DataTable();
-    });
-  });
+    },[]);
 
   //alert message
   const fetchContactData = () => {
@@ -222,23 +201,61 @@ const Employers = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <table
+                  <MaterialTable
+                    title="Employers"
+                      columns={[
+                            { title: 'Name', field: 'firstName'},
+                            { title: 'Email', field: 'email' },
+                            { title: 'Phone', field: 'phone'},
+                            { title: 'Company Name', field: 'companyName'},
+                            { title: 'Job Type', field: 'jobTitle'},
+                            { title: 'Address', field: 'country' },
+                            { title: 'Date', field: 'postedDate' },
+                          ]}
+                  data={data}
+      options={{
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      // isLoading={true}    
+      actions={[
+        {
+          icon:(rowData) =>                
+          <ViewDetail
+                data={rowData}
+                handleState={handState}
+          />,
+          icon: 'save',
+          tooltip: 'View Employers',
+          onClick: (event, rowData) => console.log(rowData)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Employers',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
+                {/* <table
                   id="example"
                   data-ordering="false"
                   className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
-                      {/* <th className={classes.tableHead}>ID</th> */}
                       <th className={classes.tableHead}>Name</th>
-
                       <th className={classes.tableHead}>Email</th>
                       <th className={classes.tableHead}>Phone</th>
                       <th className={classes.tableHead}>Company Name</th>
                       <th className={classes.tableHead}>Job Type</th>
                       <th className={classes.tableHead}>Address</th>
                       <th className={classes.tableHead}>Date</th>
-
                       <th className={classes.tableHead}>Action</th>
                     </tr>
                   </thead>
@@ -332,7 +349,7 @@ const Employers = (props) => {
                       );
                     })}
                   </tbody>
-                </table>
+                </table> */}
               </div>
             </div>
           </div>
