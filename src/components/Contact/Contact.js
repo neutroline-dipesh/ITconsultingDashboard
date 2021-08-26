@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import MaterialTable from "material-table";
 import Swal from "sweetalert2";
 import ViewDetail from "./ViewDetail";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
 import axios from "axios";
-//Bootstrap and jQuery libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables";
-import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
-import { RiDeleteBin6Fill } from "react-icons/ri";
-import { contactData } from "./contactDate";
+import { useHistory } from "react-router";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -111,15 +103,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
-  // const [data, setData] = useState({
-  //   id: "",
-  //   fullName: "",
-  //   email: "",
-  //   phone: "",
-  //   city: "",
-  //   country: "",
-  //   postedDate: "",
-  // });
+ const history = useHistory();
   const [data, setData] = useState([]);
   const [seen, setSeen] = useState(false);
   const handState = () => {
@@ -127,30 +111,10 @@ const Contact = (props) => {
     fetchContactData();
     // console.log(seen);
   };
-  // useEffect(() => {
-  //   fetchContactData();
-  // }, [seen]);
-
-  //getting data from database start
-
   useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
       fetchContactData();
-      console.log(data);
-    }, 100);
   }, []);
-
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data]);
-
   const classes = useStyle();
-  useEffect(() => {
-    $(document).ready(function () {
-      $("#example").DataTable();
-    });
-  });
 
   //alert message
   const fetchContactData = () => {
@@ -235,14 +199,52 @@ const Contact = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <table
+                <MaterialTable
+                    title="Contact"
+                      columns={[
+                            { title: 'Name', field: 'fullName'},
+                            { title: 'Email', field: 'email' },
+                            { title: 'Phone', field: 'phone'},
+                            { title: 'Address', field: 'country' },
+                            { title: 'Date', field: 'postedDate' },
+                            // { title: 'Action', field: 'action' }
+                      ]}
+                  data={data}
+      options={{
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      // isLoading={true}    
+      actions={[
+        {
+          icon:(rowData) =>                
+          <ViewDetail
+                data={rowData}
+                handleState={handState}
+          />,
+          tooltip: 'View Applicant',
+          // onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Applicant',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
+                {/* <table
                   id="example"
                   data-ordering="false"
                   className={classes.dataTable + " " + "table"}
                 >
                   <thead>
                     <tr>
-                      {/* <th className={classes.tableHead}>ID</th> */}
                       <th className={classes.tableHead}>Name</th>
 
                       <th className={classes.tableHead}>Email</th>
@@ -329,7 +331,7 @@ const Contact = (props) => {
                       );
                     })}
                   </tbody>
-                </table>
+                </table> */}
               </div>
             </div>
           </div>

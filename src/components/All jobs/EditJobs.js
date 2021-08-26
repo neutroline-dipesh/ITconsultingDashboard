@@ -25,6 +25,7 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Box from "@material-ui/core/Box";
 import { data } from "jquery";
+import { ToastContainer, toast } from "react-toastify";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -331,9 +332,15 @@ const Editjobs = () => {
     axios
       .patch("http://localhost:4000/allJobs/" + id, jobData, { headers })
       .then((res) => {
-        saveFunction();
+        toast.success("Job edited successfully");
         console.log("success");
         console.log(res);
+        Array.from(document.querySelectorAll("input")).forEach(
+          input => (input.value = "")
+        );
+        this.setJob({
+          itemvalues: [{}]
+        });
        
       })
       .catch((err) => {
@@ -344,46 +351,8 @@ const Editjobs = () => {
 
   console.log(job.visibility);
 
-  // alert message
-  const saveFunction = () => {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, Save it!",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            "Save!",
-            "Your file has been Save.",
-            "success"
-          );
-         
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            "Cancelled",
-            "Your imaginary file is safe :)",
-            "error"
-          );
-        }
-      });
-  };
+ 
+  
   // for switch button (publish)
   const [state, setState] = React.useState();
 
@@ -654,6 +623,17 @@ const Editjobs = () => {
                         >
                           Update
                         </button>
+                        <ToastContainer
+                          position="bottom-right"
+                          autoClose={2000}
+                          hideProgressBar={false}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                        />
                       </div>
                     </div>
                   </div>

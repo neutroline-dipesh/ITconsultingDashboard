@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import MaterialTable from 'material-table';
 import Swal from "sweetalert2";
-
-//Bootstrap and jQuery libraries
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-//Datatable Modules
-import "datatables.net-dt/js/dataTables.dataTables";
-import "datatables.net-dt/css/jquery.dataTables.min.css";
-import $ from "jquery";
-import { allApplicantData } from "./allApplicantData";
-
-import { RiDeleteBin6Fill } from "react-icons/ri";
-import { AiOutlineFundView } from "react-icons/ai";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import Tooltip from "@material-ui/core/Tooltip";
-import Zoom from "@material-ui/core/Zoom";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const useStyle = makeStyles((theme) => ({
@@ -127,7 +113,8 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Contracting = () => {
+const Allapplicant = () => {
+  const history = useHistory();
   const [data1, setData1] = useState([]);
 
   //getting data from database
@@ -139,24 +126,11 @@ const Contracting = () => {
     });
   };
   useEffect(() => {
-    setTimeout(() => {
-      $("#example").DataTable().destroy();
       fetchData();
-    }, 100);
   }, []);
-  // console.log(data1);
-  useEffect(() => {
-    $("#example").DataTable();
-  }, [data1]);
+
 
   const classes = useStyle();
-
-  useEffect(() => {
-    $(document).ready(function () {
-      $("#example").DataTable();
-    });
-  });
-
   //delete confirmation message
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -230,7 +204,42 @@ const Contracting = () => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <table
+                <MaterialTable
+                    title="Applicants Lists"
+                      columns={[
+                            { title: 'Job Title', field: 'jobTitle' },
+                            { title: 'Name', field: 'firstName'},
+                            { title: 'Email', field: 'gmail' },
+                            { title: 'Applied Date', field: 'postedDate' },
+                            { title: 'Approval Status', field: 'approvelStatus' },
+                            // { title: 'Action', field: 'action' }
+                      ]}
+                  data={data1}
+      options={{
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      // isLoading={true}    
+      actions={[
+        {
+          icon:() => <VisibilityIcon/>,
+          tooltip: 'View Applicant',
+          onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Applicant',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
+                {/* <table
                   id="example"
                   data-ordering="false"
                   className={classes.dataTable + " " + "table "}
@@ -242,7 +251,6 @@ const Contracting = () => {
                       <th className={classes.tableHead}>Name</th>
 
                       <th className={classes.tableHead}>Email</th>
-                      {/* <th className={classes.tableHead}>Phone</th> */}
                       <th className={classes.tableHead}>Applied Date</th>
 
                       <th className={classes.tableHead}>Approval Status</th>
@@ -350,7 +358,8 @@ const Contracting = () => {
                       );
                     })}
                   </tbody>
-                </table>
+                </table> */}
+              
               </div>
             </div>
           </div>
@@ -360,4 +369,4 @@ const Contracting = () => {
   );
 };
 
-export default Contracting;
+export default Allapplicant;
