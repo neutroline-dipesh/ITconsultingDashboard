@@ -155,6 +155,21 @@ const Alljobs = (props) => {
       if (response.data) {
         setData1(response.data.data);
         setLoading(false);
+        var newArray = response.data.data.map(function(val){
+          return{
+            id: val.id,
+            jobId: val.jobId,
+            jobTitle: val.jobTitle,
+            department: val.department,
+            jobType: val.jobType,
+            address: val.city + ", " + val.state + ", "+ val.country,
+            publishBy: val.publishBy,
+            visibility: val.visibility
+          }
+         });
+         console.log(newArray);
+         setTableData(newArray);
+
       }
     }).catch((error)=>{
       console.log(error);
@@ -250,13 +265,11 @@ const Alljobs = (props) => {
             { title: 'Job Title', field: 'jobTitle' },
             { title: 'Department', field: 'department' },
             { title: 'Job Type', field: 'jobType' },
-            { title: 'Address', field: 'country' },
+            { title: 'Address', field: 'address' },
             { title: 'Published By', field: 'publishBy' },
             { title: 'Visibility', field: 'visibility' },
-            { title:'id', field: 'id',hidden:true}
-            // { title: 'Action', field: 'action' }
       ]}
-      data={data1} 
+      data={tableData} 
       options={{
         headerStyle: {
               backgroundColor: "#4e73df",

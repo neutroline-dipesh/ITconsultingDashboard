@@ -122,6 +122,10 @@ const Internal = (props) => {
 
   // getting data from database
   const [data1, setData1] = useState([]);
+  const [loading, setLoading] = useState(false);
+    const [applicantTable, setApplicantTable] = useState();
+
+
   useEffect(() => {
       fetchData();
   }, []);
@@ -129,11 +133,24 @@ const Internal = (props) => {
 
 
   const fetchData = () => {
+    setLoading(true);
     axios
       .get("http://localhost:4000/allApplicant/internal/")
       .then((response) => {
         if (response.data) {
           setData1(response.data.data);
+          setLoading(false);
+          var newArray = response.data.data.map(function(val){
+          return{
+            id: val.id,
+            jobTitle: val.jobTitle,
+            name: val.firstName + ' '+val.lastName,
+            gmail: val.gmail,
+            postedDate: val.postedDate,
+            approvelStatus: val.approvelStatus
+          }
+        });
+        setApplicantTable(newArray);
         }
       });
   };
@@ -212,24 +229,23 @@ const Internal = (props) => {
                     title="Internal Applicants"
                       columns={[
                             { title: 'Job Title', field: 'jobTitle' },
-                            { title: 'Name', field: 'firstName'},
+                            { title: 'Name', field: 'name'},
                             { title: 'Email', field: 'gmail' },
                             { title: 'Applied Date', field: 'postedDate' },
                             { title: 'Approval Status', field: 'approvelStatus' },
-                            // { title: 'Action', field: 'action' }
                       ]}
-                  data={data1}
-      options={{
-        headerStyle: {
-              backgroundColor: "#4e73df",
-              color: "#fff",
-              fontWeight: "400",
-              whiteSpace: "nowrap",
-              position: "sticky",
-        },
-        actionsColumnIndex: -1
-      }} 
-      // isLoading={true}    
+                  data={applicantTable}
+                  options={{
+                    headerStyle: {
+                    backgroundColor: "#4e73df",
+                    color: "#fff",
+                    fontWeight: "400",
+                    whiteSpace: "nowrap",
+                    position: "sticky",
+              },
+                actionsColumnIndex: -1
+              }} 
+      isLoading={loading}    
       actions={[
         {
           icon:() => <VisibilityIcon/>,

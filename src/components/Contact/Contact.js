@@ -7,7 +7,6 @@ import ViewDetail from "./ViewDetail";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
 import axios from "axios";
-import { useHistory } from "react-router";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -103,8 +102,9 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Contact = (props) => {
- const history = useHistory();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [tableData, setTableData] = useState();
   const [seen, setSeen] = useState(false);
   const handState = () => {
     setSeen(!seen);
@@ -118,8 +118,25 @@ const Contact = (props) => {
 
   //alert message
   const fetchContactData = () => {
+    setLoading(true);
     axios.get("http://localhost:4000/allQueries").then((response) => {
-      setData(response.data.data);
+    console.log(response.data.data);  
+    setData(response.data.data);
+      setLoading(false);
+      var newArray = response.data.data.map(function(val){
+        return{
+          id: val.id,
+          fullName: val.fullName,
+          email: val.email,
+          phone: val.phone,
+          address: val.city + ", "+ val.country,
+          postedDate: val.postedDate,
+          message: val.message,
+          status: val.status,
+          attachment: val.attachment
+        }
+      })
+      setTableData(newArray);
     });
   };
 
@@ -205,12 +222,15 @@ const Contact = (props) => {
                             { title: 'Name', field: 'fullName'},
                             { title: 'Email', field: 'email' },
                             { title: 'Phone', field: 'phone'},
-                            { title: 'Address', field: 'country' },
+                            { title: 'Address', field: 'address' },
                             { title: 'Date', field: 'postedDate' },
-                            // { title: 'Action', field: 'action' }
                       ]}
-                  data={data}
+                  data={tableData}
       options={{
+          rowStyle: (rowData) => ({
+          backgroundColor: (rowData.status !== "seen") ? "#F2F2F2" : "#FFF",
+          fontWeight: (rowData.status !== "seen") ? "600" : ""
+        }),
         headerStyle: {
               backgroundColor: "#4e73df",
               color: "#fff",
@@ -220,17 +240,16 @@ const Contact = (props) => {
         },
         actionsColumnIndex: -1
       }} 
-      // isLoading={true}    
+      isLoading={loading}    
       actions={[
-        {
-          icon:(rowData) =>                
+        (rowData) => ({
+          tooltip: '',
+          icon:() =>                
           <ViewDetail
                 data={rowData}
                 handleState={handState}
           />,
-          tooltip: 'View Applicant',
-          // onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
-        },
+        }),
         {
           icon: 'delete',
           tooltip: 'Delete Applicant',

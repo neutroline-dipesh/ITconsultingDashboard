@@ -116,12 +116,15 @@ const useStyle = makeStyles((theme) => ({
 const External = () => {
   const history = useHistory();
   const [data1, setData1] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   //getting data from database
   const fetchData = () => {
+    setLoading(true);
     axios.get("http://localhost:4000/externalApplicant/").then((response) => {
       if (response.data) {
         setData1(response.data.data);
+        setLoading(false);
       }
     });
   };
@@ -204,12 +207,11 @@ const External = () => {
                 <MaterialTable
                     title="External Applicants"
                       columns={[
-                            { title: 'Job Title', field: 'jobTitle' },
-                            { title: 'Name', field: 'firstName'},
+                            { title: 'Name', field: 'fullName'},
                             { title: 'Email', field: 'gmail' },
+                            { title:'Phone', field: 'phone'},
+                            { title:'Job Type', field: 'jobType'},
                             { title: 'Applied Date', field: 'postedDate' },
-                            { title: 'Approval Status', field: 'approvelStatus' },
-                            // { title: 'Action', field: 'action' }
                       ]}
                   data={data1}
                   options={{
@@ -222,7 +224,7 @@ const External = () => {
                     },
                     actionsColumnIndex: -1
                   }} 
-      // isLoading={true}    
+      isLoading={loading}    
       actions={[
         {
           icon:() => <VisibilityIcon/>,

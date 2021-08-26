@@ -140,6 +140,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function AlertDialogSlide(props) {
+  console.log(props);
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
 
@@ -218,7 +219,7 @@ export default function AlertDialogSlide(props) {
                 <Avatar className={classes.avatar}>
                   <FaRegAddressCard className={classes.icon} />
                 </Avatar>{" "}
-                {props.data.city + " , " + props.data.country}
+                {props.data.address}
               </span>
             </DialogContentText>
           </div>
@@ -229,7 +230,7 @@ export default function AlertDialogSlide(props) {
           </DialogContentText>
 
           {props.data.attachment ? (
-            <ViewAttectment attechmnet={props.data.attachment} />
+            <ViewAttectment attechmnet="" />
           ) : (
             ""
           )}

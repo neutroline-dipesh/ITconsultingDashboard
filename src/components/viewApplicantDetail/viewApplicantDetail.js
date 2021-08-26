@@ -323,7 +323,7 @@ const ViewApplicantDetail = () => {
                   </div>
                   <div className={classes.leftTableContectDiv}>
                     <List className={classes.listMain}>
-                      <img src={adimImage} className={classes.image} />
+                      <img src={adimImage} className={classes.image} alt="img-list"/>
 
                       <ListItem
                         className={classes.ListItem}
