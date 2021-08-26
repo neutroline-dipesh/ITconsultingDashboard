@@ -113,8 +113,8 @@ const Employers = (props) => {
   //getting data from database start
 
   useEffect(() => {
-      fetchContactData();
-    },[]);
+    fetchContactData();
+  }, []);
 
   //alert message
   const fetchContactData = () => {

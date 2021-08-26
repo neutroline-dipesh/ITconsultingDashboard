@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 import * as actions from "../../store/actions";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -12,13 +12,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link, useHistory } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
-
-
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
     width: "100%",
-  }, 
+  },
   maindiv: {
     paddingTop: "8vh",
   },
@@ -141,20 +139,21 @@ const Alljobs = (props) => {
   const [loading, setLoading] = useState(false);
   const [tableData, setTableData] = useState();
   useEffect(() => {
-      fetchAllData();
-      console.log(data1);
+    fetchAllData();
+    console.log(data1);
   }, []);
   console.log(data1);
-
 
   const classes = useStyle();
   //alert message
   const fetchAllData = () => {
     setLoading(true);
-    axios.get("http://localhost:4000/allJobs/").then((response) => {
-      if (response.data) {
-        setData1(response.data.data);
-        setLoading(false);
+    axios
+      .get("http://localhost:4000/allJobs/")
+      .then((response) => {
+        if (response.data) {
+          setData1(response.data.data);
+          setLoading(false);
         var newArray = response.data.data.map(function(val){
           return{
             id: val.id,
@@ -169,7 +168,6 @@ const Alljobs = (props) => {
          });
          console.log(newArray);
          setTableData(newArray);
-
       }
     }).catch((error)=>{
       console.log(error);
@@ -239,7 +237,7 @@ const Alljobs = (props) => {
     <>
       <Sidebar />
       <div className={classes.root}>
-    <div className={classes.maindiv}>
+        <div className={classes.maindiv}>
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
@@ -302,8 +300,7 @@ const Alljobs = (props) => {
               </div>
             </div>
           </div>
-        </div> 
-      
+        </div>
       </div>
     </>
   );

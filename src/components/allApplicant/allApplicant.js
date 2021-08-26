@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 import Swal from "sweetalert2";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useHistory } from "react-router-dom";
@@ -141,9 +141,8 @@ const Allapplicant = () => {
     });
   };
   useEffect(() => {
-      fetchData();
+    fetchData();
   }, []);
-
 
   const classes = useStyle();
   //delete confirmation message
@@ -372,12 +371,11 @@ const Allapplicant = () => {
                     })}
                   </tbody>
                 </table> */}
-              
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </>
   );
 };

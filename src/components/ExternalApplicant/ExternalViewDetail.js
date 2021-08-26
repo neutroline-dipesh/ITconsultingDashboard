@@ -12,6 +12,21 @@ import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 
+import ListItemText from "@material-ui/core/ListItemText";
+import ContactsIcon from "@material-ui/icons/Contacts";
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
+import ContactMailIcon from "@material-ui/icons/ContactMail";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import pdf from "../../assets/files/cv.pdf";
+import adimImage from "../../assets/images/profile.png";
+import TabViewApplicant from "./TabViewApplicant";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import PhoneAndroidIcon from "@material-ui/icons/PhoneAndroid";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
+import DateRangeIcon from "@material-ui/icons/DateRange";
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -38,7 +53,7 @@ const useStyle = makeStyles((theme) => ({
     textDecoration: "none",
     backgroundColor: "#2653d4",
     borderRadius: "20px",
-    width: "7rem",
+    width: "9rem",
     height: "3.9vh",
     fontSize: "0.7rem",
     marginRight: "1.5rem",
@@ -71,19 +86,25 @@ const useStyle = makeStyles((theme) => ({
   },
   leftDiv: {
     borderRadius: "5px",
-    width: "40%",
+    width: "25%",
+
     display: "flex",
     flexDirection: "column",
     marginBottom: "1rem",
     backgroundColor: "#ffffff",
     boxShadow: "5px 5px 30px 5px rgba(0, 0, 0, 0.25)",
   },
-  listMain: {},
+  listMain: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   lefttableTitleDiv: {
     borderRadius: "5px 5px 1px 1px",
     display: "flex",
     alignItems: "center",
-
+    justifyContent: "center",
     paddingTop: "1rem",
     paddingBottom: "1rem",
     backgroundColor: "#e6e6ff",
@@ -92,9 +113,10 @@ const useStyle = makeStyles((theme) => ({
   },
   lefttableTitle: {
     fontWeight: "600",
-    fontSize: "1.3rem",
-    marginLeft: "1.5rem",
+    fontSize: "1.1rem",
+
     color: "#fffff",
+    height: "3vh",
   },
   listHead: {
     fontSize: "0.875rem",
@@ -106,8 +128,8 @@ const useStyle = makeStyles((theme) => ({
     width: "60%",
   },
   rightDiv: {
-    borderRadius: "5px",
-    width: "65%",
+    // borderRadius: "5px",
+    width: "71.5%",
     display: "flex",
     flexDirection: "column",
     marginLeft: "1rem",
@@ -134,27 +156,77 @@ const useStyle = makeStyles((theme) => ({
     color: "#fffff",
   },
   leftTableContectDiv: {
-    overflow: "scroll",
-    overflowX: "hidden",
-    overflowY: "hidden",
+    // overflow: "scroll",
+    // overflowX: "hidden",
+    // overflowY: "hidden",
+    paddingTop: "2rem",
+    paddingBottom: "2rem",
   },
   rightTableContectDiv: {
-    overflow: "scroll",
-    overflowX: "hidden",
+    height: "85vh",
+    // overflow: "scroll",
+    // overflowX: "hidden",
   },
   description: {
     padding: "1rem",
   },
+  ListItem: {
+    display: "flex",
+    flexDirection: "row",
+
+    alignItems: "center",
+    justifyContent: "space-between",
+    // border: "solid 1px",
+    width: "80%",
+    // fontWeight: "500",
+    fontSize: "0.9rem",
+    color: "#3d3d29",
+    // justifyContent: "space-between",
+    // backgroundColor: "red",
+    // paddingLeft: "2rem",
+    // paddingRight: "2rem",
+  },
+  ListItemLeft: {
+    width: "50%",
+    textAlign: "justify",
+    // backgroundColor: "red",
+    // marginRight: "1rem",
+  },
+  ListItemRight: {
+    width: "50%",
+    // backgroundColor: "blue",
+
+    marginLeft: "1.5rem",
+  },
+  listItemTitle: {
+    fontWeight: "500",
+  },
+  listItemBody: {
+    // color: "#858796",
+    fontSize: "0.5rem",
+  },
   cv: {
+    // marginLeft: "1rem",
     width: "100%",
     height: "100vh",
-  }
+  },
+  image: {
+    width: "50%",
+    marginBottom: "1rem",
+    marginTop: "1rem",
+    // position: "absolute",
+    // top: "3.5rem",
+  },
+  icon: {
+    width: "1.5rem",
+  },
 }));
 
-const ExternalViewDetail = () => {
+const ViewApplicantDetail = () => {
   const classes = useStyle();
-
-  const [job, setJob] = useState({
+  let { id } = useParams();
+  const [applicant, setApplicant] = useState({
+    id: null,
     fullName: null,
     gmail: null,
     phone: null,
@@ -166,19 +238,24 @@ const ExternalViewDetail = () => {
     postedDate: null,
     loading: false,
     error: false,
+    loading: false,
   });
-  const { id } = useParams();
+  const [alignment, setAlignment] = React.useState("left");
+  const handleAlignment = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
   useEffect(() => {
-    getJobDetails();
-    console.log(job);
+    getApplicantDetails();
   }, []);
+  console.log(applicant);
 
-  const getJobDetails = () => {
+  const getApplicantDetails = () => {
     axios
       .get("http://localhost:4000/externalApplicant/" + id)
       .then((res) => {
         console.log(res.data);
-        setJob({
+        setApplicant({
+          id: res.data.data[0].id,
           fullName: res.data.data[0].fullName,
           gmail: res.data.data[0].gmail,
           phone: res.data.data[0].phone,
@@ -193,7 +270,12 @@ const ExternalViewDetail = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error", err);
+        setApplicant({
+          ...applicant,
+          error: true,
+          loading: false,
+        });
       });
   };
 
@@ -207,14 +289,15 @@ const ExternalViewDetail = () => {
               External / Applicant Detail
             </span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs">
+              <Link to="/externalApplicant">
                 <Button
                   variant="contained"
                   size="small"
                   color="primary"
                   className={classes.jobListButton}
                 >
-                  <IoMdArrowBack className={classes.jobListIcon} /> Job List
+                  <IoMdArrowBack className={classes.jobListIcon} /> External
+                  List
                 </Button>
               </Link>
             </Tooltip>
@@ -224,84 +307,117 @@ const ExternalViewDetail = () => {
               <div className={classes.ContentDateDiv}>
                 <div className={classes.leftDiv}>
                   <div className={classes.lefttableTitleDiv}>
-                    <span className={classes.lefttableTitle}>Personal Information</span>
+                    <span className={classes.lefttableTitle}>
+                      Personal Information
+                    </span>
                   </div>
                   <div className={classes.leftTableContectDiv}>
                     <List className={classes.listMain}>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/id-verified.png" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Full Name:</span>
-                        <span className={classes.listBody}>{job.fullName}</span>
-                      </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/gmail" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Gmail:</span>
-                        <span className={classes.listBody}>{job.gmail}</span>
-                      </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/phone" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Phone:</span>
-                        <span className={classes.listBody}>
-                          {job.phone}
+                      <img src={adimImage} className={classes.image} />
+
+                      <ListItem
+                        className={classes.ListItem}
+                        style={{
+                          backgroundColor: "#809fff",
+                          color: "#fff",
+                          borderRadius: "5px",
+                          textAlign: "center",
+                        }}
+                      >
+                        {/* <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          {/* <PersonOutlineIcon style={{ color: "#adad85" }} /> */}
+                        {/* <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/id-verified.png"
+                          />
+                        </span>  */}
+                        <span style={{ width: "100%" }}>
+                          {applicant.fullName}
                         </span>
                       </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/chat" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Message:</span>
-                        <span className={classes.listBody}>{job.message}</span>
-                      </ListItem>
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/find-matching-job.png" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Job Type:</span>
-                        <span className={classes.listBody}>{job.jobType}</span>
-                      </ListItem>
-                      {/* <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/address--v1.png" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Address:</span>
-                        <span className={classes.listBody}>
-                          {job.country + " , " + job.state + " , " + job.city}
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <PhoneAndroidIcon style={{ color: "#adad85" }} />
+                          {/* <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/address--v1.png"
+                          /> */}
                         </span>
+                        <span>{applicant.phone}</span>
+                      </ListItem>
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <MailOutlineIcon style={{ color: "#adad85" }} />
+                          {/* <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/address--v1.png"
+                          /> */}
+                        </span>
+                        <span>{applicant.gmail}</span>
+                      </ListItem>
+                      {/* <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <LocationCityIcon style={{ color: "#adad85" }} />
+                          
+                        </span>
+                        <span>{applicant.city + " , " + applicant.state}</span>
                       </ListItem> */}
-                      <ListItem>
-                        <ListItemAvatar>
-                          <img src="https://img.icons8.com/color/40/000000/calendar--v1.png" />
-                        </ListItemAvatar>
-                        <span className={classes.listHead}>Publish Date:</span>
-                        <span className={classes.listBody}>
-                          {job.postedDate}
+                      <ListItem className={classes.ListItem}>
+                        <span
+                          className={classes.listItemTitle}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {" "}
+                          <DateRangeIcon style={{ color: "#adad85" }} />
+                          {/* <img
+                            className={classes.icon}
+                            src="https://img.icons8.com/color/40/000000/calendar--v1.png"
+                          /> */}
                         </span>
+                        <span>{applicant.postedDate}</span>
                       </ListItem>
                     </List>
                   </div>
                 </div>
                 <div className={classes.rightDiv}>
-                  {/* <span className={classes.resumeTitle}>Resume:</span>
-                  <embed className={classes.cv} src={job.resume}></embed> */}
-                  <div className={classes.rightTableTitleDiv}>
-                    <span className={classes.rightTableTitle}>
-                      Resume
-                    </span>
-                  </div>
                   <div className={classes.rightTableContectDiv}>
-                  <iframe className={classes.cv} src={job.resume}></iframe>
-                    {/* <div
-                      className={classes.description}
-                      dangerouslySetInnerHTML={{
-                        __html: job.description,
-                      }}
-                    ></div> */}
+                    <TabViewApplicant data={applicant} />
                   </div>
                 </div>
               </div>
@@ -313,4 +429,4 @@ const ExternalViewDetail = () => {
   );
 };
 
-export default ExternalViewDetail;
+export default ViewApplicantDetail;

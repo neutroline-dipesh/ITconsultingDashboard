@@ -21,9 +21,10 @@ import viewJobDetail from "./components/All jobs/viewJobDetail";
 import Employers from "./components/Employers/Employers";
 import External from "./components/ExternalApplicant/External";
 import ExternalViewDetail from "./components/ExternalApplicant/ExternalViewDetail";
+import Resume from "./components/viewApplicantDetail/viewResume";
 function App(props) {
   const token = localStorage.getItem("token");
-  const isAuthenticated = token !== null; 
+  const isAuthenticated = token !== null;
 
   return (
     <Switch>
@@ -32,7 +33,7 @@ function App(props) {
         exact
         path="/dashboard"
         component={Dashboard}
-          auth={isAuthenticated}
+        auth={isAuthenticated}
       />
       <GuardedRoute
         exact
@@ -116,6 +117,12 @@ function App(props) {
         exact
         path="/external-viewDetail/:id"
         component={ExternalViewDetail}
+        auth={isAuthenticated}
+      />
+      <GuardedRoute
+        exact
+        path="/resume"
+        component={Resume}
         auth={isAuthenticated}
       />
       <Route component={pageNotFound} />
