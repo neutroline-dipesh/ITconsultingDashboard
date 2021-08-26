@@ -32,6 +32,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Box from "@material-ui/core/Box";
+import SelectInput from "@material-ui/core/Select/SelectInput";
 
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 
@@ -229,7 +230,6 @@ const useStyle = makeStyles((theme) => ({
 
 const Addjobs = () => {
   const classes = useStyle();
-  let history = useHistory();
 
   //for validation
   const formik = useFormik({
@@ -290,6 +290,7 @@ const Addjobs = () => {
       toast.success("Job posted successfully");
       Array.from(document.querySelectorAll("input")).forEach(
         input => (input.value = "")
+        
       );
     
     };
