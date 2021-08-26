@@ -310,7 +310,7 @@ const Addjobs = () => {
   const [state, setState] = React.useState();
   const handleChange = (event) => {
     setState(event.target.checked);
-    setPublish("Not Publish");
+   // setPublish("Not Publish");
     console.log(state);
     if (state == true) {
       setPublish("Not Publish");
