@@ -115,8 +115,8 @@ const Employers = (props) => {
   //getting data from database start
 
   useEffect(() => {
-      fetchContactData();
-    },[]);
+    fetchContactData();
+  }, []);
 
   //alert message
   const fetchContactData = () => {
@@ -201,47 +201,42 @@ const Employers = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                  <MaterialTable
-                    title="Employers"
-                      columns={[
-                            { title: 'Name', field: 'firstName'},
-                            { title: 'Email', field: 'email' },
-                            { title: 'Phone', field: 'phone'},
-                            { title: 'Company Name', field: 'companyName'},
-                            { title: 'Job Type', field: 'jobTitle'},
-                            { title: 'Address', field: 'country' },
-                            { title: 'Date', field: 'postedDate' },
-                          ]}
+                <MaterialTable
+                  title="Employers"
+                  columns={[
+                    { title: "Name", field: "firstName" },
+                    { title: "Email", field: "email" },
+                    { title: "Phone", field: "phone" },
+                    { title: "Company Name", field: "companyName" },
+                    { title: "Job Type", field: "jobTitle" },
+                    { title: "Address", field: "country" },
+                    { title: "Date", field: "postedDate" },
+                  ]}
                   data={data}
-      options={{
-        headerStyle: {
-              backgroundColor: "#4e73df",
-              color: "#fff",
-              fontWeight: "400",
-              whiteSpace: "nowrap",
-              position: "sticky",
-        },
-        actionsColumnIndex: -1
-      }} 
-      // isLoading={true}    
-      actions={[
-        {
-          icon:(rowData) =>                
-          <ViewDetail
-                data={rowData}
-                handleState={handState}
-          />,
-          icon: 'save',
-          tooltip: 'View Employers',
-          onClick: (event, rowData) => console.log(rowData)
-        },
-        {
-          icon: 'delete',
-          tooltip: 'Delete Employers',
-          onClick: (event, rowData) => deletFunction(rowData.id)
-        }
-      ]}
-    />
+                  options={{
+                    headerStyle: {
+                      backgroundColor: "#4e73df",
+                      color: "#fff",
+                      fontWeight: "400",
+                      whiteSpace: "nowrap",
+                      position: "sticky",
+                    },
+                    actionsColumnIndex: -1,
+                  }}
+                  // isLoading={true}
+                  actions={[
+                    {
+                      icon: (rowData) => (
+                        <ViewDetail data={rowData} handleState={handState} />
+                      ),
+                    },
+                    {
+                      icon: "delete",
+                      tooltip: "Delete Employers",
+                      onClick: (event, rowData) => deletFunction(rowData.id),
+                    },
+                  ]}
+                />
                 {/* <table
                   id="example"
                   data-ordering="false"

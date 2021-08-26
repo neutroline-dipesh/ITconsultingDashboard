@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 import Swal from "sweetalert2";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useHistory } from "react-router-dom";
@@ -126,9 +126,8 @@ const Allapplicant = () => {
     });
   };
   useEffect(() => {
-      fetchData();
+    fetchData();
   }, []);
-
 
   const classes = useStyle();
   //delete confirmation message
@@ -205,40 +204,41 @@ const Allapplicant = () => {
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
                 <MaterialTable
-                    title="Applicants Lists"
-                      columns={[
-                            { title: 'Job Title', field: 'jobTitle' },
-                            { title: 'Name', field: 'firstName'},
-                            { title: 'Email', field: 'gmail' },
-                            { title: 'Applied Date', field: 'postedDate' },
-                            { title: 'Approval Status', field: 'approvelStatus' },
-                            // { title: 'Action', field: 'action' }
-                      ]}
+                  title="Applicants Lists"
+                  columns={[
+                    { title: "Job Title", field: "jobTitle" },
+                    { title: "Name", field: "firstName" },
+                    { title: "Email", field: "gmail" },
+                    { title: "Applied Date", field: "postedDate" },
+                    { title: "Approval Status", field: "approvelStatus" },
+                    // { title: 'Action', field: 'action' }
+                  ]}
                   data={data1}
-      options={{
-        headerStyle: {
-              backgroundColor: "#4e73df",
-              color: "#fff",
-              fontWeight: "400",
-              whiteSpace: "nowrap",
-              position: "sticky",
-        },
-        actionsColumnIndex: -1
-      }} 
-      // isLoading={true}    
-      actions={[
-        {
-          icon:() => <VisibilityIcon/>,
-          tooltip: 'View Applicant',
-          onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
-        },
-        {
-          icon: 'delete',
-          tooltip: 'Delete Applicant',
-          onClick: (event, rowData) => deletFunction(rowData.id)
-        }
-      ]}
-    />
+                  options={{
+                    headerStyle: {
+                      backgroundColor: "#4e73df",
+                      color: "#fff",
+                      fontWeight: "400",
+                      whiteSpace: "nowrap",
+                      position: "sticky",
+                    },
+                    actionsColumnIndex: -1,
+                  }}
+                  // isLoading={true}
+                  actions={[
+                    {
+                      icon: () => <VisibilityIcon />,
+                      tooltip: "View Applicant",
+                      onClick: (event, rowData) =>
+                        history.push(`/applicant-detail/${rowData.id}`),
+                    },
+                    {
+                      icon: "delete",
+                      tooltip: "Delete Applicant",
+                      onClick: (event, rowData) => deletFunction(rowData.id),
+                    },
+                  ]}
+                />
                 {/* <table
                   id="example"
                   data-ordering="false"
@@ -359,7 +359,6 @@ const Allapplicant = () => {
                     })}
                   </tbody>
                 </table> */}
-              
               </div>
             </div>
           </div>

@@ -17,6 +17,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import axios from "axios";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -127,9 +129,37 @@ export default function SimpleTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const [alignment, setAlignment] = React.useState("left");
+  const [approvelStatus, setApprovelStatus] = React.useState(" ");
+  const applicantId = props.data.id;
+
   const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
+    setApprovelStatus(newAlignment);
+    console.log(approvelStatus);
+    console.log(applicantId);
+
+    const data = {
+      approvelStatus: newAlignment,
+    };
+    console.log(data);
+    if (applicantId) {
+      axios
+        .patch(
+          "http://localhost:4000/externalApplicant/status/approvel/" +
+            applicantId,
+          data,
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -155,7 +185,7 @@ export default function SimpleTabs(props) {
 
           <ToggleButtonGroup
             className={classes.toogleButton}
-            value={alignment}
+            value={approvelStatus}
             exclusive
             onChange={handleAlignment}
             aria-label="text alignment"

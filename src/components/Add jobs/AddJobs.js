@@ -32,6 +32,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Box from "@material-ui/core/Box";
 
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -287,16 +288,15 @@ const Addjobs = () => {
     const notify = () => {
       toast.success("Job posted successfully");
       Array.from(document.querySelectorAll("input")).forEach(
-        input => (input.value = "")
+        (input) => (input.value = "")
       );
-    
     };
 
     axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
         console.log("success");
-       
+
         {
           notify();
         }

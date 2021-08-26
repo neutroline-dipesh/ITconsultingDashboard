@@ -12,7 +12,6 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link, useHistory } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
-
 const useStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -265,6 +264,7 @@ const Alljobs = (props) => {
                       fontWeight: "400",
                       whiteSpace: "nowrap",
                       position: "sticky",
+                      left: 0,
                     },
                     actionsColumnIndex: -1,
                   }}

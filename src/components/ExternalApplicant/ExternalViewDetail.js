@@ -226,6 +226,7 @@ const ViewApplicantDetail = () => {
   const classes = useStyle();
   let { id } = useParams();
   const [applicant, setApplicant] = useState({
+    id: null,
     fullName: null,
     gmail: null,
     phone: null,
@@ -254,6 +255,7 @@ const ViewApplicantDetail = () => {
       .then((res) => {
         console.log(res.data);
         setApplicant({
+          id: res.data.data[0].id,
           fullName: res.data.data[0].fullName,
           gmail: res.data.data[0].gmail,
           phone: res.data.data[0].phone,

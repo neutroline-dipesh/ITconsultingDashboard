@@ -155,10 +155,6 @@ export default function SimpleTabs(props) {
           }
         )
         .then((response) => {
-          if (response.data) {
-            props.handleState();
-          }
-
           console.log(response.data);
         })
         .catch((error) => {
@@ -246,7 +242,7 @@ export default function SimpleTabs(props) {
                 </TableCell>
                 <TableCell align="left">{props.data.jobTitle}</TableCell>
               </TableRow>
-              <TableRow style={{ background: "#F6F7FA", }}>
+              <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
                   component="th"
                   scope="row"
@@ -367,35 +363,9 @@ export default function SimpleTabs(props) {
           // height="780px"
           fileUrl="https://docs.google.com/document/d/1i2AGqG_fa25IwCsfNK86K1OqRd7wMb9u52mjeMPpvEA/edit"
         /> */}
-        {/* <iframe src="https://docs.google.com/gview?url=http://remote.url.tld/path/to/document.doc&embedded=true"></iframe> */}
 
         {/* <iframe
-          // src="https://view.officeapps.live.com/op/embed.aspx?src=http://remote.url.tld/path/to/document.doc"
-          src="https://api.aspose.cloud/words/view?foldername=sample&filename=SampleDocument.docx"
-          width="80%"
-          height="565px"
-          frameborder="0"
-        >
-          {" "}
-        </iframe> */}
-        {/* <iframe
-          src={"https://view.officeapps.live.com/op/embed.aspx?src=" + res}
-          width="100%"
-          height="100%"
-          frameborder="0"
-        >
-          This is an embedded{" "}
-          <a target="_blank" href="http://office.com">
-            Microsoft Office
-          </a>{" "}
-          document, powered by{" "}
-          <a target="_blank" href="http://office.com/webapps">
-            Office Online
-          </a>
-          .
-        </iframe> */}
-        {/* <iframe
-          src="https://docs.google.com/document/d/11_wljoh3_R5_eIUvyLHqw-vk1uIzkXBG/edit"
+          src="https://docs.google.com/gview?url=https://docs.google.com/presentation/d/1jby57zCOD-5AY0JW7fsxbghTTAPUBJ-gU5h_A1wBCHE/edit#slide=id.gc6f972163_0_0"
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -415,7 +385,8 @@ export default function SimpleTabs(props) {
             marginBottom: "-2rem",
           }}
         ></iframe> */}
-        <iframe
+        {/* <iframe
+          src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview"
           style={{
             width: "80%",
             height: "70.5vh",
@@ -423,7 +394,30 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-          src="https://docs.google.com/document/d/e/2PACX-1vQuEyw1-7ZbsVVPQU8oi0ULma7wNuWR9ADd9UjN9NL8JxYcoZCvGm8sW4Tc5lOZqw/pub?embedded=true"
+          allow="autoplay"
+        ></iframe> */}
+        {/* <iframe
+          style={{
+            width: "106.4%",
+            height: "70.5vh",
+            marginLeft: "-1.5rem",
+            marginTop: "-1.5rem",
+            marginBottom: "-2rem",
+          }}
+          src="https://docs.google.com/document/d/1JfcFAUCHujSCun0bWq12c-jMuEdxt-b_/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true"
+          // src="https://docs.google.com/document/d/e/2PACX-1vR7pjvQ6msMpoEVDokz-yIy7laDJ0cGLgQvGpUVZPMmnYmMqfLAnSAGSGU6XbbnY-4HYfQNlToTDBpG/pub?embedded=true"
+        ></iframe> */}
+
+        <iframe
+          style={{
+            width: "106%",
+            height: "70.5vh",
+            marginLeft: "-1.5rem",
+            marginTop: "-1.5rem",
+            marginBottom: "-2rem",
+          }}
+          src="https://docs.google.com/document/d/e/2PACX-1vR4wJOuYJH7xaNErrynNW7guvbeIYu7LqG1zbL-Z62mura4jM4aLNNsfWlPuWOUuw/pub?embedded=true"
+          // src="https://docs.google.com/document/d/1P4nlP39Nr9s3pc8V9cDF4UZYTxnxjkcV/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true&embedded=true"
         ></iframe>
       </TabPanel>
       <TabPanel value={value} index={2}>
