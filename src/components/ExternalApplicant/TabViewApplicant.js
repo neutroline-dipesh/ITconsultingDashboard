@@ -363,7 +363,7 @@ export default function SimpleTabs(props) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <iframe
-          src={props.data.coverletter}
+          src="https://drive.google.com/file/d/1ho_-7kTqYLAg5frKL8JPCnWk9k-TlVcn/view?usp=drivesdk"
           style={{
             width: "106.4%",
             height: "70.5vh",
