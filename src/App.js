@@ -37,34 +37,41 @@ function App(props) {
       />
       <GuardedRoute
         exact
-        path="/alljobs"
+        path="/jobs"
         component={Alljobs}
         auth={isAuthenticated}
       />
       <GuardedRoute
         exact
-        path="/alljobs/edit-job/:id"
+        path="/job/add"
+        component={AddJobs}
+        auth={isAuthenticated}
+      />
+      <GuardedRoute
+        exact
+        path="/job/edit/:id"
         component={EditJobs}
         auth={isAuthenticated}
       />
       <GuardedRoute
         exact
-        path="/contracting"
+        path="/job/detail/:id"
+        component={viewJobDetail}
+        auth={isAuthenticated}
+      />
+      <GuardedRoute
+        exact
+        path="/applicant/contracting"
         component={Contracting}
         auth={isAuthenticated}
       />
       <GuardedRoute
         exact
-        path="/internal"
+        path="/applicant/internal"
         component={Internal}
         auth={isAuthenticated}
       />
-      <GuardedRoute
-        exact
-        path="/addjobs"
-        component={AddJobs}
-        auth={isAuthenticated}
-      />
+
       <GuardedRoute
         exact
         path="/contact"
@@ -73,22 +80,17 @@ function App(props) {
       />
       <GuardedRoute
         exact
-        path="/viewContact"
+        path="/contact/view"
         component={viewDetail}
         auth={isAuthenticated}
       />
       <GuardedRoute
         exact
-        path="/allApplicant"
+        path="/applicants"
         component={allApplicant}
         auth={isAuthenticated}
       />
-      <GuardedRoute
-        exact
-        path="/job-detail/:id"
-        component={viewJobDetail}
-        auth={isAuthenticated}
-      />
+
       <GuardedRoute
         exact
         path="/employers"
@@ -103,19 +105,19 @@ function App(props) {
       />
       <GuardedRoute
         exact
-        path="/applicant-detail/:id"
+        path="/applicant/detail/:id"
         component={viewApplicantDetail}
         auth={isAuthenticated}
       />
       <GuardedRoute
         exact
-        path="/externalApplicant"
+        path="/applicant/external"
         component={External}
         auth={isAuthenticated}
       />
       <GuardedRoute
         exact
-        path="/external-viewDetail/:id"
+        path="/applicant/external/detail/:id"
         component={ExternalViewDetail}
         auth={isAuthenticated}
       />

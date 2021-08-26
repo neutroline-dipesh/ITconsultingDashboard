@@ -241,7 +241,7 @@ const Alljobs = (props) => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
-              <Link to="/addjobs" style={{ textDecoration: "none" }}>
+              <Link to="/job/add" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -283,12 +283,12 @@ const Alljobs = (props) => {
         {
           icon:() => <VisibilityIcon/>,
           tooltip: 'View Job',
-          onClick: (event, rowData) => history.push(`/job-detail/${rowData.id}`)
+          onClick: (event, rowData) => history.push(`/job/detail/${rowData.id}`)
         },
         {
           icon: 'edit',
           tooltip: 'Edit Job',
-          onClick: (event, rowData) => history.push(`/alljobs/edit-job/${rowData.id}`)
+          onClick: (event, rowData) => history.push(`/job/edit/${rowData.id}`)
         },
         {
           icon: 'delete',

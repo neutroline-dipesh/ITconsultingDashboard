@@ -127,7 +127,9 @@ const External = () => {
     setLoading(true);
     axios.get("http://localhost:4000/externalApplicant/").then((response) => {
       if (response.data) {
+        console.log(response.data.data);
         setData1(response.data.data);
+
         setLoading(false);
       }
     });
@@ -211,8 +213,8 @@ const External = () => {
                 <MaterialTable
                   title="External Applicants"
                   columns={[
-                    { title: "Job Title", field: "jobTitle" },
-                    { title: "Name", field: "firstName" },
+                    { title: "Job Type", field: "jobType" },
+                    { title: "Name", field: "fullName" },
                     { title: "Email", field: "gmail" },
                     { title: "Applied Date", field: "postedDate" },
                     { title: "Approval Status", field: "approvelStatus" },
@@ -233,7 +235,7 @@ const External = () => {
         {
           icon:() => <VisibilityIcon/>,
           tooltip: 'View Job',
-          onClick: (event, rowData) => history.push(`/external-viewDetail/${rowData.id}`)
+          onClick: (event, rowData) => history.push(`/applicant/external/detail/${rowData.id}`)
         },
         {
           icon: 'delete',

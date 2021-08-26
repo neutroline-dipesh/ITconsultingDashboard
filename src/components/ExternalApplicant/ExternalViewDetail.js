@@ -289,7 +289,7 @@ const ViewApplicantDetail = () => {
               External / Applicant Detail
             </span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/externalApplicant">
+              <Link to="/applicant/external">
                 <Button
                   variant="contained"
                   size="small"

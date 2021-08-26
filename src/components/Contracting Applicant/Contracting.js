@@ -254,7 +254,7 @@ const Contracting = (props) => {
         {
           icon:() => <VisibilityIcon/>,
           tooltip: 'View Applicant',
-          onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
+          onClick: (event, rowData) => history.push(`/applicant/detail/${rowData.id}`)
         },
         {
           icon: 'delete',

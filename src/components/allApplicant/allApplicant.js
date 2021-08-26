@@ -133,7 +133,8 @@ const Allapplicant = () => {
             name: val.firstName + ' '+val.lastName,
             gmail: val.gmail,
             postedDate: val.postedDate,
-            approvelStatus: val.approvelStatus
+            approvelStatus: val.approvelStatus,
+            
           }
         });
         setApplicantTable(newArray);
@@ -228,6 +229,10 @@ const Allapplicant = () => {
                             { title: 'Approval Status', field: 'approvelStatus' },                      ]}
                   data={applicantTable}
       options={{
+          rowStyle: (rowData) => ({
+          backgroundColor: (rowData.approvelStatus === "notSeen") ? "#F2F2F2" : "#FFF",
+          fontWeight: (rowData.approvelStatus === "notSeen") ? "600" : ""
+        }),
         headerStyle: {
               backgroundColor: "#4e73df",
               color: "#fff",
@@ -242,7 +247,7 @@ const Allapplicant = () => {
         {
           icon:() => <VisibilityIcon/>,
           tooltip: 'View Applicant',
-          onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
+          onClick: (event, rowData) => history.push(`/applicant/detail/${rowData.id}`)
         },
         {
           icon: 'delete',

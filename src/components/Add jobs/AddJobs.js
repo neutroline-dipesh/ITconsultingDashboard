@@ -330,7 +330,7 @@ const Addjobs = () => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Add Jobs</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs" style={{ textDecoration: "none" }}>
+              <Link to="/jobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
