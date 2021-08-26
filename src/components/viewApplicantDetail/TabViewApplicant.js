@@ -216,10 +216,14 @@ export default function SimpleTabs(props) {
               <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
-                <TableCell component="th" scope="row"  style={{textAlign:"center"}}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ textAlign: "center" }}
+                >
                   Applied Job:
                 </TableCell>
-                <TableCell  align="left">{props.data.jobTitle}</TableCell>
+                <TableCell align="left">{props.data.jobTitle}</TableCell>
               </TableRow>
               <TableRow style={{ background: "#F6F7FA", }}>
                 <TableCell
@@ -240,34 +244,42 @@ export default function SimpleTabs(props) {
                 <TableCell
                   component="th"
                   scope="row"
-                  style={{ width: "40%", marginBlockEnd: "20px" , marginTop:"-10px", textAlign:"center"}}
+                  style={{
+                    width: "40%",
+                    marginBlockEnd: "20px",
+                    marginTop: "-10px",
+                    textAlign: "center",
+                  }}
                 >
                   Seniority Level:
                 </TableCell>
-                <TableCell  align="left">{props.data.senioritylevel}</TableCell>
+                <TableCell align="left">{props.data.senioritylevel}</TableCell>
               </TableRow>
-              <TableRow style={{ background: "#F6F7FA",  }}>
+              <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
-                                  height="1px"
-
+                  height="1px"
                   component="th"
                   scope="row"
-                  style={{ border: "none", height:"2px" }}
+                  style={{ border: "none", height: "2px" }}
                 ></TableCell>
                 <TableCell
                   component="th"
                   scope="row"
                   height="1px"
-                  style={{ border: "none", height:"2px" }}
+                  style={{ border: "none", height: "2px" }}
                 ></TableCell>
               </TableRow>
               <TableRow
-                style={{ background: "#FFF", borderLeft: "3px solid blue",  }}
+                style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
-                <TableCell component="th" scope="row" style={{textAlign:"center"}}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ textAlign: "center" }}
+                >
                   Expected Salary($):
                 </TableCell>
-                <TableCell align="left" >{props.data.expectedSalary} </TableCell>
+                <TableCell align="left">{props.data.expectedSalary} </TableCell>
               </TableRow>
               <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
@@ -284,12 +296,16 @@ export default function SimpleTabs(props) {
               <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
-                <TableCell  style={{textAlign:"center"}} component="th" scope="row">
+                <TableCell
+                  style={{ textAlign: "center" }}
+                  component="th"
+                  scope="row"
+                >
                   Salary Type:
                 </TableCell>
-                <TableCell  align="left">{props.data.salaryType}</TableCell>
+                <TableCell align="left">{props.data.salaryType}</TableCell>
               </TableRow>
-              
+
               <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
                   component="th"
@@ -305,10 +321,14 @@ export default function SimpleTabs(props) {
               <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
-                <TableCell  style={{textAlign:"center"}}component="th" scope="row">
+                <TableCell
+                  style={{ textAlign: "center" }}
+                  component="th"
+                  scope="row"
+                >
                   Message:
                 </TableCell>
-                <TableCell  align="left">{props.data.message}</TableCell>
+                <TableCell align="left">{props.data.message}</TableCell>
               </TableRow>
             </TableBody>
           </Table>

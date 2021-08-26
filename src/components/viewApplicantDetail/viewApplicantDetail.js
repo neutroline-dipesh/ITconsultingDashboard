@@ -173,7 +173,9 @@ const useStyle = makeStyles((theme) => ({
   ListItem: {
     display: "flex",
     flexDirection: "row",
-
+backgroundColor:"aliceblue",
+marginTop:"5px",
+borderRadius:"5px",
     alignItems: "center",
     justifyContent: "space-between",
     // border: "solid 1px",
@@ -194,6 +196,7 @@ const useStyle = makeStyles((theme) => ({
   },
   ListItemRight: {
     width: "50%",
+    
     // backgroundColor: "blue",
 
     marginLeft: "1.5rem",
@@ -204,6 +207,7 @@ const useStyle = makeStyles((theme) => ({
   listItemBody: {
     // color: "#858796",
     fontSize: "0.5rem",
+    
   },
   cv: {
     // marginLeft: "1rem",

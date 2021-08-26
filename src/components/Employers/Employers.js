@@ -41,7 +41,6 @@ const useStyle = makeStyles((theme) => ({
     float: "left",
     // height: "80vh",
     marginLeft: "1rem",
-    width: "82%",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     [theme.breakpoints.down("md")]: {
       width: "74.5%",
@@ -50,8 +49,8 @@ const useStyle = makeStyles((theme) => ({
   ContentDateDiv: {
     overflow: "scroll",
     maxHeight: "80vh",
-    paddingBottom: "2rem",
     overflowX: "hidden",
+    width:"80vw",
   },
   dataTable: {
     // maxHeight: "70vh",
@@ -63,14 +62,12 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#4e73df !important",
     color: "#fff",
     fontWeight: "400 !important",
-
     textAlign: "center",
     whiteSpace: "nowrap",
   },
   buttomDiv: {
     // backgroundColor: "red",
     display: "flex",
-
     justifyContent: "center",
   },
 
@@ -89,7 +86,6 @@ const useStyle = makeStyles((theme) => ({
   seenColor: {
     backgroundColor: "#F5F7F7 ! important",
     fontSize: "15px",
-
     textAlign: "center",
     whiteSpace: "nowrap",
   },
