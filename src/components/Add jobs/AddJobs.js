@@ -35,6 +35,7 @@ import Box from "@material-ui/core/Box";
 import SelectInput from "@material-ui/core/Select/SelectInput";
 
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -289,17 +290,15 @@ const Addjobs = () => {
     const notify = () => {
       toast.success("Job posted successfully");
       Array.from(document.querySelectorAll("input")).forEach(
-        input => (input.value = "")
-        
+        (input) => (input.value = "")
       );
-    
     };
 
     axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
         console.log("success");
-       
+
         {
           notify();
         }
@@ -331,7 +330,7 @@ const Addjobs = () => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Add Jobs</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs" style={{ textDecoration: "none" }}>
+              <Link to="/jobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"

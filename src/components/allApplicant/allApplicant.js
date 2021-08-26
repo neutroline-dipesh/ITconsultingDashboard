@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import MaterialTable from 'material-table';
+import MaterialTable from "material-table";
 import Swal from "sweetalert2";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useHistory } from "react-router-dom";
@@ -133,7 +133,8 @@ const Allapplicant = () => {
             name: val.firstName + ' '+val.lastName,
             gmail: val.gmail,
             postedDate: val.postedDate,
-            approvelStatus: val.approvelStatus
+            approvelStatus: val.approvelStatus,
+            
           }
         });
         setApplicantTable(newArray);
@@ -141,9 +142,8 @@ const Allapplicant = () => {
     });
   };
   useEffect(() => {
-      fetchData();
+    fetchData();
   }, []);
-
 
   const classes = useStyle();
   //delete confirmation message
@@ -229,6 +229,10 @@ const Allapplicant = () => {
                             { title: 'Approval Status', field: 'approvelStatus' },                      ]}
                   data={applicantTable}
       options={{
+          rowStyle: (rowData) => ({
+          backgroundColor: (rowData.approvelStatus === "notSeen") ? "#F2F2F2" : "#FFF",
+          fontWeight: (rowData.approvelStatus === "notSeen") ? "600" : ""
+        }),
         headerStyle: {
               backgroundColor: "#4e73df",
               color: "#fff",
@@ -243,7 +247,7 @@ const Allapplicant = () => {
         {
           icon:() => <VisibilityIcon/>,
           tooltip: 'View Applicant',
-          onClick: (event, rowData) => history.push(`/applicant-detail/${rowData.id}`)
+          onClick: (event, rowData) => history.push(`/applicant/detail/${rowData.id}`)
         },
         {
           icon: 'delete',
@@ -372,12 +376,11 @@ const Allapplicant = () => {
                     })}
                   </tbody>
                 </table> */}
-              
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </>
   );
 };

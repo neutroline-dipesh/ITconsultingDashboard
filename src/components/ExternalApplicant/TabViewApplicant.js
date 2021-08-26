@@ -18,9 +18,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
-import GoogleDocsViewer from "react-google-docs-viewer";
-import res from "../../assets/files/test.docx";
-import { Link } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -143,10 +140,12 @@ export default function SimpleTabs(props) {
     const data = {
       approvelStatus: newAlignment,
     };
+    console.log(data);
     if (applicantId) {
       axios
         .patch(
-          "http://localhost:4000/allApplicant/approvelStatus/" + applicantId,
+          "http://localhost:4000/externalApplicant/status/approvel/" +
+            applicantId,
           data,
           {
             headers: {
@@ -180,11 +179,10 @@ export default function SimpleTabs(props) {
             className={classes.tabs}
           >
             <Tab label="Basic Details" {...a11yProps(0)} />
-
             <Tab label="Resume" {...a11yProps(1)} />
-
             <Tab label="Cover Letter" {...a11yProps(2)} />
           </Tabs>
+
           <ToggleButtonGroup
             className={classes.toogleButton}
             value={approvelStatus}
@@ -230,7 +228,7 @@ export default function SimpleTabs(props) {
               </TableRow>
             </TableHead> */}
             <TableBody>
-              <TableRow
+              {/* <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
                 <TableCell
@@ -241,7 +239,7 @@ export default function SimpleTabs(props) {
                   Applied Job:
                 </TableCell>
                 <TableCell align="left">{props.data.jobTitle}</TableCell>
-              </TableRow>
+              </TableRow> */}
               <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
                   component="th"
@@ -270,7 +268,7 @@ export default function SimpleTabs(props) {
                 >
                   Seniority Level:
                 </TableCell>
-                <TableCell align="left">{props.data.senioritylevel}</TableCell>
+                <TableCell align="left">{props.data.jobType}</TableCell>
               </TableRow>
               <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
@@ -286,7 +284,7 @@ export default function SimpleTabs(props) {
                   style={{ border: "none", height: "2px" }}
                 ></TableCell>
               </TableRow>
-              <TableRow
+              {/* <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
                 <TableCell
@@ -297,8 +295,8 @@ export default function SimpleTabs(props) {
                   Expected Salary($):
                 </TableCell>
                 <TableCell align="left">{props.data.expectedSalary} </TableCell>
-              </TableRow>
-              <TableRow style={{ background: "#F6F7FA" }}>
+              </TableRow> */}
+              {/* <TableRow style={{ background: "#F6F7FA" }}>
                 <TableCell
                   component="th"
                   scope="row"
@@ -309,8 +307,8 @@ export default function SimpleTabs(props) {
                   scope="row"
                   style={{ border: "none" }}
                 ></TableCell>
-              </TableRow>
-              <TableRow
+              </TableRow> */}
+              {/* <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
                 <TableCell
@@ -321,20 +319,8 @@ export default function SimpleTabs(props) {
                   Salary Type:
                 </TableCell>
                 <TableCell align="left">{props.data.salaryType}</TableCell>
-              </TableRow>
+              </TableRow> */}
 
-              <TableRow style={{ background: "#F6F7FA" }}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  style={{ border: "none" }}
-                ></TableCell>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  style={{ border: "none" }}
-                ></TableCell>
-              </TableRow>
               <TableRow
                 style={{ background: "#FFF", borderLeft: "3px solid blue" }}
               >
@@ -347,77 +333,32 @@ export default function SimpleTabs(props) {
                 </TableCell>
                 <TableCell align="left">{props.data.message}</TableCell>
               </TableRow>
+              <TableRow style={{ background: "#F6F7FA" }}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ border: "none" }}
+                ></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <a
-          href="https://docs.google.com/document/d/11_wljoh3_R5_eIUvyLHqw-vk1uIzkXBG/edit"
-          target="_blank"
-        >
-          Resume
-        </a> */}
-        {/* <GoogleDocsViewer
-          // width="600px"
-          // height="780px"
-          fileUrl="https://docs.google.com/document/d/1i2AGqG_fa25IwCsfNK86K1OqRd7wMb9u52mjeMPpvEA/edit"
-        /> */}
-
-        {/* <iframe
-          src="https://docs.google.com/gview?url=https://docs.google.com/presentation/d/1jby57zCOD-5AY0JW7fsxbghTTAPUBJ-gU5h_A1wBCHE/edit#slide=id.gc6f972163_0_0"
-          style={{
-            width: "106.4%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-        ></iframe> */}
-        {/* <iframe
-          // https://docs.google.com/document/d/11_wljoh3_R5_eIUvyLHqw-vk1uIzkXBG/edit
-          src="https://docs.google.com/gview?url=https://docs.google.com/presentation/d/1jby57zCOD-5AY0JW7fsxbghTTAPUBJ-gU5h_A1wBCHE/edit#slide=id.gc6f972163_0_0"
-          style={{
-            width: "106.4%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-        ></iframe> */}
-        {/* <iframe
-          src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview"
-          style={{
-            width: "80%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-          allow="autoplay"
-        ></iframe> */}
-        {/* <iframe
-          style={{
-            width: "106.4%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-          src="https://docs.google.com/document/d/1JfcFAUCHujSCun0bWq12c-jMuEdxt-b_/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true"
-          // src="https://docs.google.com/document/d/e/2PACX-1vR7pjvQ6msMpoEVDokz-yIy7laDJ0cGLgQvGpUVZPMmnYmMqfLAnSAGSGU6XbbnY-4HYfQNlToTDBpG/pub?embedded=true"
-        ></iframe> */}
-
         <iframe
+          src={props.data.resume}
           style={{
-            width: "106%",
+            width: "106.4%",
             height: "70.5vh",
             marginLeft: "-1.5rem",
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-          src="https://docs.google.com/document/d/e/2PACX-1vR4wJOuYJH7xaNErrynNW7guvbeIYu7LqG1zbL-Z62mura4jM4aLNNsfWlPuWOUuw/pub?embedded=true"
-          // src="https://docs.google.com/document/d/1P4nlP39Nr9s3pc8V9cDF4UZYTxnxjkcV/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true&embedded=true"
         ></iframe>
       </TabPanel>
       <TabPanel value={value} index={2}>

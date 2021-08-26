@@ -125,11 +125,20 @@ export default function FullScreenDialog(props) {
           {" "}
         </iframe> */}
 
-        <iframe
+        {/* <iframe
           src={
             "https://docs.google.com/gview?url=" + props.cv + "&embedded=true"
           }
           className={classes.cv}
+        ></iframe> */}
+        <iframe
+          style={{
+            width: "100%",
+            height: "90vh",
+          }}
+          src="https://docs.google.com/document/d/17s7K2bYT7CPKc1vFGFnqyQC3wc5-TkLi/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true"
+
+          // src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview" // src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview"
         ></iframe>
       </Dialog>
     </div>
