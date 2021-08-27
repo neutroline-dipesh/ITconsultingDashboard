@@ -245,15 +245,17 @@ const Addjobs = () => {
       publishBy: "",
       workType: "",
     },
-    validationSchema: Yup.object({
-      jobTitle: Yup.string().required("Required!"),
-      jobSubTitle: Yup.string().required("Required!"),
-      department: Yup.string().required("Required!"),
-      jobType: Yup.string().required("Required!"),
-      country: Yup.string().required("Required!"),
-      state: Yup.string().required("Required!"),
-      city: Yup.string().required("Required!"),
-      publishBy: Yup.string().required("Required!"),
+    validationSchema: Yup.object().shape({
+      jobTitle: Yup.string().min(1,"Required!"),
+      jobSubTitle: Yup.string().min(1,"Required!"),
+      department: Yup.string().min(1,"Required!"),
+      jobType: Yup.string().min(1,"Required!"),
+      country: Yup.string().min(1,"Required!"),
+      state: Yup.string().min(1,"Required!")
+      .max(3,"please enter only state Initials")
+      ,
+      city: Yup.string().min(1,"Required!"),
+      publishBy: Yup.string().min(1,"Required!"),
       // password: Yup.string()
       //   .min(4, "Minimum 4 character!")
       //   .required("Required!"),
@@ -406,7 +408,7 @@ const Addjobs = () => {
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
                       {...formik.getFieldProps("jobSubTitle")}
-                      placeholder="Enter Job SubTitle"
+                      placeholder="Enter Job Short Description"
                       required
                     />
                     <div className={classes.errorMessage}>
@@ -418,6 +420,7 @@ const Addjobs = () => {
                           style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
+                          required
                         >
                           <option value="" selected disabled>
                             Department
@@ -436,6 +439,7 @@ const Addjobs = () => {
                           style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
+                          required
                         >
                           <option value="" selected disabled>
                             Job type
@@ -443,7 +447,9 @@ const Addjobs = () => {
                           <option>Full Time</option>
                           <option>Part Time</option>
                           <option>Contract</option>
+                          
                         </select>
+                        
                         <div
                           className={
                             classes.errorMessage + " " + classes.jobTypeErrorMsg
@@ -482,7 +488,7 @@ const Addjobs = () => {
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
-                          placeholder="Enter State"
+                          placeholder="Enter State initials "
                           name="jobTitle"
                           {...formik.getFieldProps("state")}
                           required
