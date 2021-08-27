@@ -350,7 +350,7 @@ export default function SimpleTabs(props) {
         </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <iframe
+        {/* <iframe
           src={props.data.resume}
           style={{
             width: "106.4%",
@@ -359,6 +359,12 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
+        ></iframe> */}
+        <iframe
+          src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview"
+          width="640"
+          height="480"
+          allow="autoplay"
         ></iframe>
       </TabPanel>
       <TabPanel value={value} index={2}>
