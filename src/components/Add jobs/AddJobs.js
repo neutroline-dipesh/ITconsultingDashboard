@@ -247,7 +247,9 @@ const Addjobs = () => {
     },
     validationSchema: Yup.object().shape({
       jobTitle: Yup.string().min(1,"Required!"),
-      jobSubTitle: Yup.string().min(1,"Required!"),
+      jobSubTitle: Yup.string().min(1,"Required!")
+      .max(200,"please make it short, only 200 characters allowed.")
+      ,
       department: Yup.string().min(1,"Required!"),
       jobType: Yup.string().min(1,"Required!"),
       country: Yup.string().min(1,"Required!"),
@@ -490,7 +492,7 @@ const Addjobs = () => {
                           aria-describedby="emailHelp"
                           placeholder="Enter State initials "
                           name="jobTitle"
-                          {...formik.getFieldProps("state")}
+                          {...formik.getFieldProps("state".toUpperCase())}
                           required
                         />
                         <div
