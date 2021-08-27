@@ -1,25 +1,18 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import Swal from "sweetalert2";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { withStyles } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
 import axios from "axios";
-
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 import "bootstrap/dist/css/bootstrap.min.css"
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
-import { CgArrowLeftR } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -245,7 +238,7 @@ const Addjobs = () => {
       publishBy: "",
       workType: "",
     },
-    validationSchema: Yup.object().shape({
+    validationSchema: Yup.object({
       jobTitle: Yup.string().min(1,"Required!"),
       jobSubTitle: Yup.string().min(1,"Required!")
       .max(200,"please make it short, only 200 characters allowed.")
@@ -253,7 +246,7 @@ const Addjobs = () => {
       department: Yup.string().min(1,"Required!"),
       jobType: Yup.string().min(1,"Required!"),
       country: Yup.string().min(1,"Required!"),
-      state: Yup.string().min(1,"Required!")
+      state: Yup.string()
       .max(3,"please enter only state Initials")
       ,
       city: Yup.string().min(1,"Required!"),
@@ -492,7 +485,7 @@ const Addjobs = () => {
                           aria-describedby="emailHelp"
                           placeholder="Enter State initials "
                           name="jobTitle"
-                          {...formik.getFieldProps("state".toUpperCase())}
+                          {...formik.getFieldProps("state")}
                           required
                         />
                         <div
