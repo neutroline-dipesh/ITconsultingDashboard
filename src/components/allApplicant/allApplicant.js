@@ -116,12 +116,28 @@ const useStyle = makeStyles((theme) => ({
 const Allapplicant = () => {
   const history = useHistory();
   const [data1, setData1] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [applicantTable, setApplicantTable] = useState();
 
   //getting data from database
   const fetchData = () => {
+    setLoading(true);
     axios.get("http://localhost:4000/allApplicant/").then((response) => {
       if (response.data) {
         setData1(response.data.data);
+        setLoading(false);
+        var newArray = response.data.data.map(function(val){
+          return{
+            id: val.id,
+            jobTitle: val.jobTitle,
+            name: val.firstName + ' '+val.lastName,
+            gmail: val.gmail,
+            postedDate: val.postedDate,
+            approvelStatus: val.approvelStatus,
+            
+          }
+        });
+        setApplicantTable(newArray);
       }
     });
   };
@@ -204,41 +220,42 @@ const Allapplicant = () => {
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
                 <MaterialTable
-                  title="Applicants Lists"
-                  columns={[
-                    { title: "Job Title", field: "jobTitle" },
-                    { title: "Name", field: "firstName" },
-                    { title: "Email", field: "gmail" },
-                    { title: "Applied Date", field: "postedDate" },
-                    { title: "Approval Status", field: "approvelStatus" },
-                    // { title: 'Action', field: 'action' }
-                  ]}
-                  data={data1}
-                  options={{
-                    headerStyle: {
-                      backgroundColor: "#4e73df",
-                      color: "#fff",
-                      fontWeight: "400",
-                      whiteSpace: "nowrap",
-                      position: "sticky",
-                    },
-                    actionsColumnIndex: -1,
-                  }}
-                  // isLoading={true}
-                  actions={[
-                    {
-                      icon: () => <VisibilityIcon />,
-                      tooltip: "View Applicant",
-                      onClick: (event, rowData) =>
-                        history.push(`/applicant-detail/${rowData.id}`),
-                    },
-                    {
-                      icon: "delete",
-                      tooltip: "Delete Applicant",
-                      onClick: (event, rowData) => deletFunction(rowData.id),
-                    },
-                  ]}
-                />
+                    title="Applicants Lists"
+                      columns={[
+                            { title: 'Job Title', field: 'jobTitle' },
+                            { title: 'Name', field: 'name'},
+                            { title: 'Email', field: 'gmail' },
+                            { title: 'Applied Date', field: 'postedDate' },
+                            { title: 'Approval Status', field: 'approvelStatus' },                      ]}
+                  data={applicantTable}
+      options={{
+          rowStyle: (rowData) => ({
+          backgroundColor: (rowData.approvelStatus === "notSeen") ? "#F2F2F2" : "#FFF",
+          fontWeight: (rowData.approvelStatus === "notSeen") ? "600" : ""
+        }),
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      isLoading={loading}    
+      actions={[
+        {
+          icon:() => <VisibilityIcon/>,
+          tooltip: 'View Applicant',
+          onClick: (event, rowData) => history.push(`/applicant/detail/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Applicant',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
                 {/* <table
                   id="example"
                   data-ordering="false"
@@ -363,7 +380,7 @@ const Allapplicant = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </>
   );
 };

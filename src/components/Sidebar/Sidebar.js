@@ -301,7 +301,7 @@ const Sidebar = () => {
           </ListItem>
           <Collapse in={openJobs} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/alljobs" className={classes.linktext}>
+              <Link to="/jobs" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.sidebarList}
@@ -314,7 +314,7 @@ const Sidebar = () => {
                 </ListItem>
               </Link>
 
-              <Link to="/addjobs" className={classes.linktext}>
+              <Link to="/job/add" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.sidebarList}
@@ -325,7 +325,7 @@ const Sidebar = () => {
               </Link>
             </List>
           </Collapse>
-          <Link to="/allApplicant" style={{ textDecoration: "none" }}>
+          <Link to="/applicants" style={{ textDecoration: "none" }}>
             <ListItem button className={classes.sidebarList}>
               <WorkIcon className={classes.sidebarIcon} />
 
@@ -343,7 +343,7 @@ const Sidebar = () => {
           </Link>
           <Collapse in={openApplicant} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/internal" className={classes.linktext}>
+              <Link to="/applicant/internal" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.sidebarList}
@@ -352,7 +352,7 @@ const Sidebar = () => {
                   <ListItemText primary="Internal" />
                 </ListItem>
               </Link>
-              <Link to="/contracting" className={classes.linktext}>
+              <Link to="applicant/contracting" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.nested}
@@ -363,7 +363,7 @@ const Sidebar = () => {
                 </ListItem>
               </Link>
 
-              <Link to="/externalApplicant" className={classes.linktext}>
+              <Link to="/applicant/external" className={classes.linktext}>
                 <ListItem
                   button
                   className={classes.nested}

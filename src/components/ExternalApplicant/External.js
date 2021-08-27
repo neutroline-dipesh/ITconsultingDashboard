@@ -120,12 +120,17 @@ const useStyle = makeStyles((theme) => ({
 const External = () => {
   const history = useHistory();
   const [data1, setData1] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   //getting data from database
   const fetchData = () => {
+    setLoading(true);
     axios.get("http://localhost:4000/externalApplicant/").then((response) => {
       if (response.data) {
+        console.log(response.data.data);
         setData1(response.data.data);
+
+        setLoading(false);
       }
     });
   };
@@ -208,12 +213,11 @@ const External = () => {
                 <MaterialTable
                   title="External Applicants"
                   columns={[
-                    { title: "Job Title", field: "jobTitle" },
-                    { title: "Name", field: "firstName" },
+                    { title: "Job Type", field: "jobType" },
+                    { title: "Name", field: "fullName" },
                     { title: "Email", field: "gmail" },
                     { title: "Applied Date", field: "postedDate" },
                     { title: "Approval Status", field: "approvelStatus" },
-                    // { title: 'Action', field: 'action' }
                   ]}
                   data={data1}
                   options={{
@@ -224,23 +228,22 @@ const External = () => {
                       whiteSpace: "nowrap",
                       position: "sticky",
                     },
-                    actionsColumnIndex: -1,
-                  }}
-                  // isLoading={true}
-                  actions={[
-                    {
-                      icon: () => <VisibilityIcon />,
-                      tooltip: "View Job",
-                      onClick: (event, rowData) =>
-                        history.push(`/external-viewDetail/${rowData.id}`),
-                    },
-                    {
-                      icon: "delete",
-                      tooltip: "Delete Job",
-                      onClick: (event, rowData) => deletFunction(rowData.id),
-                    },
-                  ]}
-                />
+                    actionsColumnIndex: -1
+                  }} 
+      isLoading={loading}    
+      actions={[
+        {
+          icon:() => <VisibilityIcon/>,
+          tooltip: 'View Job',
+          onClick: (event, rowData) => history.push(`/applicant/external/detail/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Job',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
 
                 {/* <table
                   id="example"

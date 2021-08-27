@@ -12,7 +12,7 @@ import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
-
+import "bootstrap/dist/css/bootstrap.min.css"
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
@@ -23,6 +23,8 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -30,6 +32,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Box from "@material-ui/core/Box";
+import SelectInput from "@material-ui/core/Select/SelectInput";
 
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -228,7 +231,6 @@ const useStyle = makeStyles((theme) => ({
 
 const Addjobs = () => {
   const classes = useStyle();
-  let history = useHistory();
 
   //for validation
   const formik = useFormik({
@@ -243,15 +245,19 @@ const Addjobs = () => {
       publishBy: "",
       workType: "",
     },
-    validationSchema: Yup.object({
-      jobTitle: Yup.string().required("Required!"),
-      jobSubTitle: Yup.string().required("Required!"),
-      department: Yup.string().required("Required!"),
-      jobType: Yup.string().required("Required!"),
-      country: Yup.string().required("Required!"),
-      state: Yup.string().required("Required!"),
-      city: Yup.string().required("Required!"),
-      publishBy: Yup.string().required("Required!"),
+    validationSchema: Yup.object().shape({
+      jobTitle: Yup.string().min(1,"Required!"),
+      jobSubTitle: Yup.string().min(1,"Required!")
+      .max(200,"please make it short, only 200 characters allowed.")
+      ,
+      department: Yup.string().min(1,"Required!"),
+      jobType: Yup.string().min(1,"Required!"),
+      country: Yup.string().min(1,"Required!"),
+      state: Yup.string().min(1,"Required!")
+      .max(3,"please enter only state Initials")
+      ,
+      city: Yup.string().min(1,"Required!"),
+      publishBy: Yup.string().min(1,"Required!"),
       // password: Yup.string()
       //   .min(4, "Minimum 4 character!")
       //   .required("Required!"),
@@ -308,7 +314,7 @@ const Addjobs = () => {
   const [state, setState] = React.useState();
   const handleChange = (event) => {
     setState(event.target.checked);
-    setPublish("Not Publish");
+   // setPublish("Not Publish");
     console.log(state);
     if (state == true) {
       setPublish("Not Publish");
@@ -328,7 +334,7 @@ const Addjobs = () => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Add Jobs</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs" style={{ textDecoration: "none" }}>
+              <Link to="/jobs" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -404,7 +410,7 @@ const Addjobs = () => {
                       aria-describedby="emailHelp"
                       name="jobSubTitle"
                       {...formik.getFieldProps("jobSubTitle")}
-                      placeholder="Enter Job SubTitle"
+                      placeholder="Enter Job Short Description"
                       required
                     />
                     <div className={classes.errorMessage}>
@@ -416,6 +422,7 @@ const Addjobs = () => {
                           style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.Department}
                           {...formik.getFieldProps("department")}
+                          required
                         >
                           <option value="" selected disabled>
                             Department
@@ -434,6 +441,7 @@ const Addjobs = () => {
                           style={{ borderColor: "#0066ff" }}
                           className={"form-select" + " " + classes.JobType}
                           {...formik.getFieldProps("jobType")}
+                          required
                         >
                           <option value="" selected disabled>
                             Job type
@@ -441,7 +449,9 @@ const Addjobs = () => {
                           <option>Full Time</option>
                           <option>Part Time</option>
                           <option>Contract</option>
+                          
                         </select>
+                        
                         <div
                           className={
                             classes.errorMessage + " " + classes.jobTypeErrorMsg
@@ -480,9 +490,9 @@ const Addjobs = () => {
                           type="text"
                           className={"form-control" + " " + classes.State}
                           aria-describedby="emailHelp"
-                          placeholder="Enter State"
+                          placeholder="Enter State initials "
                           name="jobTitle"
-                          {...formik.getFieldProps("state")}
+                          {...formik.getFieldProps("state".toUpperCase())}
                           required
                         />
                         <div

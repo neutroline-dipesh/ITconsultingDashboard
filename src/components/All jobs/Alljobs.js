@@ -154,13 +154,26 @@ const Alljobs = (props) => {
         if (response.data) {
           setData1(response.data.data);
           setLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  };
+        var newArray = response.data.data.map(function(val){
+          return{
+            id: val.id,
+            jobId: val.jobId,
+            jobTitle: val.jobTitle,
+            department: val.department,
+            jobType: val.jobType,
+            address: val.city + ", " + val.state + ", "+ val.country,
+            publishBy: val.publishBy,
+            visibility: val.visibility
+          }
+         });
+         console.log(newArray);
+         setTableData(newArray);
+      }
+    }).catch((error)=>{
+      console.log(error);
+      setLoading(false);
+  });
+}
 
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -228,7 +241,7 @@ const Alljobs = (props) => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Job / Jobs List</span>
             <Tooltip title="Add Jobs" TransitionComponent={Zoom} arrow>
-              <Link to="/addjobs" style={{ textDecoration: "none" }}>
+              <Link to="/job/add" style={{ textDecoration: "none" }}>
                 <Button
                   variant="contained"
                   size="small"
@@ -243,52 +256,47 @@ const Alljobs = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <MaterialTable
-                  title="Job Lists"
-                  columns={[
-                    { title: "Job Id", field: "jobId" },
-                    { title: "Job Title", field: "jobTitle" },
-                    { title: "Department", field: "department" },
-                    { title: "Job Type", field: "jobType" },
-                    { title: "Address", field: "country" },
-                    { title: "Published By", field: "publishBy" },
-                    { title: "Visibility", field: "visibility" },
-                    { title: "id", field: "id", hidden: true },
-                    // { title: 'Action', field: 'action' }
-                  ]}
-                  data={data1}
-                  options={{
-                    headerStyle: {
-                      backgroundColor: "#4e73df",
-                      color: "#fff",
-                      fontWeight: "400",
-                      whiteSpace: "nowrap",
-                      position: "sticky",
-                      left: 0,
-                    },
-                    actionsColumnIndex: -1,
-                  }}
-                  isLoading={loading}
-                  actions={[
-                    {
-                      icon: () => <VisibilityIcon />,
-                      tooltip: "View Job",
-                      onClick: (event, rowData) =>
-                        history.push(`/job-detail/${rowData.id}`),
-                    },
-                    {
-                      icon: "edit",
-                      tooltip: "Edit Job",
-                      onClick: (event, rowData) =>
-                        history.push(`/alljobs/edit-job/${rowData.id}`),
-                    },
-                    {
-                      icon: "delete",
-                      tooltip: "Delete Job",
-                      onClick: (event, rowData) => deletFunction(rowData.id),
-                    },
-                  ]}
-                />
+    <MaterialTable
+    title="Job Lists"
+      columns={[
+            { title: 'Job Id', field: 'jobId' },
+            { title: 'Job Title', field: 'jobTitle' },
+            { title: 'Department', field: 'department' },
+            { title: 'Job Type', field: 'jobType' },
+            { title: 'Address', field: 'address' },
+            { title: 'Published By', field: 'publishBy' },
+            { title: 'Visibility', field: 'visibility' },
+      ]}
+      data={tableData} 
+      options={{
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      isLoading={loading}    
+      actions={[
+        {
+          icon:() => <VisibilityIcon/>,
+          tooltip: 'View Job',
+          onClick: (event, rowData) => history.push(`/job/detail/${rowData.id}`)
+        },
+        {
+          icon: 'edit',
+          tooltip: 'Edit Job',
+          onClick: (event, rowData) => history.push(`/job/edit/${rowData.id}`)
+        },
+        {
+          icon: 'delete',
+          tooltip: 'Delete Job',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
               </div>
             </div>
           </div>

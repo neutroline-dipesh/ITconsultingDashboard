@@ -102,6 +102,8 @@ const Employers = (props) => {
   const classes = useStyle();
   const [data, setData] = useState([]);
   const [seen, setSeen] = useState(false);
+  const [tableData, setTableData] = useState();
+  const [loading, setLoading]=useState(true);
   const handState = () => {
     setSeen(!seen);
     fetchContactData();
@@ -116,8 +118,27 @@ const Employers = (props) => {
 
   //alert message
   const fetchContactData = () => {
+    setLoading(true);
     axios.get("http://localhost:4000/requestTalent/").then((response) => {
       setData(response.data.data);
+      console.log(response.data.data);
+      var newArray = response.data.data.map(function(val){
+        return{
+          id: val.id,
+          name: val.firstName+' ' +val.lastName,
+          email: val.email,
+          phone: val.phone,
+          companyName: val.companyName,
+          jobTitle: val.jobTitle,
+          address: val.city + ', ' + val.country,
+          postedDate: val.postedDate,
+          attachment: val.attachment,
+          message: val.message,
+          status: val.status
+        }
+      });
+      setTableData(newArray);
+      setLoading(false);
     });
   };
 
@@ -197,42 +218,49 @@ const Employers = (props) => {
           <div className={classes.MainContentDiv}>
             <div className={classes.ContentDiv}>
               <div className={classes.ContentDateDiv}>
-                <MaterialTable
-                  title="Employers"
-                  columns={[
-                    { title: "Name", field: "firstName" },
-                    { title: "Email", field: "email" },
-                    { title: "Phone", field: "phone" },
-                    { title: "Company Name", field: "companyName" },
-                    { title: "Job Type", field: "jobTitle" },
-                    { title: "Address", field: "country" },
-                    { title: "Date", field: "postedDate" },
-                  ]}
-                  data={data}
-                  options={{
-                    headerStyle: {
-                      backgroundColor: "#4e73df",
-                      color: "#fff",
-                      fontWeight: "400",
-                      whiteSpace: "nowrap",
-                      position: "sticky",
-                    },
-                    actionsColumnIndex: -1,
-                  }}
-                  // isLoading={true}
-                  actions={[
-                    {
-                      icon: (rowData) => (
-                        <ViewDetail data={rowData} handleState={handState} />
-                      ),
-                    },
-                    {
-                      icon: "delete",
-                      tooltip: "Delete Employers",
-                      onClick: (event, rowData) => deletFunction(rowData.id),
-                    },
-                  ]}
-                />
+                  <MaterialTable
+                    title="Employers"
+                      columns={[
+                            { title: 'Name', field: 'name'},
+                            { title: 'Email', field: 'email' },
+                            { title: 'Phone', field: 'phone'},
+                            { title: 'Company Name', field: 'companyName'},
+                            { title: 'Job Title', field: 'jobTitle'},
+                            { title: 'Address', field: 'address' },
+                            { title: 'Date', field: 'postedDate' },
+                          ]}
+                  data={tableData}
+      options={{
+          rowStyle: (rowData) => ({
+          backgroundColor: (rowData.status !== "seen") ? "#F2F2F2" : "#FFF",
+          fontWeight: (rowData.status !== "seen") ? "600" : ""
+        }),
+        headerStyle: {
+              backgroundColor: "#4e73df",
+              color: "#fff",
+              fontWeight: "400",
+              whiteSpace: "nowrap",
+              position: "sticky",
+        },
+        actionsColumnIndex: -1
+      }} 
+      isLoading={loading}    
+      actions={[
+        (rowData) => ({
+          tooltip: '',
+          icon:() =>                
+          <ViewDetail
+                data={rowData}
+                handleState={handState}
+          />,
+        }),
+        {
+          icon: 'delete',
+          tooltip: 'Delete Employers',
+          onClick: (event, rowData) => deletFunction(rowData.id)
+        }
+      ]}
+    />
                 {/* <table
                   id="example"
                   data-ordering="false"

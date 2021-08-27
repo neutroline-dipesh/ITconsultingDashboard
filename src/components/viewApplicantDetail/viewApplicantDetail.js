@@ -3,26 +3,10 @@ import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import axios from "axios";
-import Tooltip from "@material-ui/core/Tooltip";
-import Zoom from "@material-ui/core/Zoom";
-import { Link, useParams } from "react-router-dom";
-import { IoMdArrowBack } from "react-icons/io";
-import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-
-import ListItemText from "@material-ui/core/ListItemText";
-import ContactsIcon from "@material-ui/icons/Contacts";
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import pdf from "../../assets/files/cv.pdf";
+import { useParams } from "react-router-dom";
 import adimImage from "../../assets/images/profile.png";
 import TabViewApplicant from "./TabViewApplicant";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import PhoneAndroidIcon from "@material-ui/icons/PhoneAndroid";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
@@ -191,14 +175,9 @@ borderRadius:"5px",
   ListItemLeft: {
     width: "50%",
     textAlign: "justify",
-    // backgroundColor: "red",
-    // marginRight: "1rem",
   },
   ListItemRight: {
     width: "50%",
-    
-    // backgroundColor: "blue",
-
     marginLeft: "1.5rem",
   },
   listItemTitle: {
@@ -250,10 +229,6 @@ const ViewApplicantDetail = () => {
     error: false,
     loading: false,
   });
-  const [alignment, setAlignment] = React.useState("left");
-  const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
   useEffect(() => {
     getApplicantDetails();
   }, []);
@@ -329,7 +304,7 @@ const ViewApplicantDetail = () => {
                   </div>
                   <div className={classes.leftTableContectDiv}>
                     <List className={classes.listMain}>
-                      <img src={adimImage} className={classes.image} />
+                      <img src={adimImage} className={classes.image} alt="img-list"/>
 
                       <ListItem
                         className={classes.ListItem}

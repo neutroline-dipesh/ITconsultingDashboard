@@ -213,7 +213,7 @@ const JobsDetail = () => {
           <div className={classes.PageTabDiv}>
             <span className={classes.pageTabName}>Jobs / Jobs Detail</span>
             <Tooltip title="Job List" TransitionComponent={Zoom} arrow>
-              <Link to="/alljobs">
+              <Link to="/jobs">
                 <Button
                   variant="contained"
                   size="small"

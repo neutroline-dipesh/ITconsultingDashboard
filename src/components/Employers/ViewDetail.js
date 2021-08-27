@@ -200,7 +200,7 @@ export default function AlertDialogSlide(props) {
           <img src={adimImage} className={classes.image} />
           <div className={classes.nameMailDiv}>
             <span className={classes.Name}>
-              {props.data.firstName + " " + props.data.lastName}
+              {props.data.name}
             </span>
             <span className={classes.mail}> {props.data.email}</span>
           </div>
@@ -251,7 +251,7 @@ export default function AlertDialogSlide(props) {
                 <Avatar className={classes.avatar}>
                   <FaRegAddressCard className={classes.icon} />
                 </Avatar>{" "}
-                {props.data.city + " , " + props.data.country}
+                {props.data.address}
               </span>
             </DialogContentText>
           </div>
