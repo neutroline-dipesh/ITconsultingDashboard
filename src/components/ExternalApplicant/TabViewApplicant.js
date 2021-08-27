@@ -124,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleTabs(props) {
   const classes = useStyles();
   // const theme = createMuiTheme();
+  console.log(props.data.resume);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -179,7 +180,9 @@ export default function SimpleTabs(props) {
             className={classes.tabs}
           >
             <Tab label="Basic Details" {...a11yProps(0)} />
+
             <Tab label="Resume" {...a11yProps(1)} />
+
             <Tab label="Cover Letter" {...a11yProps(2)} />
           </Tabs>
 
@@ -350,8 +353,12 @@ export default function SimpleTabs(props) {
         </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <iframe
-          src={props.data.resume}
+        <a href={props.data.resume} target="_blank">
+          {" "}
+          Resume
+        </a>
+        {/* <iframe
+          src="https://drive.google.com/file/d/1SFmBFDo8uqPFTRGgq5T2eT-EHMhTwEM6/view?usp=drivesdk&embeded=true"
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -359,11 +366,25 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-        ></iframe>
+          allow="autoplay"
+        ></iframe> */}
+        {/* <iframe
+          style={{
+            width: "106.4%",
+            height: "70.5vh",
+            marginLeft: "-1.5rem",
+            marginTop: "-1.5rem",
+            marginBottom: "-2rem",
+          }}
+          src="https://drive.google.com/file/d/17mr3SzFSN2ODdvRj7a37SaF7blRrlrvF/preview"
+          width="640"
+          height="480"
+          allow="autoplay"
+        ></iframe> */}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <iframe
-          src="https://drive.google.com/file/d/1ho_-7kTqYLAg5frKL8JPCnWk9k-TlVcn/view?usp=drivesdk"
+        {/* <iframe
+          src="https://drive.google.com/file/d/1ho_-7kTqYLAg5frKL8JPCnWk9k-TlVcn/preview"
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -371,9 +392,23 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
+          allow="autoplay"
         >
           {" "}
-        </iframe>
+        </iframe> */}
+        <iframe
+          style={{
+            width: "106.4%",
+            height: "70.5vh",
+            marginLeft: "-1.5rem",
+            marginTop: "-1.5rem",
+            marginBottom: "-2rem",
+          }}
+          src="https://drive.google.com/file/d/1ho_-7kTqYLAg5frKL8JPCnWk9k-TlVcn/preview"
+          width="640"
+          height="480"
+          allow="autoplay"
+        ></iframe>
       </TabPanel>
     </div>
   );
