@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -7,7 +7,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
@@ -16,7 +16,6 @@ import Button from "@material-ui/core/Button";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -188,6 +187,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#2653d4",
     borderRadius: "20px",
     fontSize: "0.9rem",
+    marginBottom:".5rem",
     width: "7rem",
     marginTop: "2rem",
     "&:hover": {
@@ -214,6 +214,7 @@ const useStyle = makeStyles((theme) => ({
   publishCheckBox: {
     width: "3.5rem !important",
     height: "3.5vh",
+    marginLeft:".5rem",
     // backgroundColor: "#52D869",
   },
   jobTypeRadio: {
@@ -239,18 +240,16 @@ const Addjobs = () => {
       workType: "",
     },
     validationSchema: Yup.object({
-      jobTitle: Yup.string().min(1,"Required!"),
-      jobSubTitle: Yup.string().min(1,"Required!")
-      .max(200,"please make it short, only 200 characters allowed.")
-      ,
-      department: Yup.string().min(1,"Required!"),
-      jobType: Yup.string().min(1,"Required!"),
-      country: Yup.string().min(1,"Required!"),
-      state: Yup.string()
-      .max(3,"please enter only state Initials")
-      ,
-      city: Yup.string().min(1,"Required!"),
-      publishBy: Yup.string().min(1,"Required!"),
+      jobTitle: Yup.string().min(1, "Required!").required("Required!"),
+      jobSubTitle: Yup.string()
+        .min(1, "Required!")
+        .max(200, "please make it short, only 200 characters allowed.").required("Required!"),
+      department: Yup.string().min(1, "Required!").required("Required!"),
+      jobType: Yup.string().min(1, "Required!").required("Required!"),
+      country: Yup.string().min(1, "Required!").required("Required!"),
+      state: Yup.string().max(3, "please enter only state Initials").required("Required!"),
+      city: Yup.string().min(1, "Required!").required("Required!"),
+      publishBy: Yup.string().min(1, "Required!").required("Required!"),
       // password: Yup.string()
       //   .min(4, "Minimum 4 character!")
       //   .required("Required!"),
@@ -286,11 +285,11 @@ const Addjobs = () => {
     };
     const notify = () => {
       toast.success("Job posted successfully");
+
       Array.from(document.querySelectorAll("input")).forEach(
         (input) => (input.value = "")
       );
     };
-
     axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
@@ -307,7 +306,7 @@ const Addjobs = () => {
   const [state, setState] = React.useState();
   const handleChange = (event) => {
     setState(event.target.checked);
-   // setPublish("Not Publish");
+    // setPublish("Not Publish");
     console.log(state);
     if (state == true) {
       setPublish("Not Publish");
@@ -381,7 +380,9 @@ const Addjobs = () => {
                       required
                     />
                     <div className={classes.errorMessage}>
-                      {formik.errors.publishBy}
+                    {formik.touched.publishBy && formik.errors.publishBy ? (
+         <div>{formik.errors.publishBy}</div>
+       ) : null}
                     </div>
                     <input
                       type="text"
@@ -394,8 +395,9 @@ const Addjobs = () => {
                       required
                     />
                     <div className={classes.errorMessage}>
-                      {formik.errors.jobTitle}
-                    </div>
+                    {formik.touched.jobTitle && formik.errors.jobTitle ? (
+         <div>{formik.errors.jobTitle}</div>
+       ) : null}                    </div>
                     <input
                       type="text"
                       style={{ borderColor: "#0066ff" }}
@@ -407,8 +409,9 @@ const Addjobs = () => {
                       required
                     />
                     <div className={classes.errorMessage}>
-                      {formik.errors.jobSubTitle}
-                    </div>
+                    {formik.touched.jobSubTitle && formik.errors.jobSubTitle ? (
+         <div>{formik.errors.jobSubTitle}</div>
+       ) : null}                       </div>
                     <div className={classes.DepartmentJobTypeDiv}>
                       <div className={classes.DepartmentDiv}>
                         <select
@@ -426,7 +429,9 @@ const Addjobs = () => {
                           <option>Technology</option>
                         </select>
                         <div className={classes.errorMessage}>
-                          {formik.errors.department}
+                        {formik.touched.department && formik.errors.department ? (
+         <div>{formik.errors.department}</div>
+       ) : null}    
                         </div>
                       </div>
                       <div className={classes.jobTypeDiv}>
@@ -442,15 +447,16 @@ const Addjobs = () => {
                           <option>Full Time</option>
                           <option>Part Time</option>
                           <option>Contract</option>
-                          
                         </select>
-                        
+
                         <div
                           className={
                             classes.errorMessage + " " + classes.jobTypeErrorMsg
                           }
                         >
-                          {formik.errors.jobType}
+                          {formik.touched.jobType && formik.errors.jobType ? (
+         <div>{formik.errors.jobType}</div>
+       ) : null}    
                         </div>
                       </div>
                     </div>
@@ -463,7 +469,7 @@ const Addjobs = () => {
                           className={"form-control" + " " + classes.Country}
                           aria-describedby="emailHelp"
                           placeholder="Enter Country"
-                          name="jobTitle"
+                          name="country"
                           {...formik.getFieldProps("country")}
                           required
                         />
@@ -473,7 +479,9 @@ const Addjobs = () => {
                             classes.errorMessage + " " + classes.countryErrorMsg
                           }
                         >
-                          {formik.errors.country}
+                           {formik.touched.country && formik.errors.country ? (
+         <div>{formik.errors.country}</div>
+       ) : null}    
                         </div>
                       </div>
 
@@ -493,7 +501,9 @@ const Addjobs = () => {
                             classes.errorMessage + " " + classes.stateErrorMsg
                           }
                         >
-                          {formik.errors.state}
+                          {formik.touched.state && formik.errors.state ? (
+         <div>{formik.errors.state}</div>
+       ) : null}    
                         </div>
                       </div>
                       <div className={classes.cityDiv}>
@@ -513,7 +523,9 @@ const Addjobs = () => {
                             classes.errorMessage + " " + classes.cityErrorMsg
                           }
                         >
-                          {formik.errors.city}
+                           {formik.touched.city && formik.errors.city ? (
+         <div>{formik.errors.city}</div>
+       ) : null}    
                         </div>
                       </div>
                     </div>
