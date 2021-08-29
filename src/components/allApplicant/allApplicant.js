@@ -246,7 +246,8 @@ const Allapplicant = () => {
             if(rowData.approvelStatus === "Hold"){
               return{
                 backgroundColor: "#ffc107",
-                color: '#fff'
+                color: '#fff',
+                padding: '2px'
               }
             };
           }
