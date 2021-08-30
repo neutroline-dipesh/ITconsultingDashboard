@@ -97,7 +97,19 @@ export default function ViewAttectment(props) {
             </Button>
           </Toolbar>
         </AppBar>
-        <embed className={classes.cv} src={props.attechmnet}></embed>
+        <iframe
+          style={{
+            width: "101.75%",
+            height: "94vh",
+            marginLeft: "-1.5rem",
+            marginTop: "-1.5rem",
+            marginBottom: "-2rem",
+          }}
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.attechmnet
+          }
+        ></iframe>
       </Dialog>
     </div>
   );

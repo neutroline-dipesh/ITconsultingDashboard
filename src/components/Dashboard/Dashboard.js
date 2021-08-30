@@ -225,7 +225,7 @@ const Dashboard = () => {
   // let d = new Date();
   // let day = d.getDate();
   // let month = d.toLocaleString("en-us", { month: "long" });
-  const [recentApplicants, setRecentApplicants ] = useState([]);
+  const [recentApplicants, setRecentApplicants] = useState([]);
   const [notSeenInternalNumber, setNotSeenInternalNumber] = useState("");
   const [notSeenContractNumber, setNotSeenContractNumber] = useState("");
   const [notSeenExternalNumber, setNotSeenExternalNumber] = useState("");
@@ -248,13 +248,13 @@ const Dashboard = () => {
     // console.log(notSeenEmproyersNumber);
   }, []);
 
-  const fetchRecentApplicants = () =>{
-    axios.get("http://localhost:4000/allApplicant/").then((response) =>{
-      if(response.data.data){
+  const fetchRecentApplicants = () => {
+    axios.get("http://localhost:4000/allApplicant/").then((response) => {
+      if (response.data.data) {
         setRecentApplicants(response.data.data);
       }
-    })
-  }
+    });
+  };
   const fetchInternalNumber = () => {
     axios
       .get("http://localhost:4000/allApplicant/internal/notSeen/")
@@ -362,9 +362,13 @@ const Dashboard = () => {
                 style={{ color: "#4e73df" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenContractNumber}
-              </span>
+              {notSeenContractNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenContractNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
               <div className={classes.jobs}>
@@ -386,9 +390,13 @@ const Dashboard = () => {
                 style={{ color: "#1cc88a" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenInternalNumber}
-              </span>
+              {notSeenInternalNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenInternalNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
@@ -409,9 +417,13 @@ const Dashboard = () => {
                 style={{ color: "red" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenExternalNumber}
-              </span>
+              {notSeenExternalNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenExternalNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
             <div className={classes.totalJobs + " " + classes.totalAllJob}>
               <div className={classes.jobs}>
@@ -433,9 +445,13 @@ const Dashboard = () => {
                 style={{ color: "#f6c23e" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenEmproyersNumber}
-              </span>
+              {notSeenEmproyersNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenEmproyersNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
           </div>
           <div className={classes.tableContainer}>
