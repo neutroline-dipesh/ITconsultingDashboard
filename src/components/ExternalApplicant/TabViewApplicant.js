@@ -350,7 +350,7 @@ export default function SimpleTabs(props) {
         </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <iframe
+        {/* <iframe
           src={props.data.resume}
           style={{
             width: "106.4%",
@@ -359,11 +359,9 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-        ></iframe>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+          allow="autoplay"
+        ></iframe> */}
         <iframe
-          src={props.data.coverletter}
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -371,9 +369,39 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-        >
-          {" "}
-        </iframe>
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.data.resume
+          }
+          // src="https://drive.google.com/file/d/1ho_-7kTqYLAg5frKL8JPCnWk9k-TlVcn/preview"
+          //working link
+          // src="https://docs.google.com/document/d/170w6GfHTr_G6oXkRoSbhungXWWGlNvU9/pub?embedded=true"
+        ></iframe>
+        {/* <a href={props.data.resume}>Resume</a> */}
+        {/* <iframe
+          src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview"
+          width="640"
+          height="480"
+          allow="autoplay"
+        ></iframe> */}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <iframe
+          style={{
+            width: "106.4%",
+            height: "70.5vh",
+            marginLeft: "-1.5rem",
+            marginTop: "-1.5rem",
+            marginBottom: "-2rem",
+          }}
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.data.coverletter
+          }
+          // src="https://drive.google.com/file/d/1ho_-7kTqYLAg5frKL8JPCnWk9k-TlVcn/preview"
+          //working link
+          // src="https://docs.google.com/document/d/170w6GfHTr_G6oXkRoSbhungXWWGlNvU9/pub?embedded=true"
+        ></iframe>
       </TabPanel>
     </div>
   );
