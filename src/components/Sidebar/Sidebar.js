@@ -142,7 +142,7 @@ const useStyle = makeStyles((theme) => ({
     color: "#F7A000",
   },
   messageNumber: {
-    marginRight: "1rem",
+    // marginRight: "1rem",
     color: "#fff",
     // width: "0.6rem",
     fontSize: "0.6rem",
@@ -158,6 +158,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.9rem",
   },
   verticalLine: {
+    marginLeft: "1rem",
     color: "#858796",
     fontSize: "2.5rem",
     fontWeight: "100",
@@ -421,13 +422,20 @@ const Sidebar = () => {
         </Tooltip>
         <span className={classes.notificationNumber}>20</span> */}
         <Notification />
+        {/* <diV style={{ marginRight: "1rem" }}> */}
         <Tooltip title="Message" TransitionComponent={Zoom} arrow>
           <Link to="/contact">
             <GrMail className={classes.messgaeIcon} />
           </Link>
         </Tooltip>
-        <span className={classes.messageNumber}>{notSeenAllQueriesNumber}</span>
-
+        {notSeenAllQueriesNumber >= 1 ? (
+          <span className={classes.messageNumber}>
+            {notSeenAllQueriesNumber}
+          </span>
+        ) : (
+          " "
+        )}
+        {/* </diV> */}
         <span className={classes.verticalLine}>l</span>
         <span className={classes.adminName}>Dipesh Shrestha</span>
         {/* <img className={classes.adminimg} src={adimImage} /> */}

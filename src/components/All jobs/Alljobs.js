@@ -269,12 +269,19 @@ const Alljobs = (props) => {
       ]}
       data={tableData} 
       options={{
+        cellStyle: {
+          padding: "6px",
+          textAlign: "center"
+        },
         headerStyle: {
               backgroundColor: "#4e73df",
               color: "#fff",
               fontWeight: "400",
               whiteSpace: "nowrap",
               position: "sticky",
+              padding: "6px",
+              textAlign: "center"
+
         },
         actionsColumnIndex: -1
       }} 

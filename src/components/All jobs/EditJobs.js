@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
@@ -11,26 +11,15 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import { Link, useParams } from "react-router-dom";
-import { CgArrowLeftR } from "react-icons/cg";
+import { Link, useParams, useHistory, Redirect } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import Box from "@material-ui/core/Box";
-import { data } from "jquery";
 import { ToastContainer, toast } from "react-toastify";
-
-// import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
-
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -226,6 +215,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Editjobs = () => {
   const classes = useStyle();
+  const {history} = useHistory();
   let { id } = useParams();
 
   //for validation
@@ -341,7 +331,7 @@ const Editjobs = () => {
         this.setJob({
           itemvalues: [{}]
         });
-       
+       <Redirect to = "/jobs"/>
       })
       .catch((err) => {
         console.log(err);
@@ -618,12 +608,14 @@ const Editjobs = () => {
                         /> */}
                       </div>
                       <div className={classes.saveButtonDiv}>
+                        <Redirect to="/jobs">
                         <button
                           type="submit"
                           className={"btn btn-success" + " " + classes.save}
                         >
                           Update
                         </button>
+                        </Redirect>
                         <ToastContainer
                           position="bottom-right"
                           autoClose={2000}

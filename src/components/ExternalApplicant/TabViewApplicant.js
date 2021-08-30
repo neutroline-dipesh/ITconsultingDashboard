@@ -351,7 +351,6 @@ export default function SimpleTabs(props) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <iframe
-          src={props.data.resume}
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -359,11 +358,14 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.data.resume
+          }
         ></iframe>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <iframe
-          src={props.data.coverletter}
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -371,9 +373,11 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-        >
-          {" "}
-        </iframe>
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.data.coverletter
+          }
+        ></iframe>
       </TabPanel>
     </div>
   );

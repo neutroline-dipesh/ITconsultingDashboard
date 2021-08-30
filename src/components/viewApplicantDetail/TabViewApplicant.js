@@ -352,77 +352,22 @@ export default function SimpleTabs(props) {
         </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <a
-          href="https://docs.google.com/document/d/11_wljoh3_R5_eIUvyLHqw-vk1uIzkXBG/edit"
-          target="_blank"
-        >
-          Resume
-        </a> */}
-        {/* <GoogleDocsViewer
-          // width="600px"
-          // height="780px"
-          fileUrl="https://docs.google.com/document/d/1i2AGqG_fa25IwCsfNK86K1OqRd7wMb9u52mjeMPpvEA/edit"
-        /> */}
-
-        {/* <iframe
-          src="https://docs.google.com/gview?url=https://docs.google.com/presentation/d/1jby57zCOD-5AY0JW7fsxbghTTAPUBJ-gU5h_A1wBCHE/edit#slide=id.gc6f972163_0_0"
-          style={{
-            width: "106.4%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-        ></iframe> */}
-        {/* <iframe
-          // https://docs.google.com/document/d/11_wljoh3_R5_eIUvyLHqw-vk1uIzkXBG/edit
-          src="https://docs.google.com/gview?url=https://docs.google.com/presentation/d/1jby57zCOD-5AY0JW7fsxbghTTAPUBJ-gU5h_A1wBCHE/edit#slide=id.gc6f972163_0_0"
-          style={{
-            width: "106.4%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-        ></iframe> */}
-        {/* <iframe
-          src="https://drive.google.com/file/d/1cD_LdChxVf8e3qWA-BVrnFJDQ_dm_T3a/preview"
-          style={{
-            width: "80%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-          allow="autoplay"
-        ></iframe> */}
-        {/* <iframe
-          style={{
-            width: "106.4%",
-            height: "70.5vh",
-            marginLeft: "-1.5rem",
-            marginTop: "-1.5rem",
-            marginBottom: "-2rem",
-          }}
-          src="https://docs.google.com/document/d/1JfcFAUCHujSCun0bWq12c-jMuEdxt-b_/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true"
-          // src="https://docs.google.com/document/d/e/2PACX-1vR7pjvQ6msMpoEVDokz-yIy7laDJ0cGLgQvGpUVZPMmnYmMqfLAnSAGSGU6XbbnY-4HYfQNlToTDBpG/pub?embedded=true"
-        ></iframe> */}
-
         <iframe
           style={{
-            width: "106%",
+            width: "106.4%",
             height: "70.5vh",
             marginLeft: "-1.5rem",
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-          src="https://docs.google.com/document/d/e/2PACX-1vR4wJOuYJH7xaNErrynNW7guvbeIYu7LqG1zbL-Z62mura4jM4aLNNsfWlPuWOUuw/pub?embedded=true"
-          // src="https://docs.google.com/document/d/1P4nlP39Nr9s3pc8V9cDF4UZYTxnxjkcV/edit?usp=drivesdk&ouid=109761908364179296235&rtpof=true&sd=true&embedded=true"
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.data.resume
+          }
         ></iframe>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <iframe
-          src={props.data.coverletter}
           style={{
             width: "106.4%",
             height: "70.5vh",
@@ -430,9 +375,11 @@ export default function SimpleTabs(props) {
             marginTop: "-1.5rem",
             marginBottom: "-2rem",
           }}
-        >
-          {" "}
-        </iframe>
+          src={
+            "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=" +
+            props.data.coverletter
+          }
+        ></iframe>
       </TabPanel>
     </div>
   );

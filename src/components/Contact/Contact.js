@@ -227,6 +227,10 @@ const Contact = (props) => {
                       ]}
                   data={tableData}
       options={{
+                              cellStyle: {
+                              padding: "6px",
+                              textAlign: "center"
+                       },
           rowStyle: (rowData) => ({
           backgroundColor: (rowData.status !== "seen") ? "#F2F2F2" : "#FFF",
           fontWeight: (rowData.status !== "seen") ? "600" : ""
@@ -237,6 +241,8 @@ const Contact = (props) => {
               fontWeight: "400",
               whiteSpace: "nowrap",
               position: "sticky",
+              padding: "6px",
+              textAlign: "center"
         },
         actionsColumnIndex: -1
       }} 
