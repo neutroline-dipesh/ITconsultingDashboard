@@ -225,6 +225,7 @@ const Dashboard = () => {
   // let d = new Date();
   // let day = d.getDate();
   // let month = d.toLocaleString("en-us", { month: "long" });
+  const [recentApplicants, setRecentApplicants ] = useState([]);
   const [notSeenInternalNumber, setNotSeenInternalNumber] = useState("");
   const [notSeenContractNumber, setNotSeenContractNumber] = useState("");
   const [notSeenExternalNumber, setNotSeenExternalNumber] = useState("");
@@ -243,8 +244,17 @@ const Dashboard = () => {
     totalContractJobsFunction();
     totalExternalFunction();
     totalEmployersFunction();
+    fetchRecentApplicants();
     // console.log(notSeenEmproyersNumber);
   }, []);
+
+  const fetchRecentApplicants = () =>{
+    axios.get("http://localhost:4000/allApplicant/").then((response) =>{
+      if(response.data.data){
+        setRecentApplicants(response.data.data);
+      }
+    })
+  }
   const fetchInternalNumber = () => {
     axios
       .get("http://localhost:4000/allApplicant/internal/notSeen/")
@@ -433,7 +443,7 @@ const Dashboard = () => {
               <div className={classes.tableDiv}>
                 <div className={classes.tableTitleBottonDiv}>
                   <span className={classes.tableTitle}>Recent Applicant</span>
-                  <Link to="/allApplicant" style={{ textDecoration: "none" }}>
+                  <Link to="/applicants" style={{ textDecoration: "none" }}>
                     <Button
                       variant="contained"
                       size="small"
@@ -463,7 +473,7 @@ const Dashboard = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {allApplicantData.map((item, index) => (
+                      {recentApplicants.map((item, index) => (
                         <TableRow
                           style={
                             index % 2

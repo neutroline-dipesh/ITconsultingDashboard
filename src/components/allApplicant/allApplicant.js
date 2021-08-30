@@ -229,6 +229,10 @@ const Allapplicant = () => {
                             { title: 'Approval Status', field: 'approvelStatus' },                      ]}
                   data={applicantTable}
       options={{
+        cellStyle: {
+          padding: "6px",
+          textAlign: "center"
+        },
           rowStyle: (rowData) => {
           if(rowData.approvelStatus !== "notSeen"){
             if(rowData.approvelStatus === "Reject"){
@@ -265,7 +269,7 @@ const Allapplicant = () => {
               whiteSpace: "nowrap",
               position: "sticky",
               padding: "6px",
-              width: "100%"
+              textAlign: "center"
         },
         actionsColumnIndex: -1
       }} 
