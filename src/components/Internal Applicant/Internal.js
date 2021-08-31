@@ -240,34 +240,33 @@ const Internal = (props) => {
                               padding: "6px",
                               textAlign: "center"
                        },
-                                 rowStyle: (rowData) => {
-                                    if(rowData.approvelStatus !== "notSeen"){
-                                      if(rowData.approvelStatus === "Reject"){
-                                        return{
-                                          backgroundColor: "#DC3545",
-                                          color: '#fff'
-                                        }
-                                    };
-                                      if(rowData.approvelStatus === "Accept"){
-                                      return {
-                                        backgroundColor: "#28A745",
-                                        color: '#fff'
-                                      }
-                                    };
-                                      if(rowData.approvelStatus === "Hold"){
-                                        return{
-                                          backgroundColor: "#ffc107",
-                                          color: '#fff',
-                                        }
-                                      };
-                                    }
-                                    else{
-                                      return{
-                                        backgroundColor: '#f2f2f2',
-                                        fontWeight: "600"
-                                      }
-                                    }
-                                  },
+                  rowStyle: (rowData) => {
+          if(rowData.approvelStatus !== "notSeen"){
+            if(rowData.approvelStatus === "Reject"){
+              return{
+                backgroundColor: '#FF7F7F'
+              }
+          };
+            if(rowData.approvelStatus === "Accept"){
+            return {
+              backgroundColor: '#90ee90'
+            }
+          };
+            if(rowData.approvelStatus === "Hold"){
+              return{
+                backgroundColor: '#cdcdcd'
+              }
+            };
+            return{
+                backgroundColor: '#f5f9ff'
+            }
+          }
+          else{
+            return{
+              backgroundColor: '#f5f9ff',
+            }
+          }
+                   },
                     headerStyle: {
                     backgroundColor: "#4e73df",
                     color: "#fff",

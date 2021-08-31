@@ -237,34 +237,26 @@ const Allapplicant = () => {
           if(rowData.approvelStatus !== "notSeen"){
             if(rowData.approvelStatus === "Reject"){
               return{
-                color: "#fff",
-                fontWeight: "600",
-                backgroundColor: '#DC3545'
+                backgroundColor: '#FF7F7F'
               }
           };
             if(rowData.approvelStatus === "Accept"){
             return {
-            color: "#fff",
-            fontWeight: "600",
-              backgroundColor: 'Green'
+              backgroundColor: '#90ee90'
             }
           };
             if(rowData.approvelStatus === "Hold"){
               return{
-                color: "#fff",
-                fontWeight: "600",
-                backgroundColor: '#ffc107'
+                backgroundColor: '#cdcdcd'
               }
             };
             return{
-                fontWeight: "600",
                 backgroundColor: '#f5f9ff'
             }
           }
           else{
             return{
-              backgroundColor: '#f2f2f2',
-              fontWeight: "600"
+              backgroundColor: '#f5f9ff',
             }
           }
         },
