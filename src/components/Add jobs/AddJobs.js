@@ -1,18 +1,26 @@
 import React from "react";
+import {
+  Grid,
+  TextField,
+  Button,
+  FormLabel,
+  Checkbox,
+  FormGroup,
+  MenuItem,
+  FormControlLabel,
+  Box,
+} from "@material-ui/core";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import FullEditor from "ckeditor5-build-full";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import { Link } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
-import Button from "@material-ui/core/Button";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,16 +31,18 @@ import "react-toastify/dist/ReactToastify.css";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import Box from "@material-ui/core/Box";
 import SelectInput from "@material-ui/core/Select/SelectInput";
 
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    height: "100vh",
-    width: "100%",
+    margin: theme.spacing(1),
+    marginBottom: theme.spacing(3),
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#4dbeff",
+    },
+   
   },
   maindiv: {
     paddingTop: "8vh",
@@ -113,82 +123,15 @@ const useStyle = makeStyles((theme) => ({
   },
   form: {
     margin: "1rem",
-    // paddingTop: "1rem",
-  },
-  inputBoderColor: {
-    borderColor: "#ff0000 !important",
-  },
-  JobTitle: {},
-  JobSubtitle: {
-    marginTop: "1.5rem",
-  },
-  DepartmentJobTypeDiv: {
-    display: "flex",
-  },
-  departmentDiv: {
-    // display: "flex",
-    // flexDirection: "row",
-  },
-  DepartmentDiv: {
-    // backgroundColor: "red",
-    width: "48%",
-  },
-  Department: {
-    marginTop: "1.5rem",
-    // width: "250%",
-  },
-  jobTypeDiv: {
-    width: "48%",
-  },
-  JobType: {
-    marginTop: "1.5rem",
-    marginLeft: "2.5rem",
-    // width: "100%",
-  },
-  jobTypeErrorMsg: {
-    marginLeft: "2.5rem",
-  },
-
-  CountryStateCityDiv: {
-    marginTop: "1.5rem",
-    display: "flex",
-    // justifyContent: "space-between",
-  },
-  countryDiv: {
-    width: "30%",
-  },
-  stateDiv: {
-    width: "30%",
-  },
-  Country: {
-    // width: "30%",
-  },
-  State: {
-    // width: "30%",
-    marginLeft: "3.2rem",
-  },
-  stateErrorMsg: {
-    marginLeft: "3.2rem",
-  },
-  cityDiv: {
-    width: "30%",
-  },
-  city: {
-    marginLeft: "6.5rem",
-  },
-  cityErrorMsg: {
-    marginLeft: "6.5rem",
-  },
-  DescriptionDiv: {
-    marginTop: "1rem",
   },
   ckeditor: {},
   save: {
     backgroundColor: "#2653d4",
     borderRadius: "20px",
     fontSize: "0.9rem",
-    marginBottom:".5rem",
+    marginBottom: ".5rem",
     width: "7rem",
+    float:"right",
     marginTop: "2rem",
     "&:hover": {
       backgroundColor: "#000099",
@@ -214,7 +157,7 @@ const useStyle = makeStyles((theme) => ({
   publishCheckBox: {
     width: "3.5rem !important",
     height: "3.5vh",
-    marginLeft:".5rem",
+    marginLeft: ".5rem",
     // backgroundColor: "#52D869",
   },
   jobTypeRadio: {
@@ -243,11 +186,14 @@ const Addjobs = () => {
       jobTitle: Yup.string().min(1, "Required!").required("Required!"),
       jobSubTitle: Yup.string()
         .min(1, "Required!")
-        .max(200, "please make it short, only 200 characters allowed.").required("Required!"),
+        .max(200, "please make it short, only 200 characters allowed.")
+        .required("Required!"),
       department: Yup.string().min(1, "Required!").required("Required!"),
       jobType: Yup.string().min(1, "Required!").required("Required!"),
       country: Yup.string().min(1, "Required!").required("Required!"),
-      state: Yup.string().max(3, "please enter only state Initials").required("Required!"),
+      state: Yup.string()
+        .max(3, "please enter only state Initials")
+        .required("Required!"),
       city: Yup.string().min(1, "Required!").required("Required!"),
       publishBy: Yup.string().min(1, "Required!").required("Required!"),
       // password: Yup.string()
@@ -365,210 +311,407 @@ const Addjobs = () => {
                       />
                     </RadioGroup>
                   </div>
-                </div>{" "}
-                <form className={classes.form} onSubmit={formik.handleSubmit}>
-                  <div className={classes.formDiv}>
-                    <input
-                      className={classes.inputBoderColor}
-                      style={{ borderColor: "#0066ff" }}
-                      type="text"
-                      className="form-control"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter Publisher Name"
-                      name="publishBy"
-                      {...formik.getFieldProps("publishBy")}
-                      required
-                    />
-                    <div className={classes.errorMessage}>
-                    {formik.touched.publishBy && formik.errors.publishBy ? (
-         <div>{formik.errors.publishBy}</div>
-       ) : null}
-                    </div>
-                    <input
-                      type="text"
-                      style={{ borderColor: "#0066ff" }}
-                      className={"form-control" + " " + classes.JobSubtitle}
-                      aria-describedby="emailHelp"
-                      placeholder="Enter Job title"
-                      name="jobTitle"
-                      {...formik.getFieldProps("jobTitle")}
-                      required
-                    />
-                    <div className={classes.errorMessage}>
-                    {formik.touched.jobTitle && formik.errors.jobTitle ? (
-         <div>{formik.errors.jobTitle}</div>
-       ) : null}                    </div>
-                    <input
-                      type="text"
-                      style={{ borderColor: "#0066ff" }}
-                      className={"form-control" + " " + classes.JobSubtitle}
-                      aria-describedby="emailHelp"
-                      name="jobSubTitle"
-                      {...formik.getFieldProps("jobSubTitle")}
-                      placeholder="Enter Job Short Description"
-                      required
-                    />
-                    <div className={classes.errorMessage}>
-                    {formik.touched.jobSubTitle && formik.errors.jobSubTitle ? (
-         <div>{formik.errors.jobSubTitle}</div>
-       ) : null}                       </div>
-                    <div className={classes.DepartmentJobTypeDiv}>
-                      <div className={classes.DepartmentDiv}>
-                        <select
-                          style={{ borderColor: "#0066ff" }}
-                          className={"form-select" + " " + classes.Department}
-                          {...formik.getFieldProps("department")}
-                          required
-                        >
-                          <option value="" selected disabled>
-                            Department
-                          </option>
-                          <option>Office Administration</option>
-                          <option>Human Resource</option>
-                          <option>Sales/Marketing</option>
-                          <option>Technology</option>
-                        </select>
-                        <div className={classes.errorMessage}>
-                        {formik.touched.department && formik.errors.department ? (
-         <div>{formik.errors.department}</div>
-       ) : null}    
-                        </div>
-                      </div>
-                      <div className={classes.jobTypeDiv}>
-                        <select
-                          style={{ borderColor: "#0066ff" }}
-                          className={"form-select" + " " + classes.JobType}
-                          {...formik.getFieldProps("jobType")}
-                          required
-                        >
-                          <option value="" selected disabled>
-                            Job type
-                          </option>
-                          <option>Full Time</option>
-                          <option>Part Time</option>
-                          <option>Contract</option>
-                        </select>
+                </div>
+                <Box>
+                  <form className={classes.form} onSubmit={formik.handleSubmit}>
+                    <div className={classes.formDiv}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                          {formik.touched.publishBy &&
+                          formik.errors.publishBy ? (
+                            <TextField
+                              fullWidth
+                              error
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{ boxShadow: "5px #D3D3D3" }}
+                              label={formik.errors.publishBy}
+                              type="text"
+                              name="publishBy"
+                              {...formik.getFieldProps("publishBy")}
+                              required
+                            />
+                          ) : (
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{ boxShadow: "5px #D3D3D3" }}
+                              label="Enter Publisher Name"
+                              type="text"
+                              name="publishBy"
+                              {...formik.getFieldProps("publishBy")}
+                              required
+                            />
+                          )}
+                        </Grid>
 
-                        <div
-                          className={
-                            classes.errorMessage + " " + classes.jobTypeErrorMsg
-                          }
-                        >
+                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                          {formik.touched.jobTitle && formik.errors.jobTitle ? (
+                            <TextField
+                              fullWidth
+                              error
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                              }}
+                              type="text"
+                              className={
+                                "form-control" + " " + classes.JobSubtitle
+                              }
+                              aria-describedby="emailHelp"
+                              label={formik.errors.jobTitle}
+                              name="jobTitle"
+                              {...formik.getFieldProps("jobTitle")}
+                              required
+                            />
+                          ) : (
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                              }}
+                              type="text"
+                              className={
+                                "form-control" + " " + classes.JobSubtitle
+                              }
+                              aria-describedby="emailHelp"
+                              label="Enter Job title"
+                              name="jobTitle"
+                              {...formik.getFieldProps("jobTitle")}
+                              required
+                            />
+                          )}
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                          {formik.touched.jobSubTitle &&
+                          formik.errors.jobSubTitle ? (
+                            <TextField
+                              fullWidth
+                              error
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                boxShadow: "5px #D3D3D3",
+                              }}
+                              type="text"
+                              style={{ borderColor: "#0066ff" }}
+                              className={
+                                "form-control" + " " + classes.JobSubtitle
+                              }
+                              aria-describedby="emailHelp"
+                              name="jobSubTitle"
+                              {...formik.getFieldProps("jobSubTitle")}
+                              label={formik.errors.jobSubTitle}
+                              required
+                            />
+                          ) : (
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                boxShadow: "5px #D3D3D3",
+                              }}
+                              type="text"
+                              style={{ borderColor: "#0066ff" }}
+                              className={
+                                "form-control" + " " + classes.JobSubtitle
+                              }
+                              aria-describedby="emailHelp"
+                              name="jobSubTitle"
+                              {...formik.getFieldProps("jobSubTitle")}
+                              label="Enter Job Short Description"
+                              required
+                            />
+                          )}
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} lg={3} xl={3} md={3}>
+                          {formik.touched.department &&
+                          formik.errors.department ? (
+                            <TextField
+                            error
+                              select
+                              variant="outlined"
+                              fullWidth
+                              margin="dense"
+                              label={formik.errors.department}
+                              size="small"
+                              style={{ borderColor: "#0066ff" }}
+                              className={
+                                "form-select" + " " + classes.Department
+                              }
+                              {...formik.getFieldProps("department")}
+                              required
+                            >
+                              <MenuItem value="office Administration">
+                                Office Administration
+                              </MenuItem>
+                              <MenuItem value="Human Resource">
+                                Human Resource
+                              </MenuItem>
+                              <MenuItem value="Sales/Marketing">
+                                Sales/Marketing
+                              </MenuItem>
+                              <MenuItem value="Technology">Technology</MenuItem>
+                            </TextField>
+                          ) : (
+                            <TextField
+                              select
+                              variant="outlined"
+                              fullWidth
+                              margin="dense"
+                              label="Department"
+                              size="small"
+                              style={{ borderColor: "#0066ff" }}
+                              className={
+                                "form-select" + " " + classes.Department
+                              }
+                              {...formik.getFieldProps("department")}
+                              required
+                            >
+                              <MenuItem value="office Administration">
+                                Office Administration
+                              </MenuItem>
+                              <MenuItem value="Human Resource">
+                                Human Resource
+                              </MenuItem>
+                              <MenuItem value="Sales/Marketing">
+                                Sales/Marketing
+                              </MenuItem>
+                              <MenuItem value="Technology">Technology</MenuItem>
+                            </TextField>
+                          )}
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} lg={3} xl={3} md={3}>
                           {formik.touched.jobType && formik.errors.jobType ? (
-         <div>{formik.errors.jobType}</div>
-       ) : null}    
-                        </div>
-                      </div>
-                    </div>
+                            <TextField
+                            error
+                              select
+                              variant="outlined"
+                              fullWidth
+                              label={formik.errors.jobType}
+                              size="small"
+                              margin="dense"
+                              className={"form-select" + " " + classes.JobType}
+                              {...formik.getFieldProps("jobType")}
+                              required
+                            >
+                              <MenuItem value="Full-time"> Full-time</MenuItem>
 
-                    <div className={classes.CountryStateCityDiv}>
-                      <div className={classes.countryDiv}>
-                        <input
-                          style={{ borderColor: "#0066ff" }}
-                          type="text"
-                          className={"form-control" + " " + classes.Country}
-                          aria-describedby="emailHelp"
-                          placeholder="Enter Country"
-                          name="country"
-                          {...formik.getFieldProps("country")}
-                          required
-                        />
+                              <MenuItem value="Part-time"> Part-time</MenuItem>
+                            </TextField>
+                          ) : (
+                            <TextField
+                              select
+                              variant="outlined"
+                              fullWidth
+                              label="Job Type"
+                              size="small"
+                              margin="dense"
+                              className={"form-select" + " " + classes.JobType}
+                              {...formik.getFieldProps("jobType")}
+                              required
+                            >
+                              <MenuItem value="Full-time"> Full-time</MenuItem>
 
-                        <div
-                          className={
-                            classes.errorMessage + " " + classes.countryErrorMsg
-                          }
-                        >
-                           {formik.touched.country && formik.errors.country ? (
-         <div>{formik.errors.country}</div>
-       ) : null}    
-                        </div>
-                      </div>
+                              <MenuItem value="Part-time"> Part-time</MenuItem>
+                            </TextField>
+                          )}
+                        </Grid>
 
-                      <div className={classes.stateDiv}>
-                        <input
-                          style={{ borderColor: "#0066ff" }}
-                          type="text"
-                          className={"form-control" + " " + classes.State}
-                          aria-describedby="emailHelp"
-                          placeholder="Enter State initials "
-                          name="jobTitle"
-                          {...formik.getFieldProps("state")}
-                          required
-                        />
-                        <div
-                          className={
-                            classes.errorMessage + " " + classes.stateErrorMsg
-                          }
-                        >
+                        <Grid item xs={12} sm={12} lg={4} xl={4} md={4}>
+                          {formik.touched.country && formik.errors.country ? (
+                            <TextField
+                            error
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                                marginTop: "10px",
+                              }}
+                              type="text"
+                              className={"form-control" + " " + classes.Country}
+                              aria-describedby="emailHelp"
+                              label={formik.errors.country}
+                              name="country"
+                              {...formik.getFieldProps("country")}
+                              required
+                            />
+                          ) : (
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                                marginTop: "10px",
+                              }}
+                              type="text"
+                              className={"form-control" + " " + classes.Country}
+                              aria-describedby="emailHelp"
+                              label="Enter Country"
+                              name="country"
+                              {...formik.getFieldProps("country")}
+                              required
+                            />
+                          )}
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} lg={4} xl={4} md={4}>
                           {formik.touched.state && formik.errors.state ? (
-         <div>{formik.errors.state}</div>
-       ) : null}    
-                        </div>
-                      </div>
-                      <div className={classes.cityDiv}>
-                        <input
-                          type="text"
-                          style={{ borderColor: "#0066ff" }}
-                          className={"form-control" + " " + classes.city}
-                          aria-describedby="emailHelp"
-                          placeholder="Enter City"
-                          name="jobTitle"
-                          {...formik.getFieldProps("city")}
-                          required
-                        />
+                            <TextField
+                            error
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                                marginTop: "10px",
+                              }}
+                              style={{ borderColor: "#0066ff" }}
+                              type="text"
+                              className={"form-control" + " " + classes.State}
+                              aria-describedby="emailHelp"
+                              label={formik.errors.state}
+                              name="jobTitle"
+                              {...formik.getFieldProps("state")}
+                              required
+                            />
+                          ) : (
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                                marginTop: "10px",
+                              }}
+                              style={{ borderColor: "#0066ff" }}
+                              type="text"
+                              className={"form-control" + " " + classes.State}
+                              aria-describedby="emailHelp"
+                              label="Enter State initials "
+                              name="jobTitle"
+                              {...formik.getFieldProps("state")}
+                              required
+                            />
+                          )}
+                        </Grid>
+                       
 
-                        <div
-                          className={
-                            classes.errorMessage + " " + classes.cityErrorMsg
-                          }
-                        >
-                           {formik.touched.city && formik.errors.city ? (
-         <div>{formik.errors.city}</div>
-       ) : null}    
-                        </div>
-                      </div>
-                    </div>
-                    <div className={classes.DescriptionDiv}>
-                      <span>Description</span>
-                      <CKEditor
-                        className={classes.ckeditor}
-                        id="editor1"
-                        editor={FullEditor}
-                        config={{
-                          ckfinder: {
-                            // Upload the images to the server using the CKFinder QuickUpload command
-                            // You have to change this address to your server that has the ckfinder php connector
-                            uploadUrl:
-                              "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
-                          },
-                        }}
-                        onChange={(event, editor) => {
-                          const data = editor.getData();
-                          setCkeditorContent(editor.getData());
-                          // console.log({ event, editor, data });
-                        }}
-                      />
-                    </div>
-                    <div className={classes.publishSaveDiv}>
-                      <div className={classes.PublishDiv}>
-                        <span>Publish</span>
-                        <div class="form-check form-switch">
-                          <input
-                            className={"form-check-input"}
-                            type="checkbox"
-                            id="flexSwitchCheckChecked"
-                            name="publish"
+                        <Grid item xs={12} sm={12} lg={4} xl={4} md={4}>
+                        {formik.touched.city && formik.errors.city ? (
+
+                          <TextField
+                          error
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            margin="dense"
                             style={{
-                              width: "3.5rem",
-                              height: "3.5vh",
+                              height: 38,
+                              boxShadow: "5px #D3D3D3",
+                              marginTop: "10px",
                             }}
-                            onChange={handleChange}
-                            value="true"
+                            type="text"
+                            style={{ borderColor: "#0066ff" }}
+                            className={"form-control" + " " + classes.city}
+                            aria-describedby="emailHelp"
+                            label={formik.errors.city}
+                            name="jobTitle"
+                            {...formik.getFieldProps("city")}
+                            required
+                          />):(  <TextField
+                            fullWidth
+                            variant="outlined"
+                            size="small"
+                            margin="dense"
+                            style={{
+                              height: 38,
+                              boxShadow: "5px #D3D3D3",
+                              marginTop: "10px",
+                            }}
+                            type="text"
+                            style={{ borderColor: "#0066ff" }}
+                            className={"form-control" + " " + classes.city}
+                            aria-describedby="emailHelp"
+                            label="Enter City"
+                            name="jobTitle"
+                            {...formik.getFieldProps("city")}
+                            required
+                          />)}
+                        </Grid>
+
+                        <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
+
+                        <div className={classes.DescriptionDiv}>
+                          <span>Description</span>
+                          <CKEditor
+                            className={classes.ckeditor}
+                            id="editor1"
+                            editor={FullEditor}
+                            config={{
+                              ckfinder: {
+                                // Upload the images to the server using the CKFinder QuickUpload command
+                                // You have to change this address to your server that has the ckfinder php connector
+                                uploadUrl:
+                                  "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
+                              },
+                            }}
+                            onChange={(event, editor) => {
+                              const data = editor.getData();
+                              setCkeditorContent(editor.getData());
+                              // console.log({ event, editor, data });
+                            }}
                           />
                         </div>
+                        </Grid>
 
-                        {/* <FormControlLabel
+                       
+                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6} >
+
+                          <div className={classes.PublishDiv}>
+                            <span>Publish</span>
+                            <div class="form-check form-switch">
+                              <input
+                                className={"form-check-input"}
+                                type="checkbox"
+                                id="flexSwitchCheckChecked"
+                                name="publish"
+                                style={{
+                                  width: "3.5rem",
+                                  height: "3.5vh",
+                                }}
+                                onChange={handleChange}
+                                value="true"
+                              />
+                            </div>
+
+                            {/* <FormControlLabel
                           control={
                             <IOSSwitch
                               checked={state.checkedB}
@@ -577,29 +720,35 @@ const Addjobs = () => {
                             />
                           }
                         /> */}
-                      </div>
-                      <div className={classes.saveButtonDiv}>
-                        <button
-                          type="submit"
-                          className={"btn btn-primary" + " " + classes.save}
-                        >
-                          Save
-                        </button>
-                        <ToastContainer
-                          position="bottom-right"
-                          autoClose={2000}
-                          hideProgressBar={false}
-                          newestOnTop={false}
-                          closeOnClick
-                          rtl={false}
-                          pauseOnFocusLoss
-                          draggable
-                          pauseOnHover
-                        />
-                      </div>
+                        
+                          </div>
+                          </Grid>
+                          <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+
+                          <div className={classes.saveButtonDiv}>
+                            <button
+                              type="submit"
+                              className={"btn btn-primary" + " " + classes.save}
+                            >
+                              Save
+                            </button>
+                            <ToastContainer
+                              position="bottom-right"
+                              autoClose={2000}
+                              hideProgressBar={false}
+                              newestOnTop={false}
+                              closeOnClick
+                              rtl={false}
+                              pauseOnFocusLoss
+                              draggable
+                              pauseOnHover
+                            />
+                          </div>
+</Grid>
+                      </Grid>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                </Box>
               </div>
             </div>
           </div>
