@@ -237,23 +237,23 @@ const Allapplicant = () => {
           if(rowData.approvelStatus !== "notSeen"){
             if(rowData.approvelStatus === "Reject"){
               return{
-                color: "#DC3545",
+                color: "#fff",
                 fontWeight: "600",
-                backgroundColor: '#f5f9ff'
+                backgroundColor: '#DC3545'
               }
           };
             if(rowData.approvelStatus === "Accept"){
             return {
-            color: "Green",
+            color: "#fff",
             fontWeight: "600",
-              backgroundColor: '#f5f9ff'
+              backgroundColor: 'Green'
             }
           };
             if(rowData.approvelStatus === "Hold"){
               return{
-                color: "#ffc107",
+                color: "#fff",
                 fontWeight: "600",
-                backgroundColor: '#f5f9ff'
+                backgroundColor: '#ffc107'
               }
             };
             return{
@@ -282,6 +282,12 @@ const Allapplicant = () => {
       isLoading={loading}    
       actions={[
         {
+          iconProps: {
+            style: {
+            color: "#fff",
+            fontSize: "8px"
+            }
+          },
           icon:() => <VisibilityIcon/>,
           tooltip: 'View Applicant',
           onClick: (event, rowData) => history.push(`/applicant/detail/${rowData.id}`)

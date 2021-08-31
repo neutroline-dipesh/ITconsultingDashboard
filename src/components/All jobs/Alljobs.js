@@ -161,7 +161,7 @@ const Alljobs = (props) => {
             jobTitle: val.jobTitle,
             department: val.department,
             jobType: val.jobType,
-            address: val.city + ", " + val.state + ", "+ val.country,
+            address: val.city + ", " + val.state,
             publishBy: val.publishBy,
             visibility: val.visibility
           }
