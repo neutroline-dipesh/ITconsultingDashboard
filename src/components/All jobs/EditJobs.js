@@ -607,14 +607,14 @@ const Editjobs = () => {
                         /> */}
                       </div>
                       <div className={classes.saveButtonDiv}>
-                        <Redirect to="/jobs">
+                        
                         <button
                           type="submit"
                           className={"btn btn-success" + " " + classes.save}
                         >
                           Update
                         </button>
-                        </Redirect>
+                        
                         <ToastContainer
                           position="bottom-right"
                           autoClose={2000}
