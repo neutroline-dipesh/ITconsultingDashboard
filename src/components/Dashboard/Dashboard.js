@@ -7,43 +7,28 @@ import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Calendar from "react-calendar";
 import { CalendarComponent } from "@syncfusion/ej2-react-calendars";
-
 import "react-calendar/dist/Calendar.css";
-import { allApplicantData } from "../allApplicant/allApplicantData";
 import { Link } from "react-router-dom";
-import Tooltip from "@material-ui/core/Tooltip";
-import Zoom from "@material-ui/core/Zoom";
 import axios from "axios";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    // height: "100vh",
-    width: "100%",
-
-    // top: "30",
-    // position: "absolute",
-    // top: "8vh",
+    width: "101%",
   },
   maindiv: {
-    // backgroundColor: "red",
     paddingTop: "8vh",
   },
   PageTabDiv: {
     backgroundColor: "#F5F6FA",
 
     height: "10vh",
-    // border: "solid 1px",
     display: "flex",
     justifyContent: "space-between",
 
     alignItems: "center",
-    // paddingTop: "0.5rem",
   },
 
   pageTabName: {
@@ -54,16 +39,12 @@ const useStyle = makeStyles((theme) => ({
   },
 
   smallBoxMainDiv: {
-    // color: "red",
     backgroundColor: "#f8f9fc",
     textAlign:"center",
-    // backgroundColor: "blue",
     display: "flex",
     justifyContent: "space-evenly",
     width: "80.6vw",
      paddingLeft: "2rem",
-   //  paddingRight: "1rem",
-    // paddingTop: "1.5rem",
     paddingBottom: "1.5rem",
    
   },
@@ -83,8 +64,6 @@ const useStyle = makeStyles((theme) => ({
   totcalContactJob: {
     borderLeft: "4px solid #4e73df",
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
-
-    // boxShadow: "0px 0px 30px 0px rgba(144, 178, 232,0.4)",
   },
 
   totcalContractingJob: {
