@@ -10,6 +10,7 @@ import {
   FormControlLabel,
   Box,
 } from "@material-ui/core";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
@@ -24,6 +25,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Switch from "@material-ui/core/Switch";
+import { withStyles } from "@material-ui/core/styles";
 
 // import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
 
@@ -42,7 +45,6 @@ const useStyle = makeStyles((theme) => ({
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
       borderColor: "#4dbeff",
     },
-   
   },
   maindiv: {
     paddingTop: "8vh",
@@ -131,7 +133,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "0.9rem",
     marginBottom: ".5rem",
     width: "7rem",
-    float:"right",
+    float: "right",
     marginTop: "2rem",
     "&:hover": {
       backgroundColor: "#000099",
@@ -165,10 +167,66 @@ const useStyle = makeStyles((theme) => ({
     color: "#fffff",
   },
 }));
+const IOSSwitch = withStyles((theme) => ({
+  root: {
+    width: 42,
+    height: 26,
+    padding: 0,
+    margin: theme.spacing(1),
+  },
+  switchBase: {
+    padding: 1,
+    "&$checked": {
+      transform: "translateX(16px)",
+      color: theme.palette.common.white,
+      "& + $track": {
+        backgroundColor: "#52d869",
+        opacity: 1,
+        border: "none",
+      },
+    },
+    "&$focusVisible $thumb": {
+      color: "#52d869",
+      border: "6px solid #fff",
+    },
+  },
+  thumb: {
+    width: 24,
+    height: 24,
+  },
+  track: {
+    borderRadius: 26 / 2,
+    border: `1px solid ${theme.palette.grey[400]}`,
+    backgroundColor: theme.palette.grey[50],
+    opacity: 1,
+    transition: theme.transitions.create(["background-color", "border"]),
+  },
+  checked: {},
+  focusVisible: {},
+}))(({ classes, ...props }) => {
+  return (
+    <Switch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  );
+});
 
 const Addjobs = () => {
   const classes = useStyle();
-
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+    checkedC: true,
+  });
   //for validation
   const formik = useFormik({
     initialValues: {
@@ -249,7 +307,6 @@ const Addjobs = () => {
 
   //alert message
   //for switch button (publish)
-  const [state, setState] = React.useState();
   const handleChange = (event) => {
     setState(event.target.checked);
     // setPublish("Not Publish");
@@ -443,7 +500,7 @@ const Addjobs = () => {
                           {formik.touched.department &&
                           formik.errors.department ? (
                             <TextField
-                            error
+                              error
                               select
                               variant="outlined"
                               fullWidth
@@ -500,7 +557,7 @@ const Addjobs = () => {
                         <Grid item xs={12} sm={12} lg={3} xl={3} md={3}>
                           {formik.touched.jobType && formik.errors.jobType ? (
                             <TextField
-                            error
+                              error
                               select
                               variant="outlined"
                               fullWidth
@@ -537,7 +594,7 @@ const Addjobs = () => {
                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4}>
                           {formik.touched.country && formik.errors.country ? (
                             <TextField
-                            error
+                              error
                               fullWidth
                               variant="outlined"
                               size="small"
@@ -580,7 +637,7 @@ const Addjobs = () => {
                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4}>
                           {formik.touched.state && formik.errors.state ? (
                             <TextField
-                            error
+                              error
                               fullWidth
                               variant="outlined"
                               size="small"
@@ -621,80 +678,78 @@ const Addjobs = () => {
                             />
                           )}
                         </Grid>
-                       
 
                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4}>
-                        {formik.touched.city && formik.errors.city ? (
-
-                          <TextField
-                          error
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            margin="dense"
-                            style={{
-                              height: 38,
-                              boxShadow: "5px #D3D3D3",
-                              marginTop: "10px",
-                            }}
-                            type="text"
-                            style={{ borderColor: "#0066ff" }}
-                            className={"form-control" + " " + classes.city}
-                            aria-describedby="emailHelp"
-                            label={formik.errors.city}
-                            name="jobTitle"
-                            {...formik.getFieldProps("city")}
-                            required
-                          />):(  <TextField
-                            fullWidth
-                            variant="outlined"
-                            size="small"
-                            margin="dense"
-                            style={{
-                              height: 38,
-                              boxShadow: "5px #D3D3D3",
-                              marginTop: "10px",
-                            }}
-                            type="text"
-                            style={{ borderColor: "#0066ff" }}
-                            className={"form-control" + " " + classes.city}
-                            aria-describedby="emailHelp"
-                            label="Enter City"
-                            name="jobTitle"
-                            {...formik.getFieldProps("city")}
-                            required
-                          />)}
+                          {formik.touched.city && formik.errors.city ? (
+                            <TextField
+                              error
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                                marginTop: "10px",
+                              }}
+                              type="text"
+                              style={{ borderColor: "#0066ff" }}
+                              className={"form-control" + " " + classes.city}
+                              aria-describedby="emailHelp"
+                              label={formik.errors.city}
+                              name="jobTitle"
+                              {...formik.getFieldProps("city")}
+                              required
+                            />
+                          ) : (
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              size="small"
+                              margin="dense"
+                              style={{
+                                height: 38,
+                                boxShadow: "5px #D3D3D3",
+                                marginTop: "10px",
+                              }}
+                              type="text"
+                              style={{ borderColor: "#0066ff" }}
+                              className={"form-control" + " " + classes.city}
+                              aria-describedby="emailHelp"
+                              label="Enter City"
+                              name="jobTitle"
+                              {...formik.getFieldProps("city")}
+                              required
+                            />
+                          )}
                         </Grid>
 
                         <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
-
-                        <div className={classes.DescriptionDiv}>
-                          <span>Description</span>
-                          <CKEditor
-                            className={classes.ckeditor}
-                            id="editor1"
-                            editor={FullEditor}
-                            config={{
-                              ckfinder: {
-                                // Upload the images to the server using the CKFinder QuickUpload command
-                                // You have to change this address to your server that has the ckfinder php connector
-                                uploadUrl:
-                                  "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
-                              },
-                            }}
-                            onChange={(event, editor) => {
-                              const data = editor.getData();
-                              setCkeditorContent(editor.getData());
-                              // console.log({ event, editor, data });
-                            }}
-                          />
-                        </div>
+                          <div className={classes.DescriptionDiv}>
+                            <span>Description</span>
+                            <CKEditor
+                              className={classes.ckeditor}
+                              id="editor1"
+                              editor={FullEditor}
+                              config={{
+                                ckfinder: {
+                                  // Upload the images to the server using the CKFinder QuickUpload command
+                                  // You have to change this address to your server that has the ckfinder php connector
+                                  uploadUrl:
+                                    "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
+                                },
+                              }}
+                              onChange={(event, editor) => {
+                                const data = editor.getData();
+                                setCkeditorContent(editor.getData());
+                                // console.log({ event, editor, data });
+                              }}
+                            />
+                          </div>
                         </Grid>
 
-                       
-                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6} >
-
-                          <div className={classes.PublishDiv}>
+                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                          {/* <div className={classes.PublishDiv}>
                             <span>Publish</span>
                             <div class="form-check form-switch">
                               <input
@@ -711,7 +766,7 @@ const Addjobs = () => {
                               />
                             </div>
 
-                            {/* <FormControlLabel
+                            <FormControlLabel
                           control={
                             <IOSSwitch
                               checked={state.checkedB}
@@ -719,12 +774,22 @@ const Addjobs = () => {
                               name="checkedB"
                             />
                           }
-                        /> */}
+                        />
                         
-                          </div>
-                          </Grid>
-                          <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-
+                          </div> */}
+                          <FormControlLabel
+                            style={{ padding: "6px", marginBottom:"5px" }}
+                            control={
+                              <IOSSwitch
+                                checked={state.checked}
+                                onChange={handleChange}
+                                name="checkedB"
+                              />
+                            }
+                            label="Publish"
+                          />
+                        </Grid>
+                        <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
                           <div className={classes.saveButtonDiv}>
                             <button
                               type="submit"
@@ -744,7 +809,7 @@ const Addjobs = () => {
                               pauseOnHover
                             />
                           </div>
-</Grid>
+                        </Grid>
                       </Grid>
                     </div>
                   </form>
