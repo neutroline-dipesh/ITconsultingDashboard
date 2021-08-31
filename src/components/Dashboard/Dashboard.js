@@ -56,17 +56,16 @@ const useStyle = makeStyles((theme) => ({
   smallBoxMainDiv: {
     // color: "red",
     backgroundColor: "#f8f9fc",
+    textAlign:"center",
     // backgroundColor: "blue",
     display: "flex",
     justifyContent: "space-evenly",
-    width: "83.5%",
-    // paddingLeft: "1rem",
-    // paddingRight: "1rem",
+    width: "80.6vw",
+     paddingLeft: "2rem",
+   //  paddingRight: "1rem",
     // paddingTop: "1.5rem",
     paddingBottom: "1.5rem",
-    [theme.breakpoints.down("md")]: {
-      width: "74.5%",
-    },
+   
   },
   totalJobs: {
     backgroundColor: "#FFFFFF",
@@ -151,6 +150,7 @@ const useStyle = makeStyles((theme) => ({
     boxShadow: "5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: "5px",
     width: "65.1%",
+    height:"50vh",
     marginBottom: "1.5rem",
     // marginLeft: "0.5rem",
     // marginRight: "1rem",
@@ -179,7 +179,7 @@ const useStyle = makeStyles((theme) => ({
     whiteSpace: "nowrap",
   },
   tableDataDiv: {
-    height: "47vh",
+    height: "37vh",
     // backgroundColor: "blue",
     paddingTop: "1rem",
     marginLeft: "1rem",
@@ -225,7 +225,7 @@ const Dashboard = () => {
   // let d = new Date();
   // let day = d.getDate();
   // let month = d.toLocaleString("en-us", { month: "long" });
-  const [recentApplicants, setRecentApplicants ] = useState([]);
+  const [recentApplicants, setRecentApplicants] = useState([]);
   const [notSeenInternalNumber, setNotSeenInternalNumber] = useState("");
   const [notSeenContractNumber, setNotSeenContractNumber] = useState("");
   const [notSeenExternalNumber, setNotSeenExternalNumber] = useState("");
@@ -248,13 +248,13 @@ const Dashboard = () => {
     // console.log(notSeenEmproyersNumber);
   }, []);
 
-  const fetchRecentApplicants = () =>{
-    axios.get("http://localhost:4000/allApplicant/").then((response) =>{
-      if(response.data.data){
+  const fetchRecentApplicants = () => {
+    axios.get("http://localhost:4000/allApplicant/").then((response) => {
+      if (response.data.data) {
         setRecentApplicants(response.data.data);
       }
-    })
-  }
+    });
+  };
   const fetchInternalNumber = () => {
     axios
       .get("http://localhost:4000/allApplicant/internal/notSeen/")
@@ -346,7 +346,7 @@ const Dashboard = () => {
           </div>
           <div className={classes.smallBoxMainDiv}>
             <div className={classes.totalJobs + " " + classes.totcalContactJob}>
-              <div className={classes.jobs} style={{ color: "#4e73df" }}>
+              <div className={classes.jobs} style={{ color: "#4e73df", textAlign:"center" }}>
                 <span className={classes.totalConstractingNumber}>
                   {totalContractJobs}
                 </span>
@@ -362,15 +362,19 @@ const Dashboard = () => {
                 style={{ color: "#4e73df" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenContractNumber}
-              </span>
+              {notSeenContractNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenContractNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
             <div className={classes.totalJobs + " " + classes.totcalInernalJob}>
               <div className={classes.jobs}>
                 <span
                   className={classes.totalConstractingNumber}
-                  style={{ color: "#1cc88a" }}
+                  style={{ color: "#1cc88a", textAlign:"center" }}
                 >
                   {totalInternalJobs}
                 </span>
@@ -386,9 +390,13 @@ const Dashboard = () => {
                 style={{ color: "#1cc88a" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenInternalNumber}
-              </span>
+              {notSeenInternalNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenInternalNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
             <div
               className={classes.totalJobs + " " + classes.totcalContractingJob}
@@ -396,7 +404,7 @@ const Dashboard = () => {
               <div className={classes.jobs}>
                 <span
                   className={classes.totalConstractingNumber}
-                  style={{ color: "red" }}
+                  style={{ color: "red" , textAlign:"center"}}
                 >
                   {totalExternalApplicant}
                 </span>
@@ -409,15 +417,19 @@ const Dashboard = () => {
                 style={{ color: "red" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenExternalNumber}
-              </span>
+              {notSeenExternalNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenExternalNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
             <div className={classes.totalJobs + " " + classes.totalAllJob}>
               <div className={classes.jobs}>
                 <span
                   className={classes.totalConstractingNumber}
-                  style={{ color: "#f6c23e" }}
+                  style={{ color: "#f6c23e", textAlign:"center" }}
                 >
                   {totalEmployers}
                 </span>
@@ -433,9 +445,13 @@ const Dashboard = () => {
                 style={{ color: "#f6c23e" }}
                 className={classes.totolIcon}
               />
-              <span className={classes.messageNumber}>
-                {notSeenEmproyersNumber}
-              </span>
+              {notSeenEmproyersNumber >= 1 ? (
+                <span className={classes.messageNumber}>
+                  {notSeenEmproyersNumber}
+                </span>
+              ) : (
+                " "
+              )}
             </div>
           </div>
           <div className={classes.tableContainer}>

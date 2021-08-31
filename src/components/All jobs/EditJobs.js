@@ -589,9 +589,10 @@ const Editjobs = () => {
                             // checked="true"
                             // checked="false"
                             // defaultChecked="true"
-                            // defaultChecked={
-                            //   job.visibility == "Publish" ? "true" : "false"
-                            // }
+                            Checked={
+                           
+                              job.visibility === 'Publish'? "true" : "false"
+                            }
                             // checked={job.publish == "Publish" ? true : false}
                           />
                         </div>

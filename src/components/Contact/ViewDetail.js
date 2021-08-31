@@ -230,7 +230,7 @@ export default function AlertDialogSlide(props) {
           </DialogContentText>
 
           {props.data.attachment ? (
-            <ViewAttectment attechmnet="" />
+            <ViewAttectment attechmnet={props.data.attachment} />
           ) : (
             ""
           )}
