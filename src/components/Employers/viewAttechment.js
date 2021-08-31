@@ -90,7 +90,7 @@ export default function ViewAttectment(props) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Cover letter
+              Attechment
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               close
