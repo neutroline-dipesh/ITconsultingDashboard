@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
 import MaterialTable from "material-table";
@@ -22,11 +23,26 @@ const useStyle = makeStyles((theme) => ({
   },
   PageTabDiv: {
     backgroundColor: "#f8f9fc",
-
     height: "10vh",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  confirmBtn:{
+    marginLeft: "1rem",
+    background: "#2f4586",
+    color: "#fff",
+    border: "1px solid #3f6b71",
+    padding: "5px",
+    cursor: "pointer",
+  },
+
+  cancelBtn:{
+    background: "#e02113",
+    color: "#fff",
+    border: "1px solid #352c2e",
+    padding: "5px",
+    cursor: "pointer",
   },
   pageTabName: {
     fontSize: "1.75rem",
@@ -49,9 +65,9 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "1rem",
     marginRight: "1rem",
   },
+  
   MainContentDiv: {
     height: "82vh",
-
     backgroundColor: "#f8f9fc",
   },
 
@@ -178,8 +194,8 @@ const Alljobs = (props) => {
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
+        confirmButton: classes.confirmBtn,
+        cancelButton: classes.cancelBtn,
       },
       buttonsStyling: false,
     });

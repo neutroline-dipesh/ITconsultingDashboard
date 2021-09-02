@@ -23,11 +23,9 @@ const useStyle = makeStyles((theme) => ({
   },
   PageTabDiv: {
     backgroundColor: "#F5F6FA",
-
     height: "10vh",
     display: "flex",
     justifyContent: "space-between",
-
     alignItems: "center",
   },
 

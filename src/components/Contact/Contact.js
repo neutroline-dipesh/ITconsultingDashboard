@@ -15,6 +15,22 @@ const useStyle = makeStyles((theme) => ({
   maindiv: {
     paddingTop: "8vh",
   },
+    confirmBtn:{
+    marginLeft: "1rem",
+    background: "#2f4586",
+    color: "#fff",
+    border: "1px solid #3f6b71",
+    padding: "5px",
+    cursor: "pointer",
+  },
+
+  cancelBtn:{
+    background: "#e02113",
+    color: "#fff",
+    border: "1px solid #352c2e",
+    padding: "5px",
+    cursor: "pointer",
+  },
   PageTabDiv: {
     backgroundColor: "#f8f9fc",
 
@@ -143,8 +159,8 @@ const Contact = (props) => {
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
+        confirmButton: classes.confirmBtn,
+        cancelButton: classes.cancelBtn,
       },
       buttonsStyling: false,
     });

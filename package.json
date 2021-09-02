@@ -24,6 +24,8 @@
     "jquery": "^3.6.0",
     "material-table": "^1.69.3",
     "react": "^17.0.2",
+    "react-alert": "^7.0.3",
+    "react-alert-template-basic": "^1.0.2",
     "react-calendar": "^3.4.0",
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^17.0.2",

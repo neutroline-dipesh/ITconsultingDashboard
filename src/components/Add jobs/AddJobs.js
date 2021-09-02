@@ -10,7 +10,6 @@ import {
   FormControlLabel,
   Box,
 } from "@material-ui/core";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
@@ -27,16 +26,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Switch from "@material-ui/core/Switch";
 import { withStyles } from "@material-ui/core/styles";
-
-// import ImageInsert from "@ckeditor/ckeditor5-image/src/imageinsert";
-
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import SelectInput from "@material-ui/core/Select/SelectInput";
+import { useAlert } from 'react-alert';
 
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -128,16 +121,16 @@ const useStyle = makeStyles((theme) => ({
   },
   ckeditor: {},
   save: {
-    backgroundColor: "#2653d4",
-    borderRadius: "20px",
-    fontSize: "0.9rem",
-    marginBottom: ".5rem",
-    width: "7rem",
+    // backgroundColor: "#2653d4",
+    // borderRadius: "20px",
+    // fontSize: "0.9rem",
+    // marginBottom: ".5rem",
+    // width: "7rem",
     float: "right",
-    marginTop: "2rem",
-    "&:hover": {
-      backgroundColor: "#000099",
-    },
+    // marginTop: "2rem",
+    // "&:hover": {
+    //   backgroundColor: "#000099",
+    // },
   },
   errorMessage: {
     // marginLeft: "5rem",
@@ -220,14 +213,15 @@ const IOSSwitch = withStyles((theme) => ({
   );
 });
 
-const Addjobs = () => {
+const Addjobs = (props) => {
+  const alert = useAlert();
   const classes = useStyle();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     checkedA: true,
     checkedB: true,
     checkedC: true,
   });
-  //for validation
+  
   const formik = useFormik({
     initialValues: {
       jobTitle: "",
@@ -254,15 +248,10 @@ const Addjobs = () => {
         .required("Required!"),
       city: Yup.string().min(1, "Required!").required("Required!"),
       publishBy: Yup.string().min(1, "Required!").required("Required!"),
-      // password: Yup.string()
-      //   .min(4, "Minimum 4 character!")
-      //   .required("Required!"),
     }),
 
     onSubmit: (values) => {
       handleSubmit(values);
-      // formik.resetForm();
-      // history.push("/Alljobs")
     },
   });
 
@@ -287,25 +276,17 @@ const Addjobs = () => {
       visibility: publish,
       workType: workType,
     };
-    const notify = () => {
-      toast.success("Job posted successfully");
-
-      Array.from(document.querySelectorAll("input")).forEach(
-        (input) => (input.value = "")
-      );
-    };
+    console.log(job);
     axios
       .post("http://localhost:4000/allJobs/", job, { headers })
       .then((res) => {
-        console.log("success");
-
-        {
-          notify();
-        }
+        alert.success('New job added successfully!');
+        props.history.push("/jobs");
+      }).catch(err => {
+        alert.error('Something went wrong! Please Try again')
       });
   };
 
-  //alert message
   //for switch button (publish)
   const handleChange = (event) => {
     setState(event.target.checked);
@@ -749,36 +730,8 @@ const Addjobs = () => {
                         </Grid>
 
                         <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                          {/* <div className={classes.PublishDiv}>
-                            <span>Publish</span>
-                            <div class="form-check form-switch">
-                              <input
-                                className={"form-check-input"}
-                                type="checkbox"
-                                id="flexSwitchCheckChecked"
-                                name="publish"
-                                style={{
-                                  width: "3.5rem",
-                                  height: "3.5vh",
-                                }}
-                                onChange={handleChange}
-                                value="true"
-                              />
-                            </div>
-
-                            <FormControlLabel
-                          control={
-                            <IOSSwitch
-                              checked={state.checkedB}
-                              onChange={handleChange}
-                              name="checkedB"
-                            />
-                          }
-                        />
-                        
-                          </div> */}
                           <FormControlLabel
-                            style={{ padding: "6px", marginBottom:"5px" }}
+                            style={{ padding: "6px", marginBottom:"5px", color:"blue"}}
                             control={
                               <IOSSwitch
                                 checked={state.checked}
@@ -791,23 +744,9 @@ const Addjobs = () => {
                         </Grid>
                         <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
                           <div className={classes.saveButtonDiv}>
-                            <button
-                              type="submit"
-                              className={"btn btn-primary" + " " + classes.save}
-                            >
+                            <Button color="primary" variant="contained" type="submit"  className={classes.save}>
                               Save
-                            </button>
-                            <ToastContainer
-                              position="bottom-right"
-                              autoClose={2000}
-                              hideProgressBar={false}
-                              newestOnTop={false}
-                              closeOnClick
-                              rtl={false}
-                              pauseOnFocusLoss
-                              draggable
-                              pauseOnHover
-                            />
+                            </Button>
                           </div>
                         </Grid>
                       </Grid>

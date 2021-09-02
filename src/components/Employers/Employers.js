@@ -30,6 +30,22 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "2.5rem",
     color: "#3F51B5",
   },
+    confirmBtn:{
+    marginLeft: "1rem",
+    background: "#2f4586",
+    color: "#fff",
+    border: "1px solid #3f6b71",
+    padding: "5px",
+    cursor: "pointer",
+  },
+
+  cancelBtn:{
+    background: "#e02113",
+    color: "#fff",
+    border: "1px solid #352c2e",
+    padding: "5px",
+    cursor: "pointer",
+  },
   MainContentDiv: {
     height: "82vh",
 
@@ -145,8 +161,8 @@ const Employers = (props) => {
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
+        confirmButton: classes.confirmBtn,
+        cancelButton: classes.cancelBtn,
       },
       buttonsStyling: false,
     });

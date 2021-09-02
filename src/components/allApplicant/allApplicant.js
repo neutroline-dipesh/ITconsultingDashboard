@@ -22,6 +22,22 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
+    confirmBtn:{
+    marginLeft: "1rem",
+    background: "#2f4586",
+    color: "#fff",
+    border: "1px solid #3f6b71",
+    padding: "5px",
+    cursor: "pointer",
+  },
+
+  cancelBtn:{
+    background: "#e02113",
+    color: "#fff",
+    border: "1px solid #352c2e",
+    padding: "5px",
+    cursor: "pointer",
+  },
   pageTabName: {
     fontSize: "1.75rem",
     fontWeight: "700",
@@ -93,9 +109,7 @@ const useStyle = makeStyles((theme) => ({
       color: "#ff0000",
     },
   },
-  confirmBtn: {
-    marginLeft: "1rem",
-  },
+
   text: {
     backgroundColor: "yellow",
   },
@@ -150,8 +164,8 @@ const Allapplicant = () => {
   const deletFunction = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success mx-2",
-        cancelButton: "btn btn-danger mx-2",
+        confirmButton: classes.confirmBtn,
+        cancelButton: classes.cancelBtn,
       },
       buttonsStyling: false,
     });
